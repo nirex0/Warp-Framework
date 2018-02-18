@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\EventArgs">
+      <UniqueIdentifier>{17279c38-01ee-4dac-aed0-abf91f287031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EventArgs">
+      <UniqueIdentifier>{a2f23e73-0390-487c-89d0-0166b9340d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{997d5aec-14f6-4bc1-91a2-87844db259f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{592305f7-260e-4bb3-b757-bd62d69fa83d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Core">
+      <UniqueIdentifier>{b6515c69-e28e-4c1a-a4fc-25587a5a44bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Devices">
+      <UniqueIdentifier>{ddeb7bc9-d8ed-4397-98d0-7dea79087f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Main Window">
+      <UniqueIdentifier>{d8be893e-995e-443e-b862-2f274ff20d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\System">
+      <UniqueIdentifier>{7246f845-b98c-49d9-8ca6-49bd7076bdf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Core">
+      <UniqueIdentifier>{7ffc845d-d8fa-4884-964c-a5f34e89c93c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Main Window">
+      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WKeyboardArgs.h">
+      <Filter>Header Files\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="WMouseArgs.h">
+      <Filter>Header Files\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="WEntity.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WMouse.h">
+      <Filter>Header Files\Engine\Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="WRegistry.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WKeyboard.h">
+      <Filter>Header Files\Engine\Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="WEventArgs.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WUserSettings.h">
+      <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WMainWindow.h">
+      <Filter>Header Files\Engine\Main Window</Filter>
+    </ClInclude>
+    <ClInclude Include="WEntry.h">
+      <Filter>Header Files\Engine\Main Window</Filter>
+    </ClInclude>
+    <ClInclude Include="WDefines.h">
+      <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WWin.h">
+      <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WKeyboardArgs.cpp">
+      <Filter>Source Files\EventArgs</Filter>
+    </ClCompile>
+    <ClCompile Include="WMouseArgs.cpp">
+      <Filter>Source Files\EventArgs</Filter>
+    </ClCompile>
+    <ClCompile Include="WMainWindow.cpp">
+      <Filter>Source Files\Engine\Main Window</Filter>
+    </ClCompile>
+    <ClCompile Include="WEntry.cpp">
+      <Filter>Source Files\Engine\Main Window</Filter>
+    </ClCompile>
+    <ClCompile Include="WRegistry.cpp">
+      <Filter>Source Files\Engine\Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
