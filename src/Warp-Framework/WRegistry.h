@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+//Â© 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_REGISTRY_H_
 #define _W_REGISTRY_H_
@@ -9,9 +9,7 @@
 #include <vector>
 #include <functional>
 
-// Returns an void as an error code
 typedef std::function<void __stdcall (WEntity* sender, WEventArgs* args)> Annex;
-
 
 class WRegistry final : public WEntity
 {
