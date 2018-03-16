@@ -1,7 +1,14 @@
 //© 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WMainWindow.h"
-#include "WWin.h"
+
+// We Need to Initialize the container's static memebers to nullptr ({} = ZeroMemory}
+HRESULT WContainer::HR = {};
+HWND WContainer::hWnd = {};
+UINT WContainer::msg = {};
+WPARAM WContainer::wParam = {};
+LPARAM WContainer::lParam = {};
+
 
 // C-Style wWinMain function
 int W_CALL wWinMain(
@@ -58,7 +65,7 @@ WMainWindow::~WMainWindow(void)
 int WMainWindow::Initialize(void)
 {
 	HWND hWnd;
-	WNDCLASSEX wcex;
+	WNDCLASSEX wcex = {};
 	ZeroMemory(&wcex, sizeof(WNDCLASSEXW));
 
 	//Setup the WCEX 
@@ -95,9 +102,11 @@ int WMainWindow::Initialize(void)
 
 	if (!hWnd)
 	{
+		WContainer::hResult(E_OUTOFMEMORY);
 		PostQuitMessage(2);
 		return 2;
 	}
+	WContainer::hResult(S_OK);
 
 	//Finnaly we show our window
 	ShowWindow(hWnd, SW_SHOW);
@@ -107,22 +116,17 @@ int WMainWindow::Initialize(void)
 	return 0;
 }
 
-
-
 void WMainWindow::MessageLoop(void)
 {
-	//Set the G_CurrInstance global Variable
-	//G_CurrInstance = m_entry;
-
 	//Windows MSG
-	MSG msg;
+	MSG msg = {};
 	ZeroMemory(&msg, sizeof(MSG));
 
 	//Initialize Keyboard
-	m_entry->SetWKeyboard(m_keyboard);
+	m_entry->Keyboard(m_keyboard);
 
 	//Initialize Mouse
-	m_entry->SetWMouse(m_mouse);
+	m_entry->Mouse(m_mouse);
 	
 	//Start 
 	m_entry->Start();
@@ -157,30 +161,39 @@ void WMainWindow::MessageLoop(void)
 
 LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+
+	// Update the container's static Members
+	WContainer::Handle(hWnd);
+	WContainer::Message(msg);
+	WContainer::WParam(wParam);
+	WContainer::LParam(lParam);
+
 	switch (msg)
 	{
 		// KEYBOARD MESSAGES
 
 	case WM_KEYDOWN:
 	{
+		// Key Down
 		//No autorepeat
 		if (!(lParam & 0x40000000) || m_keyboard->AutorepeatIsEnabled())
 		{
-			m_keyboard->SetLastKey((static_cast<unsigned char>(wParam)));
+			m_keyboard->LastKey((static_cast<W_BYTE>(wParam)));
 			m_keyboard->RunKeyDown();
 		}
 		break;
 	}
 	case WM_KEYUP:
 	{
-		m_keyboard->SetLastKey((static_cast<unsigned char>(wParam)));
+		// Key Up
+		m_keyboard->LastKey((static_cast<W_BYTE>(wParam)));
 		m_keyboard->RunKeyUp();
 		break;
 	}
 	case WM_CHAR:
 	{
-		m_keyboard->SetLastKey((static_cast<unsigned char>(wParam)));
-		m_keyboard->RunNOnChar();
+		m_keyboard->LastKey((static_cast<W_BYTE>(wParam)));
+		m_keyboard->RunOnChar();
 		break;
 	}
 	// END OF KEYBOARD MESSAGES
@@ -188,63 +201,63 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	case WM_LBUTTONDOWN:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		m_mouse->SetMouseKey(WMouseKey::MK_LEFT);
-		m_mouse->SetMPoint(pt.x, pt.y);
+		m_mouse->MouseKey(WMouseKey::MK_LEFT);
+		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
 		break;
 	}
 	case WM_LBUTTONUP:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		m_mouse->SetMouseKey(WMouseKey::MK_LEFT);
-		m_mouse->SetMPoint(pt.x, pt.y);
+		m_mouse->MouseKey(WMouseKey::MK_LEFT);
+		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
 		break;
 	}
 	case WM_RBUTTONDOWN:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		m_mouse->SetMouseKey(WMouseKey::MK_RIGHT);
-		m_mouse->SetMPoint(pt.x, pt.y);
+		m_mouse->MouseKey(WMouseKey::MK_RIGHT);
+		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
 		break;
 	}
 	case WM_RBUTTONUP:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		m_mouse->SetMouseKey(WMouseKey::MK_RIGHT);
-		m_mouse->SetMPoint(pt.x, pt.y);
+		m_mouse->MouseKey(WMouseKey::MK_RIGHT);
+		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
 		break;
 	}
 	case WM_MBUTTONDOWN:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		m_mouse->SetMouseKey(WMouseKey::MK_MIDDLE);
-		m_mouse->SetMPoint(pt.x, pt.y);
+		m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
+		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
 		break;
 	}
 	case WM_MBUTTONUP:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		m_mouse->SetMouseKey(WMouseKey::MK_MIDDLE);
-		m_mouse->SetMPoint(pt.x, pt.y);
+		m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
+		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
 		break;
 	}
 	case WM_MOUSEWHEEL:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		m_mouse->SetMPoint(pt.x, pt.y);
+		m_mouse->MPoint(pt.x, pt.y);
 		if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
 		{
-			m_mouse->SetMouseKey(WMouseKey::MK_MIDDLE);
+			m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
 			m_mouse->MouseMiddleDown();
 		}
 		else if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
 		{
-			m_mouse->SetMouseKey(WMouseKey::MK_MIDDLE);
+			m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
 			m_mouse->MouseMiddleUp();
 		}
 		break;

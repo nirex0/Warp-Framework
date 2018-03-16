@@ -5,18 +5,18 @@
 
 #include "WEventArgs.h"
 
-typedef unsigned char NKey;
+typedef unsigned char WKey;
 
 class WKeyboardArgs : public WEventArgs
 {
 public:
-	WKeyboardArgs(NKey key);
+	WKeyboardArgs(WKey key);
 	~WKeyboardArgs();
 
-	const NKey GetKey(void) const;
+	const WKey GetKey(void) const;
 
 private:
-	NKey m_Key;
+	WKey m_Key;
 };
 
 #endif // _W_KEYBOARD_ARGS_H_

@@ -5,6 +5,16 @@
 
 #define W_CALL __stdcall
 
+typedef int						W_INT;
+typedef char					W_CHAR;
+typedef long					W_LONG;
+typedef long long				W_LONGLONG;
+
+typedef int						W_SBYTE;
+typedef char					W_SWORD;
+typedef long					W_SDWORD;
+typedef long long				W_SQWORD;
+
 typedef unsigned int			W_UINT;
 typedef unsigned char			W_UCHAR;
 typedef unsigned long			W_ULONG;

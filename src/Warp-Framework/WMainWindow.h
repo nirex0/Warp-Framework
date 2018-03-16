@@ -3,15 +3,18 @@
 #ifndef _W_MAIN_WINDOW_H_
 #define _W_MAIN_WINDOW_H_
 
-#include <chrono>
-#include <algorithm>
 
+#include "WContainer.h"
 #include "WEntity.h"
 #include "WMouse.h"
 #include "WKeyboard.h"
 #include "WEntry.h"
 #include "WDefines.h"
 #include "WUserSettings.h"
+
+#include <chrono>
+#include <algorithm>
+
 
 LRESULT W_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 

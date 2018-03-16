@@ -7,7 +7,7 @@
 #include "WRegistry.h"
 #include "WKeyboardArgs.h"
 
-typedef unsigned char WKey;
+typedef W_BYTE WKey;
 
 class WKeyboard final : WEntity
 {
@@ -17,14 +17,14 @@ public:
 	{
 		m_KeyDownReg = new WRegistry();
 		m_KeyUpReg = new WRegistry();
-		m_NOnCharReg = new WRegistry();
+		m_OnCharReg = new WRegistry();
 
 	}
 
 	inline WKeyboard(const WKeyboard& newKeyboard)
 		: m_KeyDownReg(newKeyboard.m_KeyDownReg)
 		, m_KeyUpReg(newKeyboard.m_KeyUpReg)
-		, m_NOnCharReg(newKeyboard.m_NOnCharReg)
+		, m_OnCharReg(newKeyboard.m_OnCharReg)
 		, m_bAutorepeatEnabled(newKeyboard.m_bAutorepeatEnabled)
 	{
 	}
@@ -33,7 +33,7 @@ public:
 	{
 		delete m_KeyDownReg;
 		delete m_KeyUpReg;
-		delete m_NOnCharReg;
+		delete m_OnCharReg;
 	}
 
 	inline WKeyboard* RunKeyDown(void)
@@ -50,55 +50,55 @@ public:
 		return this;
 	}
 
-	inline WKeyboard* RunNOnChar(void)
+	inline WKeyboard* RunOnChar(void)
 	{
 		WKeyboardArgs* ARGS = new WKeyboardArgs(this->m_lastKey);
-		this->m_NOnCharReg->Run(this, ARGS);
+		this->m_OnCharReg->Run(this, ARGS);
 		return this;
 	}
 
 
-	inline WKey GetLastKey(void) const
+	inline WKey LastKey(void) const
 	{
 		return this->m_lastKey;
 	}
 
-	inline WKeyboard* SetLastKey(WKey intake)
+	inline WKeyboard* LastKey(WKey intake)
 	{
 		this->m_lastKey = intake;
 		return this;
 	}
 
-	inline WRegistry* GetKeyDownRegistry(void)
+	inline WRegistry* KeyDownRegistry(void)
 	{
 		return this->m_KeyDownReg;
 	}
 
-	inline WKeyboard* SetKeyDownRegistry(WRegistry* const intake)
+	inline WKeyboard* KeyDownRegistry(WRegistry* const intake)
 	{
 		this->m_KeyDownReg = intake;
 		return this;
 	}
 
-	inline WRegistry* GetKeyUpRegistry(void)
+	inline WRegistry* KeyUpRegistry(void)
 	{
 		return this->m_KeyUpReg;
 	}
 
-	inline WKeyboard* SetKeyUpRegistry(WRegistry* const intake)
+	inline WKeyboard* KeyUpRegistry(WRegistry* const intake)
 	{
 		this->m_KeyUpReg = intake;
 		return this;
 	}
 
-	inline WRegistry* GetNOnCharRegistry(void)
+	inline WRegistry* OnCharRegistry(void)
 	{
-		return this->m_NOnCharReg;
+		return this->m_OnCharReg;
 	}
 
-	inline WKeyboard* SetNOnCharRegistry(WRegistry* const intake)
+	inline WKeyboard* OnCharRegistry(WRegistry* const intake)
 	{
-		this->m_NOnCharReg = intake;
+		this->m_OnCharReg = intake;
 		return this;
 	}
 
@@ -127,7 +127,7 @@ private:
 
 	WRegistry* m_KeyDownReg;
 	WRegistry* m_KeyUpReg;
-	WRegistry* m_NOnCharReg;
+	WRegistry* m_OnCharReg;
 
 };
 

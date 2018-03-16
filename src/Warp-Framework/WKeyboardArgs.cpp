@@ -2,7 +2,7 @@
 
 #include "WKeyboardArgs.h"
 
-WKeyboardArgs::WKeyboardArgs(NKey key)
+WKeyboardArgs::WKeyboardArgs(WKey key)
 	: m_Key(key)
 {
 }
@@ -11,7 +11,7 @@ WKeyboardArgs::~WKeyboardArgs()
 {
 }
 
-const NKey WKeyboardArgs::GetKey(void) const
+const WKey WKeyboardArgs::GetKey(void) const
 {
 	return this->m_Key;
 }

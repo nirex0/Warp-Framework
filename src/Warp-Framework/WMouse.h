@@ -77,80 +77,80 @@ public:
 		return this;
 	}
 
-	inline WRegistry* GetMouseDownRegistry(void)
+	inline WRegistry* MouseDownRegistry(void)
 	{
 		return this->m_MouseDown;
 	}
 
-	inline WMouse* SetMouseDownRegistry(WRegistry* const intake)
+	inline WMouse* MouseDownRegistry(WRegistry* const intake)
 	{
 		this->m_MouseDown = intake;
 		return this;
 	}
 
-	inline WRegistry* GetMouseUpRegistry(void)
+	inline WRegistry* MouseUpRegistry(void)
 	{
 		return this->m_MouseUp;
 	}
 
-	inline WMouse* SetMouseUpRegistry(WRegistry* const intake)
+	inline WMouse* MouseUpRegistry(WRegistry* const intake)
 	{
 		this->m_MouseUp = intake;
 		return this;
 	}
 
-	inline WRegistry* GetMouseMoveRegistry(void)
+	inline WRegistry* MouseMoveRegistry(void)
 	{
 		return this->m_MouseMove;
 	}
 
-	inline WMouse* SetMouseMoveRegistry(WRegistry* const intake)
+	inline WMouse* MouseMoveRegistry(WRegistry* const intake)
 	{
 		this->m_MouseMove = intake;
 		return this;
 	}
 
-	inline WRegistry* GetMouseRollUpRegistry(void)
+	inline WRegistry* MouseRollUpRegistry(void)
 	{
 		return this->m_MouseRollUp;
 	}
 
-	inline WMouse* SetMouseRollUpRegistry(WRegistry* const intake)
+	inline WMouse* MouseRollUpRegistry(WRegistry* const intake)
 	{
 		this->m_MouseRollUp = intake;
 		return this;
 	}
 
-	inline WRegistry* GetMouseRollDownRegistry(void)
+	inline WRegistry* MouseRollDownRegistry(void)
 	{
 		return this->m_MouseRollDown;
 	}
 
-	inline WMouse* GetMouseRollDownRegistry(WRegistry* const intake)
+	inline WMouse* MouseRollDownRegistry(WRegistry* const intake)
 	{
 		this->m_MouseRollDown = intake;
 		return this;
 	}
 
 
-	inline WPoint* GetMPoint(void)
+	inline WPoint* MPoint(void)
 	{
 		return this->m_mPoint;
 	}
 
-	inline WMouse* SetMPoint(unsigned int x, unsigned int y)
+	inline WMouse* MPoint(unsigned int x, unsigned int y)
 	{
 		this->m_mPoint->x = x;
 		this->m_mPoint->y = y;
 		return this;
 	}
 
-	inline WMouseKey GetMouseKey(void) const
+	inline WMouseKey MouseKey(void) const
 	{
 		return m_WMKPrev;
 	}
 
-	inline WMouse* SetMouseKey(WMouseKey intake)
+	inline WMouse* MouseKey(WMouseKey intake)
 	{
 		m_WMKPrev = intake;
 		return this;

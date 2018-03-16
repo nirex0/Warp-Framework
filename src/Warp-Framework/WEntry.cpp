@@ -14,5 +14,5 @@ void WEntry::Start(void)
 //Runs every frame
 void WEntry::Update(double deltaTime)
 {
-
+	
 }

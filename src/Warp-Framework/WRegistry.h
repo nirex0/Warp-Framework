@@ -9,7 +9,7 @@
 #include <vector>
 #include <functional>
 
-// Returns an int as an error code
+// Returns an void as an error code
 typedef std::function<void __stdcall (WEntity* sender, WEventArgs* args)> Annex;
 
 

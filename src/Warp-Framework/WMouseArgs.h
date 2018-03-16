@@ -16,8 +16,8 @@ public:
 
 	WPoint* const GetPoint(void);
 	WMouseKey const GetKey(void) const;
-	int GetX(void) const;
-	int GetY(void) const;
+	int X(void) const;
+	int Y(void) const;
 
 private:
 	WPoint* m_Point;

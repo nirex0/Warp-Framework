@@ -41,12 +41,12 @@ WMouseKey const WMouseArgs::GetKey(void) const
 	return m_wmk;
 }
 
-int WMouseArgs::GetX(void) const
+int WMouseArgs::X(void) const
 {
 	return m_Point->x;
 }
 
-int WMouseArgs::GetY(void) const
+int WMouseArgs::Y(void) const
 {
 	return m_Point->y;
 }
