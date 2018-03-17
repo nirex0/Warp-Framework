@@ -16,9 +16,6 @@
     <Filter Include="Header Files\EventArgs">
       <UniqueIdentifier>{17279c38-01ee-4dac-aed0-abf91f287031}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\EventArgs">
-      <UniqueIdentifier>{a2f23e73-0390-487c-89d0-0166b9340d91}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Engine">
       <UniqueIdentifier>{997d5aec-14f6-4bc1-91a2-87844db259f7}</UniqueIdentifier>
     </Filter>
@@ -37,9 +34,6 @@
     <Filter Include="Header Files\Engine\System">
       <UniqueIdentifier>{7246f845-b98c-49d9-8ca6-49bd7076bdf7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Core">
-      <UniqueIdentifier>{7ffc845d-d8fa-4884-964c-a5f34e89c93c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Engine\Main Window">
       <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
     </Filter>
@@ -51,9 +45,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WKeyboardArgs.h">
-      <Filter>Header Files\EventArgs</Filter>
-    </ClInclude>
     <ClInclude Include="WMouseArgs.h">
       <Filter>Header Files\EventArgs</Filter>
     </ClInclude>
@@ -111,22 +102,19 @@
     <ClInclude Include="WColor.h">
       <Filter>Header Files\Engine\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="WKeyboardArgs.h">
+      <Filter>Header Files\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="WUniqueRegister.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WKeyboardArgs.cpp">
-      <Filter>Source Files\EventArgs</Filter>
-    </ClCompile>
-    <ClCompile Include="WMouseArgs.cpp">
-      <Filter>Source Files\EventArgs</Filter>
-    </ClCompile>
     <ClCompile Include="WMainWindow.cpp">
       <Filter>Source Files\Engine\Main Window</Filter>
     </ClCompile>
     <ClCompile Include="WEntry.cpp">
       <Filter>Source Files\Engine\Main Window</Filter>
-    </ClCompile>
-    <ClCompile Include="WRegistry.cpp">
-      <Filter>Source Files\Engine\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
