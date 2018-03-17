@@ -1,3 +1,5 @@
+//© 2018 NIREX ALL RIGHTS RESERVED
+
 #ifndef _W_COLOR_H_
 #define _W_COLOR_H_
 
@@ -18,10 +20,10 @@ public:
 	constexpr WColor(WColor&& col) :
 		val(col.val)
 	{}
-	constexpr WColor(unsigned int dw):
+	constexpr WColor(unsigned int dw) :
 		val(dw)
 	{}
-	constexpr WColor(W_BYTE a, W_BYTE r, W_BYTE g, W_BYTE b):
+	constexpr WColor(W_BYTE a, W_BYTE r, W_BYTE g, W_BYTE b) :
 		val((a << 24u) | (r << 16u) | (g << 8u) | b)
 	{}
 	constexpr WColor(W_BYTE r, W_BYTE g, W_BYTE b) :

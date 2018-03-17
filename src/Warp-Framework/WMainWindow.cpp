@@ -8,11 +8,11 @@ HWND WContainer::hWnd = {};
 UINT WContainer::msg = {};
 WPARAM WContainer::wParam = {};
 LPARAM WContainer::lParam = {};
-
+WEntry WContainer::WFramework = {};
 
 // C-Style wWinMain function
-int W_CALL wWinMain(
-	HINSTANCE hInstance, 
+int WARP_ENTRY wWinMain(
+	HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,				// UNUSED
 	LPWSTR lpCmd,							// UNUSED
 	INT cmdShow								// UNUSED
@@ -22,7 +22,6 @@ int W_CALL wWinMain(
 	UNREFERENCED_PARAMETER(lpCmd);
 	UNREFERENCED_PARAMETER(cmdShow);
 
-	//
 	MainWnd = new WMainWindow(hInstance, WindowTitle, ApplicationName);
 	MainWnd->Initialize();
 	MainWnd->MessageLoop();
@@ -31,13 +30,19 @@ int W_CALL wWinMain(
 }
 
 // C-Style WinProc function
-LRESULT W_CALL WindowsProcedure(
+LRESULT WARP_CALL WindowsProcedure(
 	HWND hWnd,				// Handle to our current window
 	UINT msg,				// Current message
 	WPARAM wParam,			// Word param
 	LPARAM lParam			// Long param
 )
 {
+	// Update the container's static Members
+	WContainer::Handle(hWnd);
+	WContainer::Message(msg);
+	WContainer::WParam(wParam);
+	WContainer::LParam(lParam);
+
 	// We call the mainWindow's procedure function from our C-Style winProc function
 	return MainWnd->WProcedure(hWnd, msg, wParam, lParam);
 }
@@ -53,6 +58,7 @@ WMainWindow::WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowN
 	m_mouse = new WMouse();
 	m_keyboard = new WKeyboard();
 	m_entry = new WEntry;
+	WContainer::Framework(*m_entry);
 }
 
 WMainWindow::~WMainWindow(void)
@@ -127,7 +133,7 @@ void WMainWindow::MessageLoop(void)
 
 	//Initialize Mouse
 	m_entry->Mouse(m_mouse);
-	
+
 	//Start 
 	m_entry->Start();
 
@@ -264,7 +270,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	// END OF MOUSE MESSAGES
 
-
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
@@ -276,5 +281,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		break;
 	}
 	}
+	// Safeguard
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }

@@ -9,7 +9,7 @@
 
 typedef W_BYTE WKey;
 
-class WKeyboard final : WEntity
+class WKeyboard final : public WEntity
 {
 public:
 	inline WKeyboard()

@@ -3,7 +3,7 @@
 #ifndef _W_MAIN_WINDOW_H_
 #define _W_MAIN_WINDOW_H_
 
-
+#include "WWin.h"
 #include "WContainer.h"
 #include "WEntity.h"
 #include "WMouse.h"
@@ -16,6 +16,7 @@
 #include <algorithm>
 
 
+LRESULT WARP_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 LRESULT W_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 // DeltaTime calculation components
@@ -30,16 +31,16 @@ class WMainWindow final : public WEntity
 public:
 	// Ctor
 	WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowName = L"MAIN_WINDOW");
-	
+
 	// Dtor
 	~WMainWindow(void);
-	
+
 	// Init the first window
 	int Initialize(void);
-	
+
 	// Main message loop handler
 	void MessageLoop(void);
-	
+
 	// WinProc
 	LRESULT WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
