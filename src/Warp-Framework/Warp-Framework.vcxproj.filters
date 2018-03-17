@@ -43,26 +43,11 @@
     <Filter Include="Source Files\Engine\Main Window">
       <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{31a8fad3-6a0f-498e-b5ec-99ac37dae209}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Engine\Graphics">
-      <UniqueIdentifier>{56a0c062-d446-43ec-9e46-f4967f8f85b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\D2DX">
-      <UniqueIdentifier>{37833c93-71fb-420e-890f-35be1d52d167}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\D2DX">
-      <UniqueIdentifier>{847cc2ad-f681-4b69-a54c-3c3b5b36f128}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\D2DX\Controls">
-      <UniqueIdentifier>{ca4231b2-d9b0-4103-96be-92a46dbaa232}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\D2DX\Controls">
-      <UniqueIdentifier>{124d31c4-5c4a-403a-b519-b43c1ea834ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\D2DX\Core">
-      <UniqueIdentifier>{f4284ce0-6f81-4d59-95d1-850a48f4d741}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\D2DX\Core">
-      <UniqueIdentifier>{b906f071-5d9e-40e9-8301-47418c00afc5}</UniqueIdentifier>
+      <UniqueIdentifier>{7bec0380-ee09-49c6-95d0-18efd27e2eb2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +89,24 @@
     </ClInclude>
     <ClInclude Include="WContainer.h">
       <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WMath.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="WMatrix2.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="WMatrix3.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="WVector2.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="WVector3.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="WVector4.h">
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
     <ClInclude Include="WColor.h">
       <Filter>Header Files\Engine\Graphics</Filter>

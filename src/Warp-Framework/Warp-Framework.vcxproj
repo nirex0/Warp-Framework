@@ -113,6 +113,9 @@
   <ItemGroup>
     <ClInclude Include="WColor.h" />
     <ClInclude Include="WContainer.h" />
+    <ClInclude Include="WMath.h" />
+    <ClInclude Include="WMatrix2.h" />
+    <ClInclude Include="WMatrix3.h" />
     <ClInclude Include="WUserSettings.h" />
     <ClInclude Include="WDefines.h" />
     <ClInclude Include="WEntity.h" />
@@ -124,6 +127,9 @@
     <ClInclude Include="WMouse.h" />
     <ClInclude Include="WMouseArgs.h" />
     <ClInclude Include="WRegistry.h" />
+    <ClInclude Include="WVector2.h" />
+    <ClInclude Include="WVector3.h" />
+    <ClInclude Include="WVector4.h" />
     <ClInclude Include="WWin.h" />
   </ItemGroup>
   <ItemGroup>
