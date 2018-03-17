@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+//Â© 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_ENTRY_H_
 #define _W_ENTRY_H_
@@ -26,8 +26,6 @@ public:
 private:
 	WMouse* m_mouse;
 	WKeyboard* m_keyboard;
-
-
 };
 
 #endif // _W_ENTRY_H_
