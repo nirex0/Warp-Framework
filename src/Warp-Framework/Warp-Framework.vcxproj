@@ -113,16 +113,17 @@
   <ItemGroup>
     <ClInclude Include="WColor.h" />
     <ClInclude Include="WContainer.h" />
+    <ClInclude Include="WKeyboardArgs.h" />
     <ClInclude Include="WMath.h" />
     <ClInclude Include="WMatrix2.h" />
     <ClInclude Include="WMatrix3.h" />
+    <ClInclude Include="WUniqueRegister.h" />
     <ClInclude Include="WUserSettings.h" />
     <ClInclude Include="WDefines.h" />
     <ClInclude Include="WEntity.h" />
     <ClInclude Include="WEntry.h" />
     <ClInclude Include="WEventArgs.h" />
     <ClInclude Include="WKeyboard.h" />
-    <ClInclude Include="WKeyboardArgs.h" />
     <ClInclude Include="WMainWindow.h" />
     <ClInclude Include="WMouse.h" />
     <ClInclude Include="WMouseArgs.h" />
@@ -134,10 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WEntry.cpp" />
-    <ClCompile Include="WKeyboardArgs.cpp" />
     <ClCompile Include="WMainWindow.cpp" />
-    <ClCompile Include="WMouseArgs.cpp" />
-    <ClCompile Include="WRegistry.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
