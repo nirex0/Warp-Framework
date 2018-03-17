@@ -4,7 +4,7 @@
 #define _W_KEYBOARD_H_
 
 #include "WEntity.h"
-#include "WRegistry.h"
+#include "WUniqueRegister.h"
 #include "WKeyboardArgs.h"
 
 typedef W_BYTE WKey;
@@ -15,9 +15,9 @@ public:
 	inline WKeyboard()
 		: m_bAutorepeatEnabled(false)
 	{
-		m_KeyDownReg = new WRegistry();
-		m_KeyUpReg = new WRegistry();
-		m_OnCharReg = new WRegistry();
+		m_KeyDownReg = new WUniqueRegister();
+		m_KeyUpReg = new WUniqueRegister();
+		m_OnCharReg = new WUniqueRegister();
 
 	}
 
@@ -69,34 +69,34 @@ public:
 		return this;
 	}
 
-	inline WRegistry* KeyDownRegistry(void)
+	inline WUniqueRegister* KeyDownRegistry(void)
 	{
 		return this->m_KeyDownReg;
 	}
 
-	inline WKeyboard* KeyDownRegistry(WRegistry* const intake)
+	inline WKeyboard* KeyDownRegistry(WUniqueRegister* const intake)
 	{
 		this->m_KeyDownReg = intake;
 		return this;
 	}
 
-	inline WRegistry* KeyUpRegistry(void)
+	inline WUniqueRegister* KeyUpRegistry(void)
 	{
 		return this->m_KeyUpReg;
 	}
 
-	inline WKeyboard* KeyUpRegistry(WRegistry* const intake)
+	inline WKeyboard* KeyUpRegistry(WUniqueRegister* const intake)
 	{
 		this->m_KeyUpReg = intake;
 		return this;
 	}
 
-	inline WRegistry* OnCharRegistry(void)
+	inline WUniqueRegister* OnCharRegistry(void)
 	{
 		return this->m_OnCharReg;
 	}
 
-	inline WKeyboard* OnCharRegistry(WRegistry* const intake)
+	inline WKeyboard* OnCharRegistry(WUniqueRegister* const intake)
 	{
 		this->m_OnCharReg = intake;
 		return this;
@@ -125,9 +125,9 @@ private:
 
 	WKey m_lastKey;
 
-	WRegistry* m_KeyDownReg;
-	WRegistry* m_KeyUpReg;
-	WRegistry* m_OnCharReg;
+	WUniqueRegister* m_KeyDownReg;
+	WUniqueRegister* m_KeyUpReg;
+	WUniqueRegister* m_OnCharReg;
 
 };
 
