@@ -9,15 +9,54 @@
 class WMouseArgs : public WEventArgs
 {
 public:
-	WMouseArgs(int x, int y, WMouseKey key);
-	WMouseArgs(WPoint point, WMouseKey key);
-	WMouseArgs(WPoint* point, WMouseKey key);
-	~WMouseArgs(void);
+	WMouseArgs(int x, int y, WMouseKey key)
+	{
+		WPoint* ptPtr = new WPoint();
+		ptPtr->x = x;
+		ptPtr->y = y;
+		this->m_wmk = key;
+		this->m_Point = ptPtr;
+	}
 
-	WPoint* const GetPoint(void);
-	WMouseKey const GetKey(void) const;
-	int X(void) const;
-	int Y(void) const;
+	WMouseArgs(WPoint point, WMouseKey key)
+	{
+		WPoint* ptPtr = new WPoint();
+		ptPtr->x = point.x;
+		ptPtr->y = point.y;
+		this->m_wmk = key;
+		this->m_Point = ptPtr;
+	}
+
+	WMouseArgs(WPoint* point, WMouseKey key)
+	{
+		this->m_wmk = key;
+		this->m_Point = point;
+	}
+
+	~WMouseArgs(void)
+	{
+		delete m_Point;
+	}
+
+	WPoint* const GetPoint(void)
+	{
+		return m_Point;
+	}
+
+	WMouseKey const GetKey(void) const
+	{
+		return m_wmk;
+	}
+
+	int X(void) const
+	{
+		return m_Point->x;
+	}
+
+	int Y(void) const
+	{
+		return m_Point->y;
+	}
 
 private:
 	WPoint* m_Point;

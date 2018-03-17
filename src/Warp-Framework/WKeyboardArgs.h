@@ -10,10 +10,19 @@ typedef unsigned char WKey;
 class WKeyboardArgs : public WEventArgs
 {
 public:
-	WKeyboardArgs(WKey key);
-	~WKeyboardArgs();
+	WKeyboardArgs(WKey key)
+		: m_Key(key)
+	{
+	}
 
-	const WKey GetKey(void) const;
+	~WKeyboardArgs()
+	{
+	}
+
+	const WKey GetKey(void) const
+	{
+		return this->m_Key;
+	}
 
 private:
 	WKey m_Key;

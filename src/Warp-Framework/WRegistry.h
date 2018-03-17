@@ -14,29 +14,121 @@ typedef std::function<void __stdcall (WEntity* sender, WEventArgs* args)> Annex;
 class WRegistry final : public WEntity
 {
 public:
-	// Ctor
-	WRegistry();
-	// CCtor
-	WRegistry(const WRegistry& nRegistery);
-	// MCtor
-	WRegistry(WRegistry&& nRegistery);
-	// Dtor
-	~WRegistry();
+	WRegistry() 
+		: m_count(0)
+	{
+	}
+	
+	WRegistry(const WRegistry& nRegistery)
+		: m_count(0)
+	{
+		for (size_t i = 0; i < m_registered.size(); i++)
+		{
+			delete m_registered[i];
+		}
+		for (size_t i = 0; i < nRegistery.m_registered.size(); i++)
+		{
 
-	// Get the count of all the registered functions
-	long GetCount(void) const;
+			this->Register(nRegistery.m_registered[i]);
+			_InterlockedIncrement(&m_count);
+		}
+	}
+	
+	WRegistry(WRegistry&& nRegistery)
+		: m_count(0)
+	{
+		for (size_t i = 0; i < m_registered.size(); i++)
+		{
+			delete m_registered[i];
+		}
+		for (size_t i = 0; i < nRegistery.m_registered.size(); i++)
+		{
 
-	// Run all the registered Annexes
-	WRegistry* operator()(WEntity* sender, WEventArgs* args);
-	WRegistry* Run(WEntity* sender, WEventArgs* args);
+			this->Register(nRegistery.m_registered[i]);
+			_InterlockedIncrement(&m_count);
+		}
+	}
+	
+	~WRegistry()
+	{
+		for (size_t i = 0; i < m_registered.size(); i++)
+		{
+			delete m_registered[i];
+		}
+	}
+	
+	long GetCount(void) const
+	{
+		return m_count;
+	}
 
-	// Regiser / Unregister an Annex
-	WRegistry* Register(Annex* rhs);
-	WRegistry* UnRegister(Annex* rhs);
+	WRegistry* operator()(WEntity* sender, WEventArgs* args)
+	{
+		Annex current;
+		for (int i = 0; i < m_registered.size(); i++)
+		{
+			if (m_registered[i] != nullptr)
+			{
+				current = *m_registered[i];
+				current(sender, args);
+			}
+		}
+		return this;
+	}
 
-	// Regiser / Unregister an Annex
-	WRegistry* operator+=(Annex* rhs);
-	WRegistry* operator-=(Annex* rhs);
+	WRegistry* Run(WEntity* sender, WEventArgs* args)
+	{
+		Annex current;
+		for (int i = 0; i < m_registered.size(); i++)
+		{
+			if (m_registered[i] != nullptr)
+			{
+				current = *m_registered[i];
+				current(sender, args);
+			}
+		}
+		return this;
+	}
+
+	WRegistry* Register(Annex* rhs)
+	{
+		m_registered.push_back(rhs);
+		_InterlockedIncrement(&m_count);
+		return this;
+	}
+
+	WRegistry* UnRegister(Annex* rhs)
+	{
+		for (int i = 0; i < m_registered.size(); i++)
+		{
+			if (m_registered[i] == rhs)
+			{
+				m_registered[i] = nullptr;
+				_InterlockedDecrement(&m_count);
+			}
+		}
+		return this;
+	}
+
+	WRegistry* operator+=(Annex* rhs)
+	{
+		m_registered.push_back(rhs);
+		_InterlockedIncrement(&m_count);
+		return this;
+	}
+
+	WRegistry* operator-=(Annex* rhs)
+	{
+		for (int i = 0; i < m_registered.size(); i++)
+		{
+			if (m_registered[i] == rhs)
+			{
+				m_registered[i] = nullptr;
+				_InterlockedDecrement(&m_count);
+			}
+		}
+		return this;
+	}
 
 private:
 	volatile long m_count;
