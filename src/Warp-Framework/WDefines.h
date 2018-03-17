@@ -3,7 +3,24 @@
 #ifndef _W_DEFINES_H_
 #define _W_DEFINES_H_
 
-#define W_CALL __stdcall
+#define W_CALL					__stdcall
+#define W_ENTRY					__stdcall
+#define WARP_CALL				__stdcall
+#define WARP_ENTRY				__stdcall
+
+#define WARP_FRAMEWORK
+#define W_FRAMEWORK
+#define WARP
+
+typedef int						W_INT;
+typedef char					W_CHAR;
+typedef long					W_LONG;
+typedef long long				W_LONGLONG;
+
+typedef int						W_SBYTE;
+typedef char					W_SWORD;
+typedef long					W_SDWORD;
+typedef long long				W_SQWORD;
 
 typedef int						W_INT;
 typedef char					W_CHAR;
