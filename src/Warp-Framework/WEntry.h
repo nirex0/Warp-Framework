@@ -3,11 +3,11 @@
 #ifndef _W_ENTRY_H_
 #define _W_ENTRY_H_
 
-#include "WContainer.h"
 #include "WEntity.h"
 #include "WWin.h"  
 #include "WMouse.h"
 #include "WKeyboard.h"
+#include "WDX.h"
 
 class WEntry final : public WEntity
 {
@@ -33,4 +33,4 @@ private:
 	WKeyboard* m_keyboard;
 };
 
-#endif // _W_ENTRY_H_
+#endif // !_W_ENTRY_H_
