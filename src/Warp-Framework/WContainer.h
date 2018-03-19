@@ -6,7 +6,6 @@
 #include "WWin.h"
 #include "WEntry.h"
 
-// This class will hold the data required to handle windows messages so they can be used all across the framework.
 class WContainer
 {
 public:
@@ -28,6 +27,10 @@ public:
 	static void Framework(WEntry entry) { WContainer::WFramework = entry; }
 	static const WEntry Framework(void) { return WContainer::WFramework; }
 
+	static void DeltaSeconds(DELTATIME seconds) { WContainer::DeltaTime = seconds; }
+	static DELTATIME DeltaSeconds(void) { return WContainer::DeltaTime;}
+
+
 private:
 	static HRESULT WContainer::HR;
 	static HWND WContainer::hWnd;
@@ -35,7 +38,9 @@ private:
 	static WPARAM WContainer::wParam;
 	static LPARAM WContainer::lParam;
 	static WEntry WContainer::WFramework;
+	static DELTATIME WContainer::DeltaTime;
+
 };
 
 
-#endif // _W_CONTAINER_H_
+#endif // !_W_CONTAINER_H_
