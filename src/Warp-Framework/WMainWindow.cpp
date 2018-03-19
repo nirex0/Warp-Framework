@@ -9,6 +9,20 @@ UINT WContainer::msg = {};
 WPARAM WContainer::wParam = {};
 LPARAM WContainer::lParam = {};
 WEntry WContainer::WFramework = {};
+DELTATIME WContainer::DeltaTime = {};
+
+// Same with the Reg Container
+WUniqueRegister* WRegContainer::KBD_KeyDownReg = {};
+WUniqueRegister* WRegContainer::KBD_KeyUpReg = {};
+WUniqueRegister* WRegContainer::KBD_OnCharReg = {};
+				 
+WUniqueRegister* WRegContainer::MOS_MouseDown = {};
+WUniqueRegister* WRegContainer::MOS_MouseUp = {};
+WUniqueRegister* WRegContainer::MOS_MouseMove = {};
+WUniqueRegister* WRegContainer::MOS_MouseRollUp = {};
+WUniqueRegister* WRegContainer::MOS_MouseRollDown = {};
+				 
+WUniqueRegister* WRegContainer::WND_OnGDIPaint = {};
 
 // C-Style wWinMain function
 int WARP_ENTRY wWinMain(
@@ -57,8 +71,10 @@ WMainWindow::WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowN
 {
 	m_mouse = new WMouse();
 	m_keyboard = new WKeyboard();
-	m_entry = new WEntry;
+	m_entry = new WEntry();
+	m_OnGDIPaint = new WUniqueRegister();
 	WContainer::Framework(*m_entry);
+	SetGRegisters();
 }
 
 WMainWindow::~WMainWindow(void)
@@ -66,6 +82,8 @@ WMainWindow::~WMainWindow(void)
 	delete m_mouse;
 	delete m_keyboard;
 	delete m_entry;
+
+	delete m_OnGDIPaint;
 }
 
 int WMainWindow::Initialize(void)
@@ -150,6 +168,7 @@ void WMainWindow::MessageLoop(void)
 			//Update & Render
 			//Note: Render statements should be written after all of the Update statements
 			m_entry->Update(milliseconds);
+			WContainer::DeltaSeconds(milliseconds);
 
 			//Delta time Calculation
 			auto newEndTime = NClock::now();
@@ -176,8 +195,21 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 
 	switch (msg)
 	{
-		// KEYBOARD MESSAGES
 
+	// GDI PAINT
+	case WM_PAINT:
+	{
+		PAINTSTRUCT ps;
+		BeginPaint(hWnd, &ps);
+
+		WGDIPaintArgs* args = new WGDIPaintArgs(&ps, &hWnd);
+		m_OnGDIPaint->Run(this, args);
+
+		EndPaint(hWnd, &ps);
+		break;
+	}
+
+	// KEYBOARD MESSAGES
 	case WM_KEYDOWN:
 	{
 		// Key Down
@@ -283,4 +315,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	// Safeguard
 	return DefWindowProc(hWnd, msg, wParam, lParam);
+}
+
+void WMainWindow::SetGRegisters(void)
+{
+	WRegContainer::OnGDIPaint(m_OnGDIPaint);
 }

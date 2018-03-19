@@ -4,17 +4,18 @@
 #define _W_MAIN_WINDOW_H_
 
 #include "WWin.h"
-#include "WContainer.h"
 #include "WEntity.h"
 #include "WMouse.h"
 #include "WKeyboard.h"
 #include "WEntry.h"
 #include "WDefines.h"
 #include "WUserSettings.h"
+#include "WRegContainer.h"
+#include "WContainer.h"
+#include "WGDIPaintEventArgs.h"
 
 #include <chrono>
 #include <algorithm>
-
 
 LRESULT WARP_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 LRESULT W_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -24,7 +25,7 @@ typedef std::chrono::duration<long, std::ratio<1, 60>> sixtieths_of_a_sec;
 constexpr auto kMaxDeltatime = sixtieths_of_a_sec{ 1 };
 using NClock = std::chrono::steady_clock;
 auto mLastEndTime = NClock::now();
-double milliseconds = 0.0;
+DELTATIME milliseconds = 0.0;
 
 class WMainWindow final : public WEntity
 {
@@ -45,6 +46,7 @@ public:
 	LRESULT WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 private:
+	void SetGRegisters(void);
 
 	// ---Win32 Members--- //
 	HINSTANCE m_hAppInstance;
@@ -59,11 +61,10 @@ private:
 	LPWSTR m_windowName;
 	LPWSTR m_windowTitle;
 
+	WUniqueRegister* m_OnGDIPaint;
+
 };
 
 WMainWindow* MainWnd;
 
-
-
-
-#endif // _W_MAIN_WINDOW_H_
+#endif // !_W_MAIN_WINDOW_H_
