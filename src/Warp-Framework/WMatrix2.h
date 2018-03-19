@@ -100,4 +100,4 @@ typedef WMatrix2<float> Matrix2F;
 typedef WMatrix2<double> Matrix2D;
 typedef WMatrix2<int> Matrix2I;
 
-#endif // _W_MATRIX_2_H_
+#endif // !_W_MATRIX_2_H_

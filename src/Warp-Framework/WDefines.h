@@ -48,6 +48,7 @@ typedef int						W_INT32;
 typedef long long				W_INT64;
 
 typedef unsigned long			W_STYLE;
+typedef double					DELTATIME;
 
 typedef struct					W_8BSCT
 {
@@ -112,4 +113,4 @@ typedef enum WMouseKey
 	MK_MIDDLE
 }WMouseKey;
 
-#endif // _W_DEFINES_H_
+#endif // !_W_DEFINES_H_

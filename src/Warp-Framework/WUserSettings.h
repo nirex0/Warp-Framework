@@ -12,4 +12,4 @@ static constexpr LPWSTR WindowTitle = L"DirectX App";
 #define W_HEIGHT 600
 #define FRAMEWORK_VERSION 1
 
-#endif // _W_USER_SETTINGS_H_
+#endif // !_W_USER_SETTINGS_H_

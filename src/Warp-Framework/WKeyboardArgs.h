@@ -28,4 +28,4 @@ private:
 	WKey m_Key;
 };
 
-#endif // _W_KEYBOARD_ARGS_H_
+#endif // !_W_KEYBOARD_ARGS_H_

@@ -133,4 +133,4 @@ typedef WMatrix3<float> Matrix3F;
 typedef WMatrix3<double> Matrix3D;
 typedef WMatrix3<int> Matrix3I;
 
-#endif // _W_MATRIX_3_H_
+#endif // !_W_MATRIX_3_H_

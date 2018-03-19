@@ -88,4 +88,4 @@ namespace Colors
 	static constexpr WColor Magenta = MakeRGB(255u, 0u, 255u);
 }
 
-#endif // _W_COLOR_H_
+#endif // !_W_COLOR_H_

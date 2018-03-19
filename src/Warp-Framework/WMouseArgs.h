@@ -63,4 +63,4 @@ private:
 	WMouseKey m_wmk;
 };
 
-#endif // _W_MOUSE_ARGS_H_
+#endif // !_W_MOUSE_ARGS_H_

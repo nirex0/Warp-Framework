@@ -37,5 +37,5 @@ inline auto smoothstep(float from, float to, float x)
 
 
 
-#endif // _W_MATH_H_
+#endif // !_W_MATH_H_
 

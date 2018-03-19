@@ -186,4 +186,4 @@ typedef WVector2<float> Vector2F;
 typedef WVector2<double> Vector2D;
 typedef WVector2<int> Vector2I;
 
-#endif // _W_VECTOR_2_H_
+#endif // !_W_VECTOR_2_H_

@@ -190,4 +190,4 @@ typedef WVector3<float> Vector3F;
 typedef WVector3<double> Vector3D;
 typedef WVector3<int> Vector3I;
 
-#endif // _W_VECTOR_3_H_
+#endif // !_W_VECTOR_3_H_

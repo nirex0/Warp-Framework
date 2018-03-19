@@ -200,4 +200,4 @@ typedef WVector4<float> Vector4F;
 typedef WVector4<double> Vector4D;
 typedef WVector4<int> Vector4I;
 
-#endif // _W_VECTOR_4_H_
+#endif // !_W_VECTOR_4_H_

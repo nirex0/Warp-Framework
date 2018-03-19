@@ -10,4 +10,4 @@ class WEventArgs : public WEntity
 {
 };
 
-#endif // _W_EVENT_ARGS_H_
+#endif // !_W_EVENT_ARGS_H_

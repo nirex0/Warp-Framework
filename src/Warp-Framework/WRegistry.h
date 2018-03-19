@@ -135,4 +135,4 @@ private:
 	std::vector<Annex*> m_registered;
 };
 
-#endif // _W_REGISTRY_H_
+#endif // !_W_REGISTRY_H_
