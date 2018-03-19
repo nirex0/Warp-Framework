@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Engine\Graphics">
       <UniqueIdentifier>{7bec0380-ee09-49c6-95d0-18efd27e2eb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Containers">
+      <UniqueIdentifier>{fbe055ce-7748-4d5f-80af-304582daadff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -78,9 +81,6 @@
     <ClInclude Include="WWin.h">
       <Filter>Header Files\Engine\System</Filter>
     </ClInclude>
-    <ClInclude Include="WContainer.h">
-      <Filter>Header Files\Engine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="WMath.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
@@ -107,6 +107,18 @@
     </ClInclude>
     <ClInclude Include="WUniqueRegister.h">
       <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WGDIPaintEventArgs.h">
+      <Filter>Header Files\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="WContainer.h">
+      <Filter>Header Files\Engine\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="WRegContainer.h">
+      <Filter>Header Files\Engine\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="WDX.h">
+      <Filter>Header Files\Engine\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

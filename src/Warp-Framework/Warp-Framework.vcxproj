@@ -113,10 +113,13 @@
   <ItemGroup>
     <ClInclude Include="WColor.h" />
     <ClInclude Include="WContainer.h" />
+    <ClInclude Include="WDX.h" />
+    <ClInclude Include="WGDIPaintEventArgs.h" />
     <ClInclude Include="WKeyboardArgs.h" />
     <ClInclude Include="WMath.h" />
     <ClInclude Include="WMatrix2.h" />
     <ClInclude Include="WMatrix3.h" />
+    <ClInclude Include="WRegContainer.h" />
     <ClInclude Include="WUniqueRegister.h" />
     <ClInclude Include="WUserSettings.h" />
     <ClInclude Include="WDefines.h" />
