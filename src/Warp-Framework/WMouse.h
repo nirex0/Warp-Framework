@@ -7,6 +7,7 @@
 #include "WUniqueRegister.h"
 #include "WDefines.h"
 #include "WMouseArgs.h"
+#include "WRegContainer.h"
 
 class WMouse final : public WEntity
 {
@@ -23,6 +24,8 @@ public:
 
 		m_mPoint->x = 0;
 		m_mPoint->y = 0;
+
+		SetGRegisters();
 	}
 
 	WMouse(const WMouse& iWMouse)
@@ -32,6 +35,7 @@ public:
 		, m_MouseRollUp(iWMouse.m_MouseRollUp)
 		, m_MouseRollDown(iWMouse.m_MouseRollDown)
 	{
+		SetGRegisters();
 	}
 
 
@@ -157,6 +161,16 @@ public:
 	}
 
 private:
+
+	void SetGRegisters(void)
+	{
+		WRegContainer::MouseDown(m_MouseDown);
+		WRegContainer::MouseUp(m_MouseUp);
+		WRegContainer::MouseMove(m_MouseMove);
+		WRegContainer::MouseRollUp(m_MouseRollUp);
+		WRegContainer::MouseRollDown(m_MouseRollDown);
+	}
+	
 	WUniqueRegister* m_MouseDown;
 	WUniqueRegister* m_MouseUp;
 	WUniqueRegister* m_MouseMove;
@@ -167,5 +181,5 @@ private:
 	WMouseKey m_WMKPrev;
 };
 
-#endif // _W_MOUSE_H_
+#endif // !_W_MOUSE_H_
 

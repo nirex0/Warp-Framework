@@ -6,6 +6,8 @@
 #include "WEntity.h"
 #include "WUniqueRegister.h"
 #include "WKeyboardArgs.h"
+#include "WColor.h"
+#include "WRegContainer.h"
 
 typedef W_BYTE WKey;
 
@@ -18,7 +20,7 @@ public:
 		m_KeyDownReg = new WUniqueRegister();
 		m_KeyUpReg = new WUniqueRegister();
 		m_OnCharReg = new WUniqueRegister();
-
+		SetGRegisters();
 	}
 
 	inline WKeyboard(const WKeyboard& newKeyboard)
@@ -27,6 +29,7 @@ public:
 		, m_OnCharReg(newKeyboard.m_OnCharReg)
 		, m_bAutorepeatEnabled(newKeyboard.m_bAutorepeatEnabled)
 	{
+		SetGRegisters();
 	}
 
 	inline ~WKeyboard()
@@ -121,6 +124,13 @@ public:
 	}
 
 private:
+	void SetGRegisters(void)
+	{
+		WRegContainer::KeyboardKeyDown(m_KeyDownReg);
+		WRegContainer::KeyboardKeyUp(m_KeyUpReg);
+		WRegContainer::KeyboardOnChar(m_OnCharReg);
+	}
+
 	bool m_bAutorepeatEnabled;
 
 	WKey m_lastKey;
@@ -131,4 +141,4 @@ private:
 
 };
 
-#endif // _W_KEYBOARD_H_
+#endif // !_W_KEYBOARD_H_
