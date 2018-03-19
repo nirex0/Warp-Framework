@@ -34,13 +34,19 @@ public:
 
 	WUniqueRegister* operator()(WEntity* sender, WEventArgs* args)
 	{
-		(*m_Register)(sender, args);
+		if (m_Register != nullptr)
+		{
+			(*m_Register)(sender, args);
+		}
 		return this;
 	}
 
 	WUniqueRegister* Run(WEntity* sender, WEventArgs* args)
 	{
-		(*m_Register)(sender, args);
+		if (m_Register != nullptr)
+		{
+			(*m_Register)(sender, args);
+		}
 		return this;
 	}
 
@@ -48,4 +54,4 @@ private:
 	std::unique_ptr<Annex> m_Register;
 };
 
-#endif // _W_UNIQUE_REGISTER_H_
+#endif // !_W_UNIQUE_REGISTER_H_
