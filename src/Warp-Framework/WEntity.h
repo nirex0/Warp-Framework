@@ -8,4 +8,4 @@ class WEntity
 {
 };
 
-#endif //!_W_ENTITY_H_
+#endif // !_W_ENTITY_H_
