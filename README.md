@@ -55,6 +55,15 @@ PLANS
 
 -Custom data format for local storage
 
+License
+=======
+
+For now there's no license file available to tell you what you can or can't do with this project.
+
+So for now, feel free to use it for any reason you want, and remember that there is absolutely no warranty!
+
+But keep in mind that when this goes to production stage I probably will write a custom license for it.
+
 CONTACT
 =======
 
