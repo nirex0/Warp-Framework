@@ -15,14 +15,6 @@ so don't worry read the plans and see where I'm going with this.
 PLANS
 =====
 
-✔️ : Done
-
-🔧 : Currently Working on
-
-⚠️ : Will be working on next
-
-❌ : Will be one of the later features to add
-
 
 ### WARP-GFX
 
@@ -34,25 +26,31 @@ PLANS
 
 - ⚠️ Intractable Controls
 
-- ⚠️ Texture Support
+- ⚠️ Texture Support (Bitmap Only)
+
+- ❌ Double Buffering
+
+- ❌ Custom 2D Space
+
+- ❌ Texture Support (PNG)
+
+- ❌ Custom ASSET Load (.WAS(Warp Asset))
 
 - ❌ Shader Support
 
 - ❌ Animation Support
 
-- ❌ 3D Model Support
-
 ### WARP-ASYNC
 
-- ❌ Concurrency made easy
+- ❌ Concurrent Programming with WAsyncWorker
 
 - ⚠️ Predefined animation formulae (Lerp, Smoothstep, etc...)
 
-- ⚠️ Smooth Color changing
+- ⚠️ Smooth Color Changing (Lerp)
 
 ### WARP-SOCKET
 
-- ❌ Network Programming made easy
+- ❌ Network Programming
 
 - ❌ Predefined socket types
 
@@ -64,7 +62,21 @@ PLANS
 
 - ⚠️ Custom Steganography support
 
-- ⚠️ Custom data format for local storage
+- ⚙️ Custom data format for local storage (.WCX(Warp Container Extended))
+
+
+#### LEGEND
+
+✔️ : Fully implemented and tested
+
+🔧 : Currently working on
+
+⚙️ : Will be working on next
+
+⚠️ : Will be working on soon
+
+❌ : Will be one of the later features to add
+
 
 License
 =======
