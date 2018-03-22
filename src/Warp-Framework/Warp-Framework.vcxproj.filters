@@ -46,6 +46,9 @@
     <Filter Include="Header Files\Engine\Containers">
       <UniqueIdentifier>{fbe055ce-7748-4d5f-80af-304582daadff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Graphics">
+      <UniqueIdentifier>{68e60a90-ecbc-439c-aeb7-2bced8014718}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -120,6 +123,15 @@
     <ClInclude Include="WDX.h">
       <Filter>Header Files\Engine\System</Filter>
     </ClInclude>
+    <ClInclude Include="WSafeRelease.h">
+      <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WDXContainer.h">
+      <Filter>Header Files\Engine\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="WGraphics.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -127,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="WEntry.cpp">
       <Filter>Source Files\Engine\Main Window</Filter>
+    </ClCompile>
+    <ClCompile Include="WGraphics.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -111,15 +111,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WDXContainer.h" />
     <ClInclude Include="WColor.h" />
     <ClInclude Include="WContainer.h" />
     <ClInclude Include="WDX.h" />
     <ClInclude Include="WGDIPaintEventArgs.h" />
+    <ClInclude Include="WGraphics.h" />
     <ClInclude Include="WKeyboardArgs.h" />
     <ClInclude Include="WMath.h" />
     <ClInclude Include="WMatrix2.h" />
     <ClInclude Include="WMatrix3.h" />
     <ClInclude Include="WRegContainer.h" />
+    <ClInclude Include="WSafeRelease.h" />
     <ClInclude Include="WUniqueRegister.h" />
     <ClInclude Include="WUserSettings.h" />
     <ClInclude Include="WDefines.h" />
@@ -138,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WEntry.cpp" />
+    <ClCompile Include="WGraphics.cpp" />
     <ClCompile Include="WMainWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
