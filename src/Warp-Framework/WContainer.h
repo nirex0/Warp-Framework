@@ -9,27 +9,26 @@
 class WContainer
 {
 public:
-	static void hResult(HRESULT hResult) { WContainer::HR = hResult; }
+	static const HRESULT hResult(HRESULT hResult) { WContainer::HR = hResult; return WContainer::HR; }
 	static const HRESULT hResult(void) { return WContainer::HR; }
 
-	static void Handle(HWND hWnd) { WContainer::hWnd = hWnd; }
+	static const HWND Handle(HWND hWnd) { WContainer::hWnd = hWnd; return WContainer::hWnd; }
 	static const HWND Handle(void) { return WContainer::hWnd; }
 
-	static void Message(UINT msg) { WContainer::msg = msg; }
+	static const UINT Message(UINT msg) { WContainer::msg = msg; return WContainer::msg; }
 	static const UINT Message(void) { return WContainer::msg; }
 
-	static void WParam(WPARAM wParam) { WContainer::wParam = wParam; }
+	static const WPARAM WParam(WPARAM wParam) { WContainer::wParam = wParam; return WContainer::wParam; }
 	static const WPARAM WParam(void) { return WContainer::wParam; }
 
-	static void LParam(LPARAM lParam) { WContainer::lParam = lParam; }
+	static const LPARAM LParam(LPARAM lParam) { WContainer::lParam = lParam; return WContainer::lParam; }
 	static const LPARAM LParam(void) { return WContainer::lParam; }
 
-	static void Framework(WEntry entry) { WContainer::WFramework = entry; }
+	static const WEntry Framework(WEntry entry) { WContainer::WFramework = entry; return WContainer::WFramework; }
 	static const WEntry Framework(void) { return WContainer::WFramework; }
 
-	static void DeltaSeconds(DELTATIME seconds) { WContainer::DeltaTime = seconds; }
-	static DELTATIME DeltaSeconds(void) { return WContainer::DeltaTime;}
-
+	static const DELTATIME DeltaSeconds(DELTATIME seconds) { WContainer::DeltaTime = seconds; return WContainer::DeltaTime; }
+	static const DELTATIME DeltaSeconds(void) { return WContainer::DeltaTime; }
 
 private:
 	static HRESULT WContainer::HR;
@@ -39,7 +38,6 @@ private:
 	static LPARAM WContainer::lParam;
 	static WEntry WContainer::WFramework;
 	static DELTATIME WContainer::DeltaTime;
-
 };
 
 
