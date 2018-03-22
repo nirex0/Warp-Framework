@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+//Â© 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WGraphics.h"
 #include "WContainer.h"
@@ -104,7 +104,7 @@ HRESULT WGraphics::CreateSolidColorBrush(const WColor& color)
 	{
 		m_bIsSCBCreated = 1;
 		return WContainer::hResult(m_DX_HRT->CreateSolidColorBrush(
-			D2D1::ColorF(color.R(), color.G(), color.B(), color.A()),
+			D2D1::ColorF(color.R() / 255, color.G() / 255, color.B() / 255, color.A() / 255),
 			&m_DX_SCB));
 	}
 	return UpdateSolidColorBrush(color);
@@ -116,7 +116,7 @@ HRESULT WGraphics::UpdateSolidColorBrush(const WColor& color)
 	if (!m_DX_HRT)
 	{
 		return 	WContainer::hResult(m_DX_HRT->CreateSolidColorBrush(
-			D2D1::ColorF(color.R(), color.G(), color.B(), color.A()),
+			D2D1::ColorF(color.R() / 255, color.G() / 255, color.B() / 255, color.A() / 255),
 			&m_DX_SCB));
 	}
 	return WContainer::hResult();
