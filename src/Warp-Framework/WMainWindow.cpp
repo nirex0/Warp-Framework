@@ -111,8 +111,6 @@ int WMainWindow::Initialize(void)
 	wcex.lpszClassName = m_windowName;
 	wcex.lpfnWndProc = WindowsProcedure;
 	wcex.hInstance = m_hAppInstance;
-	wcex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	wcex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 
@@ -133,6 +131,9 @@ int WMainWindow::Initialize(void)
 	UINT SCR_HEIGHT = GetSystemMetrics(SM_CYSCREEN);
 
 	hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_windowName, m_windowTitle, nStyle, centX, centY, uWidth, uHeight, NULL, NULL, m_hAppInstance, NULL);
+
+	
+
 
 	if (!hWnd)
 	{
