@@ -34,7 +34,7 @@ PLANS
 
 - ❌ Texture Support (PNG)
 
-- ❌ Custom ASSET Load (.WAS(Warp Asset))
+- ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
 
 - ❌ Shader Support
 
