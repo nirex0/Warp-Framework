@@ -15,45 +15,56 @@ so don't worry read the plans and see where I'm going with this.
 PLANS
 =====
 
+✔️ : Done
+
+🔧 : Currently Working on
+
+⚠️ : Will be working on next
+
+❌ : Will be one of the later features to add
+
+
 ### WARP-GFX
 
--Deltatime
+- ✔️ Deltatime 
 
--Event Registry
+- ✔️ Event Registry
 
--Intractable Controls
+- 🔧 D2DX Implementation
 
--Texture Support
+- ⚠️ Intractable Controls
 
--Shader Support
+- ⚠️ Texture Support
 
--Animation Support
+- ❌ Shader Support
 
--3D Model Support
+- ❌ Animation Support
+
+- ❌ 3D Model Support
 
 ### WARP-ASYNC
 
--Concurrency made easy
+- ❌ Concurrency made easy
 
--Predefined animation formulae (Lerp, Smoothstep, etc...)
+- ⚠️ Predefined animation formulae (Lerp, Smoothstep, etc...)
 
--Smooth Color changing
+- ⚠️ Smooth Color changing
 
 ### WARP-SOCKET
 
--Network Programming made easy
+- ❌ Network Programming made easy
 
--Predefined socket types
+- ❌ Predefined socket types
 
--Async networking
+- ❌ Async networking
 
 ### WARP-SECURITY
 
--Custom data Encryption algorithms
+- ⚠️ Custom data Encryption algorithms
 
--Custom Steganography support
+- ⚠️ Custom Steganography support
 
--Custom data format for local storage
+- ⚠️ Custom data format for local storage
 
 License
 =======
