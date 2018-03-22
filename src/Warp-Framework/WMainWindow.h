@@ -4,6 +4,7 @@
 #define _W_MAIN_WINDOW_H_
 
 #include "WWin.h"
+#include "WDX.h"
 #include "WEntity.h"
 #include "WMouse.h"
 #include "WKeyboard.h"
@@ -12,7 +13,10 @@
 #include "WUserSettings.h"
 #include "WRegContainer.h"
 #include "WContainer.h"
+#include "WSafeRelease.h"
 #include "WGDIPaintEventArgs.h"
+#include "WDXContainer.h"
+#include "WGraphics.h"
 
 #include <chrono>
 #include <algorithm>
@@ -23,8 +27,8 @@ LRESULT W_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 // DeltaTime calculation components
 typedef std::chrono::duration<long, std::ratio<1, 60>> sixtieths_of_a_sec;
 constexpr auto kMaxDeltatime = sixtieths_of_a_sec{ 1 };
-using NClock = std::chrono::steady_clock;
-auto mLastEndTime = NClock::now();
+using WClock = std::chrono::steady_clock;
+auto mLastEndTime = WClock::now();
 DELTATIME milliseconds = 0.0;
 
 class WMainWindow final : public WEntity
@@ -62,7 +66,8 @@ private:
 	LPWSTR m_windowTitle;
 
 	WUniqueRegister* m_OnGDIPaint;
-
+	
+	WGraphics* m_graphics;
 };
 
 WMainWindow* MainWnd;

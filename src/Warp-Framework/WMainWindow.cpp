@@ -11,6 +11,11 @@ LPARAM WContainer::lParam = {};
 WEntry WContainer::WFramework = {};
 DELTATIME WContainer::DeltaTime = {};
 
+// Same with the DX components
+ID2D1Factory* WDXContainer::DX_Factory = {};
+ID2D1HwndRenderTarget* WDXContainer::DX_RT = {};
+RECT WDXContainer::DX_cRect = {};
+
 // Same with the Reg Container
 WUniqueRegister* WRegContainer::KBD_KeyDownReg = {};
 WUniqueRegister* WRegContainer::KBD_KeyUpReg = {};
@@ -73,6 +78,9 @@ WMainWindow::WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowN
 	m_keyboard = new WKeyboard();
 	m_entry = new WEntry();
 	m_OnGDIPaint = new WUniqueRegister();
+	
+	m_graphics = new WGraphics();
+
 	WContainer::Framework(*m_entry);
 	SetGRegisters();
 }
@@ -82,8 +90,10 @@ WMainWindow::~WMainWindow(void)
 	delete m_mouse;
 	delete m_keyboard;
 	delete m_entry;
-
+	
 	delete m_OnGDIPaint;
+
+	delete m_graphics;
 }
 
 int WMainWindow::Initialize(void)
@@ -131,8 +141,9 @@ int WMainWindow::Initialize(void)
 		return 2;
 	}
 	WContainer::hResult(S_OK);
-
-	//Finnaly we show our window
+	WContainer::Handle(hWnd);
+	
+	// Show the window
 	ShowWindow(hWnd, SW_SHOW);
 	SetForegroundWindow(hWnd);
 	SetFocus(hWnd);
@@ -142,20 +153,28 @@ int WMainWindow::Initialize(void)
 
 void WMainWindow::MessageLoop(void)
 {
-	//Windows MSG
+	// Windows MSG
 	MSG msg = {};
 	ZeroMemory(&msg, sizeof(MSG));
 
-	//Initialize Keyboard
+	// Create Graphics Resources
+	m_graphics->CreateFactory();
+	m_graphics->CreateRenderTarget();
+	m_graphics->CreateSolidColorBrush(WColor(0xFFFFFFFF));
+
+	// Initialize Keyboard
 	m_entry->Keyboard(m_keyboard);
 
-	//Initialize Mouse
+	// Initialize Mouse
 	m_entry->Mouse(m_mouse);
 
-	//Start 
+	// Initialize Graphics
+	m_entry->Graphics(m_graphics);
+
+	// Start 
 	m_entry->Start();
 
-	//Main Loop
+	// Main Loop
 	while (msg.message != WM_QUIT)
 	{
 		if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
@@ -165,20 +184,20 @@ void WMainWindow::MessageLoop(void)
 		}
 		else
 		{
-			//Update & Render
-			//Note: Render statements should be written after all of the Update statements
+			// Update & Render
+			// Note: Render statements should be written after all of the Update statements
 			m_entry->Update(milliseconds);
 			WContainer::DeltaSeconds(milliseconds);
 
 			//Delta time Calculation
-			auto newEndTime = NClock::now();
+			auto newEndTime = WClock::now();
 			auto frameTime = newEndTime - mLastEndTime;
 			mLastEndTime = newEndTime;
 
 			typedef std::common_type<decltype(frameTime), decltype(kMaxDeltatime)>::type common_duration;
 			auto mDeltaTime = std::min<common_duration>(frameTime, kMaxDeltatime);
 
-			//std::ratio<1, 1> for seconds instead of miliseconds
+			// std::ratio<1, 1> for seconds instead of miliseconds
 			milliseconds = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(mDeltaTime).count();
 		}
 	}
@@ -195,13 +214,35 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 
 	switch (msg)
 	{
+    // WINDOW RESIZE
+	case WM_SIZING:
+	{
+		W_UINT width = LOWORD(lParam);
+		W_UINT height = HIWORD(lParam);
+		break;
+	}
 
-	// GDI PAINT
+	// WINDOW RESIZED
+	case WM_SIZE:
+	{
+		W_UINT width = LOWORD(lParam);
+		W_UINT height = HIWORD(lParam);
+		if (m_entry->Graphics() != nullptr)
+		{
+			m_entry->Graphics()->ResizeRenderTarget(width, height);
+		}
+		break;
+	}
+
+	// PAINT MESSAGE (ALSO SUPPORTS GDI)
 	case WM_PAINT:
 	{
 		PAINTSTRUCT ps;
 		BeginPaint(hWnd, &ps);
 
+		m_entry->Render(milliseconds);
+		ValidateRect(hWnd, NULL);
+		
 		WGDIPaintArgs* args = new WGDIPaintArgs(&ps, &hWnd);
 		m_OnGDIPaint->Run(this, args);
 
@@ -213,7 +254,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	case WM_KEYDOWN:
 	{
 		// Key Down
-		//No autorepeat
+		// No autorepeat
 		if (!(lParam & 0x40000000) || m_keyboard->AutorepeatIsEnabled())
 		{
 			m_keyboard->LastKey((static_cast<W_BYTE>(wParam)));
@@ -301,7 +342,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		break;
 	}
 	// END OF MOUSE MESSAGES
-
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);

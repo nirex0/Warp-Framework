@@ -3,11 +3,12 @@
 #ifndef _W_ENTRY_H_
 #define _W_ENTRY_H_
 
-#include "WEntity.h"
 #include "WWin.h"  
+#include "WDX.h"
+#include "WEntity.h"
 #include "WMouse.h"
 #include "WKeyboard.h"
-#include "WDX.h"
+#include "WGraphics.h"
 
 class WEntry final : public WEntity
 {
@@ -21,16 +22,23 @@ public:
 
 	void Start(void);
 	void Update(double deltaTime);
+	void Render(double deltaTime);
 
-	inline WMouse* Mouse(void) { return this->m_mouse; }
-	inline WEntry* Mouse(WMouse* const intake) { this->m_mouse = intake; return this; };
+	inline WMouse* Mouse(void) { return m_mouse; }
+	inline WEntry* Mouse(WMouse* const intake) { m_mouse = intake; return this; };
 
-	inline WKeyboard* Keyboard(void) { return this->m_keyboard; }
-	inline WEntry* Keyboard(WKeyboard* const intake) { this->m_keyboard = intake; return this; };
+	inline WKeyboard* Keyboard(void) { return m_keyboard; }
+	inline WEntry* Keyboard(WKeyboard* const intake) { m_keyboard = intake; return this; };
+
+	inline WGraphics* Graphics(void) { return m_graphics; }
+	inline WEntry* Graphics(WGraphics* const intake) { m_graphics = intake; return this; }
 
 private:
 	WMouse* m_mouse;
 	WKeyboard* m_keyboard;
+	WGraphics* m_graphics;
+	
+
 };
 
 #endif // !_W_ENTRY_H_
