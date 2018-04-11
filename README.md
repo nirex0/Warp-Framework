@@ -48,13 +48,13 @@ PLANS
 
 - ⚠️ Smooth Color Changing (Lerp)
 
-### WARP-SOCKET
+### WARP-NETWORK
 
-- ❌ Network Programming
+- ❌ Socket Programming
 
 - ❌ Predefined socket types
 
-- ❌ Async networking
+- ❌ Async Networking
 
 ### WARP-SECURITY
 
