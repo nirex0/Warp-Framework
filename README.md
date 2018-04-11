@@ -28,7 +28,7 @@ PLANS
 
 - ⚠️ Texture Support (Bitmap Only)
 
-- ❌ Double Buffering
+- ✔️ Double Buffering
 
 - ❌ Custom 2D Space
 
