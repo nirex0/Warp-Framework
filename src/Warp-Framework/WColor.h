@@ -69,23 +69,18 @@ public:
 };
 
 // A set of pre-defined color prefabs
-namespace Colors
+namespace WColors
 {
-	static constexpr WColor MakeRGB(W_BYTE r, W_BYTE g, W_BYTE b)
-	{
-		return (r << 16) | (g << 8) | b;
-	}
-
-	static constexpr WColor White = MakeRGB(255u, 255u, 255u);
-	static constexpr WColor Black = MakeRGB(0u, 0u, 0u);
-	static constexpr WColor Gray = MakeRGB(0x80u, 0x80u, 0x80u);
-	static constexpr WColor LightGray = MakeRGB(0xD3u, 0xD3u, 0xD3u);
-	static constexpr WColor Red = MakeRGB(255u, 0u, 0u);
-	static constexpr WColor Green = MakeRGB(0u, 255u, 0u);
-	static constexpr WColor Blue = MakeRGB(0u, 0u, 255u);
-	static constexpr WColor Yellow = MakeRGB(255u, 255u, 0u);
-	static constexpr WColor Cyan = MakeRGB(0u, 255u, 255u);
-	static constexpr WColor Magenta = MakeRGB(255u, 0u, 255u);
+	static const WColor White = WColor(255u, 255u, 255u, 255u);
+	static const WColor Black = WColor(255u, 0u, 0u, 0u);
+	static const WColor Gray = WColor(255u, 0x80u, 0x80u, 0x80u);
+	static const WColor LightGray = WColor(255u, 0xD3u, 0xD3u, 0xD3u);
+	static const WColor Red = WColor(255u, 255u, 0u, 0u);
+	static const WColor Green = WColor(255u, 0u, 255u, 0u);
+	static const WColor Blue = WColor(255u, 0u, 0u, 255u);
+	static const WColor Yellow = WColor(255u, 255u, 255u, 0u);
+	static const WColor Cyan = WColor(255u, 0u, 255u, 255u);
+	static const WColor Magenta = WColor(255u, 255u, 0u, 255u);
 }
 
 #endif // !_W_COLOR_H_
