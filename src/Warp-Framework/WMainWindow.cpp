@@ -11,6 +11,15 @@ LPARAM WContainer::lParam = {};
 WEntry WContainer::WFramework = {};
 DELTATIME WContainer::DeltaTime = {};
 
+// Background Color Componenets
+W_BYTE WContainer::BGA = 255;		// Background Alfa
+W_BYTE WContainer::BGR = 12;		// Background Red
+W_BYTE WContainer::BGG = 21;		// Background Blue
+W_BYTE WContainer::BGB = 30;		// Background Green
+
+W_INT WContainer::W_WIDTH = 800;
+W_INT WContainer::W_HEIGHT = 600;
+
 // Same with the DX components
 ID2D1Factory* WDXContainer::DX_Factory = {};
 ID2D1HwndRenderTarget* WDXContainer::DX_RT = {};
@@ -21,13 +30,16 @@ WUniqueRegister* WRegContainer::KBD_KeyDownReg = {};
 WUniqueRegister* WRegContainer::KBD_KeyUpReg = {};
 WUniqueRegister* WRegContainer::KBD_OnCharReg = {};
 				 
-WUniqueRegister* WRegContainer::MOS_MouseDown = {};
-WUniqueRegister* WRegContainer::MOS_MouseUp = {};
-WUniqueRegister* WRegContainer::MOS_MouseMove = {};
-WUniqueRegister* WRegContainer::MOS_MouseRollUp = {};
-WUniqueRegister* WRegContainer::MOS_MouseRollDown = {};
-				 
+WRegistry* WRegContainer::MOS_MouseDown = {};
+WRegistry* WRegContainer::MOS_MouseUp = {};
+WRegistry* WRegContainer::MOS_MouseMove = {};
+WRegistry* WRegContainer::MOS_MouseRollUp = {};
+WRegistry* WRegContainer::MOS_MouseRollDown = {};
+
 WUniqueRegister* WRegContainer::WND_OnGDIPaint = {};
+
+// Same with the GFX Container
+WGraphics* WGraphicsContainer::gfx = {};
 
 // C-Style wWinMain function
 int WARP_ENTRY wWinMain(
@@ -81,6 +93,7 @@ WMainWindow::WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowN
 	
 	m_graphics = new WGraphics();
 
+	WGraphicsContainer::Graphics(m_graphics);
 	WContainer::Framework(*m_entry);
 	SetGRegisters();
 }
@@ -120,7 +133,7 @@ int WMainWindow::Initialize(void)
 	W_STYLE nStyle = WS_OVERLAPPEDWINDOW | WS_OVERLAPPED | WS_SYSMENU | WS_VISIBLE | WS_CAPTION | WS_MINIMIZEBOX;
 
 	//We need to do this to make the windoe EXACTLY (width * height) big
-	RECT whRect = { 0, 0, W_WIDTH, W_HEIGHT };
+	RECT whRect = { 0, 0, WContainer::Width(), WContainer::Height() };
 	AdjustWindowRect(&whRect, nStyle, FALSE);
 	UINT uWidth = whRect.right - whRect.left;
 	UINT uHeight = whRect.bottom - whRect.top;
@@ -131,9 +144,6 @@ int WMainWindow::Initialize(void)
 	UINT SCR_HEIGHT = GetSystemMetrics(SM_CYSCREEN);
 
 	hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_windowName, m_windowTitle, nStyle, centX, centY, uWidth, uHeight, NULL, NULL, m_hAppInstance, NULL);
-
-	
-
 
 	if (!hWnd)
 	{
@@ -187,9 +197,16 @@ void WMainWindow::MessageLoop(void)
 		{
 			// Update & Render
 			// Note: Render statements should be written after all of the Update statements
+			// Update
 			m_entry->Update(milliseconds);
-			WContainer::DeltaSeconds(milliseconds);
+			
+			// Render
+			m_graphics->SafeBeginDraw();
+			m_graphics->ClearWindow(WColor(WContainer::BackA(), WContainer::BackR(), WContainer::BackG(), WContainer::BackB()));
+			m_entry->Render(milliseconds);
+			m_graphics->SafeEndDraw();
 
+			WContainer::DeltaSeconds(milliseconds);
 			//Delta time Calculation
 			auto newEndTime = WClock::now();
 			auto frameTime = newEndTime - mLastEndTime;
@@ -220,6 +237,12 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	{
 		W_UINT width = LOWORD(lParam);
 		W_UINT height = HIWORD(lParam);
+		WContainer::Width((int)width);
+		WContainer::Height((int)height);
+		m_graphics->SafeBeginDraw();
+
+		m_graphics->SafeEndDraw();
+
 		break;
 	}
 
@@ -228,6 +251,8 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	{
 		W_UINT width = LOWORD(lParam);
 		W_UINT height = HIWORD(lParam);
+		WContainer::Width((int)width);
+		WContainer::Height((int)height);
 		if (m_entry->Graphics() != nullptr)
 		{
 			m_entry->Graphics()->ResizeRenderTarget(width, height);
@@ -241,9 +266,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		PAINTSTRUCT ps;
 		BeginPaint(hWnd, &ps);
 
-		m_entry->Render(milliseconds);
 		ValidateRect(hWnd, NULL);
-		
 		WGDIPaintArgs* args = new WGDIPaintArgs(&ps, &hWnd);
 		m_OnGDIPaint->Run(this, args);
 
