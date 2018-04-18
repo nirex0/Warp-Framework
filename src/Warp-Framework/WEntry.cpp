@@ -5,7 +5,7 @@
 //Runs at the start of the application
 void WEntry::Start(void)
 {
-	
+
 }
 
 //Runs every frame pre-render

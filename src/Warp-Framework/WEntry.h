@@ -9,6 +9,8 @@
 #include "WMouse.h"
 #include "WKeyboard.h"
 #include "WGraphics.h"
+#include "WGFXContainer.h"
+
 
 class WEntry final : public WEntity
 {
@@ -17,7 +19,7 @@ public:
 	inline ~WEntry()
 	{
 		delete m_mouse;
-		delete m_keyboard;
+		delete m_keyboard;	
 	}
 
 	void Start(void);
@@ -32,12 +34,11 @@ public:
 
 	inline WGraphics* Graphics(void) { return m_graphics; }
 	inline WEntry* Graphics(WGraphics* const intake) { m_graphics = intake; return this; }
-
+	
 private:
 	WMouse* m_mouse;
 	WKeyboard* m_keyboard;
 	WGraphics* m_graphics;
-	
 
 };
 
