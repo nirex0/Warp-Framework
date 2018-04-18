@@ -22,7 +22,7 @@ public:
 
 	WUniqueRegister* Register(const Annex& intake)
 	{
-		m_Register = std::make_unique<Annex>(*(new Annex));
+		m_Register = std::make_unique<Annex>(*(new Annex(intake)));
 		return this;
 	}
 
