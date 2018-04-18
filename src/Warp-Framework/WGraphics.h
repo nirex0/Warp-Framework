@@ -38,6 +38,7 @@ public:
 	HRESULT SafeFlush(void);
 
 	HRESULT SaveResources(void);
+	HRESULT ClearWindow(WColor color);
 
 	ID2D1Factory*			GetFactory(void) const;
 	ID2D1HwndRenderTarget*	GetRenderTarget(void) const;

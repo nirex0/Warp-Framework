@@ -209,6 +209,24 @@ HRESULT WGraphics::SaveResources(void)
 	return WContainer::hResult(S_OK);
 }
 
+HRESULT WGraphics::ClearWindow(WColor color)
+{
+	D2D1_COLOR_F tmpCol(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F bgCol;
+	bgCol.a = (float)(color.A()) / 255;
+	bgCol.r = (float)(color.R()) / 255;
+	bgCol.g = (float)(color.G()) / 255;
+	bgCol.b = (float)(color.B()) / 255;
+
+	m_DX_SCB->SetColor(bgCol);
+
+	m_DX_HRT->FillRectangle(D2D1::RectF(m_DX_REC.left, m_DX_REC.top, m_DX_REC.right, m_DX_REC.bottom), m_DX_SCB);
+
+	m_DX_SCB->SetColor(tmpCol);
+	return WContainer::hResult(S_OK);
+}
+
 ID2D1Factory* WGraphics::GetFactory(void) const
 {
 	return m_DX_FAC;
