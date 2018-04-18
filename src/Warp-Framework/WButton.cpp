@@ -6,11 +6,11 @@ WButton::WButton()
 	, backColor(WColor(255, 0, 0, 0))
 	, bordColor(WColor(255, 255, 255, 255))
 {
-	btnRec.top = m_top;
-	btnRec.left = m_left;
+	btnRec.top = (long)m_top;
+	btnRec.left = (long)m_left;
 
-	btnRec.bottom = m_bottom;
-	btnRec.right = m_right;
+	btnRec.bottom = (long)m_bottom;
+	btnRec.right = (long)m_right;
 
 	UpdateRect();
 }
@@ -216,7 +216,7 @@ void WButton::Render()
 	WGraphicsContainer::Graphics()->GetColorBrush()->SetColor(bordC);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->DrawRoundedRectangle
 	(
-		D2D1::RoundedRect(D2D1::RectF(btnRec.left, btnRec.top, btnRec.right, btnRec.bottom), 15, 15),
+		D2D1::RoundedRect(D2D1::RectF((float)btnRec.left, (float)btnRec.top, (float)btnRec.right, (float)btnRec.bottom), m_borderRad, m_borderRad),
 		WGraphicsContainer::Graphics()->GetColorBrush(),
 		m_thickness
 	);
@@ -224,7 +224,7 @@ void WButton::Render()
 	WGraphicsContainer::Graphics()->GetColorBrush()->SetColor(backC);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->FillRoundedRectangle
 	(
-		D2D1::RoundedRect(D2D1::RectF(btnRec.left, btnRec.top, btnRec.right, btnRec.bottom), 15, 15),
+		D2D1::RoundedRect(D2D1::RectF((float)btnRec.left, (float)btnRec.top, (float)btnRec.right, (float)btnRec.bottom), m_borderRad, m_borderRad),
 		WGraphicsContainer::Graphics()->GetColorBrush()
 
 	);
@@ -258,8 +258,8 @@ WCoordinates WButton::Displace(WCoordinates XY)
 
 void WButton::UpdateRect(void)
 {
-	btnRec.top = m_top;
-	btnRec.left = m_left;
-	btnRec.bottom = m_bottom;
-	btnRec.right = m_right;
+	btnRec.top = (long)m_top;
+	btnRec.left = (long)m_left;
+	btnRec.bottom = (long)m_bottom;
+	btnRec.right = (long)m_right;
 }
