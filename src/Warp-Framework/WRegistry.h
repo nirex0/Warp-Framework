@@ -28,8 +28,7 @@ public:
 		}
 		for (size_t i = 0; i < nRegistery.m_registered.size(); i++)
 		{
-
-			this->Register(nRegistery.m_registered[i]);
+			this->Register(*nRegistery.m_registered[i]);
 			_InterlockedIncrement(&m_count);
 		}
 	}
@@ -44,7 +43,7 @@ public:
 		for (size_t i = 0; i < nRegistery.m_registered.size(); i++)
 		{
 
-			this->Register(nRegistery.m_registered[i]);
+			this->Register(*nRegistery.m_registered[i]);
 			_InterlockedIncrement(&m_count);
 		}
 	}
@@ -90,9 +89,9 @@ public:
 		return this;
 	}
 
-	WRegistry* Register(Annex* rhs)
+	WRegistry* Register(Annex rhs)
 	{
-		m_registered.push_back(rhs);
+		m_registered.push_back(new Annex(rhs));
 		_InterlockedIncrement(&m_count);
 		return this;
 	}
@@ -110,18 +109,18 @@ public:
 		return this;
 	}
 
-	WRegistry* operator+=(Annex* rhs)
+	WRegistry* operator+=(Annex rhs)
 	{
-		m_registered.push_back(rhs);
+		m_registered.push_back(new Annex(rhs));
 		_InterlockedIncrement(&m_count);
 		return this;
 	}
 
-	WRegistry* operator-=(Annex* rhs)
+	WRegistry* operator-=(Annex rhs)
 	{
 		for (int i = 0; i < m_registered.size(); i++)
 		{
-			if (m_registered[i] == rhs)
+			if (m_registered[i] == &rhs)
 			{
 				m_registered[i] = nullptr;
 				_InterlockedDecrement(&m_count);
