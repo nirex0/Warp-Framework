@@ -17,6 +17,7 @@
 #include "WGDIPaintEventArgs.h"
 #include "WDXContainer.h"
 #include "WGraphics.h"
+#include "WGFXContainer.h"
 
 #include <chrono>
 #include <algorithm>
@@ -49,6 +50,8 @@ public:
 	// WinProc
 	LRESULT WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+
+
 private:
 	void SetGRegisters(void);
 
@@ -68,6 +71,9 @@ private:
 	WUniqueRegister* m_OnGDIPaint;
 	
 	WGraphics* m_graphics;
+	
+
+
 };
 
 WMainWindow* MainWnd;
