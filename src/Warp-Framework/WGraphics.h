@@ -59,4 +59,11 @@ private:
 
 };
 
+namespace W_MAIN_WINDOW
+{
+	void ResizeWindow(int X, int Y);
+	void RepositionWindow(int X, int Y);
+	void DragMoveWindow(int Yoffset = 25);
+}
+
 #endif // !_W_GRAPHICS_H_

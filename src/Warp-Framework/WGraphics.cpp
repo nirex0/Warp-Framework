@@ -211,6 +211,7 @@ HRESULT WGraphics::SaveResources(void)
 
 HRESULT WGraphics::ClearWindow(WColor color)
 {
+
 	D2D1_COLOR_F tmpCol(m_DX_SCB->GetColor());
 
 	D2D1_COLOR_F bgCol;
@@ -246,3 +247,44 @@ RECT WGraphics::GetClientArea(void) const
 {
 	return m_DX_REC;
 }
+
+void W_MAIN_WINDOW::ResizeWindow(int X, int Y)
+{
+	RECT wndRect = {};
+	GetWindowRect(WContainer::Handle(), &wndRect);
+
+	SetWindowPos(WContainer::Handle(), HWND_TOP
+		, wndRect.left	// Position.X
+		, wndRect.top	// Position.Y
+		, X				// Width
+		, Y				// Height 
+		, NULL);
+}
+
+void W_MAIN_WINDOW::RepositionWindow(int X, int Y)
+{
+	RECT wndRect = {};
+	GetWindowRect(WContainer::Handle(), &wndRect);
+
+	SetWindowPos(WContainer::Handle(), HWND_TOP
+		, X, Y							// Position
+		, wndRect.right - wndRect.left	// Width
+		, wndRect.bottom - wndRect.top	// Height
+		, NULL);
+}
+
+void W_MAIN_WINDOW::DragMoveWindow(int Yoffset)
+{
+	POINT localP;
+	GetCursorPos(&localP);
+	ScreenToClient(WContainer::Handle(), &localP);
+	
+	RECT wndRect = {};
+	GetWindowRect(WContainer::Handle(), &wndRect);
+
+	int newXpos = wndRect.left + localP.x - ((wndRect.right - wndRect.left) / 2);
+	int newYpos = wndRect.top + localP.y - Yoffset;
+
+	RepositionWindow(newXpos, newYpos);
+}
+
