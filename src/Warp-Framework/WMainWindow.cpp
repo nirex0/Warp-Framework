@@ -115,7 +115,7 @@ int WMainWindow::Initialize(void)
 	WNDCLASSEX wcex = {};
 	ZeroMemory(&wcex, sizeof(WNDCLASSEXW));
 
-	//Setup the WCEX 
+	// Setup the WCEX 
 	wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wcex.cbSize = sizeof(WNDCLASSEXW);
 	wcex.cbClsExtra = NULL;
@@ -127,14 +127,14 @@ int WMainWindow::Initialize(void)
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 
-	//Register the class
+	// Register the class
 	RegisterClassExW(&wcex);
 
-	W_STYLE nStyle = WS_OVERLAPPEDWINDOW | WS_OVERLAPPED | WS_SYSMENU | WS_VISIBLE | WS_CAPTION | WS_MINIMIZEBOX;
+	W_STYLE wStyle = WS_OVERLAPPEDWINDOW | WS_OVERLAPPED | WS_SYSMENU | WS_VISIBLE | WS_CAPTION | WS_MINIMIZEBOX;
 
-	//We need to do this to make the windoe EXACTLY (width * height) big
+	// We need to do this to make the window EXACTLY (width * height) big
 	RECT whRect = { 0, 0, WContainer::Width(), WContainer::Height() };
-	AdjustWindowRect(&whRect, nStyle, FALSE);
+	AdjustWindowRect(&whRect, wStyle, FALSE);
 	UINT uWidth = whRect.right - whRect.left;
 	UINT uHeight = whRect.bottom - whRect.top;
 
@@ -143,7 +143,7 @@ int WMainWindow::Initialize(void)
 	UINT SCR_WIDTH = GetSystemMetrics(SM_CXSCREEN);
 	UINT SCR_HEIGHT = GetSystemMetrics(SM_CYSCREEN);
 
-	hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_windowName, m_windowTitle, nStyle, centX, centY, uWidth, uHeight, NULL, NULL, m_hAppInstance, NULL);
+	hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_windowName, m_windowTitle, WS_POPUP, centX, centY, uWidth, uHeight, NULL, NULL, m_hAppInstance, NULL);
 
 	if (!hWnd)
 	{
@@ -223,7 +223,6 @@ void WMainWindow::MessageLoop(void)
 
 LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-
 	// Update the container's static Members
 	WContainer::Handle(hWnd);
 	WContainer::Message(msg);
@@ -239,10 +238,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		W_UINT height = HIWORD(lParam);
 		WContainer::Width((int)width);
 		WContainer::Height((int)height);
-		m_graphics->SafeBeginDraw();
-
-		m_graphics->SafeEndDraw();
-
 		break;
 	}
 
