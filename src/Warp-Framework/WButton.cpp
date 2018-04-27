@@ -1,4 +1,5 @@
 #include "WButton.h"
+#include "WControlHandler.h"
 
 WButton::WButton()
 	: m_thickness(1.0F)
@@ -12,6 +13,16 @@ WButton::WButton()
 	btnRec.bottom = (long)m_bottom;
 	btnRec.right = (long)m_right;
 
+	BtnClickRegistery = new WRegistry();
+	BtnMouseDownRegistery = new WRegistry();
+	BtnMouseUpRegistery = new WRegistry();
+	BtnMouseEnterRegistery = new WRegistry();
+	BtnMouseLeaveRegistery = new WRegistry();
+
+	m_isEnabled = true;
+	m_isVisible = true;
+
+	WControlHandler::Add(this);
 	UpdateRect();
 }
 
@@ -27,6 +38,16 @@ WButton::WButton(float top, float left, float bottom, float right)
 	m_bottom = bottom;
 	m_right = right;
 
+	BtnClickRegistery = new WRegistry();
+	BtnMouseDownRegistery = new WRegistry();
+	BtnMouseUpRegistery = new WRegistry();
+	BtnMouseEnterRegistery = new WRegistry();
+	BtnMouseLeaveRegistery = new WRegistry();
+
+	m_isEnabled = true;
+	m_isVisible = true;
+
+	WControlHandler::Add(this);
 	UpdateRect();
 }
 
@@ -42,6 +63,16 @@ WButton::WButton(WCoordinates topleft, WCoordinates botright)
 	m_bottom = botright.X();
 	m_right = botright.Y();
 
+	BtnClickRegistery = new WRegistry();
+	BtnMouseDownRegistery = new WRegistry();
+	BtnMouseUpRegistery = new WRegistry();
+	BtnMouseEnterRegistery = new WRegistry();
+	BtnMouseLeaveRegistery = new WRegistry();
+
+	m_isEnabled = true;
+	m_isVisible = true;
+
+	WControlHandler::Add(this);
 	UpdateRect();
 }
 
@@ -57,7 +88,26 @@ WButton::WButton(WThickness location)
 	m_bottom = location.Bottom();
 	m_right = location.Right();
 
+	BtnClickRegistery = new WRegistry();
+	BtnMouseDownRegistery = new WRegistry();
+	BtnMouseUpRegistery = new WRegistry();
+	BtnMouseEnterRegistery = new WRegistry();
+	BtnMouseLeaveRegistery = new WRegistry();
+
+	m_isEnabled = true;
+	m_isVisible = true;
+
+	WControlHandler::Add(this);
 	UpdateRect();
+}
+
+WButton::~WButton(void)
+{
+	delete BtnClickRegistery;
+	delete BtnMouseDownRegistery;
+	delete BtnMouseUpRegistery;
+	delete BtnMouseEnterRegistery;
+	delete BtnMouseLeaveRegistery;
 }
 
 WThickness WButton::Location(float top, float left, float bottom, float right)
@@ -194,6 +244,9 @@ WColor WButton::BorderBrush(void) const
 
 void WButton::Render()
 {
+	if (!m_isVisible)
+		return;
+
 	D2D1_COLOR_F textC;
 	textC.a = (float)(foreColor.A()) / 255;
 	textC.r = (float)(foreColor.R()) / 255;
@@ -255,6 +308,184 @@ WCoordinates WButton::Displace(WCoordinates XY)
 	return WCoordinates(XY.X(), XY.Y());
 }
 
+WRegistry* WButton::ClickRegistery(void)
+{
+	return BtnClickRegistery;
+}
+
+WRegistry* WButton::MouseDownRegistery(void)
+{
+	return BtnMouseDownRegistery;
+}
+
+WRegistry* WButton::MouseUpRegistery(void)
+{
+	return BtnMouseUpRegistery;
+}
+
+WRegistry* WButton::MouseEnterRegistery(void)
+{
+	return BtnMouseEnterRegistery;
+}
+
+WRegistry* WButton::MouseLeaveRegistery(void)
+{
+	return BtnMouseLeaveRegistery;
+}
+
+WRegistry* WButton::ClickRegistery(WRegistry* intake)
+{
+	BtnClickRegistery = intake;
+	return BtnClickRegistery;
+}
+
+WRegistry* WButton::MouseDownRegistery(WRegistry* intake)
+{
+	BtnMouseDownRegistery = intake;
+	return BtnMouseDownRegistery;
+}
+
+WRegistry* WButton::MouseUpRegistery(WRegistry* intake)
+{
+	BtnMouseUpRegistery = intake;
+	return BtnMouseUpRegistery;
+}
+
+WRegistry* WButton::MouseEnterRegistery(WRegistry* intake)
+{
+	BtnMouseEnterRegistery = intake;
+	return BtnMouseEnterRegistery;
+}
+
+WRegistry* WButton::MouseLeaveRegistery(WRegistry* intake)
+{
+	BtnMouseLeaveRegistery = intake;
+	return BtnMouseLeaveRegistery;
+}
+
+bool WButton::IsEnabled(void) const
+{
+	return m_isEnabled;
+}
+
+bool WButton::IsVisible(void) const
+{
+	return m_isVisible;
+}
+
+bool WButton::IsEnabled(bool input)
+{
+	m_isEnabled = input;
+	return m_isEnabled;
+}
+
+bool WButton::IsVisible(bool input)
+{
+	m_isVisible = input;
+	return m_isVisible;
+}
+
+void WButton::Click(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	WBoundary bounds;
+
+	bounds.Top(this->Location().Top());
+	bounds.Left(this->Location().Left());
+	bounds.Bottom(this->Location().Bottom());
+	bounds.Right(this->Location().Right());
+
+	if (bounds.IsColliding(*(Args->Point())))
+	{
+		BtnClickRegistery->Run(this, Args);
+	}
+
+}
+
+void WButton::MouseDown(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	WBoundary bounds;
+
+	bounds.Top(this->Location().Top());
+	bounds.Left(this->Location().Left());
+	bounds.Bottom(this->Location().Bottom());
+	bounds.Right(this->Location().Right());
+	
+	if (bounds.IsColliding(*(Args->Point())) && Args->State() == KeyState::MouseDown)
+	{
+		BtnMouseDownRegistery->Run(this, Args);
+	}
+}
+
+void WButton::MouseUp(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	WBoundary bounds;
+
+	bounds.Top(this->Location().Top());
+	bounds.Left(this->Location().Left());
+	bounds.Bottom(this->Location().Bottom());
+	bounds.Right(this->Location().Right());
+
+	if (bounds.IsColliding(*(Args->Point())) && Args->State() == KeyState::MouseUp)
+	{
+		BtnMouseUpRegistery->Run(this, Args);
+	}
+}
+
+void WButton::MouseEnter(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	WBoundary bounds;
+
+	bounds.Top(this->Location().Top());
+	bounds.Left(this->Location().Left());
+	bounds.Bottom(this->Location().Bottom());
+	bounds.Right(this->Location().Right());
+
+	if (bounds.IsColliding(*(Args->Point())) && Args->State() == KeyState::NoClick)
+	{
+		BtnMouseEnterRegistery->Run(this, Args);
+	}
+}
+
+void WButton::MouseLeave(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	WBoundary bounds;
+
+	bounds.Top(this->Location().Top());
+	bounds.Left(this->Location().Left());
+	bounds.Bottom(this->Location().Bottom());
+	bounds.Right(this->Location().Right());
+
+	if (!bounds.IsColliding(*(Args->Point())) && Args->State() == KeyState::NoClick)
+	{
+		BtnMouseLeaveRegistery->Run(this, Args);
+	}
+}
+
 
 void WButton::UpdateRect(void)
 {
@@ -263,3 +494,5 @@ void WButton::UpdateRect(void)
 	btnRec.bottom = (long)m_bottom;
 	btnRec.right = (long)m_right;
 }
+
+

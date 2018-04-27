@@ -1,31 +1,39 @@
+//© 2018 NIREX ALL RIGHTS RESERVED
+
 #ifndef _W_BUTTON_H_
 #define _W_BUTTON_H_
 
 #include "WGFXContainer.h"
 
+#include "IControl.h"
 #include "WCoordinates.h"
 #include "WThickness.h"
+#include "WBoundary.h"
+#include "WContainer.h"
 
-class WButton
+#include "WMouse.h"
+
+class WButton : public IControl
 {
 public:
 	WButton();
 	WButton(float top, float left, float bottom, float right);
 	WButton(WCoordinates topleft, WCoordinates botright);
 	WButton(WThickness location);
+	~WButton(void);
 
 	// Setters
-	WThickness Location(float top, float left, float bottom, float right);
-	WThickness Location(WCoordinates topleft, WCoordinates botright);
+	WThickness Location(float top, float left, float bottom, float right) override;
+	WThickness Location(WCoordinates topleft, WCoordinates botright) override;
 	WThickness Location(WThickness location);
 
-	WThickness RelLocation(float top, float left, float height, float width);
-	WThickness RelLocation(WCoordinates topleft, WCoordinates heightwidth);
-	WThickness RelLocation(WThickness location);
+	WThickness RelLocation(float top, float left, float height, float width) override;
+	WThickness RelLocation(WCoordinates topleft, WCoordinates heightwidth) override;
+	WThickness RelLocation(WThickness location) override;
 
 	// Getters
-	WThickness Location(void) const;
-
+	WThickness Location(void) const override;
+	
 	// Setters
 	float BorderThickness(float f);
 	float BorderRadius(float f);
@@ -44,10 +52,42 @@ public:
 	void Render();
 	void UpdateRect(void);
 
-	WCoordinates Displace(float X, float Y);
-	WCoordinates Displace(WCoordinates XY);
+	WCoordinates Displace(float X, float Y) override;
+	WCoordinates Displace(WCoordinates XY) override;
+
+	// Getters
+	WRegistry* ClickRegistery(void) override;
+	WRegistry* MouseDownRegistery(void) override;
+	WRegistry* MouseUpRegistery(void) override;
+	WRegistry* MouseEnterRegistery(void) override;
+	WRegistry* MouseLeaveRegistery(void) override;
+
+	// Setters
+	WRegistry* ClickRegistery(WRegistry* intake) override;
+	WRegistry* MouseDownRegistery(WRegistry* intake) override;
+	WRegistry* MouseUpRegistery(WRegistry* intake) override;
+	WRegistry* MouseEnterRegistery(WRegistry* intake) override;
+	WRegistry* MouseLeaveRegistery(WRegistry* intake) override;
+
+	// Getters
+	bool IsEnabled(void) const override;
+	bool IsVisible(void) const override;
+
+	// Setters
+	bool IsEnabled(bool input) override;
+	bool IsVisible(bool input) override;
+
+	// Events
+	void Click(WMouseArgs* Args) override;
+	void MouseDown(WMouseArgs* Args) override;
+	void MouseUp(WMouseArgs* Args) override;
+	void MouseEnter(WMouseArgs* Args) override;
+	void MouseLeave(WMouseArgs* Args) override;
 
 private:
+	bool m_isEnabled;
+	bool m_isVisible;
+
 	float m_top;
 	float m_left;
 	float m_bottom;
@@ -61,6 +101,14 @@ private:
 	WColor bordColor;
 
 	RECT btnRec;
+
+	WRegistry* BtnClickRegistery;
+	WRegistry* BtnMouseDownRegistery;
+	WRegistry* BtnMouseUpRegistery;
+
+	WRegistry* BtnMouseEnterRegistery;
+	WRegistry* BtnMouseLeaveRegistery;
+
 };
 
 #endif // !_W_BUTTON_H_
