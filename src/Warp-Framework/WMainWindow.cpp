@@ -2,6 +2,7 @@
 
 #include "WMainWindow.h"
 
+
 // We Need to Initialize the container's static memebers to nullptr ({} = ZeroMemory}
 HRESULT WContainer::HR = {};
 HWND WContainer::hWnd = {};
@@ -19,6 +20,9 @@ W_BYTE WContainer::BGB = 30;		// Background Green
 
 W_INT WContainer::W_WIDTH = 800;
 W_INT WContainer::W_HEIGHT = 600;
+
+WMouse* WContainer::mouse = {};
+WKeyboard* WContainer::keboard = {};
 
 // Same with the DX components
 ID2D1Factory* WDXContainer::DX_Factory = {};
@@ -90,6 +94,9 @@ WMainWindow::WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowN
 	m_keyboard = new WKeyboard();
 	m_entry = new WEntry();
 	m_OnGDIPaint = new WUniqueRegister();
+
+	WContainer::Mouse(m_mouse);
+	WContainer::Keyboard(m_keyboard);
 	
 	m_graphics = new WGraphics();
 
@@ -296,12 +303,26 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	// END OF KEYBOARD MESSAGES
 	// MOUSE MESSAGES
+	case WM_MOUSEMOVE:
+	{
+		const POINTS pt = MAKEPOINTS(lParam);
+		m_mouse->MouseKey(WMouseKey::MK_INVALID);
+		m_mouse->MPoint(pt.x, pt.y);
+		m_mouse->MouseDown();
+
+		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_INVALID, KeyState::NoClick);
+		WControlHandler::MouseMove(args);
+		break;
+	}
 	case WM_LBUTTONDOWN:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_LEFT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
+
+		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_LEFT, KeyState::MouseDown);
+		WControlHandler::MouseDown(args);
 		break;
 	}
 	case WM_LBUTTONUP:
@@ -310,6 +331,10 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MouseKey(WMouseKey::MK_LEFT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
+
+		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_LEFT, KeyState::MouseUp);
+		WControlHandler::MouseUp(args);
+		WControlHandler::MouseClick(args);
 		break;
 	}
 	case WM_RBUTTONDOWN:
@@ -318,6 +343,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MouseKey(WMouseKey::MK_RIGHT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
+
+		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_RIGHT, KeyState::MouseDown);
+		WControlHandler::MouseDown(args);
 		break;
 	}
 	case WM_RBUTTONUP:
@@ -326,6 +354,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MouseKey(WMouseKey::MK_RIGHT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
+
+		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_RIGHT, KeyState::MouseUp);
+		WControlHandler::MouseUp(args);
 		break;
 	}
 	case WM_MBUTTONDOWN:
@@ -334,6 +365,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
+
+		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::MouseDown);
+		WControlHandler::MouseDown(args);
 		break;
 	}
 	case WM_MBUTTONUP:
@@ -342,6 +376,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
+
+		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::MouseUp);
+		WControlHandler::MouseUp(args);
 		break;
 	}
 	case WM_MOUSEWHEEL:
