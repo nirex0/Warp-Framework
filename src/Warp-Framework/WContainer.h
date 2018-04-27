@@ -6,6 +6,8 @@
 #include "WWin.h"
 #include "WEntry.h"
 #include "WDefines.h"
+#include "WMouse.h"
+#include "WKeyboard.h"
 
 class WContainer
 {
@@ -49,6 +51,12 @@ public:
 	static const W_INT Height(W_INT intake) { WContainer::W_HEIGHT = intake; return WContainer::W_HEIGHT; }
 	static const W_INT Height(void) { return WContainer::W_HEIGHT; }
 
+	static WMouse* Mouse(WMouse* intake) { WContainer::mouse = intake; return WContainer::mouse; }
+	static WMouse* Mouse(void) { return WContainer::mouse; }
+
+	static WKeyboard* Keyboard(WKeyboard* intake) { WContainer::keboard = intake; return WContainer::keboard; }
+	static WKeyboard* Keyboard(void) { return WContainer::keboard; }
+
 private:
 	static HRESULT WContainer::HR;
 	static HWND WContainer::hWnd;
@@ -63,7 +71,8 @@ private:
 	static W_BYTE WContainer::BGB;
 	static W_INT WContainer::W_WIDTH;
 	static W_INT WContainer::W_HEIGHT;
-	
+	static WMouse* WContainer::mouse;
+	static WKeyboard* WContainer::keboard;
 };
 
 
