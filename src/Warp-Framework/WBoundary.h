@@ -12,10 +12,20 @@ public:
 	{
 		return 
 			(
-			this->Left() < intake.Right() &&
-			this->Right() > intake.Left() &&
-			this->Top() < intake.Bottom() &&
-			this->Bottom() > intake.Top() 
+				this->Left() < intake.Right() &&
+				this->Right() > intake.Left() &&
+				this->Top() < intake.Bottom() &&
+				this->Bottom() > intake.Top() 
+			);
+	}
+	inline bool IsColliding(WPoint intake) const
+	{
+		return
+			(
+				intake.x < this->Right() &&
+				intake.x > this->Left() &&
+				intake.y < this->Bottom() &&
+				intake.y > this->Top() 
 			);
 	}
 };
