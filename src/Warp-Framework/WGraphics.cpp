@@ -211,7 +211,6 @@ HRESULT WGraphics::SaveResources(void)
 
 HRESULT WGraphics::ClearWindow(WColor color)
 {
-
 	D2D1_COLOR_F tmpCol(m_DX_SCB->GetColor());
 
 	D2D1_COLOR_F bgCol;
@@ -221,7 +220,6 @@ HRESULT WGraphics::ClearWindow(WColor color)
 	bgCol.b = (float)(color.B()) / 255;
 
 	m_DX_SCB->SetColor(bgCol);
-
 	m_DX_HRT->FillRectangle(D2D1::RectF(m_DX_REC.left, m_DX_REC.top, m_DX_REC.right, m_DX_REC.bottom), m_DX_SCB);
 
 	m_DX_SCB->SetColor(tmpCol);
