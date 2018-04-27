@@ -156,6 +156,12 @@
     <ClInclude Include="WBoundary.h">
       <Filter>Header Files\Engine\Primitive</Filter>
     </ClInclude>
+    <ClInclude Include="IControl.h">
+      <Filter>Header Files\Engine\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="WControlHandler.h">
+      <Filter>Header Files\Engine\Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">

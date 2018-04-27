@@ -111,8 +111,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="IControl.h" />
     <ClInclude Include="WBoundary.h" />
     <ClInclude Include="WButton.h" />
+    <ClInclude Include="WControlHandler.h" />
     <ClInclude Include="WCoordinates.h" />
     <ClInclude Include="WDXContainer.h" />
     <ClInclude Include="WColor.h" />
