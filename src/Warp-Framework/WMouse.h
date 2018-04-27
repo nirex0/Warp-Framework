@@ -50,33 +50,33 @@ public:
 
 	inline WMouse* MouseDown(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::MouseDown);
 		m_MouseDown->Run(this, ARGS);
 		return this;
 	}
 	inline WMouse* MouseUp(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::MouseUp);
 		m_MouseUp->Run(this, ARGS);
 		return this;
 	}
 	inline WMouse* MouseMove(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::NoClick);
 		m_MouseMove->Run(this, ARGS);
 		return this;
 	}
 
 	inline WMouse* MouseMiddleUp(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::MouseUp);
 		m_MouseRollUp->Run(this, ARGS);
 		return this;
 	}
 
 	inline WMouse* MouseMiddleDown(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::MouseDown);
 		m_MouseRollDown->Run(this, ARGS);
 		return this;
 	}

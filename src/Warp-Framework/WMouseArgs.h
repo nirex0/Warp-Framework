@@ -6,31 +6,41 @@
 #include "WEventArgs.h"
 #include "WDefines.h"
 
+enum KeyState
+{
+	NoClick,
+	MouseDown,
+	MouseUp
+};
+
 class WMouseArgs : public WEventArgs
 {
 public:
-	WMouseArgs(int x, int y, WMouseKey key)
+	WMouseArgs(int x, int y, WMouseKey key, KeyState keyState)
 	{
 		WPoint* ptPtr = new WPoint();
 		ptPtr->x = x;
 		ptPtr->y = y;
 		this->m_wmk = key;
 		this->m_Point = ptPtr;
+		this->m_keyState = keyState;
 	}
 
-	WMouseArgs(WPoint point, WMouseKey key)
+	WMouseArgs(WPoint point, WMouseKey key, KeyState keyState)
 	{
 		WPoint* ptPtr = new WPoint();
 		ptPtr->x = point.x;
 		ptPtr->y = point.y;
 		this->m_wmk = key;
 		this->m_Point = ptPtr;
+		this->m_keyState = keyState;
 	}
 
-	WMouseArgs(WPoint* point, WMouseKey key)
+	WMouseArgs(WPoint* point, WMouseKey key, KeyState keyState)
 	{
 		this->m_wmk = key;
 		this->m_Point = point;
+		this->m_keyState = keyState;
 	}
 
 	~WMouseArgs(void)
@@ -38,12 +48,12 @@ public:
 		delete m_Point;
 	}
 
-	WPoint* const GetPoint(void)
+	WPoint* const Point(void)
 	{
 		return m_Point;
 	}
 
-	WMouseKey const GetKey(void) const
+	WMouseKey const Key(void) const
 	{
 		return m_wmk;
 	}
@@ -58,9 +68,15 @@ public:
 		return m_Point->y;
 	}
 
+	KeyState State(void) const
+	{
+		return m_keyState;
+	}
+
 private:
 	WPoint* m_Point;
 	WMouseKey m_wmk;
+	KeyState m_keyState;
 };
 
 #endif // !_W_MOUSE_ARGS_H_
