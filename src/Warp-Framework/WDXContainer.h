@@ -18,10 +18,18 @@ public:
 	static void ClientArea(RECT rect) { WDXContainer::DX_cRect = rect; }
 	static const RECT ClientArea(void) { return WDXContainer::DX_cRect; }
 
+	static void WriteFactory(IDWriteFactory* factory) { WDXContainer::DX_WFactory = factory; }
+	static const IDWriteFactory* WriteFactory(void) { return WDXContainer::DX_WFactory; }
+
+	static void TextFormat(IDWriteTextFormat* tf) { WDXContainer::DX_TextFormat = tf; }
+	static const IDWriteTextFormat* TextFormat(void) { return WDXContainer::DX_TextFormat; }
+
 private:
 	static ID2D1Factory* WDXContainer::DX_Factory;
 	static ID2D1HwndRenderTarget* WDXContainer::DX_RT;
 	static RECT WDXContainer::DX_cRect;
+	static IDWriteFactory* WDXContainer::DX_WFactory;
+	static IDWriteTextFormat* WDXContainer::DX_TextFormat;
 };
 
 #endif // _WDX_
