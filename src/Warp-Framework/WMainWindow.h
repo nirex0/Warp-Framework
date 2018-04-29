@@ -24,7 +24,6 @@
 #include <algorithm>
 
 LRESULT WARP_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-LRESULT W_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 // DeltaTime calculation components
 typedef std::chrono::duration<long, std::ratio<1, 60>> sixtieths_of_a_sec;
