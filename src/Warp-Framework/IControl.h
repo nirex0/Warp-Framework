@@ -12,7 +12,7 @@
 class IControl : public WEntity
 {
 public:
-	virtual WThickness Location(float top, float left, float bottom, float right) =0;
+	virtual WThickness Location(float top, float left, float bottom, float right) = 0;
 	virtual WThickness Location(WCoordinates topleft, WCoordinates botright) = 0;
 	virtual WThickness Location(WThickness location) = 0;
 	
