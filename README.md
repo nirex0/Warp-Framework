@@ -22,9 +22,9 @@ PLANS
 
 - ✔️ Event Registry
 
-- 🔧 D2DX Implementation
+- ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
-- ⚠️ Intractable Controls
+- 🔧 Intractable Controls
 
 - ⚠️ Texture Support (Bitmap Only)
 
