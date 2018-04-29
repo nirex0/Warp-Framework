@@ -9,7 +9,11 @@ WGraphics::WGraphics(void)
 	: m_DX_FAC(NULL)
 	, m_DX_HRT(NULL)
 	, m_DX_SCB(NULL)
+	, m_DW_FAC(NULL)
+	, m_DW_TXF(NULL)
 {
+	m_FontFamilyName = L"Arial";
+	m_FontSize = 14.0F;
 }
 
 WGraphics::~WGraphics(void)
@@ -17,6 +21,8 @@ WGraphics::~WGraphics(void)
 	SafeRelease(&m_DX_FAC);
 	SafeRelease(&m_DX_HRT);
 	SafeRelease(&m_DX_SCB);
+	SafeRelease(&m_DW_FAC);
+	SafeRelease(&m_DW_TXF);
 }
 
 HRESULT WGraphics::CreateFactory(void)
@@ -25,8 +31,9 @@ HRESULT WGraphics::CreateFactory(void)
 	if (!m_bIsFacCreated)
 	{
 		m_bIsFacCreated = 1;
-		return WContainer::hResult(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &m_DX_FAC));
+		WContainer::hResult(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &m_DX_FAC));
 		WDXContainer::Factory(m_DX_FAC);
+		return WContainer::hResult();
 	}
 	return WContainer::hResult(UpdateFactory());
 }
@@ -51,7 +58,7 @@ HRESULT WGraphics::CreateRenderTarget(void)
 		m_bIsHRTCreated = 1;
 		UpdateClientRect();
 
-		return WContainer::hResult(m_DX_FAC->CreateHwndRenderTarget(
+		WContainer::hResult(m_DX_FAC->CreateHwndRenderTarget(
 			D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT),
 			D2D1::HwndRenderTargetProperties(
 				WContainer::Handle(),
@@ -61,6 +68,7 @@ HRESULT WGraphics::CreateRenderTarget(void)
 			&m_DX_HRT
 		));
 		WDXContainer::RenderTarget(m_DX_HRT);
+		return WContainer::hResult();
 	}
 	return UpdateRenderTarget();
 }
@@ -72,7 +80,7 @@ HRESULT WGraphics::UpdateRenderTarget(void)
 	{
 		UpdateClientRect();
 
-		return WContainer::hResult(m_DX_FAC->CreateHwndRenderTarget(
+		WContainer::hResult(m_DX_FAC->CreateHwndRenderTarget(
 			D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT),
 			D2D1::HwndRenderTargetProperties(
 				WContainer::Handle(),
@@ -82,6 +90,7 @@ HRESULT WGraphics::UpdateRenderTarget(void)
 			&m_DX_HRT
 		));
 		WDXContainer::RenderTarget(m_DX_HRT);
+		return WContainer::hResult();
 	}
 	return WContainer::hResult();
 }
@@ -115,7 +124,7 @@ HRESULT WGraphics::UpdateSolidColorBrush(const WColor& color)
 	WContainer::hResult(S_OK);
 	if (!m_DX_HRT)
 	{
-		return 	WContainer::hResult(m_DX_HRT->CreateSolidColorBrush(
+		return WContainer::hResult(m_DX_HRT->CreateSolidColorBrush(
 			D2D1::ColorF(color.R() / 255, color.G() / 255, color.B() / 255, color.A() / 255),
 			&m_DX_SCB));
 	}
@@ -127,6 +136,8 @@ HRESULT WGraphics::CreateDeviceResources()
 	WContainer::hResult(CreateFactory());
 	WContainer::hResult(CreateRenderTarget());
 	WContainer::hResult(CreateSolidColorBrush(WColor{ 0xFF, 0xFF, 0xFF, 0xFF }));
+	WContainer::hResult(CreateWriteFactory());
+	WContainer::hResult(CreateFormat());
 	return WContainer::hResult();
 }
 
@@ -136,6 +147,90 @@ HRESULT WGraphics::UpdateDeviceResources()
 	WContainer::hResult(UpdateFactory());
 	WContainer::hResult(UpdateRenderTarget());
 	WContainer::hResult(UpdateSolidColorBrush(WColor{ 0xFF, 0xFF, 0xFF, 0xFF }));
+	WContainer::hResult(UpdateWriteFactory());
+	WContainer::hResult(UpdateFormat());
+	return WContainer::hResult();
+}
+
+HRESULT WGraphics::CreateWriteFactory(void)
+{
+	WContainer::hResult(S_OK);
+	if (!m_bIsDWFCreated)
+	{
+		m_bIsDWFCreated = 1;
+
+		WContainer::hResult(DWriteCreateFactory(
+			DWRITE_FACTORY_TYPE_SHARED,
+			__uuidof(IDWriteFactory),
+			reinterpret_cast<IUnknown**>(&m_DW_FAC)));
+		WDXContainer::WriteFactory(m_DW_FAC);
+		return WContainer::hResult();
+	}
+	return WContainer::hResult(UpdateWriteFactory());
+}
+
+HRESULT WGraphics::UpdateWriteFactory(void)
+{
+	WContainer::hResult(S_OK);
+	if (!m_DW_FAC)
+	{
+		WContainer::hResult(DWriteCreateFactory(
+			DWRITE_FACTORY_TYPE_SHARED,
+			__uuidof(IDWriteFactory),
+			reinterpret_cast<IUnknown**>(&m_DW_FAC)));
+		WDXContainer::WriteFactory(m_DW_FAC);
+	}
+	return WContainer::hResult();
+}
+
+HRESULT WGraphics::CreateFormat(void)
+{
+	WContainer::hResult(S_OK);
+	if (!m_bIsDWTXreated)
+	{
+		m_bIsDWTXreated = 1;
+
+		WContainer::hResult(
+			m_DW_FAC->CreateTextFormat(
+				m_FontFamilyName,
+				NULL,
+				DWRITE_FONT_WEIGHT_REGULAR,
+				DWRITE_FONT_STYLE_NORMAL,
+				DWRITE_FONT_STRETCH_NORMAL,
+				m_FontSize,
+				L"en-us",
+				&m_DW_TXF
+			));
+		WDXContainer::TextFormat(m_DW_TXF);
+		WContainer::hResult(m_DW_TXF->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER));
+		WContainer::hResult(m_DW_TXF->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER));
+		return WContainer::hResult();
+	}
+	return WContainer::hResult(UpdateFormat());
+
+}
+
+HRESULT WGraphics::UpdateFormat(void)
+{
+	WContainer::hResult(S_OK);
+	SafeRelease(&m_DW_TXF);
+	if (!m_DW_TXF)
+	{
+		WContainer::hResult(
+			m_DW_FAC->CreateTextFormat(
+				m_FontFamilyName,
+				NULL,
+				DWRITE_FONT_WEIGHT_REGULAR,
+				DWRITE_FONT_STYLE_NORMAL,
+				DWRITE_FONT_STRETCH_NORMAL,
+				m_FontSize,
+				L"en-us",
+				&m_DW_TXF
+			));
+		WDXContainer::TextFormat(m_DW_TXF);
+		WContainer::hResult(m_DW_TXF->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER));
+		WContainer::hResult(m_DW_TXF->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER));
+	}
 	return WContainer::hResult();
 }
 
@@ -175,6 +270,23 @@ HRESULT WGraphics::SetBrushColor(const WColor& color)
 	return WContainer::hResult(S_OK);
 }
 
+HRESULT WGraphics::GetText(wchar_t* OutText, UINT32& OutLength) const
+{
+	OutText = m_C_TEXT;
+	OutLength = m_TEXTLN;
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::SetText(wchar_t* Intake, UINT32 Length)
+{
+	m_C_TEXT = new wchar_t[Length];
+	for (size_t i = 0; i < Length; i++)
+	{
+		m_C_TEXT[i] = Intake[i];
+	}
+	return WContainer::hResult(S_OK);
+}
+
 HRESULT WGraphics::SafeBeginDraw(void)
 {
 	if (!m_bIsDrawing)
@@ -206,6 +318,9 @@ HRESULT WGraphics::SaveResources(void)
 	WDXContainer::Factory(m_DX_FAC);
 	WDXContainer::RenderTarget(m_DX_HRT);
 	WDXContainer::ClientArea(m_DX_REC);
+	WDXContainer::WriteFactory(m_DW_FAC);
+	WDXContainer::TextFormat(m_DW_TXF);
+
 	return WContainer::hResult(S_OK);
 }
 
@@ -244,6 +359,48 @@ ID2D1SolidColorBrush* WGraphics::GetColorBrush(void) const
 RECT WGraphics::GetClientArea(void) const
 {
 	return m_DX_REC;
+}
+
+IDWriteFactory* WGraphics::GetWriteFactory(void) const
+{
+	return m_DW_FAC;
+}
+
+IDWriteTextFormat* WGraphics::GetTextFormat(void) const
+{
+	return m_DW_TXF;
+}
+
+wchar_t* WGraphics::GetText(void) const
+{
+	return m_C_TEXT;
+}
+
+UINT32 WGraphics::GetTextLength(void) const
+{
+	return m_TEXTLN;
+}
+
+wchar_t* WGraphics::FontFamily(void) const
+{
+	return m_FontFamilyName;
+}
+
+wchar_t* WGraphics::FontFamily(wchar_t* familyName)
+{
+	m_FontFamilyName = familyName;
+	return m_FontFamilyName;
+}
+
+float WGraphics::FontSize(void) const
+{
+	return m_FontSize;
+}
+
+float WGraphics::FontSize(float intake)
+{
+	m_FontSize = intake;
+	return m_FontSize;
 }
 
 void W_MAIN_WINDOW::ResizeWindow(int X, int Y)
