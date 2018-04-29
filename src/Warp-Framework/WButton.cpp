@@ -22,6 +22,8 @@ WButton::WButton()
 	m_isEnabled = true;
 	m_isVisible = true;
 
+	m_family = L"Arial";
+
 	WControlHandler::Add(this);
 	UpdateRect();
 }
@@ -46,6 +48,8 @@ WButton::WButton(float top, float left, float bottom, float right)
 
 	m_isEnabled = true;
 	m_isVisible = true;
+
+	m_family = L"Arial";
 
 	WControlHandler::Add(this);
 	UpdateRect();
@@ -72,6 +76,8 @@ WButton::WButton(WCoordinates topleft, WCoordinates botright)
 	m_isEnabled = true;
 	m_isVisible = true;
 
+	m_family = L"Arial";
+
 	WControlHandler::Add(this);
 	UpdateRect();
 }
@@ -96,6 +102,8 @@ WButton::WButton(WThickness location)
 
 	m_isEnabled = true;
 	m_isVisible = true;
+
+	m_family = L"Arial";
 
 	WControlHandler::Add(this);
 	UpdateRect();
@@ -281,6 +289,20 @@ void WButton::Render()
 		WGraphicsContainer::Graphics()->GetColorBrush()
 
 	);
+	WGraphicsContainer::Graphics()->GetColorBrush()->SetColor(textC);
+	WGraphicsContainer::Graphics()->FontSize(m_fsize);
+	WGraphicsContainer::Graphics()->FontFamily(m_family);
+	WGraphicsContainer::Graphics()->UpdateFormat();
+
+	WGraphicsContainer::Graphics()->GetRenderTarget()->DrawTextW(
+		m_Content,
+		m_conLen,
+		WGraphicsContainer::Graphics()->GetTextFormat(),
+		D2D1::RectF((float)btnRec.left, (float)btnRec.top, (float)btnRec.right, (float)btnRec.bottom),
+		WGraphicsContainer::Graphics()->GetColorBrush()
+
+	);
+
 	WGraphicsContainer::Graphics()->GetColorBrush()->SetColor(tmpCol);
 }
 
@@ -484,6 +506,45 @@ void WButton::MouseLeave(WMouseArgs* Args)
 	{
 		BtnMouseLeaveRegistery->Run(this, Args);
 	}
+}
+
+wchar_t* WButton::FontFamily(void) const
+{
+	return m_family;
+}
+
+wchar_t* WButton::Content(UINT32& outLen) const
+{
+	outLen = m_conLen;
+	return m_Content;
+}
+
+float WButton::FontSize(void) const
+{
+	return m_fsize;
+}
+
+wchar_t * WButton::FontFamily(wchar_t* intake)
+{
+	m_family = intake;
+	return m_family;
+}
+
+wchar_t* WButton::Content(wchar_t* familyName, UINT32 Length)
+{
+	m_conLen = Length;
+	m_Content = new wchar_t[m_conLen];
+	for (size_t i = 0; i < Length; i++)
+	{
+		m_Content[i] = familyName[i];
+	}
+	return m_Content;
+}
+
+float WButton::FontSize(float intake)
+{
+	m_fsize = intake;
+	return m_fsize;
 }
 
 

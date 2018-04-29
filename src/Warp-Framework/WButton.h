@@ -84,7 +84,22 @@ public:
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
 
+	// Getters
+	wchar_t*				FontFamily(void) const;
+	wchar_t*				Content(UINT32& outLen) const;
+	float					FontSize(void) const;
+
+	// Setters
+	wchar_t*				FontFamily(wchar_t* intake);
+	wchar_t*				Content(wchar_t* familyName, UINT32 Length);
+	float					FontSize(float intake);
+
 private:
+	wchar_t* m_Content;
+	wchar_t* m_family;
+	float m_fsize = 14.0F;
+	UINT32 m_conLen = 0;
+
 	bool m_isEnabled;
 	bool m_isVisible;
 
