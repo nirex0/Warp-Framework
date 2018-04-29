@@ -28,6 +28,8 @@ WKeyboard* WContainer::keboard = {};
 ID2D1Factory* WDXContainer::DX_Factory = {};
 ID2D1HwndRenderTarget* WDXContainer::DX_RT = {};
 RECT WDXContainer::DX_cRect = {};
+IDWriteFactory* WDXContainer::DX_WFactory = {};
+IDWriteTextFormat* WDXContainer::DX_TextFormat = {};
 
 // Same with the Reg Container
 WUniqueRegister* WRegContainer::KBD_KeyDownReg = {};
@@ -179,6 +181,8 @@ void WMainWindow::MessageLoop(void)
 	m_graphics->CreateFactory();
 	m_graphics->CreateRenderTarget();
 	m_graphics->CreateSolidColorBrush(WColor(0xFFFFFFFF));
+	m_graphics->CreateWriteFactory();
+	m_graphics->CreateFormat();
 
 	// Initialize Keyboard
 	m_entry->Keyboard(m_keyboard);
@@ -202,18 +206,6 @@ void WMainWindow::MessageLoop(void)
 		}
 		else
 		{
-			// Update & Render
-			// Note: Render statements should be written after all of the Update statements
-			// Update
-			m_entry->Update(milliseconds);
-			
-			// Render
-			m_graphics->SafeBeginDraw();
-			m_graphics->ClearWindow(WColor(WContainer::BackA(), WContainer::BackR(), WContainer::BackG(), WContainer::BackB()));
-			m_entry->Render(milliseconds);
-			m_graphics->SafeEndDraw();
-
-			WContainer::DeltaSeconds(milliseconds);
 			//Delta time Calculation
 			auto newEndTime = WClock::now();
 			auto frameTime = newEndTime - mLastEndTime;
@@ -224,6 +216,18 @@ void WMainWindow::MessageLoop(void)
 
 			// std::ratio<1, 1> for seconds instead of miliseconds
 			milliseconds = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(mDeltaTime).count();
+			WContainer::DeltaSeconds(milliseconds);
+
+			// Update & Render
+			// Note: Render statements should be written after all of the Update statements
+			// Update
+			m_entry->Update(milliseconds);
+			
+			// Render
+			m_graphics->SafeBeginDraw();
+			m_graphics->ClearWindow(WColor(WContainer::BackA(), WContainer::BackR(), WContainer::BackG(), WContainer::BackB()));
+			m_entry->Render(milliseconds);
+			m_graphics->SafeEndDraw();
 		}
 	}
 }
