@@ -40,6 +40,10 @@ PLANS
 
 - ❌ Animation Support
 
+- ❌ WCSL (Warp Control Style Language)
+
+- ❌ OpenGL Implementation
+
 ### WARP-ASYNC
 
 - ❌ Concurrent Programming with WAsyncWorker
