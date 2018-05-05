@@ -49,14 +49,14 @@
     <Filter Include="Source Files\Engine\Graphics">
       <UniqueIdentifier>{68e60a90-ecbc-439c-aeb7-2bced8014718}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Primitive">
-      <UniqueIdentifier>{371fcc97-3883-41e4-80c1-15863c15f472}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Controls">
       <UniqueIdentifier>{efff0d63-a65e-4518-b323-fd8f42a54770}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Engine\Controls">
       <UniqueIdentifier>{cac18e69-1a47-4fe2-a314-3b4ca94a9b0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Primitives">
+      <UniqueIdentifier>{371fcc97-3883-41e4-80c1-15863c15f472}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,10 +142,10 @@
       <Filter>Header Files\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="WCoordinates.h">
-      <Filter>Header Files\Engine\Primitive</Filter>
+      <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="WThickness.h">
-      <Filter>Header Files\Engine\Primitive</Filter>
+      <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="WGFXContainer.h">
       <Filter>Header Files\Engine\Containers</Filter>
@@ -154,13 +154,16 @@
       <Filter>Header Files\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WBoundary.h">
-      <Filter>Header Files\Engine\Primitive</Filter>
+      <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="IControl.h">
       <Filter>Header Files\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WControlHandler.h">
       <Filter>Header Files\Engine\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="WRECTF.h">
+      <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

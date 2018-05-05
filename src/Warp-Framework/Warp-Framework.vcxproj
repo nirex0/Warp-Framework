@@ -112,6 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="IControl.h" />
+    <ClInclude Include="WRECTF.h" />
     <ClInclude Include="WBoundary.h" />
     <ClInclude Include="WButton.h" />
     <ClInclude Include="WControlHandler.h" />
