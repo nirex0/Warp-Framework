@@ -28,14 +28,12 @@ public:
 	virtual WCoordinates Displace(WCoordinates XY) = 0;
 
 	// Getters
-	virtual WRegistry* ClickRegistery(void) = 0;
 	virtual WRegistry* MouseDownRegistery(void) = 0;
 	virtual WRegistry* MouseUpRegistery(void) = 0;
 	virtual WRegistry* MouseEnterRegistery(void) = 0;
 	virtual WRegistry* MouseLeaveRegistery(void) = 0;
 
 	// Setters
-	virtual WRegistry* ClickRegistery(WRegistry* intake) = 0;
 	virtual WRegistry* MouseDownRegistery(WRegistry* intake) = 0;
 	virtual WRegistry* MouseUpRegistery(WRegistry* intake) = 0;
 	virtual WRegistry* MouseEnterRegistery(WRegistry* intake) = 0;
@@ -50,7 +48,6 @@ public:
 	virtual bool IsVisible(bool input) = 0;
 
 	// Events
-	virtual void Click(WMouseArgs* Args) = 0;
 	virtual void MouseDown(WMouseArgs* Args) = 0;
 	virtual void MouseUp(WMouseArgs* Args) = 0;
 	virtual void MouseEnter(WMouseArgs* Args) = 0;

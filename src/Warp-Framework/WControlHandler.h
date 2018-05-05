@@ -30,13 +30,6 @@ public:
 			vtcp[i]->MouseUp(args);
 		}
 	}
-	static void MouseClick(WMouseArgs* args)
-	{
-		for (size_t i = 0; i < vtcp.size(); i++)
-		{
-			vtcp[i]->Click(args);
-		}
-	}
 	static void MouseEnter(WMouseArgs* args)
 	{
 		for (size_t i = 0; i < vtcp.size(); i++)
