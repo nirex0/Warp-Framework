@@ -7,6 +7,8 @@
 #include "WEntity.h"
 #include "WColor.h"
 #include "WDefines.h"
+#include "WRECTF.h"
+#include "WThickness.h"
 
 class WGraphics : public WEntity
 {
@@ -63,6 +65,24 @@ public:
 
 	float					FontSize(void) const;
 	float					FontSize(float intake);
+
+	// Primitive Drawing
+	HRESULT DrawRect(WRECTF boundaryRect, float bord_thickness, WColor bord_color);
+	HRESULT FillRect(WRECTF boundaryRect, WColor back_color);
+
+	HRESULT DrawRoundRect(WRECTF boundaryRect, float bord_thickness, float bord_radius, WColor bord_color);
+	HRESULT FillRoundRect(WRECTF boundaryRect, float bord_radius, WColor back_color);
+
+	HRESULT DrawEllipse(POINTF center, float radX, float radY, float bord_thickness, WColor bord_color);
+	HRESULT FillEllipse(POINTF center, float radX, float radY, WColor back_color);
+
+	HRESULT DrawLine(POINTF begin, POINTF end, WColor color, float thickness);
+	HRESULT DrawPoint(POINTF Coords, WColor color);
+
+	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, float fontsize, WColor text_color);
+	
+	// Primitive Component Drawing
+	HRESULT DrawRect(WRECTF boundaryRect, WThickness borderThickness, WColor bord_color);
 
 private:
 	ID2D1Factory*			m_DX_FAC;

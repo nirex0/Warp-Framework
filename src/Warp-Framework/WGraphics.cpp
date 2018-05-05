@@ -403,6 +403,267 @@ float WGraphics::FontSize(float intake)
 	return m_FontSize;
 }
 
+HRESULT WGraphics::DrawRect(WRECTF boundaryRect, float bord_thickness, WColor bord_color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(bord_color.A()) / 255;
+	D2D1COLOR.r = (float)(bord_color.R()) / 255;
+	D2D1COLOR.g = (float)(bord_color.G()) / 255;
+	D2D1COLOR.b = (float)(bord_color.B()) / 255;
+
+	D2D_RECT_F D2D1RECTF;
+	D2D1RECTF.top = boundaryRect.Top();
+	D2D1RECTF.left = boundaryRect.Left();
+	D2D1RECTF.bottom = boundaryRect.Bottom();
+	D2D1RECTF.right = boundaryRect.Right();
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->DrawRectangle(D2D1RECTF, m_DX_SCB, bord_thickness);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::FillRect(WRECTF boundaryRect, WColor back_color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(back_color.A()) / 255;
+	D2D1COLOR.r = (float)(back_color.R()) / 255;
+	D2D1COLOR.g = (float)(back_color.G()) / 255;
+	D2D1COLOR.b = (float)(back_color.B()) / 255;
+
+	D2D_RECT_F D2D1RECTF;
+	D2D1RECTF.top = boundaryRect.Top();
+	D2D1RECTF.left = boundaryRect.Left();
+	D2D1RECTF.bottom = boundaryRect.Bottom();
+	D2D1RECTF.right = boundaryRect.Right();
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->FillRectangle(D2D1RECTF, m_DX_SCB);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, float bord_thickness, float bord_radius, WColor bord_color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(bord_color.A()) / 255;
+	D2D1COLOR.r = (float)(bord_color.R()) / 255;
+	D2D1COLOR.g = (float)(bord_color.G()) / 255;
+	D2D1COLOR.b = (float)(bord_color.B()) / 255;
+
+	D2D1_ROUNDED_RECT D2D1RECTF;
+	D2D1RECTF.rect.top = boundaryRect.Top();
+	D2D1RECTF.rect.left = boundaryRect.Left();
+	D2D1RECTF.rect.bottom = boundaryRect.Bottom();
+	D2D1RECTF.rect.right = boundaryRect.Right();
+	D2D1RECTF.radiusX = bord_radius;
+	D2D1RECTF.radiusY = bord_radius;
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->DrawRoundedRectangle(D2D1RECTF, m_DX_SCB, bord_thickness);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::FillRoundRect(WRECTF boundaryRect, float bord_radius, WColor back_color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(back_color.A()) / 255;
+	D2D1COLOR.r = (float)(back_color.R()) / 255;
+	D2D1COLOR.g = (float)(back_color.G()) / 255;
+	D2D1COLOR.b = (float)(back_color.B()) / 255;
+
+	D2D1_ROUNDED_RECT D2D1RECTF;
+	D2D1RECTF.rect.top = boundaryRect.Top();
+	D2D1RECTF.rect.left = boundaryRect.Left();
+	D2D1RECTF.rect.bottom = boundaryRect.Bottom();
+	D2D1RECTF.rect.right = boundaryRect.Right();
+	D2D1RECTF.radiusX = bord_radius;
+	D2D1RECTF.radiusY = bord_radius;
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->FillRoundedRectangle(D2D1RECTF, m_DX_SCB);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::DrawEllipse(POINTF center, float radX, float radY, float bord_thickness, WColor bord_color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(bord_color.A()) / 255;
+	D2D1COLOR.r = (float)(bord_color.R()) / 255;
+	D2D1COLOR.g = (float)(bord_color.G()) / 255;
+	D2D1COLOR.b = (float)(bord_color.B()) / 255;
+
+	D2D1_ELLIPSE D2D1ELIPSE;
+	D2D1ELIPSE.point.x = center.x;
+	D2D1ELIPSE.point.y = center.y;
+	D2D1ELIPSE.radiusX = radX;
+	D2D1ELIPSE.radiusY = radY;
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->DrawEllipse(D2D1ELIPSE, m_DX_SCB, bord_thickness);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::FillEllipse(POINTF center, float radX, float radY, WColor back_color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(back_color.A()) / 255;
+	D2D1COLOR.r = (float)(back_color.R()) / 255;
+	D2D1COLOR.g = (float)(back_color.G()) / 255;
+	D2D1COLOR.b = (float)(back_color.B()) / 255;
+
+	D2D1_ELLIPSE D2D1ELIPSE;
+	D2D1ELIPSE.point.x = center.x;
+	D2D1ELIPSE.point.y = center.y;
+	D2D1ELIPSE.radiusX = radX;
+	D2D1ELIPSE.radiusY = radY;
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->FillEllipse(D2D1ELIPSE, m_DX_SCB);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, WColor color, float thickness)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(color.A()) / 255;
+	D2D1COLOR.r = (float)(color.R()) / 255;
+	D2D1COLOR.g = (float)(color.G()) / 255;
+	D2D1COLOR.b = (float)(color.B()) / 255;
+
+	D2D1_POINT_2F D2D1POINTBEGIN;
+	D2D1POINTBEGIN.x = begin.x;
+	D2D1POINTBEGIN.y = begin.y;
+
+	D2D1_POINT_2F D2D1POINTEND;
+	D2D1POINTEND.x = end.x;	
+	D2D1POINTEND.y = end.y;
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->DrawLine(D2D1POINTBEGIN, D2D1POINTEND, m_DX_SCB, thickness);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+		
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::DrawPoint(POINTF Coords, WColor color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(color.A()) / 255;
+	D2D1COLOR.r = (float)(color.R()) / 255;
+	D2D1COLOR.g = (float)(color.G()) / 255;
+	D2D1COLOR.b = (float)(color.B()) / 255;
+	
+	D2D1_POINT_2F D2D1POINTBEGIN;
+	D2D1POINTBEGIN.x = Coords.x;
+	D2D1POINTBEGIN.y = Coords.y;
+
+	D2D1_POINT_2F D2D1POINTEND;
+	D2D1POINTEND.x = Coords.x + 1;
+	D2D1POINTEND.y = Coords.y + 1;
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->DrawLine(D2D1POINTBEGIN, D2D1POINTEND, m_DX_SCB);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, float fontsize, WColor text_color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(text_color.A()) / 255;
+	D2D1COLOR.r = (float)(text_color.R()) / 255;
+	D2D1COLOR.g = (float)(text_color.G()) / 255;
+	D2D1COLOR.b = (float)(text_color.B()) / 255;
+
+	D2D_RECT_F D2D1RECTF;
+	D2D1RECTF.top = boundaryRect.Top();
+	D2D1RECTF.left = boundaryRect.Left();
+	D2D1RECTF.bottom = boundaryRect.Bottom();
+	D2D1RECTF.right = boundaryRect.Right();
+
+	FontSize(fontsize);
+	FontFamily(fontfamily);
+	UpdateFormat();
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->DrawTextW(text, strLengh, m_DW_TXF, D2D1RECTF, m_DX_SCB);
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::DrawRect(WRECTF boundaryRect, WThickness borderThickness, WColor bord_color)
+{
+	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
+
+	D2D1_COLOR_F D2D1COLOR;
+	D2D1COLOR.a = (float)(bord_color.A()) / 255;
+	D2D1COLOR.r = (float)(bord_color.R()) / 255;
+	D2D1COLOR.g = (float)(bord_color.G()) / 255;
+	D2D1COLOR.b = (float)(bord_color.B()) / 255;
+
+	D2D1_POINT_2F TOP_LEFT;
+	D2D1_POINT_2F TOP_RIGHT;
+
+	D2D1_POINT_2F BOTTOM_LEFT;
+	D2D1_POINT_2F BOTTOM_RIGHT;
+
+	TOP_LEFT.y = boundaryRect.Top(); 
+	TOP_LEFT.x = boundaryRect.Left();
+
+	TOP_RIGHT.y = boundaryRect.Top();
+	TOP_RIGHT.x = boundaryRect.Right();
+
+	BOTTOM_LEFT.y = boundaryRect.Bottom();
+	BOTTOM_LEFT.x = boundaryRect.Left();
+
+	BOTTOM_RIGHT.y = boundaryRect.Bottom();
+	BOTTOM_RIGHT.x = boundaryRect.Right();
+
+	m_DX_SCB->SetColor(D2D1COLOR);
+	m_DX_HRT->DrawLine(TOP_LEFT, TOP_RIGHT, m_DX_SCB, borderThickness.Top());
+	m_DX_HRT->DrawLine(TOP_LEFT, BOTTOM_LEFT, m_DX_SCB, borderThickness.Left());
+	m_DX_HRT->DrawLine(BOTTOM_LEFT, BOTTOM_RIGHT, m_DX_SCB, borderThickness.Bottom());
+	m_DX_HRT->DrawLine(BOTTOM_RIGHT, TOP_RIGHT, m_DX_SCB, borderThickness.Right());
+
+	m_DX_HRT->DrawLine(TOP_RIGHT, BOTTOM_LEFT, m_DX_SCB, 1);
+	m_DX_HRT->DrawLine(TOP_LEFT, BOTTOM_RIGHT, m_DX_SCB, 1);
+
+	m_DX_SCB->SetColor(D2D1TMPCOLOR);
+
+	return WContainer::hResult(S_OK);
+}
+
 void W_MAIN_WINDOW::ResizeWindow(int X, int Y)
 {
 	RECT wndRect = {};
@@ -442,4 +703,3 @@ void W_MAIN_WINDOW::DragMoveWindow(int Yoffset)
 
 	RepositionWindow(newXpos, newYpos);
 }
-
