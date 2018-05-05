@@ -5,6 +5,7 @@
 
 #include "WGFXContainer.h"
 
+#include "WRECTF.h"
 #include "IControl.h"
 #include "WCoordinates.h"
 #include "WThickness.h"
@@ -56,14 +57,12 @@ public:
 	WCoordinates Displace(WCoordinates XY) override;
 
 	// Getters
-	WRegistry* ClickRegistery(void) override;
 	WRegistry* MouseDownRegistery(void) override;
 	WRegistry* MouseUpRegistery(void) override;
 	WRegistry* MouseEnterRegistery(void) override;
 	WRegistry* MouseLeaveRegistery(void) override;
 
 	// Setters
-	WRegistry* ClickRegistery(WRegistry* intake) override;
 	WRegistry* MouseDownRegistery(WRegistry* intake) override;
 	WRegistry* MouseUpRegistery(WRegistry* intake) override;
 	WRegistry* MouseEnterRegistery(WRegistry* intake) override;
@@ -78,7 +77,6 @@ public:
 	bool IsVisible(bool input) override;
 
 	// Events
-	void Click(WMouseArgs* Args) override;
 	void MouseDown(WMouseArgs* Args) override;
 	void MouseUp(WMouseArgs* Args) override;
 	void MouseEnter(WMouseArgs* Args) override;
@@ -91,7 +89,8 @@ public:
 
 	// Setters
 	wchar_t*				FontFamily(wchar_t* intake);
-	wchar_t*				Content(wchar_t* familyName, UINT32 Length);
+	wchar_t*				Content(wchar_t* content);
+	wchar_t*				Content(wchar_t* content, UINT32 Length);
 	float					FontSize(float intake);
 
 private:
@@ -115,9 +114,8 @@ private:
 	WColor backColor;
 	WColor bordColor;
 
-	RECT btnRec;
+	WRECTF btnRec;
 
-	WRegistry* BtnClickRegistery;
 	WRegistry* BtnMouseDownRegistery;
 	WRegistry* BtnMouseUpRegistery;
 

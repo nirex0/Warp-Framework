@@ -7,13 +7,12 @@ WButton::WButton()
 	, backColor(WColor(255, 0, 0, 0))
 	, bordColor(WColor(255, 255, 255, 255))
 {
-	btnRec.top = (long)m_top;
-	btnRec.left = (long)m_left;
+	btnRec.Top(m_top);
+	btnRec.Left(m_left);
 
-	btnRec.bottom = (long)m_bottom;
-	btnRec.right = (long)m_right;
+	btnRec.Bottom(m_bottom);
+	btnRec.Right(m_right);
 
-	BtnClickRegistery = new WRegistry();
 	BtnMouseDownRegistery = new WRegistry();
 	BtnMouseUpRegistery = new WRegistry();
 	BtnMouseEnterRegistery = new WRegistry();
@@ -40,7 +39,6 @@ WButton::WButton(float top, float left, float bottom, float right)
 	m_bottom = bottom;
 	m_right = right;
 
-	BtnClickRegistery = new WRegistry();
 	BtnMouseDownRegistery = new WRegistry();
 	BtnMouseUpRegistery = new WRegistry();
 	BtnMouseEnterRegistery = new WRegistry();
@@ -67,7 +65,6 @@ WButton::WButton(WCoordinates topleft, WCoordinates botright)
 	m_bottom = botright.X();
 	m_right = botright.Y();
 
-	BtnClickRegistery = new WRegistry();
 	BtnMouseDownRegistery = new WRegistry();
 	BtnMouseUpRegistery = new WRegistry();
 	BtnMouseEnterRegistery = new WRegistry();
@@ -94,7 +91,6 @@ WButton::WButton(WThickness location)
 	m_bottom = location.Bottom();
 	m_right = location.Right();
 
-	BtnClickRegistery = new WRegistry();
 	BtnMouseDownRegistery = new WRegistry();
 	BtnMouseUpRegistery = new WRegistry();
 	BtnMouseEnterRegistery = new WRegistry();
@@ -111,7 +107,6 @@ WButton::WButton(WThickness location)
 
 WButton::~WButton(void)
 {
-	delete BtnClickRegistery;
 	delete BtnMouseDownRegistery;
 	delete BtnMouseUpRegistery;
 	delete BtnMouseEnterRegistery;
@@ -255,55 +250,17 @@ void WButton::Render()
 	if (!m_isVisible)
 		return;
 
-	D2D1_COLOR_F textC;
-	textC.a = (float)(foreColor.A()) / 255;
-	textC.r = (float)(foreColor.R()) / 255;
-	textC.g = (float)(foreColor.G()) / 255;
-	textC.b = (float)(foreColor.B()) / 255;
+	WGraphicsContainer::Graphics()->DrawRoundRect(btnRec, m_thickness, m_borderRad, bordColor);
+	WGraphicsContainer::Graphics()->FillRoundRect(btnRec, m_borderRad, backColor);
+	WGraphicsContainer::Graphics()->WriteText(btnRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
+}
 
-	D2D1_COLOR_F backC;
-	backC.a = (float)(backColor.A()) / 255;
-	backC.r = (float)(backColor.R()) / 255;
-	backC.g = (float)(backColor.G()) / 255;
-	backC.b = (float)(backColor.B()) / 255;
-
-	D2D1_COLOR_F bordC;
-	bordC.a = (float)(bordColor.A()) / 255;
-	bordC.r = (float)(bordColor.R()) / 255;
-	bordC.g = (float)(bordColor.G()) / 255;
-	bordC.b = (float)(bordColor.B()) / 255;
-
-	D2D1_COLOR_F tmpCol(WGraphicsContainer::Graphics()->GetColorBrush()->GetColor());
-	WGraphicsContainer::Graphics()->GetColorBrush()->SetColor(bordC);
-	WGraphicsContainer::Graphics()->GetRenderTarget()->DrawRoundedRectangle
-	(
-		D2D1::RoundedRect(D2D1::RectF((float)btnRec.left, (float)btnRec.top, (float)btnRec.right, (float)btnRec.bottom), m_borderRad, m_borderRad),
-		WGraphicsContainer::Graphics()->GetColorBrush(),
-		m_thickness
-	);
-
-	WGraphicsContainer::Graphics()->GetColorBrush()->SetColor(backC);
-	WGraphicsContainer::Graphics()->GetRenderTarget()->FillRoundedRectangle
-	(
-		D2D1::RoundedRect(D2D1::RectF((float)btnRec.left, (float)btnRec.top, (float)btnRec.right, (float)btnRec.bottom), m_borderRad, m_borderRad),
-		WGraphicsContainer::Graphics()->GetColorBrush()
-
-	);
-	WGraphicsContainer::Graphics()->GetColorBrush()->SetColor(textC);
-	WGraphicsContainer::Graphics()->FontSize(m_fsize);
-	WGraphicsContainer::Graphics()->FontFamily(m_family);
-	WGraphicsContainer::Graphics()->UpdateFormat();
-
-	WGraphicsContainer::Graphics()->GetRenderTarget()->DrawTextW(
-		m_Content,
-		m_conLen,
-		WGraphicsContainer::Graphics()->GetTextFormat(),
-		D2D1::RectF((float)btnRec.left, (float)btnRec.top, (float)btnRec.right, (float)btnRec.bottom),
-		WGraphicsContainer::Graphics()->GetColorBrush()
-
-	);
-
-	WGraphicsContainer::Graphics()->GetColorBrush()->SetColor(tmpCol);
+void WButton::UpdateRect(void)
+{
+	btnRec.Top(m_top);
+	btnRec.Left(m_left);
+	btnRec.Bottom(m_bottom);
+	btnRec.Right(m_right);
 }
 
 WCoordinates WButton::Displace(float X, float Y)
@@ -330,11 +287,6 @@ WCoordinates WButton::Displace(WCoordinates XY)
 	return WCoordinates(XY.X(), XY.Y());
 }
 
-WRegistry* WButton::ClickRegistery(void)
-{
-	return BtnClickRegistery;
-}
-
 WRegistry* WButton::MouseDownRegistery(void)
 {
 	return BtnMouseDownRegistery;
@@ -353,12 +305,6 @@ WRegistry* WButton::MouseEnterRegistery(void)
 WRegistry* WButton::MouseLeaveRegistery(void)
 {
 	return BtnMouseLeaveRegistery;
-}
-
-WRegistry* WButton::ClickRegistery(WRegistry* intake)
-{
-	BtnClickRegistery = intake;
-	return BtnClickRegistery;
 }
 
 WRegistry* WButton::MouseDownRegistery(WRegistry* intake)
@@ -405,27 +351,6 @@ bool WButton::IsVisible(bool input)
 {
 	m_isVisible = input;
 	return m_isVisible;
-}
-
-void WButton::Click(WMouseArgs* Args)
-{
-	if (!m_isEnabled)
-		return;
-	if (!m_isVisible)
-		return;
-
-	WBoundary bounds;
-
-	bounds.Top(this->Location().Top());
-	bounds.Left(this->Location().Left());
-	bounds.Bottom(this->Location().Bottom());
-	bounds.Right(this->Location().Right());
-
-	if (bounds.IsColliding(*(Args->Point())))
-	{
-		BtnClickRegistery->Run(this, Args);
-	}
-
 }
 
 void WButton::MouseDown(WMouseArgs* Args)
@@ -530,13 +455,24 @@ wchar_t * WButton::FontFamily(wchar_t* intake)
 	return m_family;
 }
 
-wchar_t* WButton::Content(wchar_t* familyName, UINT32 Length)
+wchar_t* WButton::Content(wchar_t* content)
+{
+	m_conLen = lstrlenW(content);
+	m_Content = new wchar_t[m_conLen];
+	for (size_t i = 0; i < m_conLen; i++)
+	{
+		m_Content[i] = content[i];
+	}
+	return m_Content;
+}
+
+wchar_t* WButton::Content(wchar_t* content, UINT32 Length)
 {
 	m_conLen = Length;
 	m_Content = new wchar_t[m_conLen];
 	for (size_t i = 0; i < Length; i++)
 	{
-		m_Content[i] = familyName[i];
+		m_Content[i] = content[i];
 	}
 	return m_Content;
 }
@@ -546,14 +482,3 @@ float WButton::FontSize(float intake)
 	m_fsize = intake;
 	return m_fsize;
 }
-
-
-void WButton::UpdateRect(void)
-{
-	btnRec.top = (long)m_top;
-	btnRec.left = (long)m_left;
-	btnRec.bottom = (long)m_bottom;
-	btnRec.right = (long)m_right;
-}
-
-
