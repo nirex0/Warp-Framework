@@ -338,7 +338,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 
 		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_LEFT, KeyState::MouseUp);
 		WControlHandler::MouseUp(args);
-		WControlHandler::MouseClick(args);
 		break;
 	}
 	case WM_RBUTTONDOWN:
