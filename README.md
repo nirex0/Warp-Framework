@@ -30,7 +30,9 @@ PLANS
 
 - ✔️ Double Buffering
 
-- ⚠️ Custom 2D Space
+- ⚠️ Audio & Video Support (.mp3 / .mp4)
+
+- ❌ Custom 2D Space
 
 - ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
 
