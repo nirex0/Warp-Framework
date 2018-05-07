@@ -32,7 +32,7 @@ PLANS
 
 - ⚠️ Custom 2D Space
 
-- ⚠️ Texture Support (PNG)
+- ✔️ Texture Support (PNG)
 
 - ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
 
