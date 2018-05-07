@@ -165,6 +165,15 @@
     <ClInclude Include="WRECTF.h">
       <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
+    <ClInclude Include="WCODEC.h">
+      <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WChrono.h">
+      <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WAlgorithm.h">
+      <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
