@@ -26,13 +26,11 @@ PLANS
 
 - 🔧 Intractable Controls
 
-- ✔️ Texture Support (Bitmap Only)
+- ✔️ Texture Support
 
 - ✔️ Double Buffering
 
 - ⚠️ Custom 2D Space
-
-- ✔️ Texture Support (PNG)
 
 - ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
 
