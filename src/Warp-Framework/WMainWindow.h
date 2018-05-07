@@ -19,18 +19,10 @@
 #include "WGraphics.h"
 #include "WGFXContainer.h"
 #include "WControlHandler.h"
-
-#include <chrono>
-#include <algorithm>
+#include "WChrono.h"
+#include "WAlgorithm.h"
 
 LRESULT WARP_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
-// DeltaTime calculation components
-typedef std::chrono::duration<long, std::ratio<1, 60>> sixtieths_of_a_sec;
-constexpr auto kMaxDeltatime = sixtieths_of_a_sec{ 1 };
-using WClock = std::chrono::steady_clock;
-auto mLastEndTime = WClock::now();
-DELTATIME milliseconds = 0.0;
 
 class WMainWindow final : public WEntity
 {

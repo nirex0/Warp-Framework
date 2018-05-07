@@ -2,7 +2,6 @@
 
 #include "WMainWindow.h"
 
-
 // We Need to Initialize the container's static memebers to nullptr ({} = ZeroMemory}
 HRESULT WContainer::HR = {};
 HWND WContainer::hWnd = {};
