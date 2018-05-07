@@ -36,9 +36,7 @@ PLANS
 
 - ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
 
-- ❌ Shader Support
-
-- ❌ Animation Support
+- ❌ Vector Graphics
 
 - ❌ WCSL (Warp Control Style Language)
 
