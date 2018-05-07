@@ -63,23 +63,26 @@ public:
 	wchar_t*				FontFamily(void) const;
 	wchar_t*				FontFamily(wchar_t* familyName);
 
-	float					FontSize(void) const;
-	float					FontSize(float intake);
+	FLOAT					FontSize(void) const;
+	FLOAT					FontSize(FLOAT intake);
 
 	// Primitive Drawing
-	HRESULT DrawRect(WRECTF boundaryRect, float bord_thickness, WColor bord_color);
+	HRESULT DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, WColor bord_color);
 	HRESULT FillRect(WRECTF boundaryRect, WColor back_color);
 
-	HRESULT DrawRoundRect(WRECTF boundaryRect, float bord_thickness, float bord_radius, WColor bord_color);
-	HRESULT FillRoundRect(WRECTF boundaryRect, float bord_radius, WColor back_color);
+	HRESULT DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, WColor bord_color);
+	HRESULT FillRoundRect(WRECTF boundaryRect, FLOAT bord_radius, WColor back_color);
 
-	HRESULT DrawEllipse(POINTF center, float radX, float radY, float bord_thickness, WColor bord_color);
-	HRESULT FillEllipse(POINTF center, float radX, float radY, WColor back_color);
+	HRESULT DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, WColor bord_color);
+	HRESULT FillEllipse(POINTF center, FLOAT radX, FLOAT radY, WColor back_color);
 
-	HRESULT DrawLine(POINTF begin, POINTF end, WColor color, float thickness);
+	HRESULT DrawLine(POINTF begin, POINTF end, WColor color, FLOAT thickness);
 	HRESULT DrawPoint(POINTF Coords, WColor color);
-
-	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, float fontsize, WColor text_color);
+	
+	HRESULT LoadBMP(LPCWSTR uri, ID2D1Bitmap** ppBitmap);
+	HRESULT DrawBMP(ID2D1Bitmap* bitmapImage, WRECTF boundaryRect, FLOAT opacity);
+	
+	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, WColor text_color);
 	
 	// Primitive Component Drawing
 	HRESULT DrawRect(WRECTF boundaryRect, WThickness borderThickness, WColor bord_color);
@@ -94,7 +97,7 @@ private:
 	wchar_t*				m_C_TEXT;
 	UINT32					m_TEXTLN;
 	wchar_t*				m_FontFamilyName;
-	float					m_FontSize = 14.0F;
+	FLOAT					m_FontSize = 14.0F;
 
 	BOOL m_bIsFacCreated = 0;
 	BOOL m_bIsHRTCreated = 0;

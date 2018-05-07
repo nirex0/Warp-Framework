@@ -4,6 +4,7 @@
 #include "WContainer.h"
 #include "WDXContainer.h"
 #include "WSafeRelease.h"
+#include "WCODEC.h"
 
 WGraphics::WGraphics(void)
 	: m_DX_FAC(NULL)
@@ -392,18 +393,18 @@ wchar_t* WGraphics::FontFamily(wchar_t* familyName)
 	return m_FontFamilyName;
 }
 
-float WGraphics::FontSize(void) const
+FLOAT WGraphics::FontSize(void) const
 {
 	return m_FontSize;
 }
 
-float WGraphics::FontSize(float intake)
+FLOAT WGraphics::FontSize(FLOAT intake)
 {
 	m_FontSize = intake;
 	return m_FontSize;
 }
 
-HRESULT WGraphics::DrawRect(WRECTF boundaryRect, float bord_thickness, WColor bord_color)
+HRESULT WGraphics::DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, WColor bord_color)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
 
@@ -449,7 +450,7 @@ HRESULT WGraphics::FillRect(WRECTF boundaryRect, WColor back_color)
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, float bord_thickness, float bord_radius, WColor bord_color)
+HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, WColor bord_color)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
 
@@ -474,7 +475,7 @@ HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, float bord_thickness, floa
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRoundRect(WRECTF boundaryRect, float bord_radius, WColor back_color)
+HRESULT WGraphics::FillRoundRect(WRECTF boundaryRect, FLOAT bord_radius, WColor back_color)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
 
@@ -499,7 +500,7 @@ HRESULT WGraphics::FillRoundRect(WRECTF boundaryRect, float bord_radius, WColor 
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawEllipse(POINTF center, float radX, float radY, float bord_thickness, WColor bord_color)
+HRESULT WGraphics::DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, WColor bord_color)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
 
@@ -522,7 +523,7 @@ HRESULT WGraphics::DrawEllipse(POINTF center, float radX, float radY, float bord
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillEllipse(POINTF center, float radX, float radY, WColor back_color)
+HRESULT WGraphics::FillEllipse(POINTF center, FLOAT radX, FLOAT radY, WColor back_color)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
 
@@ -545,7 +546,7 @@ HRESULT WGraphics::FillEllipse(POINTF center, float radX, float radY, WColor bac
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, WColor color, float thickness)
+HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, WColor color, FLOAT thickness)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
 
@@ -595,7 +596,46 @@ HRESULT WGraphics::DrawPoint(POINTF Coords, WColor color)
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, float fontsize, WColor text_color)
+HRESULT WGraphics::LoadBMP(LPCWSTR uri, ID2D1Bitmap** ppBitmap)
+{
+	IWICImagingFactory*	pIWICFactory = NULL;
+	IWICBitmapDecoder *pDecoder = NULL;
+	IWICBitmapFrameDecode *pSource = NULL;
+	IWICStream *pStream = NULL;
+	IWICFormatConverter *pConverter = NULL;
+	IWICBitmapScaler *pScaler = NULL;
+
+	WContainer::hResult(CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_IWICImagingFactory, (LPVOID*)&pIWICFactory));
+	WContainer::hResult(pIWICFactory->CreateDecoderFromFilename(uri, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder));
+	WContainer::hResult(pDecoder->GetFrame(0, &pSource));
+	WContainer::hResult(pIWICFactory->CreateFormatConverter(&pConverter));
+	WContainer::hResult(pConverter->Initialize(pSource, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, NULL, 0.0f, WICBitmapPaletteTypeMedianCut));
+	WContainer::hResult(m_DX_HRT->CreateBitmapFromWicBitmap(pConverter, NULL, ppBitmap));
+
+	SafeRelease(&pDecoder);
+	SafeRelease(&pSource);
+	SafeRelease(&pStream);
+	SafeRelease(&pConverter);
+	SafeRelease(&pScaler);
+	SafeRelease(&pIWICFactory);
+
+	return WContainer::hResult();
+}
+
+HRESULT WGraphics::DrawBMP(ID2D1Bitmap* bitmapImage, WRECTF boundaryRect, FLOAT opacity)
+{
+	D2D_RECT_F D2D1RECTF;
+	D2D1RECTF.top = boundaryRect.Top();
+	D2D1RECTF.left = boundaryRect.Left();
+	D2D1RECTF.bottom = boundaryRect.Bottom();
+	D2D1RECTF.right = boundaryRect.Right();
+
+	m_DX_HRT->DrawBitmap(bitmapImage, D2D1RECTF, opacity);
+	
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, WColor text_color)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_DX_SCB->GetColor());
 
@@ -658,6 +698,7 @@ HRESULT WGraphics::DrawRect(WRECTF boundaryRect, WThickness borderThickness, WCo
 
 	m_DX_HRT->DrawLine(TOP_RIGHT, BOTTOM_LEFT, m_DX_SCB, 1);
 	m_DX_HRT->DrawLine(TOP_LEFT, BOTTOM_RIGHT, m_DX_SCB, 1);
+
 
 	m_DX_SCB->SetColor(D2D1TMPCOLOR);
 
