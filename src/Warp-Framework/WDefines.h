@@ -50,6 +50,8 @@ typedef long long				W_INT64;
 typedef unsigned long			W_STYLE;
 typedef double					DELTATIME;
 
+typedef ID2D1Bitmap				W_IMAGE;
+
 typedef struct					W_8BSCT
 {
 	bool BIT0 : 1;
