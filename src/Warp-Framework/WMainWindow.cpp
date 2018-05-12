@@ -17,8 +17,8 @@ W_BYTE WContainer::BGR = 12;		// Background Red
 W_BYTE WContainer::BGG = 21;		// Background Blue
 W_BYTE WContainer::BGB = 30;		// Background Green
 
-W_INT WContainer::W_WIDTH = 800;
-W_INT WContainer::W_HEIGHT = 600;
+W_INT WContainer::W_WIDTH = 1280;
+W_INT WContainer::W_HEIGHT = 720;
 
 WMouse* WContainer::mouse = {};
 WKeyboard* WContainer::keboard = {};
@@ -143,6 +143,8 @@ int WMainWindow::Initialize(void)
 	// We need to do this to make the window EXACTLY (width * height) big
 	RECT whRect = { 0, 0, WContainer::Width(), WContainer::Height() };
 	AdjustWindowRect(&whRect, wStyle, FALSE);
+	
+	// Use this ONLY if you use A Normal window (With default top bar)
 	UINT uWidth = whRect.right - whRect.left;
 	UINT uHeight = whRect.bottom - whRect.top;
 
@@ -151,7 +153,7 @@ int WMainWindow::Initialize(void)
 	UINT SCR_WIDTH = GetSystemMetrics(SM_CXSCREEN);
 	UINT SCR_HEIGHT = GetSystemMetrics(SM_CYSCREEN);
 
-	hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_windowName, m_windowTitle, WS_POPUP, centX, centY, uWidth, uHeight, NULL, NULL, m_hAppInstance, NULL);
+	hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_windowName, m_windowTitle, WS_POPUP, centX, centY, WContainer::Width(), WContainer::Height(), NULL, NULL, m_hAppInstance, NULL);
 
 	if (!hWnd)
 	{
