@@ -12,14 +12,13 @@ void WEntry::Start(void)
 }
 
 //Runs every frame pre-render
-void WEntry::Update(double deltaTime)
+void WEntry::Update(DELTATIME deltaTime)
 {
 	
 }
 
 //Runs every frame post-update
-void WEntry::Render(double deltaTime)
+void WEntry::Render(DELTATIME deltaTime)
 {
 
 }
-
