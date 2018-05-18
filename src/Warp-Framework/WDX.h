@@ -3,8 +3,6 @@
 #ifndef _WDX_
 #define _WDX_
 
-// ORDER DOESN'T MATTER
-
 #pragma comment(lib, "d2d1")
 #include <d2d1.h>
 
