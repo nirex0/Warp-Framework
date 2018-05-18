@@ -5,16 +5,19 @@
 
 #include "WDX.h"
 #include "WEntity.h"
-#include "WColor.h"
 #include "WDefines.h"
 #include "WRECTF.h"
 #include "WThickness.h"
+#include "WGradientDirection.h"
 
 class WGraphics : public WEntity
 {
 public:
 	WGraphics(void);
 	~WGraphics(void);
+
+	HRESULT CreateDeviceResources(void);
+	HRESULT UpdateDeviceResources(void);
 
 	HRESULT CreateFactory(void);
 	HRESULT UpdateFactory(void);
@@ -23,11 +26,14 @@ public:
 	HRESULT UpdateRenderTarget(void);
 	HRESULT ResizeRenderTarget(W_UINT width, W_UINT height);
 
-	HRESULT CreateSolidColorBrush(const WColor& color);
-	HRESULT UpdateSolidColorBrush(const WColor& color);
+	HRESULT CreateSolidColorBrush(const W_COLOR& color);
+	HRESULT UpdateSolidColorBrush(const W_COLOR& color);
 
-	HRESULT CreateDeviceResources(void);
-	HRESULT UpdateDeviceResources(void);
+	HRESULT CreateLinearColorBrush(const W_COLOR& color0, const W_COLOR& color1, const POINTF& pos0, const POINTF& pos1);
+	HRESULT UpdateLinearColorBrush(const W_COLOR& color0, const W_COLOR& color1, const POINTF& pos0, const POINTF& pos1);
+
+	HRESULT CreateRadialColorBrush(const W_COLOR& color);
+	HRESULT UpdateRadialColorBrush(const W_COLOR& color);
 
 	HRESULT CreateWriteFactory(void);
 	HRESULT UpdateWriteFactory(void);
@@ -38,8 +44,8 @@ public:
 	HRESULT UpdateClientRect(void);
 	HRESULT UpdateClientRect(HWND hWnd);
 
-	HRESULT GetBrushColor(WColor& outColor);
-	HRESULT SetBrushColor(const WColor& color);
+	HRESULT GetBrushColor(W_COLOR& outColor);
+	HRESULT SetBrushColor(const W_COLOR& color);
 
 	HRESULT GetText(wchar_t* OutText, UINT32& OutLength) const;
 	HRESULT SetText(wchar_t* Intake, UINT32 Length);
@@ -49,64 +55,93 @@ public:
 	HRESULT SafeFlush(void);
 
 	HRESULT SaveResources(void);
-	HRESULT ClearWindow(WColor color);
+	HRESULT ClearWindow(W_COLOR color);
 
-	ID2D1Factory*			GetFactory(void) const;
-	ID2D1HwndRenderTarget*	GetRenderTarget(void) const;
-	ID2D1SolidColorBrush*	GetColorBrush(void) const;
-	RECT					GetClientArea(void) const;
-	IDWriteFactory*			GetWriteFactory(void) const;
-	IDWriteTextFormat*		GetTextFormat(void) const;
-	wchar_t*				GetText(void) const;
-	UINT32					GetTextLength(void) const;
+	ID2D1Factory*				GetFactory(void) const;
+	ID2D1HwndRenderTarget*		GetRenderTarget(void) const;
+	
+	ID2D1SolidColorBrush*		GetSolidColorBrush(void) const;
+	ID2D1LinearGradientBrush*	GetLinearColorBrush(void) const;
+	ID2D1RadialGradientBrush*	GetRadialColorBrush(void) const;
 
-	wchar_t*				FontFamily(void) const;
-	wchar_t*				FontFamily(wchar_t* familyName);
+	RECT						GetClientArea(void) const;
+	IDWriteFactory*				GetWriteFactory(void) const;
+	IDWriteTextFormat*			GetTextFormat(void) const;
+	wchar_t*					GetText(void) const;
+	UINT32						GetTextLength(void) const;
 
-	FLOAT					FontSize(void) const;
-	FLOAT					FontSize(FLOAT intake);
+	wchar_t*					FontFamily(void) const;
+	wchar_t*					FontFamily(wchar_t* familyName);
+
+	FLOAT						FontSize(void) const;
+	FLOAT						FontSize(FLOAT intake);
 
 	// Primitive Drawing
-	HRESULT DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, WColor bord_color);
-	HRESULT FillRect(WRECTF boundaryRect, WColor back_color);
+	HRESULT DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color);
+	HRESULT FillRectSolid(WRECTF boundaryRect, W_COLOR back_color);
+	HRESULT FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WGradientDirection direction);
+	HRESULT FillRectRadial(WRECTF boundaryRect, W_COLOR back_color);
 
-	HRESULT DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, WColor bord_color);
-	HRESULT FillRoundRect(WRECTF boundaryRect, FLOAT bord_radius, WColor back_color);
+	HRESULT DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, W_COLOR bord_color);	
+	HRESULT FillRoundRectSolid(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color);
+	HRESULT FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WGradientDirection direction);
+	HRESULT FillRoundRectRadial(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color);
 
-	HRESULT DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, WColor bord_color);
-	HRESULT FillEllipse(POINTF center, FLOAT radX, FLOAT radY, WColor back_color);
+	HRESULT DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, W_COLOR bord_color);
+	HRESULT FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color);
+	HRESULT FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color);
 
-	HRESULT DrawLine(POINTF begin, POINTF end, WColor color, FLOAT thickness);
-	HRESULT DrawPoint(POINTF Coords, WColor color);
+	HRESULT DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thickness);
+	HRESULT DrawPoint(POINTF Coords, W_COLOR color);
 	
-	HRESULT LoadBMP(LPCWSTR uri, W_IMAGE** ppBitmap);
-	HRESULT DrawBMP(W_IMAGE* bitmapImage, WRECTF boundaryRect, FLOAT opacity);
+	HRESULT LoadBMP(LPCWSTR uri, W_IMAGE** ppImage);
+	HRESULT DrawBMP(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity);
 	
-	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, WColor text_color);
+	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color);
 	
 	// Primitive Component Drawing
-	HRESULT DrawRect(WRECTF boundaryRect, WThickness borderThickness, WColor bord_color);
+	HRESULT DrawRect(WRECTF boundaryRect, WThickness borderThickness, W_COLOR bord_color);
+
+	// Helper Functions
+	W_COLOR FromRGBA(INT R, INT G, INT B, FLOAT A = 1.0F) const;
+
+	// Window Helper Functions
+	HRESULT SetTransparency(UINT alpha = 100);
 
 private:
-	ID2D1Factory*			m_DX_FAC;
-	ID2D1HwndRenderTarget*	m_DX_HRT;
-	ID2D1SolidColorBrush*	m_DX_SCB;
-	RECT					m_DX_REC;
-	IDWriteFactory*			m_DW_FAC;
-	IDWriteTextFormat*		m_DW_TXF;
-	wchar_t*				m_C_TEXT;
-	UINT32					m_TEXTLN;
-	wchar_t*				m_FontFamilyName;
-	FLOAT					m_FontSize = 14.0F;
+	// Direct2D Factory and Render Target
+	ID2D1Factory*				m_pD2D1Factory;
+	ID2D1HwndRenderTarget*		m_pD2D1RenderTarget;
 
-	BOOL m_bIsFacCreated = 0;
-	BOOL m_bIsHRTCreated = 0;
-	BOOL m_bIsSCBCreated = 0;
-	BOOL m_bIsDWFCreated = 0;
-	BOOL m_bIsDWTXreated = 0;
+	// Brush Resources
+	ID2D1SolidColorBrush*		m_pSolidColorBrush;
+	ID2D1LinearGradientBrush*	m_pLinearGradientBrush;
+	ID2D1RadialGradientBrush*	m_pRadialGradientBrush;
+
+	// Screen Rect
+	RECT						m_ScreenRect;
+
+	// DirectWrite Factory and Text Format
+	IDWriteFactory*				m_pIDWriteFactory;
+	IDWriteTextFormat*			m_pIDWriteTextFormat;
+	
+	// DirectWrite Components
+	wchar_t*					m_C_TEXT;
+	UINT32						m_TEXTLN;
+	wchar_t*					m_FontFamilyName;
+	FLOAT						m_FontSize = 14.0F;
+
+	BOOL m_bIsFactoryCreated = 0;
+	BOOL m_bIsRenderTargetCreated = 0;
+	
+	BOOL m_bIsSolidColorBrushCreated = 0;
+	BOOL m_bIsLinearGradientBrushCreated = 0;
+	BOOL m_bIsRadialGradientBrushCreated = 0;
+	
+	BOOL m_bIsDWriteFactoryCreated = 0;
+	BOOL m_bIsDWiteTextFormatCreated = 0;
 
 	BOOL m_bIsDrawing = 0;
-
 };
 
 namespace W_MAIN_WINDOW
