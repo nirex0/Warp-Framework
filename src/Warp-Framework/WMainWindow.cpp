@@ -12,10 +12,10 @@ WEntry WContainer::WFramework = {};
 DELTATIME WContainer::DeltaTime = {};
 
 // Background Color Componenets
-W_BYTE WContainer::BGA = 255;		// Background Alfa
-W_BYTE WContainer::BGR = 12;		// Background Red
-W_BYTE WContainer::BGG = 21;		// Background Blue
-W_BYTE WContainer::BGB = 30;		// Background Green
+W_INT WContainer::BGA = 255;	// Background Alfa
+W_INT WContainer::BGR = 12;		// Background Red
+W_INT WContainer::BGG = 21;		// Background Blue
+W_INT WContainer::BGB = 30;		// Background Green
 
 W_INT WContainer::W_WIDTH = 1280;
 W_INT WContainer::W_HEIGHT = 720;
@@ -153,7 +153,9 @@ int WMainWindow::Initialize(void)
 	UINT SCR_WIDTH = GetSystemMetrics(SM_CXSCREEN);
 	UINT SCR_HEIGHT = GetSystemMetrics(SM_CYSCREEN);
 
-	hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_windowName, m_windowTitle, WS_POPUP, centX, centY, WContainer::Width(), WContainer::Height(), NULL, NULL, m_hAppInstance, NULL);
+	// WS_EX_LAYERED for Transparency Support
+	// WS_POPUP for no default top bar
+	hWnd = CreateWindowEx(WS_EX_LAYERED, m_windowName, m_windowTitle, WS_POPUP, centX, centY, WContainer::Width(), WContainer::Height(), NULL, NULL, m_hAppInstance, NULL);
 
 	if (!hWnd)
 	{
@@ -161,6 +163,7 @@ int WMainWindow::Initialize(void)
 		PostQuitMessage(2);
 		return 2;
 	}
+
 	WContainer::hResult(S_OK);
 	WContainer::Handle(hWnd);
 	
@@ -181,7 +184,7 @@ void WMainWindow::MessageLoop(void)
 	// Create Graphics Resources
 	m_graphics->CreateFactory();
 	m_graphics->CreateRenderTarget();
-	m_graphics->CreateSolidColorBrush(WColor(0xFFFFFFFF));
+	m_graphics->CreateSolidColorBrush(D2D1::ColorF(0xFFFFFFFF));
 	m_graphics->CreateWriteFactory();
 	m_graphics->CreateFormat();
 
@@ -226,8 +229,9 @@ void WMainWindow::MessageLoop(void)
 			
 			// Render
 			m_graphics->SafeBeginDraw();
-			m_graphics->ClearWindow(WColor(WContainer::BackA(), WContainer::BackR(), WContainer::BackG(), WContainer::BackB()));
+			m_graphics->ClearWindow(D2D1::ColorF((float)WContainer::BackR() / 255, (float)WContainer::BackG() / 255, (float)WContainer::BackB() / 255, (float)WContainer::BackA() / 255));
 			m_entry->Render(milliseconds);
+			WControlHandler::Render();
 			m_graphics->SafeEndDraw();
 		}
 	}
@@ -391,11 +395,17 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MPoint(pt.x, pt.y);
 		if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
 		{
+			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick);
+			WControlHandler::MouseRollDown(args);
+
 			m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
 			m_mouse->MouseMiddleDown();
 		}
 		else if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
 		{
+			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick);
+			WControlHandler::MouseRollUp(args);
+
 			m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
 			m_mouse->MouseMiddleUp();
 		}
