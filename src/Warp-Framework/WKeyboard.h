@@ -6,7 +6,6 @@
 #include "WEntity.h"
 #include "WUniqueRegister.h"
 #include "WKeyboardArgs.h"
-#include "WColor.h"
 #include "WRegContainer.h"
 
 typedef W_BYTE WKey;
