@@ -7,41 +7,72 @@
 #include "IControl.h"
 #include "WButton.h"
 #include "WContainer.h"
-#include <vector>
+
+#include <map>
+#include <set>
+#include <utility>
 
 class WControlHandler
 {
 public:
 	static void Add(IControl* intake)
 	{
-		vtcp.push_back(intake);
+		for (const int &p : stcz)
+		{
+			if (intake->ZIndex() == p)
+			{
+				intake->SetZIndexNoChange(p + 1);
+			}
+		}
+		stcz.emplace(intake->ZIndex());
+		mtcp.emplace(std::make_pair(intake->ZIndex(), intake));
+	}
+	static void Remove(IControl* intake)
+	{
+		stcz.erase(intake->ZIndex());
+		mtcp.erase(intake->ZIndex());
 	}
 	static void MouseDown(WMouseArgs* args)
 	{
-		for (size_t i = 0; i < vtcp.size(); i++)
+		for (const auto &p : mtcp)
 		{
-			vtcp[i]->MouseDown(args);
+			mtcp.at(p.first)->MouseDown(args);
 		}
 	}
 	static void MouseUp(WMouseArgs* args)
 	{
-		for (size_t i = 0; i < vtcp.size(); i++)
+		for (const auto &p : mtcp)
 		{
-			vtcp[i]->MouseUp(args);
+			mtcp.at(p.first)->MouseUp(args);
 		}
 	}
 	static void MouseEnter(WMouseArgs* args)
 	{
-		for (size_t i = 0; i < vtcp.size(); i++)
+		for (const auto &p : mtcp)
 		{
-			vtcp[i]->MouseEnter(args);
+			mtcp.at(p.first)->MouseEnter(args);
 		}
 	}
 	static void MouseLeave(WMouseArgs* args)
 	{
-		for (size_t i = 0; i < vtcp.size(); i++)
+		for (const auto &p : mtcp)
 		{
-			vtcp[i]->MouseLeave(args);
+			mtcp.at(p.first)->MouseLeave(args);
+		}
+			
+	}
+	static void MouseRollUp(WMouseArgs* args)
+	{
+		for (const auto &p : mtcp)
+		{
+			mtcp.at(p.first)->MouseRollUp(args);
+		}
+	}
+	static void MouseRollDown(WMouseArgs* args)
+	{
+		for (const auto &p : mtcp)
+		{
+			mtcp.at(p.first)->MouseRollDown(args);
 		}
 	}
 	static void MouseMove(WMouseArgs* args)
@@ -49,9 +80,19 @@ public:
 		WControlHandler::MouseLeave(args);
 		WControlHandler::MouseEnter(args);
 	}
-
+	static void Render(void)
+	{
+		for (const auto &p : mtcp)
+		{
+			if (mtcp.at(p.first)->AutoRender())
+			{
+				mtcp.at(p.first)->Render();
+			}
+		}
+	}
 private:
-	static std::vector<IControl*> WControlHandler::vtcp;
+	static std::map<int, IControl*> WControlHandler::mtcp;
+	static std::set<int> WControlHandler::stcz;
 };
 
 #endif // !_W_CONTROL_HANDLER_H_
