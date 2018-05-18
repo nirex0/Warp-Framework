@@ -58,6 +58,12 @@
     <Filter Include="Header Files\Engine\Primitives">
       <UniqueIdentifier>{371fcc97-3883-41e4-80c1-15863c15f472}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Helpers">
+      <UniqueIdentifier>{6136097d-2e18-437d-b453-9769a9b46afe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Controls\Helpers">
+      <UniqueIdentifier>{ce89a6a8-bb93-4dd3-b58e-f53610410b31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -111,9 +117,6 @@
     <ClInclude Include="WVector4.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="WColor.h">
-      <Filter>Header Files\Engine\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="WKeyboardArgs.h">
       <Filter>Header Files\EventArgs</Filter>
     </ClInclude>
@@ -159,9 +162,6 @@
     <ClInclude Include="IControl.h">
       <Filter>Header Files\Engine\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="WControlHandler.h">
-      <Filter>Header Files\Engine\Controls</Filter>
-    </ClInclude>
     <ClInclude Include="WRECTF.h">
       <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
@@ -173,6 +173,12 @@
     </ClInclude>
     <ClInclude Include="WAlgorithm.h">
       <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WGradientDirection.h">
+      <Filter>Header Files\Engine\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="WControlHandler.h">
+      <Filter>Header Files\Engine\Controls\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

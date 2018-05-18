@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Warp-Module-Creator.cpp">
+    <ClCompile Include="wmc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

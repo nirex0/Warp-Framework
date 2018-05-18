@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WGradientDirection.h" />
     <ClInclude Include="IControl.h" />
     <ClInclude Include="WAlgorithm.h" />
     <ClInclude Include="WChrono.h" />
@@ -121,7 +122,6 @@
     <ClInclude Include="WControlHandler.h" />
     <ClInclude Include="WCoordinates.h" />
     <ClInclude Include="WDXContainer.h" />
-    <ClInclude Include="WColor.h" />
     <ClInclude Include="WContainer.h" />
     <ClInclude Include="WDX.h" />
     <ClInclude Include="WGDIPaintEventArgs.h" />
