@@ -1,12 +1,14 @@
 #include "WButton.h"
 #include "WControlHandler.h"
 
-WButton::WButton()
+WButton::WButton(int zIndex)
 	: m_thickness(1.0F)
-	, foreColor(WColor(255, 255, 255, 255))
-	, backColor(WColor(255, 0, 0, 0))
-	, bordColor(WColor(255, 255, 255, 255))
+	, m_zIndex(zIndex)
 {
+	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
+	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+														   
 	btnRec.Top(m_top);
 	btnRec.Left(m_left);
 
@@ -20,6 +22,7 @@ WButton::WButton()
 
 	m_isEnabled = true;
 	m_isVisible = true;
+	m_autoRender = true;
 
 	m_family = L"Arial";
 
@@ -27,12 +30,14 @@ WButton::WButton()
 	UpdateRect();
 }
 
-WButton::WButton(float top, float left, float bottom, float right)
+WButton::WButton(float top, float left, float bottom, float right, int zIndex)
 	: m_thickness(1.0F)
-	, foreColor(WColor(255, 255, 255, 255))
-	, backColor(WColor(255, 0, 0, 0))
-	, bordColor(WColor(255, 255, 255, 255))
+	, m_zIndex(zIndex)
 {
+	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
+	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+
 	m_top = top;
 	m_left = left;
 
@@ -46,6 +51,7 @@ WButton::WButton(float top, float left, float bottom, float right)
 
 	m_isEnabled = true;
 	m_isVisible = true;
+	m_autoRender = true;
 
 	m_family = L"Arial";
 
@@ -53,12 +59,14 @@ WButton::WButton(float top, float left, float bottom, float right)
 	UpdateRect();
 }
 
-WButton::WButton(WCoordinates topleft, WCoordinates botright)
+WButton::WButton(WCoordinates topleft, WCoordinates botright, int zIndex)
 	: m_thickness(1.0F)
-	, foreColor(WColor(255, 255, 255, 255))
-	, backColor(WColor(255, 0, 0, 0))
-	, bordColor(WColor(255, 255, 255, 255))
+	, m_zIndex(zIndex)
 {
+	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
+	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+
 	m_top = topleft.X();
 	m_left = topleft.Y();
 
@@ -72,6 +80,7 @@ WButton::WButton(WCoordinates topleft, WCoordinates botright)
 
 	m_isEnabled = true;
 	m_isVisible = true;
+	m_autoRender = true;
 
 	m_family = L"Arial";
 
@@ -79,12 +88,14 @@ WButton::WButton(WCoordinates topleft, WCoordinates botright)
 	UpdateRect();
 }
 
-WButton::WButton(WThickness location)
+WButton::WButton(WThickness location, int zIndex)
 	: m_thickness(1.0F)
-	, foreColor(WColor(255, 255, 255, 255))
-	, backColor(WColor(255, 0, 0, 0))
-	, bordColor(WColor(255, 255, 255, 255))
+	, m_zIndex(zIndex)
 {
+	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
+	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+
 	m_top = location.Top();
 	m_left = location.Left();
 
@@ -98,6 +109,7 @@ WButton::WButton(WThickness location)
 
 	m_isEnabled = true;
 	m_isVisible = true;
+	m_autoRender = true;
 
 	m_family = L"Arial";
 
@@ -202,19 +214,19 @@ float WButton::BorderRadius(float f)
 	return f;
 }
 
-WColor WButton::Foreground(WColor col)
+W_COLOR WButton::Foreground(W_COLOR col)
 {
 	foreColor = col;
 	return col;
 }
 
-WColor WButton::Background(WColor col)
+W_COLOR WButton::Background(W_COLOR col)
 {
 	backColor = col;
 	return col;
 }
 
-WColor WButton::BorderBrush(WColor col)
+W_COLOR WButton::BorderBrush(W_COLOR col)
 {
 	bordColor = col;
 	return col;
@@ -230,28 +242,28 @@ float WButton::BorderRadius(void) const
 	return m_borderRad;
 }
 
-WColor WButton::Foreground(void) const
+W_COLOR WButton::Foreground(void) const
 {
 	return foreColor;
 }
 
-WColor WButton::Background(void) const
+W_COLOR WButton::Background(void) const
 {
 	return backColor;
 }
 
-WColor WButton::BorderBrush(void) const
+W_COLOR WButton::BorderBrush(void) const
 {
 	return bordColor;
 }
 
-void WButton::Render()
+void WButton::Render(void)
 {
 	if (!m_isVisible)
 		return;
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(btnRec, m_thickness, m_borderRad, bordColor);
-	WGraphicsContainer::Graphics()->FillRoundRect(btnRec, m_borderRad, backColor);
+	WGraphicsContainer::Graphics()->FillRoundRectSolid(btnRec, m_borderRad, backColor);
 	WGraphicsContainer::Graphics()->WriteText(btnRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
 }
 
@@ -307,6 +319,16 @@ WRegistry* WButton::MouseLeaveRegistery(void)
 	return BtnMouseLeaveRegistery;
 }
 
+WRegistry* WButton::MouseRollUpRegistery(void)
+{
+	return BtnMouseRollUpRegistery;
+}
+
+WRegistry* WButton::MouseRollDownRegistery(void)
+{
+	return BtnMouseRollDownRegistery;
+}
+
 WRegistry* WButton::MouseDownRegistery(WRegistry* intake)
 {
 	BtnMouseDownRegistery = intake;
@@ -331,6 +353,23 @@ WRegistry* WButton::MouseLeaveRegistery(WRegistry* intake)
 	return BtnMouseLeaveRegistery;
 }
 
+WRegistry* WButton::MouseRollUpRegistery(WRegistry* intake)
+{
+	BtnMouseRollUpRegistery = intake;
+	return BtnMouseRollUpRegistery;
+}
+
+WRegistry* WButton::MouseRollDownRegistery(WRegistry* intake)
+{
+	BtnMouseRollDownRegistery = intake;
+	return BtnMouseRollDownRegistery;
+}
+
+int WButton::ZIndex(void) const
+{
+	return m_zIndex;
+}
+
 bool WButton::IsEnabled(void) const
 {
 	return m_isEnabled;
@@ -339,6 +378,19 @@ bool WButton::IsEnabled(void) const
 bool WButton::IsVisible(void) const
 {
 	return m_isVisible;
+}
+
+bool WButton::AutoRender(void) const
+{
+	return m_autoRender;
+}
+
+int WButton::ZIndex(int input)
+{
+	WControlHandler::Remove(this);
+	m_zIndex = input;
+	WControlHandler::Add(this);
+	return m_zIndex;
 }
 
 bool WButton::IsEnabled(bool input)
@@ -353,6 +405,12 @@ bool WButton::IsVisible(bool input)
 	return m_isVisible;
 }
 
+bool WButton::AutoRender(bool input)
+{
+	m_autoRender = input;
+	return m_autoRender;
+}
+
 void WButton::MouseDown(WMouseArgs* Args)
 {
 	if (!m_isEnabled)
@@ -360,14 +418,7 @@ void WButton::MouseDown(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	WBoundary bounds;
-
-	bounds.Top(this->Location().Top());
-	bounds.Left(this->Location().Left());
-	bounds.Bottom(this->Location().Bottom());
-	bounds.Right(this->Location().Right());
-	
-	if (bounds.IsColliding(*(Args->Point())) && Args->State() == KeyState::MouseDown)
+	if (IsWithin(Args) && Args->State() == KeyState::MouseDown)
 	{
 		BtnMouseDownRegistery->Run(this, Args);
 	}
@@ -380,14 +431,7 @@ void WButton::MouseUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	WBoundary bounds;
-
-	bounds.Top(this->Location().Top());
-	bounds.Left(this->Location().Left());
-	bounds.Bottom(this->Location().Bottom());
-	bounds.Right(this->Location().Right());
-
-	if (bounds.IsColliding(*(Args->Point())) && Args->State() == KeyState::MouseUp)
+	if (IsWithin(Args) && Args->State() == KeyState::MouseUp)
 	{
 		BtnMouseUpRegistery->Run(this, Args);
 	}
@@ -400,14 +444,7 @@ void WButton::MouseEnter(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	WBoundary bounds;
-
-	bounds.Top(this->Location().Top());
-	bounds.Left(this->Location().Left());
-	bounds.Bottom(this->Location().Bottom());
-	bounds.Right(this->Location().Right());
-
-	if (bounds.IsColliding(*(Args->Point())) && Args->State() == KeyState::NoClick)
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick)
 	{
 		BtnMouseEnterRegistery->Run(this, Args);
 	}
@@ -419,17 +456,36 @@ void WButton::MouseLeave(WMouseArgs* Args)
 		return;
 	if (!m_isVisible)
 		return;
-
-	WBoundary bounds;
-
-	bounds.Top(this->Location().Top());
-	bounds.Left(this->Location().Left());
-	bounds.Bottom(this->Location().Bottom());
-	bounds.Right(this->Location().Right());
-
-	if (!bounds.IsColliding(*(Args->Point())) && Args->State() == KeyState::NoClick)
+	
+	if (!IsWithin(Args) && Args->State() == KeyState::NoClick)
 	{
 		BtnMouseLeaveRegistery->Run(this, Args);
+	}
+}
+
+void WButton::MouseRollUp(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick)
+	{
+		BtnMouseRollUpRegistery->Run(this, Args);
+	}
+}
+
+void WButton::MouseRollDown(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick)
+	{
+		BtnMouseRollDownRegistery->Run(this, Args);
 	}
 }
 
@@ -481,4 +537,22 @@ float WButton::FontSize(float intake)
 {
 	m_fsize = intake;
 	return m_fsize;
+}
+
+bool WButton::IsWithin(WMouseArgs * Args) const
+{
+	WBoundary bounds;
+
+	bounds.Top(this->Location().Top());
+	bounds.Left(this->Location().Left());
+	bounds.Bottom(this->Location().Bottom());
+	bounds.Right(this->Location().Right());
+
+	return bounds.IsColliding(*(Args->Point()));
+
+}
+
+void WButton::SetZIndexNoChange(int zIndex)
+{
+	m_zIndex = zIndex;
 }
