@@ -6,6 +6,9 @@
 #ifndef _STD_WINDOWS_H_
 #define _STD_WINDOWS_H_
 
+#define WINVER 0x0501
+#define _WIN32_WINNT 0x0501
+
 #define WIN32_LEAN_AND_MEAN
 #define NOGDICAPMASKS
 //#define NOSYSMETRICS
