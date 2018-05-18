@@ -51,6 +51,7 @@ typedef unsigned long			W_STYLE;
 typedef double					DELTATIME;
 
 typedef ID2D1Bitmap				W_IMAGE;
+typedef D2D1_COLOR_F			W_COLOR;
 
 typedef struct					W_8BSCT
 {
