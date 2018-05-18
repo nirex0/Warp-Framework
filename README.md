@@ -30,6 +30,12 @@ PLANS
 
 - ✔️ Double Buffering
 
+- ✔️ zIndex
+
+- ✔️ Transparency
+
+- ✔️ Gradient (Linear / Radial)
+
 - ⚠️ Audio & Video Support (.mp3 / .mp4)
 
 - ❌ Custom 2D Space
