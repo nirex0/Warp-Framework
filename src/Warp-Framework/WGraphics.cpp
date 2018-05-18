@@ -912,15 +912,10 @@ void W_MAIN_WINDOW::RepositionWindow(int X, int Y)
 
 void W_MAIN_WINDOW::DragMoveWindow(int Yoffset)
 {
-	POINT localP;
-	GetCursorPos(&localP);
-	ScreenToClient(WContainer::Handle(), &localP);
-	
-	RECT wndRect = {};
-	GetWindowRect(WContainer::Handle(), &wndRect);
+	POINT globalP;
+	GetCursorPos(&globalP);
 
-	int newXpos = wndRect.left + localP.x - ((wndRect.right - wndRect.left) / 2);
-	int newYpos = wndRect.top + localP.y - Yoffset;
-
-	RepositionWindow(newXpos, newYpos);
+	RepositionWindow(
+		globalP.x - WContainer::HCX(),
+		globalP.y - WContainer::HCY());
 }

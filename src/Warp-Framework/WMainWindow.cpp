@@ -21,7 +21,11 @@ W_INT WContainer::W_WIDTH = 1280;
 W_INT WContainer::W_HEIGHT = 720;
 
 WMouse* WContainer::mouse = {};
-WKeyboard* WContainer::keboard = {};
+WKeyboard* WContainer::keyboard = {};
+
+INT WContainer::helperCoordX = 0;
+INT WContainer::helperCoordY = 0;
+BOOL WContainer::bDragMove = 0;
 
 // Same with the DX components
 ID2D1Factory* WDXContainer::DX_Factory = {};
@@ -236,7 +240,6 @@ void WMainWindow::MessageLoop(void)
 		}
 	}
 }
-
 LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	// Update the container's static Members
@@ -318,6 +321,21 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MouseKey(WMouseKey::MK_INVALID);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
+		
+		if (!WContainer::DragMove())
+		{
+			POINT tmpPoint;
+			GetCursorPos(&tmpPoint);
+			ScreenToClient(WContainer::Handle(), &tmpPoint);
+
+			WContainer::HCX(tmpPoint.x);
+			WContainer::HCY(tmpPoint.y);
+		}
+
+		if (WContainer::DragMove())
+		{
+			W_MAIN_WINDOW::DragMoveWindow();
+		}
 
 		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_INVALID, KeyState::NoClick);
 		WControlHandler::MouseMove(args);
@@ -335,7 +353,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		break;
 	}
 	case WM_LBUTTONUP:
-	{
+	{		
 		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_LEFT);
 		m_mouse->MPoint(pt.x, pt.y);

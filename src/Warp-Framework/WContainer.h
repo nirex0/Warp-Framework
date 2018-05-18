@@ -54,8 +54,18 @@ public:
 	static WMouse* Mouse(WMouse* intake) { WContainer::mouse = intake; return WContainer::mouse; }
 	static WMouse* Mouse(void) { return WContainer::mouse; }
 
-	static WKeyboard* Keyboard(WKeyboard* intake) { WContainer::keboard = intake; return WContainer::keboard; }
-	static WKeyboard* Keyboard(void) { return WContainer::keboard; }
+	static WKeyboard* Keyboard(WKeyboard* intake) { WContainer::keyboard = intake; return WContainer::keyboard; }
+	static WKeyboard* Keyboard(void) { return WContainer::keyboard; }
+
+	static INT HCX(INT intake) { WContainer::helperCoordX = intake; return WContainer::helperCoordX; }
+	static INT HCX(void) { return WContainer::helperCoordX; }
+		   
+	static INT HCY(INT intake) { WContainer::helperCoordY = intake; return WContainer::helperCoordY; }
+	static INT HCY(void) { return WContainer::helperCoordY; }
+
+	static BOOL DragMove(BOOL intake) { WContainer::bDragMove = intake; return WContainer::bDragMove; }
+	static BOOL DragMove(void) { return WContainer::bDragMove; }
+
 
 private:
 	static HRESULT WContainer::HR;
@@ -72,7 +82,10 @@ private:
 	static W_INT WContainer::W_WIDTH;
 	static W_INT WContainer::W_HEIGHT;
 	static WMouse* WContainer::mouse;
-	static WKeyboard* WContainer::keboard;
+	static WKeyboard* WContainer::keyboard;
+	static INT WContainer::helperCoordX;
+	static INT WContainer::helperCoordY;
+	static BOOL WContainer::bDragMove;
 };
 
 
