@@ -160,7 +160,7 @@ int WMainWindow::Initialize(void)
 	// WS_EX_LAYERED for Transparency Support
 	// WS_POPUP for no default top bar
 	hWnd = CreateWindowEx(WS_EX_LAYERED, m_windowName, m_windowTitle, WS_POPUP, centX, centY, WContainer::Width(), WContainer::Height(), NULL, NULL, m_hAppInstance, NULL);
-
+	
 	if (!hWnd)
 	{
 		WContainer::hResult(E_OUTOFMEMORY);
@@ -237,6 +237,22 @@ void WMainWindow::MessageLoop(void)
 			m_entry->Render(milliseconds);
 			WControlHandler::Render();
 			m_graphics->SafeEndDraw();
+
+			// Dragmove
+			if (!WContainer::DragMove())
+			{
+				POINT tmpPoint;
+				GetCursorPos(&tmpPoint);
+				ScreenToClient(WContainer::Handle(), &tmpPoint);
+
+				WContainer::HCX(tmpPoint.x);
+				WContainer::HCY(tmpPoint.y);
+			}
+
+			if (WContainer::DragMove())
+			{
+				W_MAIN_WINDOW::DragMoveWindow();
+			}
 		}
 	}
 }
@@ -321,21 +337,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MouseKey(WMouseKey::MK_INVALID);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
-		
-		if (!WContainer::DragMove())
-		{
-			POINT tmpPoint;
-			GetCursorPos(&tmpPoint);
-			ScreenToClient(WContainer::Handle(), &tmpPoint);
-
-			WContainer::HCX(tmpPoint.x);
-			WContainer::HCY(tmpPoint.y);
-		}
-
-		if (WContainer::DragMove())
-		{
-			W_MAIN_WINDOW::DragMoveWindow();
-		}
 
 		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_INVALID, KeyState::NoClick);
 		WControlHandler::MouseMove(args);
