@@ -236,14 +236,67 @@ HRESULT WGraphics::UpdateLinearColorBrush(const W_COLOR& color0, const W_COLOR& 
 	return WContainer::hResult();
 }
 
-HRESULT WGraphics::CreateRadialColorBrush(const W_COLOR & color)
+HRESULT WGraphics::CreateRadialColorBrush(const W_COLOR& color0, const W_COLOR& color1, const POINTF& center, const POINTF& offset, FLOAT radX, FLOAT radY)
 {
-	return E_NOTIMPL;
+	WContainer::hResult(E_ABORT);
+	if (!m_bIsRadialGradientBrushCreated)
+	{
+		m_bIsRadialGradientBrushCreated = 1;
+
+		ID2D1GradientStopCollection *pGradientStops = NULL;
+		D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES rbProps;
+		rbProps.center.x = center.x;
+		rbProps.center.y = center.y;
+		rbProps.radiusX = radX;
+		rbProps.radiusY = radY;
+		rbProps.gradientOriginOffset.x = offset.x;
+		rbProps.gradientOriginOffset.y = offset.y;
+
+		D2D1_GRADIENT_STOP gradientStops[2];
+		gradientStops[0].color = color0;
+		gradientStops[0].position = 0.0f;
+		gradientStops[1].color = color1;
+		gradientStops[1].position = 1.0f;
+
+
+		WContainer::hResult(m_pD2D1RenderTarget->CreateGradientStopCollection(gradientStops, 2, D2D1_GAMMA_2_2, D2D1_EXTEND_MODE_CLAMP, &pGradientStops));
+		WContainer::hResult(m_pD2D1RenderTarget->CreateRadialGradientBrush(rbProps, pGradientStops, &m_pRadialGradientBrush));
+
+		SafeRelease(&pGradientStops);
+
+		return WContainer::hResult();
+	}
+	return UpdateRadialColorBrush(color0, color1, center, offset, radX, radY);
 }
 
-HRESULT WGraphics::UpdateRadialColorBrush(const W_COLOR & color)
+HRESULT WGraphics::UpdateRadialColorBrush(const W_COLOR & color0, const W_COLOR & color1, const POINTF & center, const POINTF & offset, FLOAT radX, FLOAT radY)
 {
-	return E_NOTIMPL;
+	WContainer::hResult(E_ABORT);
+	SafeRelease(&m_pRadialGradientBrush);
+	if (!m_pRadialGradientBrush)
+	{
+		ID2D1GradientStopCollection *pGradientStops = NULL;
+		D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES rbProps;
+		rbProps.center.x = center.x;
+		rbProps.center.y = center.y;
+		rbProps.radiusX = radX;
+		rbProps.radiusY = radY;
+		rbProps.gradientOriginOffset.x = offset.x;
+		rbProps.gradientOriginOffset.y = offset.y;
+
+		D2D1_GRADIENT_STOP gradientStops[2];
+		gradientStops[0].color = color0;
+		gradientStops[0].position = 0.0f;
+		gradientStops[1].color = color1;
+		gradientStops[1].position = 1.0f;
+
+
+		WContainer::hResult(m_pD2D1RenderTarget->CreateGradientStopCollection(gradientStops, 2, D2D1_GAMMA_2_2, D2D1_EXTEND_MODE_CLAMP, &pGradientStops));
+		WContainer::hResult(m_pD2D1RenderTarget->CreateRadialGradientBrush(rbProps, pGradientStops, &m_pRadialGradientBrush));
+
+		SafeRelease(&pGradientStops);
+	}
+	return WContainer::hResult();
 }
 
 HRESULT WGraphics::CreateWriteFactory(void)
@@ -526,7 +579,7 @@ HRESULT WGraphics::FillRectSolid(WRECTF boundaryRect, W_COLOR back_color)
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WGradientDirection direction)
+HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction)
 {
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
@@ -560,8 +613,8 @@ HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_CO
 
 
 	POINTF middleBottom;
-	middleLeft.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
-	middleLeft.y = boundaryRect.Bottom();
+	middleBottom.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
+	middleBottom.y = boundaryRect.Bottom();
 
 	POINTF middleRight;
 	middleRight.x = boundaryRect.Right();
@@ -569,30 +622,30 @@ HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_CO
 
 	switch (direction)
 	{
-	case Invalid:
+	case WLG_Invalid:
 		return WContainer::hResult(E_ABORT);
-	case Left_Right:
+	case WLG_Left_Right:
 		CreateLinearColorBrush(back_color0, back_color1, middleLeft, middleRight);
 		break;
-	case Right_Left:
+	case WLG_Right_Left:
 		CreateLinearColorBrush(back_color0, back_color1, middleRight, middleLeft);
 		break;
-	case Top_Bottom:
+	case WLG_Top_Bottom:
 		CreateLinearColorBrush(back_color0, back_color1, middleTop, middleBottom);
 		break;
-	case Bottom_Top:
+	case WLG_Bottom_Top:
 		CreateLinearColorBrush(back_color0, back_color1, middleBottom, middleTop);
 		break;
-	case TopLeft_BottomRight:
+	case WLG_TopLeft_BottomRight:
 		CreateLinearColorBrush(back_color0, back_color1, topLeft, bottomRight);
 		break;
-	case TopRight_BottomLeft:
+	case WLG_TopRight_BottomLeft:
 		CreateLinearColorBrush(back_color0, back_color1, topRight, bottomLeft);
 		break;
-	case BottomLeft_TopRight:
+	case WLG_BottomLeft_TopRight:
 		CreateLinearColorBrush(back_color0, back_color1, bottomLeft, topRight);
 		break;
-	case BottomRight_TopLeft:
+	case WLG_BottomRight_TopLeft:
 		CreateLinearColorBrush(back_color0, back_color1, bottomRight, topLeft);
 		break;
 	default:
@@ -601,6 +654,92 @@ HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_CO
 	}
 
 	m_pD2D1RenderTarget->FillRectangle(D2D1RECTF, m_pLinearGradientBrush);
+
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::FillRectRadial(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction)
+{
+	D2D_RECT_F D2D1RECTF;
+	D2D1RECTF.top = boundaryRect.Top();
+	D2D1RECTF.left = boundaryRect.Left();
+	D2D1RECTF.bottom = boundaryRect.Bottom();
+	D2D1RECTF.right = boundaryRect.Right();
+
+	POINTF CENTER_POINT;
+	CENTER_POINT.x = (D2D1RECTF.left + D2D1RECTF.right) / 2;
+	CENTER_POINT.y = (D2D1RECTF.top + D2D1RECTF.bottom) / 2;
+
+	POINTF topLeft;
+	topLeft.x = boundaryRect.Left();
+	topLeft.y = boundaryRect.Top();
+
+	POINTF topRight;
+	topRight.x = boundaryRect.Right();
+	topRight.y = boundaryRect.Top();
+
+	POINTF bottomLeft;
+	bottomLeft.x = boundaryRect.Left();
+	bottomLeft.y = boundaryRect.Bottom();
+
+	POINTF bottomRight;
+	bottomRight.x = boundaryRect.Right();
+	bottomRight.y = boundaryRect.Bottom();
+
+	POINTF middleTop;
+	middleTop.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
+	middleTop.y = boundaryRect.Top();
+
+	POINTF middleLeft;
+	middleLeft.x = boundaryRect.Left();
+	middleLeft.y = (boundaryRect.Bottom() - boundaryRect.Top()) / 2;
+
+
+	POINTF middleBottom;
+	middleBottom.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
+	middleBottom.y = boundaryRect.Bottom();
+
+	POINTF middleRight;
+	middleRight.x = boundaryRect.Right();
+	middleRight.y = (boundaryRect.Bottom() - boundaryRect.Top()) / 2;
+
+	switch (direction)
+	{
+	case WRG_Invalid:
+		return WContainer::hResult(E_ABORT);
+	case WRG_Center:
+		CENTER_POINT.x = (D2D1RECTF.left + D2D1RECTF.right) / 2;
+		CENTER_POINT.y = (D2D1RECTF.top + D2D1RECTF.bottom) / 2;
+	case WRG_MiddleTop:
+		CENTER_POINT = middleTop;
+		break;
+	case WRG_MiddleLeft:
+		CENTER_POINT = middleLeft;
+		break;
+	case WRG_MiddleBottom:
+		CENTER_POINT = middleBottom;
+		break;
+	case WRG_MiddleRight:
+		CENTER_POINT = middleRight;
+		break;
+	case WRG_TopLeft:
+		CENTER_POINT = topLeft;
+		break;
+	case WRG_TopRight:
+		CENTER_POINT = topRight;
+		break;
+	case WRG_BottomLeft:
+		CENTER_POINT = bottomLeft;
+		break;
+	case WRG_BottomRight:
+		CENTER_POINT = bottomRight;
+		break;
+	default:
+		return WContainer::hResult(E_ABORT);
+	}
+
+	CreateRadialColorBrush(back_color0, back_color1, CENTER_POINT, offset, radX, radY);
+	m_pD2D1RenderTarget->FillRectangle(D2D1RECTF, m_pRadialGradientBrush);
 
 	return WContainer::hResult(S_OK);
 }
@@ -638,7 +777,7 @@ HRESULT WGraphics::FillRoundRectSolid(WRECTF boundaryRect, FLOAT bord_radius, W_
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WGradientDirection direction)
+HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction)
 {
 	D2D1_ROUNDED_RECT D2D1RECTF;
 	D2D1RECTF.rect.top = boundaryRect.Top();
@@ -672,10 +811,9 @@ HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W
 	middleLeft.x = boundaryRect.Left();
 	middleLeft.y = (boundaryRect.Bottom() - boundaryRect.Top()) / 2;
 
-
 	POINTF middleBottom;
-	middleLeft.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
-	middleLeft.y = boundaryRect.Bottom();
+	middleBottom.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
+	middleBottom.y = boundaryRect.Bottom();
 
 	POINTF middleRight;
 	middleRight.x = boundaryRect.Right();
@@ -683,30 +821,30 @@ HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W
 
 	switch (direction)
 	{
-	case Invalid:
+	case WLG_Invalid:
 		return WContainer::hResult(E_ABORT);
-	case Left_Right:
+	case WLG_Left_Right:
 		CreateLinearColorBrush(back_color0, back_color1, middleLeft, middleRight);
 		break;
-	case Right_Left:
+	case WLG_Right_Left:
 		CreateLinearColorBrush(back_color0, back_color1, middleRight, middleLeft);
 		break;
-	case Top_Bottom:
+	case WLG_Top_Bottom:
 		CreateLinearColorBrush(back_color0, back_color1, middleTop, middleBottom);
 		break;
-	case Bottom_Top:
+	case WLG_Bottom_Top:
 		CreateLinearColorBrush(back_color0, back_color1, middleBottom, middleTop);
 		break;
-	case TopLeft_BottomRight:
+	case WLG_TopLeft_BottomRight:
 		CreateLinearColorBrush(back_color0, back_color1, topLeft, bottomRight);
 		break;
-	case TopRight_BottomLeft:
+	case WLG_TopRight_BottomLeft:
 		CreateLinearColorBrush(back_color0, back_color1, topRight, bottomLeft);
 		break;
-	case BottomLeft_TopRight:
+	case WLG_BottomLeft_TopRight:
 		CreateLinearColorBrush(back_color0, back_color1, bottomLeft, topRight);
 		break;
-	case BottomRight_TopLeft:
+	case WLG_BottomRight_TopLeft:
 		CreateLinearColorBrush(back_color0, back_color1, bottomRight, topLeft);
 		break;
 	default:
@@ -715,6 +853,93 @@ HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W
 	}
 
 	m_pD2D1RenderTarget->FillRoundedRectangle(D2D1RECTF, m_pLinearGradientBrush);
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::FillRoundRectRadial(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction)
+{
+	D2D1_ROUNDED_RECT D2D1RECTF;
+	D2D1RECTF.rect.top = boundaryRect.Top();
+	D2D1RECTF.rect.left = boundaryRect.Left();
+	D2D1RECTF.rect.bottom = boundaryRect.Bottom();
+	D2D1RECTF.rect.right = boundaryRect.Right();
+	D2D1RECTF.radiusX = bord_radius;
+	D2D1RECTF.radiusY = bord_radius;
+
+	POINTF CENTER_POINT;
+	CENTER_POINT.x = (D2D1RECTF.rect.left + D2D1RECTF.rect.right) / 2;
+	CENTER_POINT.y = (D2D1RECTF.rect.top + D2D1RECTF.rect.bottom) / 2;
+
+	POINTF topLeft;
+	topLeft.x = boundaryRect.Left();
+	topLeft.y = boundaryRect.Top();
+
+	POINTF topRight;
+	topRight.x = boundaryRect.Right();
+	topRight.y = boundaryRect.Top();
+
+	POINTF bottomLeft;
+	bottomLeft.x = boundaryRect.Left();
+	bottomLeft.y = boundaryRect.Bottom();
+
+	POINTF bottomRight;
+	bottomRight.x = boundaryRect.Right();
+	bottomRight.y = boundaryRect.Bottom();
+
+	POINTF middleTop;
+	middleTop.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
+	middleTop.y = boundaryRect.Top();
+
+	POINTF middleLeft;
+	middleLeft.x = boundaryRect.Left();
+	middleLeft.y = (boundaryRect.Bottom() - boundaryRect.Top()) / 2;
+
+	POINTF middleBottom;
+	middleBottom.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
+	middleBottom.y = boundaryRect.Bottom();
+
+	POINTF middleRight;
+	middleRight.x = boundaryRect.Right();
+	middleRight.y = (boundaryRect.Bottom() - boundaryRect.Top()) / 2;
+
+	switch (direction)
+	{
+	case WRG_Invalid:
+		return WContainer::hResult(E_ABORT);
+	case WRG_Center:
+		CENTER_POINT.x = (D2D1RECTF.rect.left + D2D1RECTF.rect.right) / 2;
+		CENTER_POINT.y = (D2D1RECTF.rect.top + D2D1RECTF.rect.bottom) / 2;
+	case WRG_MiddleTop:
+		CENTER_POINT = middleTop;
+		break;
+	case WRG_MiddleLeft:
+		CENTER_POINT = middleLeft;
+		break;
+	case WRG_MiddleBottom:
+		CENTER_POINT = middleBottom;
+		break;
+	case WRG_MiddleRight:
+		CENTER_POINT = middleRight;
+		break;
+	case WRG_TopLeft:
+		CENTER_POINT = topLeft;
+		break;
+	case WRG_TopRight:
+		CENTER_POINT = topRight;
+		break;
+	case WRG_BottomLeft:
+		CENTER_POINT = bottomLeft;
+		break;
+	case WRG_BottomRight:
+		CENTER_POINT = bottomRight;
+		break;
+	default:
+		return WContainer::hResult(E_ABORT);
+	}
+
+	CreateRadialColorBrush(back_color0, back_color1, CENTER_POINT, offset, radX, radY);
+	m_pD2D1RenderTarget->FillRoundedRectangle(D2D1RECTF, m_pRadialGradientBrush);
+
 	return WContainer::hResult(S_OK);
 }
 
@@ -743,6 +968,22 @@ HRESULT WGraphics::FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COL
 	CreateSolidColorBrush(back_color);
 	m_pD2D1RenderTarget->FillEllipse(D2D1ELIPSE, m_pSolidColorBrush);
 
+	return WContainer::hResult(S_OK);
+}
+
+HRESULT WGraphics::FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, W_COLOR back_color0, W_COLOR back_color1)
+{
+	D2D1_ELLIPSE D2D1ELIPSE;
+	D2D1ELIPSE.point.x = center.x;
+	D2D1ELIPSE.point.y = center.y;
+	D2D1ELIPSE.radiusX = radX;
+	D2D1ELIPSE.radiusY = radY;
+
+	POINTF Null_Point;
+	Null_Point.x = 0;
+	Null_Point.y = 0;
+
+	CreateRadialColorBrush(back_color0, back_color1, center, Null_Point, radX, radY);
 	return WContainer::hResult(S_OK);
 }
 
@@ -916,6 +1157,6 @@ void W_MAIN_WINDOW::DragMoveWindow(int Yoffset)
 	GetCursorPos(&globalP);
 
 	RepositionWindow(
-		globalP.x - WContainer::HCX(),
+		globalP.x- WContainer::HCX(),
 		globalP.y - WContainer::HCY());
 }
