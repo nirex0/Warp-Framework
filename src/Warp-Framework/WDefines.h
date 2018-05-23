@@ -48,6 +48,8 @@ typedef int						W_INT32;
 typedef long long				W_INT64;
 
 typedef unsigned long			W_STYLE;
+typedef float					W_FLOAT;
+typedef double					W_DOUBLE;
 typedef double					DELTATIME;
 
 typedef ID2D1Bitmap				W_IMAGE;
@@ -105,8 +107,6 @@ typedef union					W_QWORD_EX
 		W_BYTE_EX BYTE7;
 	} Bytes;
 }W_QWORD_EX;
-
-typedef struct WPoint { unsigned int x; unsigned int y; } WPoint;
 
 typedef enum WMouseKey
 {
