@@ -111,6 +111,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WMci.h" />
+    <ClInclude Include="WAudio.h" />
     <ClInclude Include="WGradientDirection.h" />
     <ClInclude Include="IControl.h" />
     <ClInclude Include="WAlgorithm.h" />
@@ -149,6 +151,7 @@
     <ClInclude Include="WWin.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="WAudio.cpp" />
     <ClCompile Include="WButton.cpp" />
     <ClCompile Include="WEntry.cpp" />
     <ClCompile Include="WGraphics.cpp" />

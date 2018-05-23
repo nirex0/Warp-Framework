@@ -61,6 +61,12 @@
     <Filter Include="Header Files\Engine\Helpers">
       <UniqueIdentifier>{6136097d-2e18-437d-b453-9769a9b46afe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Audio">
+      <UniqueIdentifier>{52d05d79-0dde-426d-8da2-cab38f072fd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Audio">
+      <UniqueIdentifier>{60368118-c2d4-49bf-adad-3a7c6d6c1641}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -171,6 +177,12 @@
     <ClInclude Include="WPoint.h">
       <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
+    <ClInclude Include="WAudio.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="WMci.h">
+      <Filter>Header Files\Engine\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -184,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="WButton.cpp">
       <Filter>Source Files\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WAudio.cpp">
+      <Filter>Source Files\Engine\Audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
