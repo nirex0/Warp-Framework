@@ -129,8 +129,8 @@ WVector3<T> operator*(const WVector3<T>& lhs, const WMatrix3<T>& rhs)
 	};
 }
 
-typedef WMatrix3<float> Matrix3F;
-typedef WMatrix3<double> Matrix3D;
-typedef WMatrix3<int> Matrix3I;
+typedef WMatrix3<W_FLOAT> Matrix3F;
+typedef WMatrix3<W_DOUBLE> Matrix3D;
+typedef WMatrix3<W_INT> Matrix3I;
 
 #endif // !_W_MATRIX_3_H_

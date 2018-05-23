@@ -1077,7 +1077,7 @@ HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, 
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawRect(WRECTF boundaryRect, WThickness borderThickness, W_COLOR bord_color)
+HRESULT WGraphics::DrawRect(WRECTF boundaryRect, WRectF borderThickness, W_COLOR bord_color)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_pSolidColorBrush->GetColor());
 
@@ -1126,7 +1126,7 @@ HRESULT WGraphics::SetTransparency(UINT alpha)
 	return WContainer::hResult(SetLayeredWindowAttributes(WContainer::Handle(), 0, (alpha * 255) / 100, LWA_ALPHA));
 }
 
-void W_MAIN_WINDOW::ResizeWindow(int X, int Y)
+void W_MAIN_WINDOW::ResizeWindow(W_INT X, W_INT Y)
 {
 	RECT wndRect = {};
 	GetWindowRect(WContainer::Handle(), &wndRect);
@@ -1139,7 +1139,7 @@ void W_MAIN_WINDOW::ResizeWindow(int X, int Y)
 		, NULL);
 }
 
-void W_MAIN_WINDOW::RepositionWindow(int X, int Y)
+void W_MAIN_WINDOW::RepositionWindow(W_INT X, W_INT Y)
 {
 	RECT wndRect = {};
 	GetWindowRect(WContainer::Handle(), &wndRect);
@@ -1151,7 +1151,7 @@ void W_MAIN_WINDOW::RepositionWindow(int X, int Y)
 		, NULL);
 }
 
-void W_MAIN_WINDOW::DragMoveWindow(int Yoffset)
+void W_MAIN_WINDOW::DragMoveWindow(W_INT Yoffset)
 {
 	POINT globalP;
 	GetCursorPos(&globalP);

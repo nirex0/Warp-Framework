@@ -51,7 +51,7 @@ WUniqueRegister* WRegContainer::WND_OnGDIPaint = {};
 WGraphics* WGraphicsContainer::gfx = {};
 
 // C-Style wWinMain function
-int WARP_ENTRY wWinMain(
+W_INT WARP_ENTRY wWinMain(
 	HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,				// UNUSED
 	LPWSTR lpCmd,							// UNUSED
@@ -121,7 +121,7 @@ WMainWindow::~WMainWindow(void)
 	delete m_graphics;
 }
 
-int WMainWindow::Initialize(void)
+W_INT WMainWindow::Initialize(void)
 {
 	HWND hWnd;
 	WNDCLASSEX wcex = {};
@@ -152,8 +152,8 @@ int WMainWindow::Initialize(void)
 	UINT uWidth = whRect.right - whRect.left;
 	UINT uHeight = whRect.bottom - whRect.top;
 
-	UINT centX = GetSystemMetrics(SM_CXSCREEN) / 2 - (long)uWidth / 2;
-	UINT centY = GetSystemMetrics(SM_CYSCREEN) / 2 - (long)uHeight / 2;
+	UINT centX = GetSystemMetrics(SM_CXSCREEN) / 2 - (W_LONG)uWidth / 2;
+	UINT centY = GetSystemMetrics(SM_CYSCREEN) / 2 - (W_LONG)uHeight / 2;
 	UINT SCR_WIDTH = GetSystemMetrics(SM_CXSCREEN);
 	UINT SCR_HEIGHT = GetSystemMetrics(SM_CYSCREEN);
 
@@ -223,7 +223,7 @@ void WMainWindow::MessageLoop(void)
 			auto mDeltaTime = std::min<common_duration>(frameTime, kMaxDeltatime);
 
 			// std::ratio<1, 1> for seconds instead of miliseconds
-			milliseconds = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(mDeltaTime).count();
+			milliseconds = std::chrono::duration_cast<std::chrono::duration<W_DOUBLE, std::milli>>(mDeltaTime).count();
 			WContainer::DeltaSeconds(milliseconds);
 
 			// Update & Render
@@ -233,7 +233,7 @@ void WMainWindow::MessageLoop(void)
 			
 			// Render
 			m_graphics->SafeBeginDraw();
-			m_graphics->ClearWindow(D2D1::ColorF((float)WContainer::BackR() / 255, (float)WContainer::BackG() / 255, (float)WContainer::BackB() / 255, (float)WContainer::BackA() / 255));
+			m_graphics->ClearWindow(D2D1::ColorF((W_FLOAT)WContainer::BackR() / 255, (W_FLOAT)WContainer::BackG() / 255, (W_FLOAT)WContainer::BackB() / 255, (W_FLOAT)WContainer::BackA() / 255));
 			m_entry->Render(milliseconds);
 			WControlHandler::Render();
 			m_graphics->SafeEndDraw();
@@ -271,8 +271,8 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	{
 		W_UINT width = LOWORD(lParam);
 		W_UINT height = HIWORD(lParam);
-		WContainer::Width((int)width);
-		WContainer::Height((int)height);
+		WContainer::Width((W_INT)width);
+		WContainer::Height((W_INT)height);
 		break;
 	}
 
@@ -281,8 +281,8 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	{
 		W_UINT width = LOWORD(lParam);
 		W_UINT height = HIWORD(lParam);
-		WContainer::Width((int)width);
-		WContainer::Height((int)height);
+		WContainer::Width((W_INT)width);
+		WContainer::Height((W_INT)height);
 		if (m_entry->Graphics() != nullptr)
 		{
 			m_entry->Graphics()->ResizeRenderTarget(width, height);

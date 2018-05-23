@@ -7,7 +7,7 @@
 #include "WEntity.h"
 #include "WDefines.h"
 #include "WRECTF.h"
-#include "WThickness.h"
+#include "WRect.h"
 #include "WGradientDirection.h"
 
 class WGraphics : public WEntity
@@ -100,7 +100,7 @@ public:
 	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color);
 	
 	// Primitive Component Drawing
-	HRESULT DrawRect(WRECTF boundaryRect, WThickness borderThickness, W_COLOR bord_color);
+	HRESULT DrawRect(WRECTF boundaryRect, WRectF borderThickness, W_COLOR bord_color);
 
 	// Helper Functions
 	W_COLOR FromRGBA(INT R, INT G, INT B, FLOAT A = 1.0F) const;
@@ -120,7 +120,7 @@ private:
 
 	// Screen Rect
 	RECT						m_ScreenRect;
-
+	
 	// DirectWrite Factory and Text Format
 	IDWriteFactory*				m_pIDWriteFactory;
 	IDWriteTextFormat*			m_pIDWriteTextFormat;
@@ -146,9 +146,9 @@ private:
 
 namespace W_MAIN_WINDOW
 {
-	void ResizeWindow(int X, int Y);
-	void RepositionWindow(int X, int Y);
-	void DragMoveWindow(int yOffset = 25);
+	void ResizeWindow(W_INT X, W_INT Y);
+	void RepositionWindow(W_INT X, W_INT Y);
+	void DragMoveWindow(W_INT yOffset = 25);
 }
 
 #endif // !_W_GRAPHICS_H_

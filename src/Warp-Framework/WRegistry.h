@@ -64,7 +64,7 @@ public:
 	WRegistry* operator()(WEntity* sender, WEventArgs* args)
 	{
 		Annex current;
-		for (int i = 0; i < m_registered.size(); i++)
+		for (size_t i = 0; i < m_registered.size(); i++)
 		{
 			if (m_registered[i] != nullptr)
 			{
@@ -78,7 +78,7 @@ public:
 	WRegistry* Run(WEntity* sender, WEventArgs* args)
 	{
 		Annex current;
-		for (int i = 0; i < m_registered.size(); i++)
+		for (size_t i = 0; i < m_registered.size(); i++)
 		{
 			if (m_registered[i] != nullptr)
 			{
@@ -98,7 +98,7 @@ public:
 
 	WRegistry* UnRegister(Annex* rhs)
 	{
-		for (int i = 0; i < m_registered.size(); i++)
+		for (size_t i = 0; i < m_registered.size(); i++)
 		{
 			if (m_registered[i] == rhs)
 			{
@@ -118,7 +118,7 @@ public:
 
 	WRegistry* operator-=(Annex rhs)
 	{
-		for (int i = 0; i < m_registered.size(); i++)
+		for (size_t i = 0; i < m_registered.size(); i++)
 		{
 			if (m_registered[i] == &rhs)
 			{

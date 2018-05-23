@@ -5,8 +5,8 @@
 
 #include <math.h>
 
-constexpr float PI = 3.14159265f;
-constexpr double PI_D = 3.1415926535897932;
+constexpr W_FLOAT PI = 3.14159265f;
+constexpr W_DOUBLE PI_D = 3.1415926535897932;
 
 template <typename T>
 inline auto sq(const T& x)
@@ -15,7 +15,7 @@ inline auto sq(const T& x)
 }
 
 template <typename T>
-inline auto clamp(float x, float lowerlimit, float upperlimit)
+inline auto clamp(W_FLOAT x, W_FLOAT lowerlimit, W_FLOAT upperlimit)
 {
 	if (x < lowerlimit) x = lowerlimit;
 	if (x > upperlimit) x = upperlimit;
@@ -23,13 +23,13 @@ inline auto clamp(float x, float lowerlimit, float upperlimit)
 }
 
 template<typename T>
-inline T lerp(const T& src, const T& dst, float alpha)
+inline T lerp(const T& src, const T& dst, W_FLOAT alpha)
 {
 	return src + (dst - src) * alpha;
 }
 
 template <typename T>
-inline auto smoothstep(float from, float to, float x)
+inline auto smoothstep(W_FLOAT from, W_FLOAT to, W_FLOAT x)
 {
 	x = clamp((x - from) / (to - from), 0.0f, 1.0f);
 	return x * x * (3 - 2 * x);

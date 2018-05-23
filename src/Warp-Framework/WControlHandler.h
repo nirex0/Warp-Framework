@@ -17,7 +17,7 @@ class WControlHandler
 public:
 	static void Add(IControl* intake)
 	{
-		for (const int &p : stcz)
+		for (const W_INT &p : stcz)
 		{
 			if (intake->ZIndex() == p)
 			{
@@ -91,8 +91,8 @@ public:
 		}
 	}
 private:
-	static std::map<int, IControl*> WControlHandler::mtcp;
-	static std::set<int> WControlHandler::stcz;
+	static std::map<W_INT, IControl*> WControlHandler::mtcp;
+	static std::set<W_INT> WControlHandler::stcz;
 };
 
 #endif // !_W_CONTROL_HANDLER_H_

@@ -186,8 +186,8 @@ public:
 	T z;
 };
 
-typedef WVector3<float> Vector3F;
-typedef WVector3<double> Vector3D;
-typedef WVector3<int> Vector3I;
+typedef WVector3<W_FLOAT> Vector3F;
+typedef WVector3<W_DOUBLE> Vector3D;
+typedef WVector3<W_INT> Vector3I;
 
 #endif // !_W_VECTOR_3_H_

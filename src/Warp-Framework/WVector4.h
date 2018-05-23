@@ -196,8 +196,8 @@ public:
 	T w;
 };
 
-typedef WVector4<float> Vector4F;
-typedef WVector4<double> Vector4D;
-typedef WVector4<int> Vector4I;
+typedef WVector4<W_FLOAT> Vector4F;
+typedef WVector4<W_DOUBLE> Vector4D;
+typedef WVector4<W_INT> Vector4I;
 
 #endif // !_W_VECTOR_4_H_

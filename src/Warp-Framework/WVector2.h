@@ -182,8 +182,8 @@ private:
 	T y;
 };
 
-typedef WVector2<float> Vector2F;
-typedef WVector2<double> Vector2D;
-typedef WVector2<int> Vector2I;
+typedef WVector2<W_FLOAT> Vector2F;
+typedef WVector2<W_DOUBLE> Vector2D;
+typedef WVector2<W_INT> Vector2I;
 
 #endif // !_W_VECTOR_2_H_

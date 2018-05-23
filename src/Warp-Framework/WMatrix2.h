@@ -96,8 +96,8 @@ WVector2<T> operator*(const WVector2<T>& lhs, const WMatrix2<T>& rhs)
 	};
 }
 
-typedef WMatrix2<float> Matrix2F;
-typedef WMatrix2<double> Matrix2D;
-typedef WMatrix2<int> Matrix2I;
+typedef WMatrix2<W_FLOAT> Matrix2F;
+typedef WMatrix2<W_DOUBLE> Matrix2D;
+typedef WMatrix2<W_INT> Matrix2I;
 
 #endif // !_W_MATRIX_2_H_

@@ -34,7 +34,7 @@ public:
 	~WMainWindow(void);
 
 	// Init the first window
-	int Initialize(void);
+	W_INT Initialize(void);
 
 	// Main message loop handler
 	void MessageLoop(void);
