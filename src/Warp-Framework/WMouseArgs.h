@@ -4,7 +4,7 @@
 #define _W_MOUSE_ARGS_H_
 
 #include "WEventArgs.h"
-#include "WDefines.h"
+#include "WPoint.h"
 
 enum KeyState
 {
@@ -16,27 +16,15 @@ enum KeyState
 class WMouseArgs : public WEventArgs
 {
 public:
-	WMouseArgs(int x, int y, WMouseKey key, KeyState keyState)
+	WMouseArgs(W_INT x, W_INT y, WMouseKey key, KeyState keyState)
 	{
-		WPoint* ptPtr = new WPoint();
-		ptPtr->x = x;
-		ptPtr->y = y;
 		this->m_wmk = key;
-		this->m_Point = ptPtr;
+		this->m_Point.X(x);
+		this->m_Point.Y(y);
 		this->m_keyState = keyState;
 	}
 
-	WMouseArgs(WPoint point, WMouseKey key, KeyState keyState)
-	{
-		WPoint* ptPtr = new WPoint();
-		ptPtr->x = point.x;
-		ptPtr->y = point.y;
-		this->m_wmk = key;
-		this->m_Point = ptPtr;
-		this->m_keyState = keyState;
-	}
-
-	WMouseArgs(WPoint* point, WMouseKey key, KeyState keyState)
+	WMouseArgs(WPointF point, WMouseKey key, KeyState keyState)
 	{
 		this->m_wmk = key;
 		this->m_Point = point;
@@ -45,10 +33,10 @@ public:
 
 	~WMouseArgs(void)
 	{
-		delete m_Point;
+
 	}
 
-	WPoint* const Point(void)
+	WPointF const Point(void)
 	{
 		return m_Point;
 	}
@@ -58,14 +46,14 @@ public:
 		return m_wmk;
 	}
 
-	int X(void) const
+	W_INT X(void) const
 	{
-		return m_Point->x;
+		return m_Point.X();
 	}
 
-	int Y(void) const
+	W_INT Y(void) const
 	{
-		return m_Point->y;
+		return m_Point.Y();
 	}
 
 	KeyState State(void) const
@@ -74,7 +62,7 @@ public:
 	}
 
 private:
-	WPoint* m_Point;
+	WPointF m_Point;
 	WMouseKey m_wmk;
 	KeyState m_keyState;
 };

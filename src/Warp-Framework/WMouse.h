@@ -20,10 +20,10 @@ public:
 		m_MouseRollUp = new WRegistry();
 		m_MouseRollDown = new WRegistry();
 
-		m_mPoint = new WPoint();
+		m_mPoint = new WPointF();
 
-		m_mPoint->x = 0;
-		m_mPoint->y = 0;
+		m_mPoint->X(0);
+		m_mPoint->Y(0);
 
 		SetGRegisters();
 	}
@@ -50,33 +50,33 @@ public:
 
 	inline WMouse* MouseDown(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::MouseDown);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->X(), this->m_mPoint->Y(), this->m_WMKPrev, KeyState::MouseDown);
 		m_MouseDown->Run(this, ARGS);
 		return this;
 	}
 	inline WMouse* MouseUp(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::MouseUp);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->X(), this->m_mPoint->Y(), this->m_WMKPrev, KeyState::MouseUp);
 		m_MouseUp->Run(this, ARGS);
 		return this;
 	}
 	inline WMouse* MouseMove(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::NoClick);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->X(), this->m_mPoint->Y(), this->m_WMKPrev, KeyState::NoClick);
 		m_MouseMove->Run(this, ARGS);
 		return this;
 	}
 
 	inline WMouse* MouseMiddleUp(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::MouseUp);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->X(), this->m_mPoint->Y(), this->m_WMKPrev, KeyState::MouseUp);
 		m_MouseRollUp->Run(this, ARGS);
 		return this;
 	}
 
 	inline WMouse* MouseMiddleDown(void)
 	{
-		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->x, this->m_mPoint->y, this->m_WMKPrev, KeyState::MouseDown);
+		WMouseArgs* ARGS = new WMouseArgs(this->m_mPoint->X(), this->m_mPoint->Y(), this->m_WMKPrev, KeyState::MouseDown);
 		m_MouseRollDown->Run(this, ARGS);
 		return this;
 	}
@@ -137,15 +137,15 @@ public:
 	}
 
 
-	inline WPoint* MPoint(void)
+	inline WPointF* MPoint(void)
 	{
 		return this->m_mPoint;
 	}
 
-	inline WMouse* MPoint(unsigned int x, unsigned int y)
+	inline WMouse* MPoint(W_UINT x, W_UINT y)
 	{
-		this->m_mPoint->x = x;
-		this->m_mPoint->y = y;
+		this->m_mPoint->X(x);
+		this->m_mPoint->Y(y);
 		return this;
 	}
 
@@ -177,7 +177,7 @@ private:
 	WRegistry* m_MouseRollUp;
 	WRegistry* m_MouseRollDown;
 
-	WPoint* m_mPoint;
+	WPointF* m_mPoint;
 	WMouseKey m_WMKPrev;
 };
 
