@@ -258,7 +258,6 @@ HRESULT WGraphics::CreateRadialColorBrush(const W_COLOR& color0, const W_COLOR& 
 		gradientStops[1].color = color1;
 		gradientStops[1].position = 1.0f;
 
-
 		WContainer::hResult(m_pD2D1RenderTarget->CreateGradientStopCollection(gradientStops, 2, D2D1_GAMMA_2_2, D2D1_EXTEND_MODE_CLAMP, &pGradientStops));
 		WContainer::hResult(m_pD2D1RenderTarget->CreateRadialGradientBrush(rbProps, pGradientStops, &m_pRadialGradientBrush));
 
@@ -289,7 +288,6 @@ HRESULT WGraphics::UpdateRadialColorBrush(const W_COLOR & color0, const W_COLOR 
 		gradientStops[0].position = 0.0f;
 		gradientStops[1].color = color1;
 		gradientStops[1].position = 1.0f;
-
 
 		WContainer::hResult(m_pD2D1RenderTarget->CreateGradientStopCollection(gradientStops, 2, D2D1_GAMMA_2_2, D2D1_EXTEND_MODE_CLAMP, &pGradientStops));
 		WContainer::hResult(m_pD2D1RenderTarget->CreateRadialGradientBrush(rbProps, pGradientStops, &m_pRadialGradientBrush));
@@ -693,7 +691,6 @@ HRESULT WGraphics::FillRectRadial(WRECTF boundaryRect, W_COLOR back_color0, W_CO
 	POINTF middleLeft;
 	middleLeft.x = boundaryRect.Left();
 	middleLeft.y = (boundaryRect.Bottom() - boundaryRect.Top()) / 2;
-
 
 	POINTF middleBottom;
 	middleBottom.x = (boundaryRect.Right() - boundaryRect.Left()) / 2;
@@ -1107,7 +1104,6 @@ HRESULT WGraphics::DrawRect(WRECTF boundaryRect, WRectF borderThickness, W_COLOR
 
 	m_pD2D1RenderTarget->DrawLine(TOP_RIGHT, BOTTOM_LEFT, m_pSolidColorBrush, 1);
 	m_pD2D1RenderTarget->DrawLine(TOP_LEFT, BOTTOM_RIGHT, m_pSolidColorBrush, 1);
-
 
 	m_pSolidColorBrush->SetColor(D2D1TMPCOLOR);
 
