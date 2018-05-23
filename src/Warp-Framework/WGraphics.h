@@ -94,8 +94,8 @@ public:
 	HRESULT DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thickness);
 	HRESULT DrawPoint(POINTF Coords, W_COLOR color);
 	
-	HRESULT LoadBMP(LPCWSTR uri, W_IMAGE** ppImage);
-	HRESULT DrawBMP(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity);
+	HRESULT LoadIMG(LPCWSTR uri, W_IMAGE** ppImage);
+	HRESULT DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity);
 	
 	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color);
 	

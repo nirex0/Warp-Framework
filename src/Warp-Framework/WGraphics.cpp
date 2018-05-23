@@ -1017,7 +1017,7 @@ HRESULT WGraphics::DrawPoint(POINTF Coords, W_COLOR color)
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::LoadBMP(LPCWSTR uri, W_IMAGE** ppImage)
+HRESULT WGraphics::LoadIMG(LPCWSTR uri, W_IMAGE** ppImage)
 {
 	IWICImagingFactory*	pIWICFactory = NULL;
 	IWICBitmapDecoder *pDecoder = NULL;
@@ -1043,7 +1043,7 @@ HRESULT WGraphics::LoadBMP(LPCWSTR uri, W_IMAGE** ppImage)
 	return WContainer::hResult();
 }
 
-HRESULT WGraphics::DrawBMP(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity)
+HRESULT WGraphics::DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity)
 {
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
