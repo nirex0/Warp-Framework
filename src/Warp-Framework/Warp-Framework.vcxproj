@@ -116,11 +116,9 @@
     <ClInclude Include="WAlgorithm.h" />
     <ClInclude Include="WChrono.h" />
     <ClInclude Include="WCODEC.h" />
-    <ClInclude Include="WRECTF.h" />
-    <ClInclude Include="WBoundary.h" />
     <ClInclude Include="WButton.h" />
     <ClInclude Include="WControlHandler.h" />
-    <ClInclude Include="WCoordinates.h" />
+    <ClInclude Include="WPoint.h" />
     <ClInclude Include="WDXContainer.h" />
     <ClInclude Include="WContainer.h" />
     <ClInclude Include="WDX.h" />
@@ -133,7 +131,7 @@
     <ClInclude Include="WMatrix3.h" />
     <ClInclude Include="WRegContainer.h" />
     <ClInclude Include="WSafeRelease.h" />
-    <ClInclude Include="WThickness.h" />
+    <ClInclude Include="WRect.h" />
     <ClInclude Include="WUniqueRegister.h" />
     <ClInclude Include="WUserSettings.h" />
     <ClInclude Include="WDefines.h" />

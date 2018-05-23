@@ -61,9 +61,6 @@
     <Filter Include="Header Files\Engine\Helpers">
       <UniqueIdentifier>{6136097d-2e18-437d-b453-9769a9b46afe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Controls\Helpers">
-      <UniqueIdentifier>{ce89a6a8-bb93-4dd3-b58e-f53610410b31}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -144,26 +141,14 @@
     <ClInclude Include="WGraphics.h">
       <Filter>Header Files\Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="WCoordinates.h">
-      <Filter>Header Files\Engine\Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="WThickness.h">
-      <Filter>Header Files\Engine\Primitives</Filter>
-    </ClInclude>
     <ClInclude Include="WGFXContainer.h">
       <Filter>Header Files\Engine\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WButton.h">
       <Filter>Header Files\Engine\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="WBoundary.h">
-      <Filter>Header Files\Engine\Primitives</Filter>
-    </ClInclude>
     <ClInclude Include="IControl.h">
       <Filter>Header Files\Engine\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="WRECTF.h">
-      <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="WCODEC.h">
       <Filter>Header Files\Engine\System</Filter>
@@ -177,8 +162,14 @@
     <ClInclude Include="WGradientDirection.h">
       <Filter>Header Files\Engine\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="WRect.h">
+      <Filter>Header Files\Engine\Primitives</Filter>
+    </ClInclude>
     <ClInclude Include="WControlHandler.h">
-      <Filter>Header Files\Engine\Controls\Helpers</Filter>
+      <Filter>Header Files\Engine\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="WPoint.h">
+      <Filter>Header Files\Engine\Primitives</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
