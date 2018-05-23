@@ -1,7 +1,7 @@
 #include "WButton.h"
 #include "WControlHandler.h"
 
-WButton::WButton(int zIndex)
+WButton::WButton(W_INT zIndex)
 	: m_thickness(1.0F)
 	, m_zIndex(zIndex)
 {
@@ -30,7 +30,7 @@ WButton::WButton(int zIndex)
 	UpdateRect();
 }
 
-WButton::WButton(float top, float left, float bottom, float right, int zIndex)
+WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
 	: m_thickness(1.0F)
 	, m_zIndex(zIndex)
 {
@@ -59,7 +59,7 @@ WButton::WButton(float top, float left, float bottom, float right, int zIndex)
 	UpdateRect();
 }
 
-WButton::WButton(WCoordinates topleft, WCoordinates botright, int zIndex)
+WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	: m_thickness(1.0F)
 	, m_zIndex(zIndex)
 {
@@ -88,7 +88,7 @@ WButton::WButton(WCoordinates topleft, WCoordinates botright, int zIndex)
 	UpdateRect();
 }
 
-WButton::WButton(WThickness location, int zIndex)
+WButton::WButton(WRectF location, W_INT zIndex)
 	: m_thickness(1.0F)
 	, m_zIndex(zIndex)
 {
@@ -125,7 +125,7 @@ WButton::~WButton(void)
 	delete BtnMouseLeaveRegistery;
 }
 
-WThickness WButton::Location(float top, float left, float bottom, float right)
+WRectF WButton::Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right)
 {
 	m_top = top;
 	m_left = left;
@@ -134,10 +134,10 @@ WThickness WButton::Location(float top, float left, float bottom, float right)
 	m_right = right;
 
 	UpdateRect();
-	return WThickness(m_top, m_left, m_bottom, m_right);
+	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WThickness WButton::Location(WCoordinates topleft, WCoordinates botright)
+WRectF WButton::Location(WPointF topleft, WPointF botright)
 {
 	m_top = topleft.X();
 	m_left = topleft.Y();
@@ -146,10 +146,10 @@ WThickness WButton::Location(WCoordinates topleft, WCoordinates botright)
 	m_right = botright.Y();
 
 	UpdateRect();
-	return WThickness(m_top, m_left, m_bottom, m_right);
+	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WThickness WButton::Location(WThickness location)
+WRectF WButton::Location(WRectF location)
 {
 	m_top = location.Top();
 	m_left = location.Left();
@@ -158,10 +158,10 @@ WThickness WButton::Location(WThickness location)
 	m_right = location.Right();
 
 	UpdateRect();
-	return WThickness(m_top, m_left, m_bottom, m_right);
+	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WThickness WButton::RelLocation(float top, float left, float height, float width)
+WRectF WButton::RelLocation(W_FLOAT top, W_FLOAT left, W_FLOAT height, W_FLOAT width)
 {
 	m_top = top;
 	m_left = left;
@@ -170,10 +170,10 @@ WThickness WButton::RelLocation(float top, float left, float height, float width
 	m_right = left + width;
 
 	UpdateRect();
-	return WThickness(m_top, m_left, m_bottom, m_right);
+	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WThickness WButton::RelLocation(WCoordinates topleft, WCoordinates heightwidth)
+WRectF WButton::RelLocation(WPointF topleft, WPointF heightwidth)
 {
 	m_top = topleft.X();
 	m_left = topleft.Y();
@@ -182,10 +182,10 @@ WThickness WButton::RelLocation(WCoordinates topleft, WCoordinates heightwidth)
 	m_right = m_left + heightwidth.Y();
 
 	UpdateRect();
-	return WThickness(m_top, m_left, m_bottom, m_right);
+	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WThickness WButton::RelLocation(WThickness location)
+WRectF WButton::RelLocation(WRectF location)
 {
 	m_top = location.Top();
 	m_left = location.Left();
@@ -194,21 +194,21 @@ WThickness WButton::RelLocation(WThickness location)
 	m_right = m_left + location.Right();;
 
 	UpdateRect();
-	return WThickness(m_top, m_left, m_bottom, m_right);
+	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WThickness WButton::Location(void) const
+WRectF WButton::Location(void) const
 {
-	return WThickness(m_top, m_left, m_bottom, m_right);
+	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-float WButton::BorderThickness(float f)
+W_FLOAT WButton::BorderThickness(W_FLOAT f)
 {
 	m_thickness = f;
 	return f;
 }
 
-float WButton::BorderRadius(float f)
+W_FLOAT WButton::BorderRadius(W_FLOAT f)
 {
 	m_borderRad = f;
 	return f;
@@ -232,12 +232,12 @@ W_COLOR WButton::BorderBrush(W_COLOR col)
 	return col;
 }
 
-float WButton::BorderThickness(void) const
+W_FLOAT WButton::BorderThickness(void) const
 {
 	return m_thickness;
 }
 
-float WButton::BorderRadius(void) const
+W_FLOAT WButton::BorderRadius(void) const
 {
 	return m_borderRad;
 }
@@ -275,7 +275,7 @@ void WButton::UpdateRect(void)
 	btnRec.Right(m_right);
 }
 
-WCoordinates WButton::Displace(float X, float Y)
+WPointF WButton::Displace(W_FLOAT X, W_FLOAT Y)
 {
 	m_top += Y;
 	m_bottom += Y;
@@ -284,10 +284,10 @@ WCoordinates WButton::Displace(float X, float Y)
 	m_right += X;
 
 	UpdateRect();
-	return WCoordinates(X, Y);
+	return WPointF(X, Y);
 }
 
-WCoordinates WButton::Displace(WCoordinates XY)
+WPointF WButton::Displace(WPointF XY)
 {
 	m_top += XY.Y();
 	m_bottom += XY.Y();
@@ -296,7 +296,7 @@ WCoordinates WButton::Displace(WCoordinates XY)
 	m_right += XY.X();
 
 	UpdateRect();
-	return WCoordinates(XY.X(), XY.Y());
+	return WPointF(XY.X(), XY.Y());
 }
 
 WRegistry* WButton::MouseDownRegistery(void)
@@ -365,7 +365,7 @@ WRegistry* WButton::MouseRollDownRegistery(WRegistry* intake)
 	return BtnMouseRollDownRegistery;
 }
 
-int WButton::ZIndex(void) const
+W_INT WButton::ZIndex(void) const
 {
 	return m_zIndex;
 }
@@ -385,7 +385,7 @@ bool WButton::AutoRender(void) const
 	return m_autoRender;
 }
 
-int WButton::ZIndex(int input)
+W_INT WButton::ZIndex(W_INT input)
 {
 	WControlHandler::Remove(this);
 	m_zIndex = input;
@@ -500,7 +500,7 @@ wchar_t* WButton::Content(UINT32& outLen) const
 	return m_Content;
 }
 
-float WButton::FontSize(void) const
+W_FLOAT WButton::FontSize(void) const
 {
 	return m_fsize;
 }
@@ -533,26 +533,18 @@ wchar_t* WButton::Content(wchar_t* content, UINT32 Length)
 	return m_Content;
 }
 
-float WButton::FontSize(float intake)
+W_FLOAT WButton::FontSize(W_FLOAT intake)
 {
 	m_fsize = intake;
 	return m_fsize;
 }
 
-bool WButton::IsWithin(WMouseArgs * Args) const
+bool WButton::IsWithin(WMouseArgs* Args) const
 {
-	WBoundary bounds;
-
-	bounds.Top(this->Location().Top());
-	bounds.Left(this->Location().Left());
-	bounds.Bottom(this->Location().Bottom());
-	bounds.Right(this->Location().Right());
-
-	return bounds.IsColliding(*(Args->Point()));
-
+	return Location().IsColliding(Args->Point());
 }
 
-void WButton::SetZIndexNoChange(int zIndex)
+void WButton::SetZIndexNoChange(W_INT zIndex)
 {
 	m_zIndex = zIndex;
 }
