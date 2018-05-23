@@ -26,7 +26,7 @@ PLANS
 
 - 🔧 Intractable Controls
 
-- ✔️ Texture Support
+- ✔️ Texture Support (All Formats)
 
 - ✔️ Double Buffering
 
@@ -36,7 +36,9 @@ PLANS
 
 - ✔️ Gradient (Linear / Radial)
 
-- ⚠️ Audio & Video Support (.mp3 / .mp4)
+- ✔️ Audio Support (All Formats)
+
+- ⚠️ Video Support (All Formats)
 
 - ❌ Custom 2D Space
 
