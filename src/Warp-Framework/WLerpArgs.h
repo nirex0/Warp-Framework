@@ -26,7 +26,6 @@ public:
 
 private:
 	W_FLOAT	m_Value;
-
 };
 
 #endif // !_W_LERPARGS_H_

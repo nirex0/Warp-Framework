@@ -134,5 +134,4 @@ void LerpHelper(WEntity* sender, WEventArgs* args)
 	LSender->m_isRunning = false;
 }
 
-
 #endif // !_W_LERP_H_
