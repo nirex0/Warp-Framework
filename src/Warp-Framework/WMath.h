@@ -29,13 +29,11 @@ inline T lerp(const T& src, const T& dst, W_FLOAT alpha)
 }
 
 template <typename T>
-inline auto smoothstep(W_FLOAT from, W_FLOAT to, W_FLOAT x)
+inline T smoothstep(W_FLOAT from, W_FLOAT to, W_FLOAT x)
 {
 	x = clamp((x - from) / (to - from), 0.0f, 1.0f);
 	return x * x * (3 - 2 * x);
 }
-
-
 
 #endif // !_W_MATH_H_
 
