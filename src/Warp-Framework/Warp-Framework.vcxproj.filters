@@ -91,6 +91,9 @@
     <Filter Include="Header Files\WARP-ASYNC\Animations\Lerp">
       <UniqueIdentifier>{38512774-ef04-42e3-9acf-3313a15d95cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Animations\Smoothstep">
+      <UniqueIdentifier>{e996a232-b2dd-4077-ba38-296b52720811}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -218,6 +221,12 @@
     </ClInclude>
     <ClInclude Include="WLerpArgs.h">
       <Filter>Header Files\WARP-ASYNC\Animations\Lerp</Filter>
+    </ClInclude>
+    <ClInclude Include="WSmoothStep.h">
+      <Filter>Header Files\WARP-ASYNC\Animations\Smoothstep</Filter>
+    </ClInclude>
+    <ClInclude Include="WSmoothStepArgs.h">
+      <Filter>Header Files\WARP-ASYNC\Animations\Smoothstep</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
