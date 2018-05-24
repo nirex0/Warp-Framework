@@ -24,7 +24,7 @@ PLANS
 
 - ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
-- 🔧 Intractable Controls
+- ⚠️ Intractable Controls
 
 - ✔️ Texture Support (All Formats)
 
@@ -38,9 +38,9 @@ PLANS
 
 - ✔️ Audio Support (All Formats)
 
-- ⚠️ Video Support (All Formats)
+- ⚙️ Video Support (All Formats)
 
-- ❌ Custom 2D Space
+- ⚙️ Custom 2D Space
 
 - ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
 
@@ -52,11 +52,11 @@ PLANS
 
 ### WARP-ASYNC
 
-- ❌ Concurrent Programming with WAsyncWorker
+- ✔️ Concurrent Programming with WAsyncWorker
 
-- ⚠️ Predefined animation formulae (Lerp, Smoothstep, etc...)
+- ✔️ Predefined animation formulae (Lerp, Smoothstep, etc...)
 
-- ⚠️ Smooth Color Changing (Lerp)
+- 🔧 Smooth Color Changing (Lerp)
 
 ### WARP-NETWORK
 
