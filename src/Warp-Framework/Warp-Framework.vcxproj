@@ -111,6 +111,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WAsyncArgs.h" />
+    <ClInclude Include="WAsyncWorker.h" />
+    <ClInclude Include="WLerp.h" />
+    <ClInclude Include="WLerpArgs.h" />
     <ClInclude Include="WMci.h" />
     <ClInclude Include="WAudio.h" />
     <ClInclude Include="WGradientDirection.h" />

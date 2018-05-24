@@ -13,192 +13,228 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\EventArgs">
+    <Filter Include="Header Files\WARP-GFX">
+      <UniqueIdentifier>{20a4920a-b386-43a7-9773-a0f51f44246d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-GFX\EventArgs">
       <UniqueIdentifier>{17279c38-01ee-4dac-aed0-abf91f287031}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine">
-      <UniqueIdentifier>{997d5aec-14f6-4bc1-91a2-87844db259f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine">
-      <UniqueIdentifier>{592305f7-260e-4bb3-b757-bd62d69fa83d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Core">
-      <UniqueIdentifier>{b6515c69-e28e-4c1a-a4fc-25587a5a44bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Devices">
-      <UniqueIdentifier>{ddeb7bc9-d8ed-4397-98d0-7dea79087f54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Main Window">
-      <UniqueIdentifier>{d8be893e-995e-443e-b862-2f274ff20d78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\System">
-      <UniqueIdentifier>{7246f845-b98c-49d9-8ca6-49bd7076bdf7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Main Window">
-      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Math">
+    <Filter Include="Header Files\WARP-GFX\Math">
       <UniqueIdentifier>{31a8fad3-6a0f-498e-b5ec-99ac37dae209}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Graphics">
+    <Filter Include="Header Files\WARP-GFX\Engine">
+      <UniqueIdentifier>{592305f7-260e-4bb3-b757-bd62d69fa83d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\Core">
+      <UniqueIdentifier>{b6515c69-e28e-4c1a-a4fc-25587a5a44bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\Devices">
+      <UniqueIdentifier>{ddeb7bc9-d8ed-4397-98d0-7dea79087f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\Main Window">
+      <UniqueIdentifier>{d8be893e-995e-443e-b862-2f274ff20d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\System">
+      <UniqueIdentifier>{7246f845-b98c-49d9-8ca6-49bd7076bdf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\Graphics">
       <UniqueIdentifier>{7bec0380-ee09-49c6-95d0-18efd27e2eb2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Containers">
+    <Filter Include="Header Files\WARP-GFX\Engine\Containers">
       <UniqueIdentifier>{fbe055ce-7748-4d5f-80af-304582daadff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Graphics">
-      <UniqueIdentifier>{68e60a90-ecbc-439c-aeb7-2bced8014718}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Controls">
+    <Filter Include="Header Files\WARP-GFX\Engine\Controls">
       <UniqueIdentifier>{efff0d63-a65e-4518-b323-fd8f42a54770}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Controls">
-      <UniqueIdentifier>{cac18e69-1a47-4fe2-a314-3b4ca94a9b0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Primitives">
+    <Filter Include="Header Files\WARP-GFX\Engine\Primitives">
       <UniqueIdentifier>{371fcc97-3883-41e4-80c1-15863c15f472}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Helpers">
+    <Filter Include="Header Files\WARP-GFX\Engine\Helpers">
       <UniqueIdentifier>{6136097d-2e18-437d-b453-9769a9b46afe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Audio">
+    <Filter Include="Header Files\WARP-GFX\Audio">
+      <UniqueIdentifier>{60368118-c2d4-49bf-adad-3a7c6d6c1641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX">
+      <UniqueIdentifier>{aca4c170-a056-4880-b83f-69f6588e3032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine">
+      <UniqueIdentifier>{997d5aec-14f6-4bc1-91a2-87844db259f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Main Window">
+      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Graphics">
+      <UniqueIdentifier>{68e60a90-ecbc-439c-aeb7-2bced8014718}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Controls">
+      <UniqueIdentifier>{cac18e69-1a47-4fe2-a314-3b4ca94a9b0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Audio">
       <UniqueIdentifier>{52d05d79-0dde-426d-8da2-cab38f072fd9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Audio">
-      <UniqueIdentifier>{60368118-c2d4-49bf-adad-3a7c6d6c1641}</UniqueIdentifier>
+    <Filter Include="Source Files\User-Filter">
+      <UniqueIdentifier>{25b61b91-2fd6-4a16-aa2c-3bcd62b39b8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC">
+      <UniqueIdentifier>{7fce6c25-aa53-4027-aa10-d96325e63c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC">
+      <UniqueIdentifier>{ffd4083d-3fdf-4373-8a0a-bcfcac524043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Core">
+      <UniqueIdentifier>{71a013c9-3c8d-4ded-8941-ca73a73024d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Animations">
+      <UniqueIdentifier>{9f98f87a-a6da-4fb6-ab6f-2f10c2d6592c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Animations\Lerp">
+      <UniqueIdentifier>{38512774-ef04-42e3-9acf-3313a15d95cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
-      <Filter>Header Files\EventArgs</Filter>
+      <Filter>Header Files\WARP-GFX\EventArgs</Filter>
     </ClInclude>
     <ClInclude Include="WEntity.h">
-      <Filter>Header Files\Engine\Core</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="WMouse.h">
-      <Filter>Header Files\Engine\Devices</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Devices</Filter>
     </ClInclude>
     <ClInclude Include="WRegistry.h">
-      <Filter>Header Files\Engine\Core</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="WKeyboard.h">
-      <Filter>Header Files\Engine\Devices</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Devices</Filter>
     </ClInclude>
     <ClInclude Include="WEventArgs.h">
-      <Filter>Header Files\Engine\Core</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="WUserSettings.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="WMainWindow.h">
-      <Filter>Header Files\Engine\Main Window</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Main Window</Filter>
     </ClInclude>
     <ClInclude Include="WEntry.h">
-      <Filter>Header Files\Engine\Main Window</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Main Window</Filter>
     </ClInclude>
     <ClInclude Include="WDefines.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="WWin.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="WMath.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\WARP-GFX\Math</Filter>
     </ClInclude>
     <ClInclude Include="WMatrix2.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\WARP-GFX\Math</Filter>
     </ClInclude>
     <ClInclude Include="WMatrix3.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\WARP-GFX\Math</Filter>
     </ClInclude>
     <ClInclude Include="WVector2.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\WARP-GFX\Math</Filter>
     </ClInclude>
     <ClInclude Include="WVector3.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\WARP-GFX\Math</Filter>
     </ClInclude>
     <ClInclude Include="WVector4.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\WARP-GFX\Math</Filter>
     </ClInclude>
     <ClInclude Include="WKeyboardArgs.h">
-      <Filter>Header Files\EventArgs</Filter>
+      <Filter>Header Files\WARP-GFX\EventArgs</Filter>
     </ClInclude>
     <ClInclude Include="WUniqueRegister.h">
-      <Filter>Header Files\Engine\Core</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="WGDIPaintEventArgs.h">
-      <Filter>Header Files\EventArgs</Filter>
+      <Filter>Header Files\WARP-GFX\EventArgs</Filter>
     </ClInclude>
     <ClInclude Include="WContainer.h">
-      <Filter>Header Files\Engine\Containers</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WRegContainer.h">
-      <Filter>Header Files\Engine\Containers</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WDX.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="WSafeRelease.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="WDXContainer.h">
-      <Filter>Header Files\Engine\Containers</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WGraphics.h">
-      <Filter>Header Files\Engine\Graphics</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="WGFXContainer.h">
-      <Filter>Header Files\Engine\Containers</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WButton.h">
-      <Filter>Header Files\Engine\Controls</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="IControl.h">
-      <Filter>Header Files\Engine\Controls</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WCODEC.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="WChrono.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="WAlgorithm.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="WGradientDirection.h">
-      <Filter>Header Files\Engine\Helpers</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="WRect.h">
-      <Filter>Header Files\Engine\Primitives</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="WControlHandler.h">
-      <Filter>Header Files\Engine\Controls</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WPoint.h">
-      <Filter>Header Files\Engine\Primitives</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="WAudio.h">
-      <Filter>Header Files\Audio</Filter>
+      <Filter>Header Files\WARP-GFX\Audio</Filter>
     </ClInclude>
     <ClInclude Include="WMci.h">
-      <Filter>Header Files\Engine\System</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="WAsyncArgs.h">
+      <Filter>Header Files\WARP-ASYNC\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WAsyncWorker.h">
+      <Filter>Header Files\WARP-ASYNC\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WLerp.h">
+      <Filter>Header Files\WARP-ASYNC\Animations\Lerp</Filter>
+    </ClInclude>
+    <ClInclude Include="WLerpArgs.h">
+      <Filter>Header Files\WARP-ASYNC\Animations\Lerp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
-      <Filter>Source Files\Engine\Main Window</Filter>
-    </ClCompile>
-    <ClCompile Include="WEntry.cpp">
-      <Filter>Source Files\Engine\Main Window</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Main Window</Filter>
     </ClCompile>
     <ClCompile Include="WGraphics.cpp">
-      <Filter>Source Files\Engine\Graphics</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="WButton.cpp">
-      <Filter>Source Files\Engine\Controls</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WAudio.cpp">
-      <Filter>Source Files\Engine\Audio</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="WEntry.cpp">
+      <Filter>Source Files\User-Filter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
