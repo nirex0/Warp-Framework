@@ -15,13 +15,8 @@
 #include <thread>
 #include <future>
 
-void SmoothStepHelper(WEntity* sender, WEventArgs* args);
-
 class WSmoothStep : public WEntity
 {
-private:
-	friend void SmoothStepHelper(WEntity* sender, WEventArgs* args);
-
 public:
 	WSmoothStep(W_FLOAT from, W_FLOAT to, W_LONG delay = 1)
 		: m_from(from)
@@ -31,16 +26,12 @@ public:
 	{
 		m_SmoothStepTickRegistry = new WRegistry();
 		m_SmoothStepDoneRegistry = new WRegistry();
-		m_WorkerRegistry = new WRegistry();
-
-		m_WorkerRegistry->Register(SmoothStepHelper);
 	}
 
 	~WSmoothStep()
 	{
 		delete m_SmoothStepTickRegistry;
 		delete m_SmoothStepDoneRegistry;
-		delete m_WorkerRegistry;
 	}
 
 	// Getters
@@ -83,21 +74,28 @@ public:
 private:
 	void WorkerWork(void)
 	{
-		std::lock_guard<std::mutex> lock(m_MutexLock);
+		m_isRunning = true;
 
-		m_value = smoothstep<W_FLOAT>(m_from, m_to, m_value);
-		WSmoothStepArgs* SSArgsTick = new WSmoothStepArgs(m_value);
-		m_SmoothStepTickRegistry->Run(this, SSArgsTick);
-		if (!(m_value > (m_to - 1.0F)))
+		while (!isNear(m_value, m_to, 1))
 		{
-			WSmoothStepArgs* SSArgsDone = new WSmoothStepArgs(m_to);
-			m_SmoothStepDoneRegistry->Run(this, SSArgsDone);
+			std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
+			std::lock_guard<std::mutex> lock(m_MutexLock);
+
+			m_value = smoothstep<W_FLOAT>(m_from, m_to, m_value);
+
+			WSmoothStepArgs* SSArgsTick = new WSmoothStepArgs(m_value);
+			m_SmoothStepTickRegistry->Run(this, SSArgsTick);
 		}
+
+		m_isRunning = false;
+
+		WSmoothStepArgs* SSArgsDone = new WSmoothStepArgs(m_to);
+		m_SmoothStepDoneRegistry->Run(this, SSArgsDone);
 	}
 
 	std::thread WorkThread()
 	{
-		return std::thread([=] { m_WorkerRegistry->Run(this, nullptr); });
+		return std::thread([=] { WorkerWork(); });
 	}
 
 private:
@@ -110,26 +108,9 @@ private:
 	std::mutex m_MutexLock;
 
 	bool m_isRunning;
-	WRegistry* m_WorkerRegistry;
 
 	WRegistry* m_SmoothStepTickRegistry;
 	WRegistry* m_SmoothStepDoneRegistry;
 };
-
-void SmoothStepHelper(WEntity* sender, WEventArgs* args)
-{
-	WSmoothStep* LSender = (WSmoothStep*)(sender);
-
-	LSender->m_isRunning = true;
-
-	while (!(LSender->Value() > LSender->To() - 1))
-	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(LSender->Delay()));
-		LSender->WorkerWork();
-	}
-
-	LSender->m_isRunning = false;
-}
-
 
 #endif // !_W_SMOOTHSTEP_H_
