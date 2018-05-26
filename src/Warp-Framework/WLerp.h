@@ -14,13 +14,8 @@
 #include <thread>
 #include <future>
 
-void LerpHelper(WEntity* sender, WEventArgs* args);
-
 class WLerp : public WEntity
 {
-private:
-	friend void LerpHelper(WEntity* sender, WEventArgs* args);
-
 public:
 	WLerp(W_FLOAT from, W_FLOAT to, W_FLOAT alpha, W_LONG delay = 1)
 		: m_from(from)
@@ -31,16 +26,14 @@ public:
 	{
 		m_LerpTickRegistry = new WRegistry();
 		m_LerpDoneRegistry = new WRegistry();
-		m_WorkerRegistry = new WRegistry();
 
-		m_WorkerRegistry->Register(LerpHelper);
+		//m_WorkerRegistry->Register(std::bind(&WLerp::LerpHelper, this, std::placeholders::_1, std::placeholders::_2));
 	}
 
 	~WLerp()
 	{
 		delete m_LerpTickRegistry;
 		delete m_LerpDoneRegistry;
-		delete m_WorkerRegistry;
 	}
 
 	// Getters
@@ -85,24 +78,29 @@ public:
 private:
 	void WorkerWork(void)
 	{
-		std::lock_guard<std::mutex> lock(m_MutexLock);
-
-		m_value = lerp<W_FLOAT>(m_value, m_to, m_alpha);
-		WLerpArgs* lerpArgsTick = new WLerpArgs(m_value);
-		m_LerpTickRegistry->Run(this, lerpArgsTick);
-		if (!(m_value > (m_to - 1.0F)))
+		m_isRunning = true;
+		while (!isNear(m_value, m_to, 1))
 		{
-			WLerpArgs* lerpArgsDone = new WLerpArgs(m_to);
-			m_LerpDoneRegistry->Run(this, lerpArgsDone);
+			std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
+			std::lock_guard<std::mutex> lock(m_MutexLock);
+
+			m_value = m_value + (m_to - m_value) * m_alpha;
+
+			WLerpArgs* lerpArgsTick = new WLerpArgs(m_value);
+			m_LerpTickRegistry->Run(this, lerpArgsTick);
 		}
+		m_isRunning = false;
+		WLerpArgs* lerpArgsDone = new WLerpArgs(m_to);
+		m_LerpDoneRegistry->Run(this, lerpArgsDone);
 	}
 
 	std::thread WorkThread()
 	{
-		return std::thread([=] { m_WorkerRegistry->Run(this, nullptr); });
+		return std::thread([=] { WorkerWork(); });
 	}
 
 private:
+
 	W_LONG m_delay;
 	W_FLOAT m_value;
 	W_FLOAT m_from;
@@ -113,25 +111,9 @@ private:
 	std::mutex m_MutexLock;
 
 	bool m_isRunning;
-	WRegistry* m_WorkerRegistry;
 
 	WRegistry* m_LerpTickRegistry;
 	WRegistry* m_LerpDoneRegistry;
 };
-
-void LerpHelper(WEntity* sender, WEventArgs* args)
-{
-	WLerp* LSender = (WLerp*)(sender);
-
-	LSender->m_isRunning = true;
-
-	while(!(LSender->Value() > LSender->To() - 1))
-	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(LSender->Delay()));
-		LSender->WorkerWork();
-	}
-
-	LSender->m_isRunning = false;
-}
 
 #endif // !_W_LERP_H_
