@@ -214,6 +214,17 @@ void WMainWindow::MessageLoop(void)
 		}
 		else
 		{
+			// Dragmove
+			if (!WContainer::DragMove())
+			{
+				POINT tmpPoint;
+				GetCursorPos(&tmpPoint);
+				ScreenToClient(WContainer::Handle(), &tmpPoint);
+
+				WContainer::HCX(tmpPoint.x);
+				WContainer::HCY(tmpPoint.y);
+			}
+
 			//Delta time Calculation
 			auto newEndTime = WClock::now();
 			auto frameTime = newEndTime - mLastEndTime;
@@ -237,17 +248,6 @@ void WMainWindow::MessageLoop(void)
 			m_entry->Render(milliseconds);
 			WControlHandler::Render();
 			m_graphics->SafeEndDraw();
-
-			// Dragmove
-			if (!WContainer::DragMove())
-			{
-				POINT tmpPoint;
-				GetCursorPos(&tmpPoint);
-				ScreenToClient(WContainer::Handle(), &tmpPoint);
-
-				WContainer::HCX(tmpPoint.x);
-				WContainer::HCY(tmpPoint.y);
-			}
 
 			if (WContainer::DragMove())
 			{
