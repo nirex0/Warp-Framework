@@ -9,7 +9,7 @@
 #include <vector>
 #include <functional>
 
-typedef std::function<void __stdcall (WEntity* sender, WEventArgs* args)> Annex;
+typedef std::function<void(WEntity* sender, WEventArgs* args)> Annex;
 
 class WRegistry final : public WEntity
 {
