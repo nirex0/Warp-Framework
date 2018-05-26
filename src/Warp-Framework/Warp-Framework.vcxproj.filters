@@ -105,9 +105,6 @@
     <ClInclude Include="WMouse.h">
       <Filter>Header Files\WARP-GFX\Engine\Devices</Filter>
     </ClInclude>
-    <ClInclude Include="WRegistry.h">
-      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="WKeyboard.h">
       <Filter>Header Files\WARP-GFX\Engine\Devices</Filter>
     </ClInclude>
@@ -227,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="WSmoothStepArgs.h">
       <Filter>Header Files\WARP-ASYNC\Animations\Smoothstep</Filter>
+    </ClInclude>
+    <ClInclude Include="WRegistry.h">
+      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
