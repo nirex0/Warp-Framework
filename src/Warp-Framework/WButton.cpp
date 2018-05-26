@@ -21,8 +21,8 @@ WButton::WButton(W_INT zIndex)
 	BtnMouseEnterRegistery = new WRegistry();
 	BtnMouseLeaveRegistery = new WRegistry();
 
-	ExBordLerpExtend = new WLerp(500, 100, 0.06, 1);
-	ExBordLerpShrink = new WLerp(100, 500, 0.06, 1);
+	ExBordLerpExtend = new WLerp(500, 100, 0.07, 1);
+	ExBordLerpShrink = new WLerp(100, 500, 0.07, 1);
 
 	ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Shrink, this, std::placeholders::_1, std::placeholders::_2));
@@ -472,6 +472,7 @@ void WButton::MouseEnter(WMouseArgs* Args)
 	{
 		if (IsShrinked && !IsExtending)
 		{
+			ExBordLerpShrink->Lock();
 			IsExtending = true;
 			ExBordLerpExtend->Perform();
 		}
@@ -494,6 +495,8 @@ void WButton::MouseLeave(WMouseArgs* Args)
 	{
 		if (!IsShrinking)
 		{
+			ExBordLerpExtend->Lock();
+			ExBordLerpShrink->Unlock();
 			IsShrinking = true;
 			ExBordLerpShrink->Perform();
 		}
@@ -619,6 +622,7 @@ void WButton::Shrink(WEntity* sender, WEventArgs* args)
 
 void WButton::ExtendDone(WEntity* sender, WEventArgs* args)
 {
+	ExBordLerpShrink->Unlock();
 	IsExtending = false;
 	IsExtended = true;
 	IsShrinked = false;
@@ -626,6 +630,7 @@ void WButton::ExtendDone(WEntity* sender, WEventArgs* args)
 
 void WButton::ShrinkDone(WEntity* sender, WEventArgs* args)
 {
+	ExBordLerpExtend->Unlock();
 	IsShrinking = false;
 	IsExtended = false;
 	IsShrinked = true;
