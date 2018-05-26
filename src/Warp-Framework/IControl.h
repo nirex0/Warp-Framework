@@ -46,13 +46,11 @@ public:
 	virtual W_INT ZIndex(void) const = 0;
 	virtual bool IsEnabled(void) const = 0;
 	virtual bool IsVisible(void) const = 0;
-	virtual bool AutoRender(void) const = 0;
 
 	// Setters
 	virtual W_INT ZIndex(W_INT input) = 0;
 	virtual bool IsEnabled(bool input) = 0;
 	virtual bool IsVisible(bool input) = 0;
-	virtual bool AutoRender(bool input) = 0;
 
 	// Events
 	virtual void MouseDown(WMouseArgs* Args) = 0;
@@ -63,8 +61,11 @@ public:
 	virtual void MouseRollDown(WMouseArgs* Args) = 0;
 
 	// Helpers
+	virtual void UpdateRect(void) = 0;
 	virtual bool IsWithin(WMouseArgs* Args) const = 0;
 	virtual void SetZIndexNoChange(W_INT zIndex) = 0;
+	virtual W_INT GetWidth(void) const = 0;
+	virtual W_INT GetHeight(void) const = 0;
 
 	// Visual
 	virtual void Render(void) = 0;
