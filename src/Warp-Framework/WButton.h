@@ -13,6 +13,8 @@
 
 #include "WMouse.h"
 
+#include "WLerp.h"
+
 class WButton : public IControl
 {
 public:
@@ -36,21 +38,18 @@ public:
 	
 	// Setters
 	W_FLOAT BorderThickness(W_FLOAT f);
-	W_FLOAT BorderRadius(W_FLOAT f);
 	W_COLOR Foreground(W_COLOR col);
 	W_COLOR Background(W_COLOR col);
 	W_COLOR BorderBrush(W_COLOR col);
 
 	// Getters
 	W_FLOAT BorderThickness(void) const;
-	W_FLOAT BorderRadius(void) const;
 	W_COLOR Foreground(void) const;
 	W_COLOR Background(void) const;
 	W_COLOR BorderBrush(void) const;
 
 	// Functions
 	void Render(void) override;
-	void UpdateRect(void);
 
 	WPointF Displace(W_FLOAT X, W_FLOAT Y) override;
 	WPointF Displace(WPointF XY) override;
@@ -72,16 +71,14 @@ public:
 	WRegistry* MouseRollDownRegistery(WRegistry* intake) override;
 
 	// Getters
-	W_INT ZIndex(void) const;
+	W_INT ZIndex(void) const override;
 	bool IsEnabled(void) const override;
 	bool IsVisible(void) const override;
-	bool AutoRender(void) const override;
 
 	// Setters
-	W_INT ZIndex(W_INT input);
+	W_INT ZIndex(W_INT input) override;
 	bool IsEnabled(bool input) override;
 	bool IsVisible(bool input) override;
-	bool AutoRender(bool input) override;
 
 	// Events
 	void MouseDown(WMouseArgs* Args) override;
@@ -103,10 +100,32 @@ public:
 	W_FLOAT					FontSize(W_FLOAT intake);
 
 	// Helpers
+	void UpdateRect(void) override;
 	bool IsWithin(WMouseArgs* Args) const;
 	void SetZIndexNoChange(W_INT zIndex);
+	W_INT GetWidth(void) const override;
+	W_INT GetHeight(void) const override;
 
 private:
+	// Extended Border
+	void Extend(WEntity* sender, WEventArgs* args);
+	void Shrink(WEntity* sender, WEventArgs* args);
+
+	void ExtendDone(WEntity* sender, WEventArgs* args);
+	void ShrinkDone(WEntity* sender, WEventArgs* args);
+
+	bool IsExtended = false;
+	bool IsShrinked = true;
+
+	bool IsExtending = false;
+	bool IsShrinking = false;
+
+	WLerp* ExBordLerpExtend;
+	WLerp* ExBordLerpShrink;
+
+	W_FLOAT ExBordRatio;
+
+	// Normal
 	W_INT m_zIndex;
 
 	wchar_t* m_Content;
@@ -116,7 +135,6 @@ private:
 
 	bool m_isEnabled;
 	bool m_isVisible;
-	bool m_autoRender;
 
 	W_FLOAT m_top;
 	W_FLOAT m_left;
@@ -124,7 +142,6 @@ private:
 	W_FLOAT m_right;
 	
 	W_FLOAT m_thickness;
-	W_FLOAT m_borderRad;
 
 	W_COLOR foreColor;
 	W_COLOR backColor;
@@ -140,8 +157,6 @@ private:
 
 	WRegistry* BtnMouseRollUpRegistery;
 	WRegistry* BtnMouseRollDownRegistery;
-
-
 };
 
 #endif // !_W_BUTTON_H_
