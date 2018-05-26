@@ -35,5 +35,19 @@ inline T smoothstep(W_FLOAT from, W_FLOAT to, W_FLOAT x)
 	return x * x * (3 - 2 * x);
 }
 
+inline bool isNear(W_FLOAT a, W_FLOAT b, W_FLOAT min)
+{
+	if (a > b)
+	{
+		if (a - b < min) { return true; }
+		else { return false; }
+	}
+	else
+	{
+		if (b - a < min) { return true; }
+		else { return false; }
+	}
+}
+
 #endif // !_W_MATH_H_
 
