@@ -56,7 +56,7 @@ PLANS
 
 - ✔️ Predefined animation formulae (Lerp, Smoothstep, etc...)
 
-- 🔧 Smooth Color Changing (Lerp)
+- 🔧 Smooth Color Changing (Normal / Lerp)
 
 ### WARP-NETWORK
 
@@ -68,11 +68,11 @@ PLANS
 
 ### WARP-SECURITY
 
-- ⚠️ Custom data Encryption algorithms
+- ❌ Custom data Encryption algorithms
 
-- ⚠️ Custom Steganography support
+- ❌ Custom Steganography support
 
-- ⚙️ Custom data format for local storage (.WCX(Warp Container Extended))
+- ❌ Custom data format for local storage (.WCX(Warp Container Extended))
 
 
 #### LEGEND
