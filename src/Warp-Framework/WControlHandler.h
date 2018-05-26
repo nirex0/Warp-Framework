@@ -84,10 +84,7 @@ public:
 	{
 		for (const auto &p : mtcp)
 		{
-			if (mtcp.at(p.first)->AutoRender())
-			{
-				mtcp.at(p.first)->Render();
-			}
+			mtcp.at(p.first)->Render();
 		}
 	}
 private:
