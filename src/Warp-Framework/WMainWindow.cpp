@@ -221,6 +221,7 @@ void WMainWindow::MessageLoop(void)
 				GetCursorPos(&tmpPoint);
 				ScreenToClient(WContainer::Handle(), &tmpPoint);
 
+				// HC Stands for 'Helper Coordinate'
 				WContainer::HCX(tmpPoint.x);
 				WContainer::HCY(tmpPoint.y);
 			}
@@ -246,6 +247,8 @@ void WMainWindow::MessageLoop(void)
 			m_graphics->SafeBeginDraw();
 			m_graphics->ClearWindow(D2D1::ColorF((W_FLOAT)WContainer::BackR() / 255, (W_FLOAT)WContainer::BackG() / 255, (W_FLOAT)WContainer::BackB() / 255, (W_FLOAT)WContainer::BackA() / 255));
 			m_entry->Render(milliseconds);
+			
+			// Render all the controls
 			WControlHandler::Render();
 			m_graphics->SafeEndDraw();
 
@@ -273,6 +276,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		W_UINT height = HIWORD(lParam);
 		WContainer::Width((W_INT)width);
 		WContainer::Height((W_INT)height);
+
 		break;
 	}
 
@@ -290,7 +294,8 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		break;
 	}
 
-	// PAINT MESSAGE (ALSO SUPPORTS GDI)
+	// PAINT MESSAGE (#Define WARP_GDI_SUPPORT to Enable WM_PAINT and GDI Support)
+#ifdef WARP_GDI_SUPPORT
 	case WM_PAINT:
 	{
 		PAINTSTRUCT ps;
@@ -303,6 +308,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		EndPaint(hWnd, &ps);
 		break;
 	}
+#endif WARP_GDI_SUPPORT
 
 	// KEYBOARD MESSAGES
 	case WM_KEYDOWN:
