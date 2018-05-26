@@ -52,9 +52,6 @@ typedef float					W_FLOAT;
 typedef double					W_DOUBLE;
 typedef double					DELTATIME;
 
-typedef ID2D1Bitmap				W_IMAGE;
-typedef D2D1_COLOR_F			W_COLOR;
-
 typedef struct					W_8BSCT
 {
 	bool BIT0 : 1;
