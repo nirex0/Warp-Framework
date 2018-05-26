@@ -3,7 +3,6 @@
 #ifndef _W_SMOOTHSTEP_H_
 #define _W_SMOOTHSTEP_H_
 
-
 #include "WEntity.h"
 #include "WSmoothStepArgs.h"
 #include "WMath.h"
@@ -26,6 +25,8 @@ public:
 	{
 		m_SmoothStepTickRegistry = new WRegistry();
 		m_SmoothStepDoneRegistry = new WRegistry();
+
+		m_isLocked = false;
 	}
 
 	~WSmoothStep()
@@ -71,12 +72,15 @@ public:
 		}
 	}
 
+	bool IsLocked(void) const { return m_isLocked; }
+	void Lock(void) { m_isLocked = true; }
+	void Unlock(void) { m_isLocked = false; }
+
 private:
 	void WorkerWork(void)
 	{
 		m_isRunning = true;
-
-		while (!isNear(m_value, m_to, 1))
+		while (!isNear(m_value, m_to, 1) && !m_isLocked)
 		{
 			std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
 			std::lock_guard<std::mutex> lock(m_MutexLock);
@@ -86,9 +90,7 @@ private:
 			WSmoothStepArgs* SSArgsTick = new WSmoothStepArgs(m_value);
 			m_SmoothStepTickRegistry->Run(this, SSArgsTick);
 		}
-
 		m_isRunning = false;
-
 		WSmoothStepArgs* SSArgsDone = new WSmoothStepArgs(m_to);
 		m_SmoothStepDoneRegistry->Run(this, SSArgsDone);
 	}
@@ -108,6 +110,7 @@ private:
 	std::mutex m_MutexLock;
 
 	bool m_isRunning;
+	bool m_isLocked;
 
 	WRegistry* m_SmoothStepTickRegistry;
 	WRegistry* m_SmoothStepDoneRegistry;

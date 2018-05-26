@@ -27,7 +27,7 @@ public:
 		m_LerpTickRegistry = new WRegistry();
 		m_LerpDoneRegistry = new WRegistry();
 
-		//m_WorkerRegistry->Register(std::bind(&WLerp::LerpHelper, this, std::placeholders::_1, std::placeholders::_2));
+		m_isLocked = false;
 	}
 
 	~WLerp()
@@ -75,11 +75,15 @@ public:
 		}
 	}
 
+	bool IsLocked(void) const { return m_isLocked; }
+	void Lock(void) { m_isLocked = true; }
+	void Unlock(void) { m_isLocked = false; }
+
 private:
 	void WorkerWork(void)
 	{
 		m_isRunning = true;
-		while (!isNear(m_value, m_to, 1))
+		while (!isNear(m_value, m_to, 1) && !m_isLocked)
 		{
 			std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
 			std::lock_guard<std::mutex> lock(m_MutexLock);
@@ -100,7 +104,6 @@ private:
 	}
 
 private:
-
 	W_LONG m_delay;
 	W_FLOAT m_value;
 	W_FLOAT m_from;
@@ -111,6 +114,7 @@ private:
 	std::mutex m_MutexLock;
 
 	bool m_isRunning;
+	bool m_isLocked;
 
 	WRegistry* m_LerpTickRegistry;
 	WRegistry* m_LerpDoneRegistry;
