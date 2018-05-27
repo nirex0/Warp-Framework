@@ -51,11 +51,11 @@ public:
 	WRegistry* TickRegistry(WRegistry* intake) { m_LerpTickRegistry = intake; return m_LerpTickRegistry; }
 	WRegistry* DoneRegistry(WRegistry* intake) { m_LerpDoneRegistry = intake; return m_LerpDoneRegistry; }
 
-	W_LONG Delay(W_LONG intake) const { intake = m_delay; return m_delay; }
-	W_FLOAT Value(W_FLOAT intake) const { intake = m_value; return m_value; }
-	W_FLOAT From(W_FLOAT intake) const { intake = m_from; return m_from; }
-	W_FLOAT To(W_FLOAT intake) const { intake = m_to; return m_to; }
-	W_FLOAT Alpha(W_FLOAT intake) const { intake = m_alpha; return m_alpha; }
+	W_LONG Delay(W_LONG intake) { m_delay = intake; return m_delay; }
+	W_FLOAT Value(W_FLOAT intake) { m_value = intake; return m_value; }
+	W_FLOAT From(W_FLOAT intake) { m_from = intake; return m_from; }
+	W_FLOAT To(W_FLOAT intake) { m_to = intake; return m_to; }
+	W_FLOAT Alpha(W_FLOAT intake) { m_alpha = intake; return m_alpha; }
 
 	// Functions
 	void Perform(void)
