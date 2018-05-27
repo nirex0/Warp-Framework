@@ -111,6 +111,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WColorTransform.h" />
+    <ClInclude Include="WColorTransformArgs.h" />
     <ClInclude Include="WSmoothStepArgs.h" />
     <ClInclude Include="WSmoothStep.h" />
     <ClInclude Include="WAsyncArgs.h" />

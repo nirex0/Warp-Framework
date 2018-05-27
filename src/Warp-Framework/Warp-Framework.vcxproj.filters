@@ -94,6 +94,9 @@
     <Filter Include="Header Files\WARP-ASYNC\Animations\Smoothstep">
       <UniqueIdentifier>{e996a232-b2dd-4077-ba38-296b52720811}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Animations\Color">
+      <UniqueIdentifier>{cc7ea95d-2a17-4594-ab83-02bdcb4e7420}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -227,6 +230,12 @@
     </ClInclude>
     <ClInclude Include="WRegistry.h">
       <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WColorTransform.h">
+      <Filter>Header Files\WARP-ASYNC\Animations\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="WColorTransformArgs.h">
+      <Filter>Header Files\WARP-ASYNC\Animations\Color</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
