@@ -21,7 +21,9 @@ public:
 	WColorTransform(W_COLOR From, W_COLOR To, W_FLOAT alpha, W_LONG Delay)
 		: m_from(From)
 		, m_to(To)
+		, m_alpha(alpha)
 		, m_delay(Delay)
+		, m_value(From)
 	{
 		m_CTTickRegistry = new WRegistry();
 		m_CTDoneRegistry = new WRegistry();
@@ -50,11 +52,11 @@ public:
 	WRegistry* TickRegistry(WRegistry* intake) { m_CTTickRegistry = intake; return m_CTTickRegistry; }
 	WRegistry* DoneRegistry(WRegistry* intake) { m_CTDoneRegistry = intake; return m_CTDoneRegistry; }
 
-	W_LONG Delay(W_LONG intake) const { intake = m_delay; return m_delay; }
-	W_FLOAT Alpha(W_FLOAT intake) const { intake = m_alpha; return m_alpha; }
-	W_COLOR Value(W_COLOR intake) const { intake = m_value; return m_value; }
-	W_COLOR From(W_COLOR intake) const { intake = m_from; return m_from; }
-	W_COLOR To(W_COLOR intake) const { intake = m_to; return m_to; }
+	W_LONG Delay(W_LONG intake) { m_delay = intake; return m_delay; }
+	W_FLOAT Alpha(W_FLOAT intake) { m_alpha = intake; return m_alpha; }
+	W_COLOR Value(W_COLOR intake) { m_value = intake; return m_value; }
+	W_COLOR From(W_COLOR intake) { m_from = intake; return m_from; }
+	W_COLOR To(W_COLOR intake) { m_to = intake; return m_to; }
 	
 	// Functions
 	void Perform(void)
@@ -83,12 +85,16 @@ private:
 	{
 		m_isRunning = true;
 		while (
-			!isNear(m_from.r * 255, m_to.r * 255, 1) ||
-			!isNear(m_from.g * 255, m_to.g * 255, 1) ||
-			!isNear(m_from.b * 255, m_to.b * 255, 1) ||
-			!isNear(m_from.a * 255, m_to.a * 255, 1) 
-			&& !m_isLocked)
+			!isNear(m_value.r, m_to.r, 0.01) ||
+			!isNear(m_value.g, m_to.g, 0.01) ||
+			!isNear(m_value.b, m_to.b, 0.01) ||
+			!isNear(m_value.a, m_to.a, 0.01))
 		{
+			if (m_isLocked)
+			{
+				break;
+			}
+
 			std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
 			std::lock_guard<std::mutex> lock(m_MutexLock);
 
@@ -103,6 +109,7 @@ private:
 		m_isRunning = false;
 		WColorTransformArgs* CTArgsDone = new WColorTransformArgs(m_to);
 		m_CTDoneRegistry->Run(this, CTArgsDone);
+
 	}
 
 	std::thread WorkThread()
