@@ -56,7 +56,7 @@ PLANS
 
 - ✔️ Predefined animation formulae (Lerp, Smoothstep, etc...)
 
-- 🔧 Smooth Color Changing (Normal / Lerp)
+- ✔️ Smooth Color Changing (Lerp)
 
 ### WARP-NETWORK
 
