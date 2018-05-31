@@ -109,7 +109,6 @@ private:
 		m_isRunning = false;
 		WColorTransformArgs* CTArgsDone = new WColorTransformArgs(m_to);
 		m_CTDoneRegistry->Run(this, CTArgsDone);
-
 	}
 
 	std::thread WorkThread()
