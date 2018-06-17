@@ -48,7 +48,7 @@ PLANS
 
 - ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
 
-- ❌ Vector Graphics (.SWF)
+- ❌ Vector Graphics (.WVF(Warp Vector File))
 
 - ❌ OpenGL Implementation
 
