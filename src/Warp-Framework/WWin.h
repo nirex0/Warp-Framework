@@ -6,12 +6,15 @@
 #ifndef _STD_WINDOWS_H_
 #define _STD_WINDOWS_H_
 
+#undef WINVER 
 #define WINVER 0x0501
+
+#undef _WIN32_WINNT 
 #define _WIN32_WINNT 0x0501
 
 #define WIN32_LEAN_AND_MEAN
 #define NOGDICAPMASKS
-//#define NOSYSMETRICS
+//#define NOSYSMETRICS /* We actually need this one! */
 #define NOMENUS
 #define NOICONS
 #define NOSYSCOMMANDS
