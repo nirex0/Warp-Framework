@@ -237,6 +237,9 @@
     <ClInclude Include="WColorTransformArgs.h">
       <Filter>Header Files\WARP-ASYNC\Animations\Color</Filter>
     </ClInclude>
+    <ClInclude Include="WListBox.h">
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -253,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="WEntry.cpp">
       <Filter>Source Files\User-Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="WListBox.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
