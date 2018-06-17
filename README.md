@@ -24,29 +24,31 @@ PLANS
 
 - ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
-- ⚠️ Intractable Controls
+- ⚙️ Intractable Controls
 
 - ✔️ Texture Support (All Formats)
 
-- ✔️ Double Buffering
+- ✔️ Render Double Buffering
 
-- ✔️ zIndex
+- ✔️ Control zIndex
 
-- ✔️ Transparency
+- ✔️ Window Transparency
 
 - ✔️ Gradient (Linear / Radial)
 
+- ✔️ Render Masking
+
+- ✔️ Child-Parent Relation between Controls 
+
 - ✔️ Audio Support (All Formats)
 
-- ⚙️ Video Support (All Formats)
+- ⚠️ Video Support (All Formats)
 
-- ⚙️ Custom 2D Space
+- ⚠️ Custom 2D Space
 
 - ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
 
-- ❌ Vector Graphics
-
-- ❌ WCSL (Warp Control Style Language)
+- ❌ Vector Graphics (.SWF)
 
 - ❌ OpenGL Implementation
 
