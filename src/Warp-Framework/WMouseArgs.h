@@ -19,8 +19,8 @@ public:
 	WMouseArgs(W_INT x, W_INT y, WMouseKey key, KeyState keyState)
 	{
 		this->m_wmk = key;
-		this->m_Point.X(x);
-		this->m_Point.Y(y);
+		this->m_Point.X((W_FLOAT)x);
+		this->m_Point.Y((W_FLOAT)y);
 		this->m_keyState = keyState;
 	}
 
@@ -48,12 +48,12 @@ public:
 
 	W_INT X(void) const
 	{
-		return m_Point.X();
+		return (W_INT)m_Point.X();
 	}
 
 	W_INT Y(void) const
 	{
-		return m_Point.Y();
+		return (W_INT)m_Point.Y();
 	}
 
 	KeyState State(void) const

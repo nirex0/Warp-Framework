@@ -85,10 +85,10 @@ private:
 	{
 		m_isRunning = true;
 		while (
-			!isNear(m_value.r, m_to.r, 0.01) ||
-			!isNear(m_value.g, m_to.g, 0.01) ||
-			!isNear(m_value.b, m_to.b, 0.01) ||
-			!isNear(m_value.a, m_to.a, 0.01))
+			!isNear(m_value.r, m_to.r, 0.01F) ||
+			!isNear(m_value.g, m_to.g, 0.01F) ||
+			!isNear(m_value.b, m_to.b, 0.01F) ||
+			!isNear(m_value.a, m_to.a, 0.01F))
 		{
 			if (m_isLocked)
 			{
