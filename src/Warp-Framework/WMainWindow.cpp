@@ -50,6 +50,11 @@ WUniqueRegister* WRegContainer::WND_OnGDIPaint = {};
 // Same with the GFX Container
 WGraphics* WGraphicsContainer::gfx = {};
 
+// D2D1_RENDER_TARGET_TYPE_HARDWARE	: The main render target uses hardware rendering only.
+// D2D1_RENDER_TARGET_TYPE_SOFTWARE	: The main render target uses software rendering only.
+// D2D1_RENDER_TARGET_TYPE_DEFAULT	: The main render target uses hardware rendering, if available; otherwise, it uses software rendering.
+D2D1_RENDER_TARGET_TYPE WGraphicsContainer::main_rttype = D2D1_RENDER_TARGET_TYPE_DEFAULT;
+
 // C-Style wWinMain function
 W_INT WARP_ENTRY wWinMain(
 	HINSTANCE hInstance,
