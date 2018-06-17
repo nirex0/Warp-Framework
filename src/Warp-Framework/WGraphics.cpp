@@ -37,8 +37,8 @@ HRESULT WGraphics::CreateDeviceResources()
 	tmpPt0.y = 0;
 
 	POINTF tmpPt1;
-	tmpPt1.x = WContainer::Width();
-	tmpPt1.y = WContainer::Height();
+	tmpPt1.x = (W_FLOAT)WContainer::Width();
+	tmpPt1.y = (W_FLOAT)WContainer::Height();
 
 	WContainer::hResult(CreateFactory());
 	WContainer::hResult(CreateRenderTarget());
@@ -56,8 +56,8 @@ HRESULT WGraphics::UpdateDeviceResources()
 	tmpPt0.y = 0;
 
 	POINTF tmpPt1;
-	tmpPt1.x = WContainer::Width();
-	tmpPt1.y = WContainer::Height();
+	tmpPt1.x = (W_FLOAT)WContainer::Width();
+	tmpPt1.y = (W_FLOAT)WContainer::Height();
 
 	WContainer::hResult(UpdateFactory());
 	WContainer::hResult(UpdateRenderTarget());
@@ -103,7 +103,7 @@ HRESULT WGraphics::CreateRenderTarget(void)
 		UpdateClientRect();
 
 		WContainer::hResult(m_pD2D1Factory->CreateHwndRenderTarget(
-			D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT),
+			D2D1::RenderTargetProperties(WGraphicsContainer::RenderMethod()),
 			D2D1::HwndRenderTargetProperties(
 				WContainer::Handle(),
 				D2D1::SizeU(
@@ -126,7 +126,7 @@ HRESULT WGraphics::UpdateRenderTarget(void)
 		UpdateClientRect();
 
 		WContainer::hResult(m_pD2D1Factory->CreateHwndRenderTarget(
-			D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT),
+			D2D1::RenderTargetProperties(WGraphicsContainer::RenderMethod()),
 			D2D1::HwndRenderTargetProperties(
 				WContainer::Handle(),
 				D2D1::SizeU(
@@ -471,7 +471,7 @@ HRESULT WGraphics::ClearWindow(W_COLOR color)
 	D2D1_COLOR_F tmpCol(m_pSolidColorBrush->GetColor());
 
 	CreateSolidColorBrush(color);
-	m_pD2D1RenderTarget->FillRectangle(D2D1::RectF(m_ScreenRect.left, m_ScreenRect.top, m_ScreenRect.right, m_ScreenRect.bottom), m_pSolidColorBrush);
+	m_pD2D1RenderTarget->FillRectangle(D2D1::RectF((W_FLOAT)m_ScreenRect.left, (W_FLOAT)m_ScreenRect.top, (W_FLOAT)m_ScreenRect.right, (W_FLOAT)m_ScreenRect.bottom), m_pSolidColorBrush);
 
 	m_pSolidColorBrush->SetColor(tmpCol);
 	return WContainer::hResult(S_OK);
@@ -752,7 +752,6 @@ HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOA
 	D2D1RECTF.radiusY = bord_radius;
 
 	m_pSolidColorBrush->SetColor(bord_color);
-	//CreateSolidColorBrush(bord_color);
 	m_pD2D1RenderTarget->DrawRoundedRectangle(D2D1RECTF, m_pSolidColorBrush, bord_thickness);
 
 	return WContainer::hResult(S_OK);
@@ -1133,6 +1132,9 @@ void W_MAIN_WINDOW::ResizeWindow(W_INT X, W_INT Y)
 		, X				// Width
 		, Y				// Height 
 		, NULL);
+
+	WContainer::Width(X);
+	WContainer::Height(Y);
 }
 
 void W_MAIN_WINDOW::RepositionWindow(W_INT X, W_INT Y)
@@ -1145,6 +1147,9 @@ void W_MAIN_WINDOW::RepositionWindow(W_INT X, W_INT Y)
 		, wndRect.right - wndRect.left	// Width
 		, wndRect.bottom - wndRect.top	// Height
 		, NULL);
+
+	WContainer::Width(wndRect.right - wndRect.left);
+	WContainer::Height(wndRect.bottom - wndRect.top);
 }
 
 void W_MAIN_WINDOW::DragMoveWindow(W_INT Yoffset)
