@@ -4,16 +4,14 @@
 #define _W_BUTTON_H_
 
 #include "WGFXContainer.h"
-
 #include "WRECTF.h"
 #include "IControl.h"
 #include "WPoint.h"
 #include "WRect.h"
 #include "WContainer.h"
-
 #include "WMouse.h"
-
 #include "WLerp.h"
+#include "WColorTransform.h"
 
 class WButton : public IControl
 {
@@ -88,6 +86,10 @@ public:
 	void MouseRollUp(WMouseArgs* Args) override;
 	void MouseRollDown(WMouseArgs* Args) override;
 
+	// Parent
+	IControl* Parent(IControl* intake) override;
+	IControl* Parent(void) const override;
+
 	// Getters
 	wchar_t*				FontFamily(void) const;
 	wchar_t*				Content(UINT32& outLen) const;
@@ -106,6 +108,10 @@ public:
 	W_INT GetWidth(void) const override;
 	W_INT GetHeight(void) const override;
 
+	// Extended Border
+	bool UseExtendedBorder(void) const;
+	bool UseExtendedBorder(bool intake);
+	
 private:
 	// Extended Border
 	void Extend(WEntity* sender, WEventArgs* args);
@@ -125,6 +131,8 @@ private:
 
 	W_FLOAT ExBordRatio;
 
+	bool m_UseExtendedBorder;
+
 	// Normal
 	W_INT m_zIndex;
 
@@ -135,7 +143,7 @@ private:
 
 	bool m_isEnabled;
 	bool m_isVisible;
-
+	
 	W_FLOAT m_top;
 	W_FLOAT m_left;
 	W_FLOAT m_bottom;
@@ -157,6 +165,8 @@ private:
 
 	WRegistry* BtnMouseRollUpRegistery;
 	WRegistry* BtnMouseRollDownRegistery;
+
+	IControl* m_Parent;
 };
 
 #endif // !_W_BUTTON_H_

@@ -59,7 +59,11 @@ public:
 	virtual void MouseLeave(WMouseArgs* Args) = 0;
 	virtual void MouseRollUp(WMouseArgs* Args) = 0;
 	virtual void MouseRollDown(WMouseArgs* Args) = 0;
-
+	
+	// Parent
+	virtual IControl* Parent(IControl* intake) = 0;
+	virtual IControl* Parent(void) const = 0;
+	
 	// Helpers
 	virtual void UpdateRect(void) = 0;
 	virtual bool IsWithin(WMouseArgs* Args) const = 0;
