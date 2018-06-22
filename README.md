@@ -24,7 +24,7 @@ PLANS
 
 - ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
-- ⚙️ Intractable Controls
+- ⚙️ Intractable Controls*
 
 - ✔️ Texture Support (All Formats)
 
@@ -51,6 +51,28 @@ PLANS
 - ❌ Vector Graphics (.WVF(Warp Vector File))
 
 - ❌ OpenGL Implementation
+
+#### CONTROLS
+
+- ✔️ Button
+
+- ✔️ List Box
+
+- ✔️ List Box Item
+
+- ⚙️ Text Box
+
+- ⚙️ Progress Bar
+
+- ⚙️ Toggle Button
+
+- ⚙️ Check Box
+
+- ⚙️ Radio Button
+
+- ⚙️ Seek Bar
+
+- ⚙️ Media Viewer (Video, Audio, Image)
 
 ### WARP-ASYNC
 
