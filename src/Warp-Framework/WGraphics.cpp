@@ -1055,7 +1055,7 @@ HRESULT WGraphics::DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity)
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color)
+HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment)
 {
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
@@ -1067,6 +1067,21 @@ HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, 
 	FontFamily(fontfamily);
 	UpdateFormat();
 
+	switch (alignment)
+	{
+	case WTA_RightToLeft:
+		m_pIDWriteTextFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT::DWRITE_TEXT_ALIGNMENT_TRAILING);
+		break;
+	case WTA_Center:
+		m_pIDWriteTextFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT::DWRITE_TEXT_ALIGNMENT_CENTER);
+		break;
+	case WTA_LeftToRight:
+		m_pIDWriteTextFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT::DWRITE_TEXT_ALIGNMENT_LEADING);
+		break;
+	default:
+		break;
+	}
+	
 	CreateSolidColorBrush(text_color);
 	m_pD2D1RenderTarget->DrawTextW(text, strLengh, m_pIDWriteTextFormat, D2D1RECTF, m_pSolidColorBrush);
 

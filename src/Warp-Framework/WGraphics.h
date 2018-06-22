@@ -8,6 +8,7 @@
 #include "WDefines.h"
 #include "WRECTF.h"
 #include "WRect.h"
+#include "WTextAlignment.h"
 #include "WGradientDirection.h"
 
 class WGraphics : public WEntity
@@ -97,7 +98,7 @@ public:
 	HRESULT LoadIMG(LPCWSTR uri, W_IMAGE** ppImage);
 	HRESULT DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity);
 	
-	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color);
+	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment = WTA_Center);
 	
 	// Primitive Component Drawing
 	HRESULT DrawRect(WRECTF boundaryRect, WRectF borderThickness, W_COLOR bord_color);
