@@ -1,3 +1,5 @@
+//© 2018 NIREX ALL RIGHTS RESERVED
+
 #include "WButton.h"
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
@@ -22,6 +24,8 @@ WButton::WButton(W_INT zIndex)
 	BtnMouseUpRegistery = new WRegistry();
 	BtnMouseEnterRegistery = new WRegistry();
 	BtnMouseLeaveRegistery = new WRegistry();
+	BtnMouseRollUpRegistery = new WRegistry();
+	BtnMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -61,6 +65,17 @@ WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT
 	BtnMouseUpRegistery = new WRegistry();
 	BtnMouseEnterRegistery = new WRegistry();
 	BtnMouseLeaveRegistery = new WRegistry();
+	BtnMouseRollUpRegistery = new WRegistry();
+	BtnMouseRollDownRegistery = new WRegistry();
+
+	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
+	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
+
+	ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
+	ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Shrink, this, std::placeholders::_1, std::placeholders::_2));
+
+	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
+	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_isEnabled = true;
 	m_isVisible = true;
@@ -91,6 +106,17 @@ WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	BtnMouseUpRegistery = new WRegistry();
 	BtnMouseEnterRegistery = new WRegistry();
 	BtnMouseLeaveRegistery = new WRegistry();
+	BtnMouseRollUpRegistery = new WRegistry();
+	BtnMouseRollDownRegistery = new WRegistry();
+
+	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
+	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
+
+	ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
+	ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Shrink, this, std::placeholders::_1, std::placeholders::_2));
+
+	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
+	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_isEnabled = true;
 	m_isVisible = true;
@@ -121,6 +147,17 @@ WButton::WButton(WRectF location, W_INT zIndex)
 	BtnMouseUpRegistery = new WRegistry();
 	BtnMouseEnterRegistery = new WRegistry();
 	BtnMouseLeaveRegistery = new WRegistry();
+	BtnMouseRollUpRegistery = new WRegistry();
+	BtnMouseRollDownRegistery = new WRegistry();
+
+	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
+	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
+
+	ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
+	ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Shrink, this, std::placeholders::_1, std::placeholders::_2));
+
+	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
+	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_isEnabled = true;
 	m_isVisible = true;
@@ -138,6 +175,11 @@ WButton::~WButton(void)
 	delete BtnMouseUpRegistery;
 	delete BtnMouseEnterRegistery;
 	delete BtnMouseLeaveRegistery;
+	delete BtnMouseRollUpRegistery;
+	delete BtnMouseRollDownRegistery;
+	
+	delete ExBordLerpExtend;
+	delete ExBordLerpShrink;
 
 	WControlHandler::Remove(this);
 }
@@ -293,13 +335,12 @@ void WButton::Render(void)
 	ID2D1GeometrySink* pSink = NULL;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
-	pSink->BeginFigure(D2D1::Point2F(ParentRect.top, ParentRect.left), D2D1_FIGURE_BEGIN_FILLED);
-	pSink->AddLine(D2D1::Point2F(ParentRect.top, ParentRect.right));
-	pSink->AddLine(D2D1::Point2F(ParentRect.bottom, ParentRect.right));
-	pSink->AddLine(D2D1::Point2F(ParentRect.bottom, ParentRect.left));
+	pSink->BeginFigure(D2D1::Point2F(ParentRect.left, ParentRect.top), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(ParentRect.right, ParentRect.top));
+	pSink->AddLine(D2D1::Point2F(ParentRect.right, ParentRect.bottom));
+	pSink->AddLine(D2D1::Point2F(ParentRect.left, ParentRect.bottom));
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
-	SafeRelease(&pSink);
 
 	// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(NULL, &maskLayer);
@@ -358,6 +399,7 @@ void WButton::Render(void)
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
 }
 
 WPointF WButton::Displace(W_FLOAT X, W_FLOAT Y)
