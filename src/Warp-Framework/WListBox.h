@@ -102,7 +102,7 @@ public:
 	bool UseExtendedBorder(bool intake);
 	
 	// Items
-	WListBoxItem* CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListItem", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
+	WListBoxItem* CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListBox Item", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
 	int ItemCount(void) const;
 
 	int RemoveLast(void);
@@ -169,7 +169,7 @@ private:
 	W_INT m_itemCount = 0;
 	W_INT m_yDisplace = 0;
 	W_INT m_DisplaceSpeed = 20;
-	W_INT m_ListItemHeight = 20;
+	W_INT m_ListItemHeight = 30;
 	bool m_isMouseDown;
 };
 #endif // !_W_LISTBOX_H_
