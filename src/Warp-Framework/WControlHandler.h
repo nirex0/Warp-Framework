@@ -59,7 +59,6 @@ public:
 		{
 			mtcp.at(p.first)->MouseLeave(args);
 		}
-			
 	}
 	static void MouseRollUp(WMouseArgs* args)
 	{
