@@ -302,11 +302,11 @@ void WListBoxItem::Render(void)
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(NULL, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
-	//// Render Statements Go Here
+	// Render Statements Go Here
 	WGraphicsContainer::Graphics()->DrawRoundRect(lbiRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(lbiRec, 1, backColor);
-	WGraphicsContainer::Graphics()->WriteText(lbiRec, L"A", 1, L"Arial", 10, foreColor, m_alighment);
-	
+	WGraphicsContainer::Graphics()->WriteText(lbiRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
+
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
