@@ -3,6 +3,8 @@
 #ifndef _W_LISTBOX_H_
 #define _W_LISTBOX_H_
 
+#include <vector>
+
 #include "WGFXContainer.h"
 #include "WRECTF.h"
 #include "IControl.h"
@@ -11,6 +13,7 @@
 #include "WContainer.h"
 #include "WMouse.h"
 #include "WLerp.h"
+#include "WListBoxItem.h"
 
 class WListBox : public IControl
 {
@@ -94,6 +97,20 @@ public:
 	W_INT GetWidth(void) const override;
 	W_INT GetHeight(void) const override;
 
+	// Extended Border
+	bool UseExtendedBorder(void) const;
+	bool UseExtendedBorder(bool intake);
+	
+	// Items
+	WListBoxItem* CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListItem", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
+	int ItemCount(void) const;
+
+	int RemoveLast(void);
+	int AddItem(WListBoxItem* item);
+	WListBoxItem* GetLast(void);
+	WListBoxItem* GetAt(int index);
+
+
 private:
 	// Extended Border
 	void Extend(WEntity* sender, WEventArgs* args);
@@ -112,7 +129,9 @@ private:
 	WLerp* ExBordLerpShrink;
 
 	W_FLOAT ExBordRatio;
-	
+
+	bool m_UseExtendedBorder;
+
 	// Normal
 	W_INT m_zIndex;
 	
@@ -142,5 +161,15 @@ private:
 	WRegistry* LBMouseRollDownRegistery;
 
 	IControl* m_Parent;
+
+	// Items
+	void RenewItems(void);
+
+	std::vector<WListBoxItem*> m_items;
+	W_INT m_itemCount = 0;
+	W_INT m_yDisplace = 0;
+	W_INT m_DisplaceSpeed = 20;
+	W_INT m_ListItemHeight = 20;
+	bool m_isMouseDown;
 };
 #endif // !_W_LISTBOX_H_

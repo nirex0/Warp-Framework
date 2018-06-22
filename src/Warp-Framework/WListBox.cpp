@@ -24,6 +24,8 @@ WListBox::WListBox(W_INT zIndex)
 	LBMouseUpRegistery = new WRegistry();
 	LBMouseEnterRegistery = new WRegistry();
 	LBMouseLeaveRegistery = new WRegistry();
+	LBMouseRollUpRegistery = new WRegistry();
+	LBMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -39,6 +41,7 @@ WListBox::WListBox(W_INT zIndex)
 	
 	WControlHandler::Add(this);
 	UpdateRect();
+	m_UseExtendedBorder = true;
 }
 
 WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
@@ -60,6 +63,8 @@ WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	LBMouseUpRegistery = new WRegistry();
 	LBMouseEnterRegistery = new WRegistry();
 	LBMouseLeaveRegistery = new WRegistry();
+	LBMouseRollUpRegistery = new WRegistry();
+	LBMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -75,6 +80,7 @@ WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 
 	WControlHandler::Add(this);
 	UpdateRect();
+	m_UseExtendedBorder = true;
 }
 
 WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
@@ -96,6 +102,8 @@ WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
 	LBMouseUpRegistery = new WRegistry();
 	LBMouseEnterRegistery = new WRegistry();
 	LBMouseLeaveRegistery = new WRegistry();
+	LBMouseRollUpRegistery = new WRegistry();
+	LBMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -111,6 +119,7 @@ WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
 
 	WControlHandler::Add(this);
 	UpdateRect();
+	m_UseExtendedBorder = true;
 }
 
 WListBox::WListBox(WRectF location, W_INT zIndex)
@@ -132,6 +141,8 @@ WListBox::WListBox(WRectF location, W_INT zIndex)
 	LBMouseUpRegistery = new WRegistry();
 	LBMouseEnterRegistery = new WRegistry();
 	LBMouseLeaveRegistery = new WRegistry();
+	LBMouseRollUpRegistery = new WRegistry();
+	LBMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -147,6 +158,7 @@ WListBox::WListBox(WRectF location, W_INT zIndex)
 
 	WControlHandler::Add(this);
 	UpdateRect();
+	m_UseExtendedBorder = true;
 }
 
 WListBox::~WListBox()
@@ -155,11 +167,14 @@ WListBox::~WListBox()
 	delete LBMouseUpRegistery;
 	delete LBMouseEnterRegistery;
 	delete LBMouseLeaveRegistery;
+	delete LBMouseRollUpRegistery; 
+	delete LBMouseRollDownRegistery;
 
 	delete ExBordLerpExtend;
 	delete ExBordLerpShrink;
-}
 
+	WControlHandler::Remove(this);
+}
 
 WRectF WListBox::Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right)
 {
@@ -301,25 +316,70 @@ void WListBox::Render(void)
 	ID2D1GeometrySink* pSink = NULL;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
-	pSink->BeginFigure(D2D1::Point2F(ParentRect.top, ParentRect.left), D2D1_FIGURE_BEGIN_FILLED);
-	pSink->AddLine(D2D1::Point2F(ParentRect.top, ParentRect.right));
-	pSink->AddLine(D2D1::Point2F(ParentRect.bottom, ParentRect.right));
-	pSink->AddLine(D2D1::Point2F(ParentRect.bottom, ParentRect.left));
+	pSink->BeginFigure(D2D1::Point2F(ParentRect.left, ParentRect.top), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(ParentRect.right, ParentRect.top));
+	pSink->AddLine(D2D1::Point2F(ParentRect.right, ParentRect.bottom));
+	pSink->AddLine(D2D1::Point2F(ParentRect.left, ParentRect.bottom));
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
-	SafeRelease(&pSink);
 
 	// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(NULL, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
 	// Render Statements Go Here
+	if (m_UseExtendedBorder)
+	{
+		// Top Bar
+		WRECTF TopBar = lbRec;
+		TopBar.Top(lbRec.Top() - 5);
+		TopBar.Left(lbRec.Left() - 5);
+		TopBar.Bottom(lbRec.Top() - 4);
+		TopBar.Right(lbRec.Left() + GetWidth() / ExBordRatio + 10);
 
+		WGraphicsContainer::Graphics()->DrawRoundRect(TopBar, 2, 1, bordColor);
+		WGraphicsContainer::Graphics()->FillRoundRectSolid(TopBar, 1, bordColor);
+
+		// Left Bar
+		WRECTF LeftBar = lbRec;
+		LeftBar.Top(lbRec.Top() - 5);
+		LeftBar.Left(lbRec.Left() - 5);
+		LeftBar.Bottom(lbRec.Top() + GetHeight() / ExBordRatio + 10);
+		LeftBar.Right(lbRec.Left() - 4);
+
+		WGraphicsContainer::Graphics()->DrawRoundRect(LeftBar, 2, 1, bordColor);
+		WGraphicsContainer::Graphics()->FillRoundRectSolid(LeftBar, 1, bordColor);
+
+		// Bottom Bar
+		WRECTF BottomBar = lbRec;
+
+		BottomBar.Top(lbRec.Bottom() + 4);
+		BottomBar.Left(lbRec.Right() - GetWidth() / ExBordRatio - 10);
+		BottomBar.Bottom(lbRec.Bottom() + 5);
+		BottomBar.Right(lbRec.Right() + 5);
+
+		WGraphicsContainer::Graphics()->DrawRoundRect(BottomBar, 2, 1, bordColor);
+		WGraphicsContainer::Graphics()->FillRoundRectSolid(BottomBar, 1, bordColor);
+
+		// Right Bar
+		WRECTF RightBar = lbRec;
+		RightBar.Top(lbRec.Bottom() - GetHeight() / ExBordRatio - 10);
+		RightBar.Left(lbRec.Right() + 4);
+		RightBar.Bottom(lbRec.Bottom() + 5);
+		RightBar.Right(lbRec.Right() + 5);
+
+		WGraphicsContainer::Graphics()->DrawRoundRect(RightBar, 2, 1, bordColor);
+		WGraphicsContainer::Graphics()->FillRoundRectSolid(RightBar, 1, bordColor);
+	}
+
+	WGraphicsContainer::Graphics()->DrawRoundRect(lbRec, m_thickness, 2, bordColor);
+	WGraphicsContainer::Graphics()->FillRoundRectSolid(lbRec, 1, backColor);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
 }
 
 WPointF WListBox::Displace(W_FLOAT X, W_FLOAT Y)
@@ -455,8 +515,22 @@ void WListBox::MouseDown(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	if (IsWithin(Args) && Args->State() == KeyState::MouseDown)
+	bool parentalControl = 1;
+
+	if (m_Parent)
 	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
+	{
+		m_isMouseDown = true;
 		LBMouseDownRegistery->Run(this, Args);
 	}
 }
@@ -468,8 +542,22 @@ void WListBox::MouseUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	if (IsWithin(Args) && Args->State() == KeyState::MouseUp)
+	bool parentalControl = 1;
+
+	if (m_Parent)
 	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::MouseUp  && parentalControl)
+	{
+		m_isMouseDown = false;
 		LBMouseUpRegistery->Run(this, Args);
 	}
 }
@@ -485,8 +573,22 @@ void WListBox::MouseEnter(WMouseArgs* Args)
 	p.X((W_FLOAT)WContainer::HCX());
 	p.Y((W_FLOAT)WContainer::HCY());
 
-	if (IsWithin(Args) && Args->State() == KeyState::NoClick && !Location().IsColliding(p))
+	bool parentalControl = 1;
+
+	if (m_Parent)
 	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick && !Location().IsColliding(p) && parentalControl)
+	{
+
 		if (IsShrinked && !IsExtending)
 		{
 			ExBordLerpShrink->Lock();
@@ -508,7 +610,20 @@ void WListBox::MouseLeave(WMouseArgs* Args)
 	p.X((W_FLOAT)WContainer::HCX());
 	p.Y((W_FLOAT)WContainer::HCY());
 
-	if (!IsWithin(Args) && Args->State() == KeyState::NoClick && Location().IsColliding(p))
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (!IsWithin(Args) && Args->State() == KeyState::NoClick && Location().IsColliding(p) && parentalControl)
 	{
 		if (!IsShrinking)
 		{
@@ -528,8 +643,26 @@ void WListBox::MouseRollUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	if (IsWithin(Args) && Args->State() == KeyState::NoClick)
+	bool parentalControl = 1;
+
+	if (m_Parent)
 	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick && parentalControl)
+	{
+		if((m_yDisplace > -((m_ListItemHeight + 5) * (m_itemCount - 1))))
+		{
+			m_yDisplace -= m_DisplaceSpeed;
+		}
+		RenewItems();
 		LBMouseRollUpRegistery->Run(this, Args);
 	}
 }
@@ -541,8 +674,26 @@ void WListBox::MouseRollDown(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	if (IsWithin(Args) && Args->State() == KeyState::NoClick)
+	bool parentalControl = 1;
+
+	if (m_Parent)
 	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick && parentalControl)
+	{
+		if (m_yDisplace < 0)
+		{
+			m_yDisplace += m_DisplaceSpeed;
+		}
+		RenewItems();
 		LBMouseRollDownRegistery->Run(this, Args);
 	}
 }
@@ -586,6 +737,101 @@ W_INT WListBox::GetHeight(void) const
 	return (W_INT)(lbRec.Bottom() - lbRec.Top());
 }
 
+bool WListBox::UseExtendedBorder(void) const
+{
+	return m_UseExtendedBorder;
+}
+
+bool WListBox::UseExtendedBorder(bool intake)
+{
+	m_UseExtendedBorder = intake;
+	return m_UseExtendedBorder;
+}
+
+WListBoxItem* WListBox::CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily, wchar_t* content, W_FLOAT fontSize, WTextAlignment alignment)
+{
+	m_itemCount++;
+
+	// Create a New Item
+	WListBoxItem* NewListBoxItem = new WListBoxItem();
+
+	NewListBoxItem->Background(background);
+	NewListBoxItem->Foreground(foreground);
+	NewListBoxItem->BorderBrush(borderbrush);
+	NewListBoxItem->FontFamily(fontFamily);
+	NewListBoxItem->Content(content);
+	NewListBoxItem->FontSize(fontSize);
+	NewListBoxItem->Alignment(alignment);
+
+	// Set the parent of the new Item
+	NewListBoxItem->Parent(this);
+
+	// Set the location of the new Item
+	NewListBoxItem->Location
+	(
+		this->Location().Top() + ((m_itemCount - 1) * m_ListItemHeight) + (m_itemCount * 5) + m_yDisplace,	// Top
+		this->Location().Left() + 5,																		// Left
+		this->Location().Top() + ((m_ListItemHeight + 5)  * m_itemCount) + m_yDisplace,						// Bottom
+		this->Location().Right() - 5																		// Right
+	);
+
+	// Push the new item
+	m_items.push_back(NewListBoxItem);
+	return NewListBoxItem;
+}
+
+int WListBox::RemoveLast(void)
+{
+	WListBoxItem* LastItem = m_items[m_itemCount];
+	m_items.pop_back();
+	m_itemCount--;
+	delete LastItem;
+	return m_itemCount;
+}
+
+int WListBox::AddItem(WListBoxItem* item)
+{
+	m_itemCount++;
+
+	// Set the parent of the new Item
+	item->Parent(this);
+
+	// Set the location of the new Item
+	item->Location
+	(
+		this->Location().Top() + ((m_itemCount - 1) * m_ListItemHeight) + (m_itemCount * 5) + m_yDisplace,	// Top
+		this->Location().Left() + 5,																		// Left
+		this->Location().Top() + ((m_ListItemHeight + 5)  * m_itemCount) + m_yDisplace,						// Bottom
+		this->Location().Right() - 5																		// Right
+	);
+
+	// Push the new item
+	m_items.push_back(item);
+	return m_itemCount;
+}
+
+WListBoxItem* WListBox::GetLast(void)
+{
+	WListBoxItem* LastItem = m_items[m_itemCount];
+	m_items.pop_back();
+	m_itemCount--;
+	return LastItem;
+}
+
+int WListBox::ItemCount(void) const
+{
+	return m_itemCount;
+}
+
+WListBoxItem* WListBox::GetAt(int index)
+{
+	if (index >= m_itemCount || index < 0)
+	{
+		return nullptr;
+	}
+	return m_items[index];
+}
+
 void WListBox::Extend(WEntity* sender, WEventArgs* args)
 {
 	WLerpArgs* Largs = (WLerpArgs*)args;
@@ -612,4 +858,18 @@ void WListBox::ShrinkDone(WEntity* sender, WEventArgs* args)
 	IsShrinking = false;
 	IsExtended = false;
 	IsShrinked = true;
+}
+
+void WListBox::RenewItems()
+{
+	for (size_t i = 1; i < m_itemCount + 1; i++)
+	{
+		m_items[i - 1]->Location
+		(
+			this->Location().Top() + ((i - 1) * m_ListItemHeight) + (i * 5) + m_yDisplace,	// Top
+			this->Location().Left() + 5,													// Left
+			this->Location().Top() + ((m_ListItemHeight + 5) * i) + m_yDisplace,			// Bottom
+			this->Location().Right() - 5													// Right
+		);
+	}
 }
