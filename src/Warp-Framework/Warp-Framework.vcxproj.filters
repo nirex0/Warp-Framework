@@ -240,6 +240,12 @@
     <ClInclude Include="WListBox.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="WListBoxItem.h">
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="WTextAlignment.h">
+      <Filter>Header Files\WARP-GFX\Engine\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -258,6 +264,9 @@
       <Filter>Source Files\User-Filter</Filter>
     </ClCompile>
     <ClCompile Include="WListBox.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WListBoxItem.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
   </ItemGroup>

@@ -111,9 +111,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WTextAlignment.h" />
     <ClInclude Include="WColorTransform.h" />
     <ClInclude Include="WColorTransformArgs.h" />
     <ClInclude Include="WListBox.h" />
+    <ClInclude Include="WListBoxItem.h" />
     <ClInclude Include="WSmoothStepArgs.h" />
     <ClInclude Include="WSmoothStep.h" />
     <ClInclude Include="WAsyncArgs.h" />
@@ -165,6 +167,7 @@
     <ClCompile Include="WEntry.cpp" />
     <ClCompile Include="WGraphics.cpp" />
     <ClCompile Include="WListBox.cpp" />
+    <ClCompile Include="WListBoxItem.cpp" />
     <ClCompile Include="WMainWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
