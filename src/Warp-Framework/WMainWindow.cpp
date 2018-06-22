@@ -272,6 +272,10 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	WContainer::WParam(wParam);
 	WContainer::LParam(lParam);
 
+	POINT pt;
+	GetCursorPos(&pt);
+	ScreenToClient(hWnd, &pt);
+
 	switch (msg)
 	{
     // WINDOW RESIZE
@@ -344,7 +348,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	// MOUSE MESSAGES
 	case WM_MOUSEMOVE:
 	{
-		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_INVALID);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
@@ -355,7 +358,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	case WM_LBUTTONDOWN:
 	{
-		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_LEFT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
@@ -366,7 +368,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	case WM_LBUTTONUP:
 	{		
-		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_LEFT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
@@ -377,7 +378,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	case WM_RBUTTONDOWN:
 	{
-		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_RIGHT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
@@ -388,7 +388,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	case WM_RBUTTONUP:
 	{
-		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_RIGHT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
@@ -399,7 +398,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	case WM_MBUTTONDOWN:
 	{
-		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
@@ -410,7 +408,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	case WM_MBUTTONUP:
 	{
-		const POINTS pt = MAKEPOINTS(lParam);
 		m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
@@ -421,23 +418,24 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	case WM_MOUSEWHEEL:
 	{
-		const POINTS pt = MAKEPOINTS(lParam);
-		m_mouse->MPoint(pt.x, pt.y);
 		if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
 		{
+			m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
+			m_mouse->MPoint(pt.x, pt.y);
+			m_mouse->MouseMiddleDown();
+
 			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick);
 			WControlHandler::MouseRollDown(args);
-
-			m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
-			m_mouse->MouseMiddleDown();
 		}
 		else if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
 		{
-			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick);
-			WControlHandler::MouseRollUp(args);
 
 			m_mouse->MouseKey(WMouseKey::MK_MIDDLE);
+			m_mouse->MPoint(pt.x, pt.y);
 			m_mouse->MouseMiddleUp();
+
+			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick);
+			WControlHandler::MouseRollUp(args);
 		}
 		break;
 	}
