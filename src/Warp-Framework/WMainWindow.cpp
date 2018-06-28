@@ -94,7 +94,6 @@ LRESULT WARP_CALL WindowsProcedure(
 
 
 // WMainWindow Class functions
-
 WMainWindow::WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowName)
 	: m_hAppInstance(hInstance)
 	, m_windowTitle(WindowTitle)
@@ -264,6 +263,7 @@ void WMainWindow::MessageLoop(void)
 		}
 	}
 }
+
 LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	// Update the container's static Members

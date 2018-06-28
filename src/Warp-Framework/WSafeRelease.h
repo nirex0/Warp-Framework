@@ -3,7 +3,8 @@
 #ifndef _W_SAFE_RELEASE_H_
 #define _W_SAFE_RELEASE_H_
 
-template <class T> void SafeRelease(T **ppT)
+template <class T> 
+void SafeRelease(T** ppT)
 {
     if (*ppT)
     {
