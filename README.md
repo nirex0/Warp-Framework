@@ -1,5 +1,5 @@
 # Warp-Framework (WIP)
-"A framework to create powerful and rich GUI C++ applications using DirectX API"
+"A framework to create powerful and rich GUI C++ Single-Window applications using DirectX API"
 
 Yes I know what I've written, and Yes I know that this is not what it's said to be yet, but that's what the (WIP) tag is there for, is it not?
 
@@ -46,13 +46,9 @@ PLANS
 
 - ⚠️ Custom 2D Space
 
-- ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
-
-- ❌ Vector Graphics (.WVF(Warp Vector File))
-
 - ❌ OpenGL Implementation
 
-#### CONTROLS
+#### *CONTROLS
 
 - ✔️ Button
 
@@ -90,13 +86,13 @@ PLANS
 
 - ❌ Async Networking
 
-### WARP-SECURITY
-
-- ❌ Custom data Encryption algorithms
-
-- ❌ Custom Steganography support
+### WARP-UTILITY
 
 - ❌ Custom data format for local storage (.WCX(Warp Container Extended))
+
+- ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
+
+- ❌ Vector Graphics (.WVF(Warp Vector File))
 
 
 #### LEGEND
