@@ -3,7 +3,6 @@
 #include "WListBoxItem.h"
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
-#include<math.h>
 
 WListBoxItem::WListBoxItem(W_INT zIndex)
 	: m_thickness(1.0F)
@@ -270,6 +269,11 @@ void WListBoxItem::Render(void)
 	D2D_RECT_F ParentRect;
 	if (m_Parent)
 	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+
 		ParentRect.top = m_Parent->Location().Top();
 		ParentRect.left = m_Parent->Location().Left();
 		ParentRect.bottom = m_Parent->Location().Bottom();
@@ -447,7 +451,28 @@ void WListBoxItem::MouseDown(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	if (IsWithin(Args) && Args->State() == KeyState::MouseDown)
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::MouseDown && parentalControl)
 	{
 		LBMouseDownRegistery->Run(this, Args);
 	}
@@ -460,7 +485,28 @@ void WListBoxItem::MouseUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	if (IsWithin(Args) && Args->State() == KeyState::MouseUp)
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::MouseUp && parentalControl)
 	{
 		LBMouseUpRegistery->Run(this, Args);
 	}
@@ -473,11 +519,32 @@ void WListBoxItem::MouseEnter(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	WPointF p;
 	p.X((W_FLOAT)WContainer::HCX());
 	p.Y((W_FLOAT)WContainer::HCY());
 
-	if (IsWithin(Args) && Args->State() == KeyState::NoClick && !Location().IsColliding(p))
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick && !Location().IsColliding(p) && parentalControl)
 	{
 		LBMouseEnterRegistery->Run(this, Args);
 	}
@@ -490,11 +557,32 @@ void WListBoxItem::MouseLeave(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	WPointF p;
 	p.X((W_FLOAT)WContainer::HCX());
 	p.Y((W_FLOAT)WContainer::HCY());
 
-	if (!IsWithin(Args) && Args->State() == KeyState::NoClick && Location().IsColliding(p))
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (!IsWithin(Args) && Args->State() == KeyState::NoClick && Location().IsColliding(p) && parentalControl)
 	{
 		LBMouseLeaveRegistery->Run(this, Args);
 	}
@@ -507,7 +595,28 @@ void WListBoxItem::MouseRollUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	if (IsWithin(Args) && Args->State() == KeyState::NoClick)
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick && parentalControl)
 	{
 		LBMouseRollUpRegistery->Run(this, Args);
 	}
@@ -520,7 +629,28 @@ void WListBoxItem::MouseRollDown(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
-	if (IsWithin(Args) && Args->State() == KeyState::NoClick)
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick && parentalControl)
 	{
 		LBMouseRollDownRegistery->Run(this, Args);
 	}

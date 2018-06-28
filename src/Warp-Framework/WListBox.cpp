@@ -3,7 +3,6 @@
 #include "WListBox.h"
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
-#include<math.h>
 
 WListBox::WListBox(W_INT zIndex)
 	: m_thickness(1.0F)
@@ -295,6 +294,11 @@ void WListBox::Render(void)
 	D2D_RECT_F ParentRect;
 	if (m_Parent)
 	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+
 		ParentRect.top = m_Parent->Location().Top();
 		ParentRect.left = m_Parent->Location().Left();
 		ParentRect.bottom = m_Parent->Location().Bottom();
@@ -515,6 +519,14 @@ void WListBox::MouseDown(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	bool parentalControl = 1;
 
 	if (m_Parent)
@@ -528,7 +540,7 @@ void WListBox::MouseDown(WMouseArgs* Args)
 			parentalControl = 0;
 		}
 	}
-	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
+	if (IsWithin(Args) && Args->State() == KeyState::MouseDown && parentalControl)
 	{
 		m_isMouseDown = true;
 		LBMouseDownRegistery->Run(this, Args);
@@ -542,6 +554,14 @@ void WListBox::MouseUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	bool parentalControl = 1;
 
 	if (m_Parent)
@@ -555,7 +575,7 @@ void WListBox::MouseUp(WMouseArgs* Args)
 			parentalControl = 0;
 		}
 	}
-	if (IsWithin(Args) && Args->State() == KeyState::MouseUp  && parentalControl)
+	if (IsWithin(Args) && Args->State() == KeyState::MouseUp && parentalControl)
 	{
 		m_isMouseDown = false;
 		LBMouseUpRegistery->Run(this, Args);
@@ -568,6 +588,14 @@ void WListBox::MouseEnter(WMouseArgs* Args)
 		return;
 	if (!m_isVisible)
 		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
 
 	WPointF p;
 	p.X((W_FLOAT)WContainer::HCX());
@@ -606,6 +634,14 @@ void WListBox::MouseLeave(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	WPointF p;
 	p.X((W_FLOAT)WContainer::HCX());
 	p.Y((W_FLOAT)WContainer::HCY());
@@ -643,6 +679,14 @@ void WListBox::MouseRollUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	bool parentalControl = 1;
 
 	if (m_Parent)
@@ -673,6 +717,14 @@ void WListBox::MouseRollDown(WMouseArgs* Args)
 		return;
 	if (!m_isVisible)
 		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
 
 	bool parentalControl = 1;
 

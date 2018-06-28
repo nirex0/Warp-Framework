@@ -3,7 +3,6 @@
 #include "WButton.h"
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
-#include<math.h>
 
 WButton::WButton(W_INT zIndex)
 	: m_thickness(1.0F)
@@ -314,6 +313,11 @@ void WButton::Render(void)
 	D2D_RECT_F ParentRect;
 	if (m_Parent)
 	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+
 		ParentRect.top = m_Parent->Location().Top();
 		ParentRect.left = m_Parent->Location().Left();
 		ParentRect.bottom = m_Parent->Location().Bottom();
@@ -534,6 +538,14 @@ void WButton::MouseDown(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	bool parentalControl = 1;
 
 	if (m_Parent)
@@ -560,6 +572,14 @@ void WButton::MouseUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	bool parentalControl = 1;
 
 	if (m_Parent)
@@ -585,6 +605,14 @@ void WButton::MouseEnter(WMouseArgs* Args)
 		return;
 	if (!m_isVisible)
 		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
 
 	WPointF p;
 	p.X((W_FLOAT)WContainer::HCX());
@@ -621,6 +649,14 @@ void WButton::MouseLeave(WMouseArgs* Args)
 		return;
 	if (!m_isVisible)
 		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
 
 	WPointF p;
 	p.X((W_FLOAT)WContainer::HCX());
@@ -659,6 +695,14 @@ void WButton::MouseRollUp(WMouseArgs* Args)
 	if (!m_isVisible)
 		return;
 
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
 	bool parentalControl = 1;
 
 	if (m_Parent)
@@ -684,6 +728,14 @@ void WButton::MouseRollDown(WMouseArgs* Args)
 		return;
 	if (!m_isVisible)
 		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
 
 	bool parentalControl = 1;
 
