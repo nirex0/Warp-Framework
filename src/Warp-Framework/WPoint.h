@@ -15,21 +15,21 @@ public:
 		, m_y(0.0F)
 	{
 	}
-	WPoint(W_FLOAT x, W_FLOAT y)
+	WPoint(T x, T y)
 		: m_x(x)
 		, m_y(y)
 	{
 	}
 
-	W_FLOAT X(void) const { return m_x; };
-	W_FLOAT X(W_FLOAT x) { m_x = x; return m_x; };
+	T X(void) const { return m_x; };
+	T X(T x) { m_x = x; return m_x; };
 	
-	W_FLOAT Y(void) const { return m_y; };
-	W_FLOAT Y(W_FLOAT y) { m_y = y; return m_y; };
+	T Y(void) const { return m_y; };
+	T Y(T y) { m_y = y; return m_y; };
 
 private:
-	W_FLOAT m_x;
-	W_FLOAT m_y;
+	T m_x;
+	T m_y;
 };
 
 typedef WPoint<W_FLOAT>		WPointF;
