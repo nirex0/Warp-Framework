@@ -61,9 +61,6 @@
     <Filter Include="Source Files\WARP-GFX\Engine">
       <UniqueIdentifier>{997d5aec-14f6-4bc1-91a2-87844db259f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\WARP-GFX\Engine\Main Window">
-      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\WARP-GFX\Engine\Graphics">
       <UniqueIdentifier>{68e60a90-ecbc-439c-aeb7-2bced8014718}</UniqueIdentifier>
     </Filter>
@@ -96,6 +93,9 @@
     </Filter>
     <Filter Include="Header Files\WARP-ASYNC\Animations\Color">
       <UniqueIdentifier>{cc7ea95d-2a17-4594-ab83-02bdcb4e7420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Graphics\Main Window">
+      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -249,7 +249,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Main Window</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Graphics\Main Window</Filter>
     </ClCompile>
     <ClCompile Include="WGraphics.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Graphics</Filter>
