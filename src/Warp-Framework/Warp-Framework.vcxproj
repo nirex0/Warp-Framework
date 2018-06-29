@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WFixedCanvas.h" />
     <ClInclude Include="WTextAlignment.h" />
     <ClInclude Include="WColorTransform.h" />
     <ClInclude Include="WColorTransformArgs.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="WAudio.cpp" />
     <ClCompile Include="WButton.cpp" />
     <ClCompile Include="WEntry.cpp" />
+    <ClCompile Include="WFixedCanvas.cpp" />
     <ClCompile Include="WGraphics.cpp" />
     <ClCompile Include="WListBox.cpp" />
     <ClCompile Include="WListBoxItem.cpp" />
