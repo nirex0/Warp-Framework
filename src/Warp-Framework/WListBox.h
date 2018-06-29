@@ -25,16 +25,16 @@ public:
 	~WListBox(void);
 
 	// Setters
-	WRectF Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right) override;
-	WRectF Location(WPointF topleft, WPointF botright) override;
+	WRectF Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right);
+	WRectF Location(WPointF topleft, WPointF botright);
 	WRectF Location(WRectF location);
 
-	WRectF RelLocation(W_FLOAT top, W_FLOAT left, W_FLOAT height, W_FLOAT width) override;
-	WRectF RelLocation(WPointF topleft, WPointF heightwidth) override;
-	WRectF RelLocation(WRectF location) override;
+	WRectF RelLocation(W_FLOAT top, W_FLOAT left, W_FLOAT height, W_FLOAT width);
+	WRectF RelLocation(WPointF topleft, WPointF heightwidth);
+	WRectF RelLocation(WRectF location);
 
 	// Getters
-	WRectF Location(void) const override;
+	WRectF Location(void) const;
 
 	// Setters
 	W_FLOAT BorderThickness(W_FLOAT f);
@@ -49,24 +49,24 @@ public:
 	// Functions
 	void Render(void) override;
 
-	WPointF Displace(W_FLOAT X, W_FLOAT Y) override;
-	WPointF Displace(WPointF XY) override;
+	WPointF Displace(W_FLOAT X, W_FLOAT Y);
+	WPointF Displace(WPointF XY);
 
 	// Getters
-	WRegistry* MouseDownRegistery(void) override;
-	WRegistry* MouseUpRegistery(void) override;
-	WRegistry* MouseEnterRegistery(void) override;
-	WRegistry* MouseLeaveRegistery(void) override;
-	WRegistry* MouseRollUpRegistery(void) override;
-	WRegistry* MouseRollDownRegistery(void) override;
+	WRegistry* MouseDownRegistery(void);
+	WRegistry* MouseUpRegistery(void);
+	WRegistry* MouseEnterRegistery(void);
+	WRegistry* MouseLeaveRegistery(void);
+	WRegistry* MouseRollUpRegistery(void);
+	WRegistry* MouseRollDownRegistery(void);
 
 	// Setters
-	WRegistry* MouseDownRegistery(WRegistry* intake) override;
-	WRegistry* MouseUpRegistery(WRegistry* intake) override;
-	WRegistry* MouseEnterRegistery(WRegistry* intake) override;
-	WRegistry* MouseLeaveRegistery(WRegistry* intake) override;
-	WRegistry* MouseRollUpRegistery(WRegistry* intake) override;
-	WRegistry* MouseRollDownRegistery(WRegistry* intake) override;
+	WRegistry* MouseDownRegistery(WRegistry* intake);
+	WRegistry* MouseUpRegistery(WRegistry* intake);
+	WRegistry* MouseEnterRegistery(WRegistry* intake);
+	WRegistry* MouseLeaveRegistery(WRegistry* intake);
+	WRegistry* MouseRollUpRegistery(WRegistry* intake);
+	WRegistry* MouseRollDownRegistery(WRegistry* intake);
 	
 	// Getters
 	W_INT ZIndex(void) const override;
@@ -87,15 +87,15 @@ public:
 	void MouseRollDown(WMouseArgs* Args) override;
 
 	// Parent
-	IControl* Parent(IControl* intake) override;
-	IControl* Parent(void) const override;
+	IControl* Parent(IControl* intake);
+	IControl* Parent(void) const;
 	
 	// Helpers
-	void UpdateRect(void) override;
+	void UpdateRect(void);
 	bool IsWithin(WMouseArgs* Args) const;
-	void SetZIndexNoChange(W_INT zIndex);
-	W_INT GetWidth(void) const override;
-	W_INT GetHeight(void) const override;
+	void SetZIndexNoChange(W_INT zIndex) override;
+	W_INT GetWidth(void) const;
+	W_INT GetHeight(void) const;
 
 	// Extended Border
 	bool UseExtendedBorder(void) const;
