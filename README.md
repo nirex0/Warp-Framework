@@ -50,11 +50,17 @@ PLANS
 
 #### *CONTROLS
 
+- ✔️ Base Control
+
 - ✔️ Button
 
 - ✔️ List Box
 
 - ✔️ List Box Item
+
+- ✔️ Fixed Canvas
+
+- ⚙️ Scroll View
 
 - ⚙️ Text Box
 
