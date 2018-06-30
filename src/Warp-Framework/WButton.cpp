@@ -5,26 +5,13 @@
 #include "WSafeRelease.h"
 
 WButton::WButton(W_INT zIndex)
-	: m_thickness(1.0F)
-	, m_zIndex(zIndex)
+	: WControl(zIndex)
+	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
 	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
 	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
 	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-
-	btnRec.Top(m_top);
-	btnRec.Left(m_left);
-
-	btnRec.Bottom(m_bottom);
-	btnRec.Right(m_right);
-
-	BtnMouseDownRegistery = new WRegistry();
-	BtnMouseUpRegistery = new WRegistry();
-	BtnMouseEnterRegistery = new WRegistry();
-	BtnMouseLeaveRegistery = new WRegistry();
-	BtnMouseRollUpRegistery = new WRegistry();
-	BtnMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -34,38 +21,19 @@ WButton::WButton(W_INT zIndex)
 
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
-
-	m_isEnabled = true;
-	m_isVisible = true;
-
+	
 	m_family = L"Arial";
-
-	WControlHandler::Add(this);
-	UpdateRect();
 	m_UseExtendedBorder = true;
 }
 
 WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
-	: m_thickness(1.0F)
-	, m_zIndex(zIndex)
+	: WControl(top, left, bottom, right, zIndex)
+	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
 	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
 	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
 	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-
-	m_top = top;
-	m_left = left;
-
-	m_bottom = bottom;
-	m_right = right;
-
-	BtnMouseDownRegistery = new WRegistry();
-	BtnMouseUpRegistery = new WRegistry();
-	BtnMouseEnterRegistery = new WRegistry();
-	BtnMouseLeaveRegistery = new WRegistry();
-	BtnMouseRollUpRegistery = new WRegistry();
-	BtnMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -76,37 +44,18 @@ WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	m_isEnabled = true;
-	m_isVisible = true;
-
 	m_family = L"Arial";
-
-	WControlHandler::Add(this);
-	UpdateRect();
 	m_UseExtendedBorder = true;
 }
 
 WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
-	: m_thickness(1.0F)
-	, m_zIndex(zIndex)
+	: WControl(topleft, botright, zIndex)
+	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
 	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
 	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
 	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-
-	m_top = topleft.X();
-	m_left = topleft.Y();
-
-	m_bottom = botright.X();
-	m_right = botright.Y();
-
-	BtnMouseDownRegistery = new WRegistry();
-	BtnMouseUpRegistery = new WRegistry();
-	BtnMouseEnterRegistery = new WRegistry();
-	BtnMouseLeaveRegistery = new WRegistry();
-	BtnMouseRollUpRegistery = new WRegistry();
-	BtnMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -117,37 +66,18 @@ WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	m_isEnabled = true;
-	m_isVisible = true;
-
 	m_family = L"Arial";
-
-	WControlHandler::Add(this);
-	UpdateRect();	
 	m_UseExtendedBorder = true;
 }
 
 WButton::WButton(WRectF location, W_INT zIndex)
-	: m_thickness(1.0F)
-	, m_zIndex(zIndex)
+	: WControl(location, zIndex)
+	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
 	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
 	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
 	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-
-	m_top = location.Top();
-	m_left = location.Left();
-
-	m_bottom = location.Bottom();
-	m_right = location.Right();
-
-	BtnMouseDownRegistery = new WRegistry();
-	BtnMouseUpRegistery = new WRegistry();
-	BtnMouseEnterRegistery = new WRegistry();
-	BtnMouseLeaveRegistery = new WRegistry();
-	BtnMouseRollUpRegistery = new WRegistry();
-	BtnMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -158,106 +88,14 @@ WButton::WButton(WRectF location, W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	m_isEnabled = true;
-	m_isVisible = true;
-
 	m_family = L"Arial";
-
-	WControlHandler::Add(this);
-	UpdateRect();
 	m_UseExtendedBorder = true;
 }
 
 WButton::~WButton(void)
-{
-	delete BtnMouseDownRegistery;
-	delete BtnMouseUpRegistery;
-	delete BtnMouseEnterRegistery;
-	delete BtnMouseLeaveRegistery;
-	delete BtnMouseRollUpRegistery;
-	delete BtnMouseRollDownRegistery;
-	
+{	
 	delete ExBordLerpExtend;
 	delete ExBordLerpShrink;
-
-	WControlHandler::Remove(this);
-}
-
-WRectF WButton::Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right)
-{
-	m_top = top;
-	m_left = left;
-
-	m_bottom = bottom;
-	m_right = right;
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WButton::Location(WPointF topleft, WPointF botright)
-{
-	m_top = topleft.X();
-	m_left = topleft.Y();
-
-	m_bottom = botright.X();
-	m_right = botright.Y();
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WButton::Location(WRectF location)
-{
-	m_top = location.Top();
-	m_left = location.Left();
-
-	m_bottom = location.Bottom();
-	m_right = location.Right();
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WButton::RelLocation(W_FLOAT top, W_FLOAT left, W_FLOAT height, W_FLOAT width)
-{
-	m_top = top;
-	m_left = left;
-
-	m_bottom = top + height;
-	m_right = left + width;
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WButton::RelLocation(WPointF topleft, WPointF heightwidth)
-{
-	m_top = topleft.X();
-	m_left = topleft.Y();
-
-	m_bottom = m_top + heightwidth.X();
-	m_right = m_left + heightwidth.Y();
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WButton::RelLocation(WRectF location)
-{
-	m_top = location.Top();
-	m_left = location.Left();
-
-	m_bottom = m_top + location.Bottom();
-	m_right = m_left + location.Right();;
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WButton::Location(void) const
-{
-	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
 W_FLOAT WButton::BorderThickness(W_FLOAT f)
@@ -354,249 +192,56 @@ void WButton::Render(void)
 	if (m_UseExtendedBorder)
 	{
 		// Top Bar
-		WRECTF TopBar = btnRec;
-		TopBar.Top(btnRec.Top() - 5);
-		TopBar.Left(btnRec.Left() - 5);
-		TopBar.Bottom(btnRec.Top() - 4);
-		TopBar.Right(btnRec.Left() + GetWidth() / ExBordRatio + 10);
+		WRECTF TopBar = ctRec;
+		TopBar.Top(ctRec.Top() - 5);
+		TopBar.Left(ctRec.Left() - 5);
+		TopBar.Bottom(ctRec.Top() - 4);
+		TopBar.Right(ctRec.Left() + GetWidth() / ExBordRatio + 10);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(TopBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(TopBar, 1, bordColor);
 
 		// Left Bar
-		WRECTF LeftBar = btnRec;
-		LeftBar.Top(btnRec.Top() - 5);
-		LeftBar.Left(btnRec.Left() - 5);
-		LeftBar.Bottom(btnRec.Top() + GetHeight() / ExBordRatio + 10);
-		LeftBar.Right(btnRec.Left() - 4);
+		WRECTF LeftBar = ctRec;
+		LeftBar.Top(ctRec.Top() - 5);
+		LeftBar.Left(ctRec.Left() - 5);
+		LeftBar.Bottom(ctRec.Top() + GetHeight() / ExBordRatio + 10);
+		LeftBar.Right(ctRec.Left() - 4);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(LeftBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(LeftBar, 1, bordColor);
 
 		// Bottom Bar
-		WRECTF BottomBar = btnRec;
+		WRECTF BottomBar = ctRec;
 
-		BottomBar.Top(btnRec.Bottom() + 4);
-		BottomBar.Left(btnRec.Right() - GetWidth() / ExBordRatio - 10);
-		BottomBar.Bottom(btnRec.Bottom() + 5);
-		BottomBar.Right(btnRec.Right() + 5);
+		BottomBar.Top(ctRec.Bottom() + 4);
+		BottomBar.Left(ctRec.Right() - GetWidth() / ExBordRatio - 10);
+		BottomBar.Bottom(ctRec.Bottom() + 5);
+		BottomBar.Right(ctRec.Right() + 5);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(BottomBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(BottomBar, 1, bordColor);
 
 		// Right Bar
-		WRECTF RightBar = btnRec;
-		RightBar.Top(btnRec.Bottom() - GetHeight() / ExBordRatio - 10);
-		RightBar.Left(btnRec.Right() + 4);
-		RightBar.Bottom(btnRec.Bottom() + 5);
-		RightBar.Right(btnRec.Right() + 5);
+		WRECTF RightBar = ctRec;
+		RightBar.Top(ctRec.Bottom() - GetHeight() / ExBordRatio - 10);
+		RightBar.Left(ctRec.Right() + 4);
+		RightBar.Bottom(ctRec.Bottom() + 5);
+		RightBar.Right(ctRec.Right() + 5);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(RightBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(RightBar, 1, bordColor);
 	}
 
-	WGraphicsContainer::Graphics()->DrawRoundRect(btnRec, m_thickness, 2, bordColor);
-	WGraphicsContainer::Graphics()->FillRoundRectSolid(btnRec, 1, backColor);
-	WGraphicsContainer::Graphics()->WriteText(btnRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
+	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
+	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
+	WGraphicsContainer::Graphics()->WriteText(ctRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
 	SafeRelease(&pSink);
-}
-
-WPointF WButton::Displace(W_FLOAT X, W_FLOAT Y)
-{
-	m_top += Y;
-	m_bottom += Y;
-
-	m_left += X;
-	m_right += X;
-
-	UpdateRect();
-	return WPointF(X, Y);
-}
-
-WPointF WButton::Displace(WPointF XY)
-{
-	m_top += XY.Y();
-	m_bottom += XY.Y();
-
-	m_left += XY.X();
-	m_right += XY.X();
-
-	UpdateRect();
-	return WPointF(XY.X(), XY.Y());
-}
-
-WRegistry* WButton::MouseDownRegistery(void)
-{
-	return BtnMouseDownRegistery;
-}
-
-WRegistry* WButton::MouseUpRegistery(void)
-{
-	return BtnMouseUpRegistery;
-}
-
-WRegistry* WButton::MouseEnterRegistery(void)
-{
-	return BtnMouseEnterRegistery;
-}
-
-WRegistry* WButton::MouseLeaveRegistery(void)
-{
-	return BtnMouseLeaveRegistery;
-}
-
-WRegistry* WButton::MouseRollUpRegistery(void)
-{
-	return BtnMouseRollUpRegistery;
-}
-
-WRegistry* WButton::MouseRollDownRegistery(void)
-{
-	return BtnMouseRollDownRegistery;
-}
-
-WRegistry* WButton::MouseDownRegistery(WRegistry* intake)
-{
-	BtnMouseDownRegistery = intake;
-	return BtnMouseDownRegistery;
-}
-
-WRegistry* WButton::MouseUpRegistery(WRegistry* intake)
-{
-	BtnMouseUpRegistery = intake;
-	return BtnMouseUpRegistery;
-}
-
-WRegistry* WButton::MouseEnterRegistery(WRegistry* intake)
-{
-	BtnMouseEnterRegistery = intake;
-	return BtnMouseEnterRegistery;
-}
-
-WRegistry* WButton::MouseLeaveRegistery(WRegistry* intake)
-{
-	BtnMouseLeaveRegistery = intake;
-	return BtnMouseLeaveRegistery;
-}
-
-WRegistry* WButton::MouseRollUpRegistery(WRegistry* intake)
-{
-	BtnMouseRollUpRegistery = intake;
-	return BtnMouseRollUpRegistery;
-}
-
-WRegistry* WButton::MouseRollDownRegistery(WRegistry* intake)
-{
-	BtnMouseRollDownRegistery = intake;
-	return BtnMouseRollDownRegistery;
-}
-
-W_INT WButton::ZIndex(void) const
-{
-	return m_zIndex;
-}
-
-bool WButton::IsEnabled(void) const
-{
-	return m_isEnabled;
-}
-
-bool WButton::IsVisible(void) const
-{
-	return m_isVisible;
-}
-
-W_INT WButton::ZIndex(W_INT input)
-{
-	WControlHandler::Remove(this);
-	m_zIndex = input;
-	WControlHandler::Add(this);
-	return m_zIndex;
-}
-
-bool WButton::IsEnabled(bool input)
-{
-	m_isEnabled = input;
-	return m_isEnabled;
-}
-
-bool WButton::IsVisible(bool input)
-{
-	m_isVisible = input;
-	return m_isVisible;
-}
-
-void WButton::MouseDown(WMouseArgs* Args)
-{
-	if (!m_isEnabled)
-		return;
-	if (!m_isVisible)
-		return;
-
-	if (m_Parent)
-	{
-		if (!m_Parent->IsEnabled())
-			return;
-		if (!m_Parent->IsVisible())
-			return;
-	}
-
-	bool parentalControl = 1;
-
-	if (m_Parent)
-	{
-		if (m_Parent->IsWithin(Args))
-		{
-			parentalControl = 1;
-		}
-		else
-		{
-			parentalControl = 0;
-		}
-	}
-	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
-	{
-		BtnMouseDownRegistery->Run(this, Args);
-	}
-}
-
-void WButton::MouseUp(WMouseArgs* Args)
-{
-	if (!m_isEnabled)
-		return;
-	if (!m_isVisible)
-		return;
-
-	if (m_Parent)
-	{
-		if (!m_Parent->IsEnabled())
-			return;
-		if (!m_Parent->IsVisible())
-			return;
-	}
-
-	bool parentalControl = 1;
-
-	if (m_Parent)
-	{
-		if (m_Parent->IsWithin(Args))
-		{
-			parentalControl = 1;
-		}
-		else
-		{
-			parentalControl = 0;
-		}
-	}
-	if (IsWithin(Args) && Args->State() == KeyState::MouseUp  && parentalControl)
-	{
-		BtnMouseUpRegistery->Run(this, Args);
-	}
 }
 
 void WButton::MouseEnter(WMouseArgs* Args)
@@ -639,7 +284,7 @@ void WButton::MouseEnter(WMouseArgs* Args)
 			IsExtending = true;
 			ExBordLerpExtend->Perform();
 		}
-		BtnMouseEnterRegistery->Run(this, Args);
+		WCTMouseEnterRegistery->Run(this, Args);
 	}
 }
 
@@ -684,87 +329,8 @@ void WButton::MouseLeave(WMouseArgs* Args)
 			IsShrinking = true;
 			ExBordLerpShrink->Perform();
 		}
-		BtnMouseLeaveRegistery->Run(this, Args);
+		WCTMouseLeaveRegistery->Run(this, Args);
 	}
-}
-
-void WButton::MouseRollUp(WMouseArgs* Args)
-{
-	if (!m_isEnabled)
-		return;
-	if (!m_isVisible)
-		return;
-
-	if (m_Parent)
-	{
-		if (!m_Parent->IsEnabled())
-			return;
-		if (!m_Parent->IsVisible())
-			return;
-	}
-
-	bool parentalControl = 1;
-
-	if (m_Parent)
-	{
-		if (m_Parent->IsWithin(Args))
-		{
-			parentalControl = 1;
-		}
-		else
-		{
-			parentalControl = 0;
-		}
-	}
-	if (IsWithin(Args) && Args->State() == KeyState::NoClick && parentalControl)
-	{
-		BtnMouseRollUpRegistery->Run(this, Args);
-	}
-}
-
-void WButton::MouseRollDown(WMouseArgs* Args)
-{
-	if (!m_isEnabled)
-		return;
-	if (!m_isVisible)
-		return;
-
-	if (m_Parent)
-	{
-		if (!m_Parent->IsEnabled())
-			return;
-		if (!m_Parent->IsVisible())
-			return;
-	}
-
-	bool parentalControl = 1;
-
-	if (m_Parent)
-	{
-		if (m_Parent->IsWithin(Args))
-		{
-			parentalControl = 1;
-		}
-		else
-		{
-			parentalControl = 0;
-		}
-	}
-	if (IsWithin(Args) && Args->State() == KeyState::NoClick && parentalControl)
-	{
-		BtnMouseRollDownRegistery->Run(this, Args);
-	}
-}
-
-IControl* WButton::Parent(IControl* intake)
-{
-	m_Parent = intake;
-	return m_Parent;
-}
-
-IControl* WButton::Parent(void) const
-{
-	return m_Parent;
 }
 
 wchar_t* WButton::FontFamily(void) const
@@ -815,34 +381,6 @@ W_FLOAT WButton::FontSize(W_FLOAT intake)
 {
 	m_fsize = intake;
 	return m_fsize;
-}
-
-void WButton::UpdateRect(void)
-{
-	btnRec.Top(m_top);
-	btnRec.Left(m_left);
-	btnRec.Bottom(m_bottom);
-	btnRec.Right(m_right);
-}
-
-bool WButton::IsWithin(WMouseArgs* Args) const
-{
-	return Location().IsColliding(Args->Point());
-}
-
-void WButton::SetZIndexNoChange(W_INT zIndex)
-{
-	m_zIndex = zIndex;
-}
-
-W_INT WButton::GetWidth(void) const
-{
-	return (W_INT)(btnRec.Right() - btnRec.Left());
-}
-
-W_INT WButton::GetHeight(void) const
-{
-	return (W_INT)(btnRec.Bottom() - btnRec.Top());
 }
 
 bool WButton::UseExtendedBorder(void) const
