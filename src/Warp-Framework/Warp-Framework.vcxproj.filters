@@ -97,6 +97,9 @@
     <Filter Include="Source Files\WARP-GFX\Engine\Graphics\Main Window">
       <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\Control Helpers">
+      <UniqueIdentifier>{9f27ee11-dc74-42a3-a512-bec31dcf7731}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -180,9 +183,6 @@
     <ClInclude Include="WButton.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="IControl.h">
-      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
-    </ClInclude>
     <ClInclude Include="WCODEC.h">
       <Filter>Header Files\WARP-GFX\Engine\System</Filter>
     </ClInclude>
@@ -197,9 +197,6 @@
     </ClInclude>
     <ClInclude Include="WRect.h">
       <Filter>Header Files\WARP-GFX\Engine\Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="WControlHandler.h">
-      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WPoint.h">
       <Filter>Header Files\WARP-GFX\Engine\Primitives</Filter>
@@ -249,6 +246,15 @@
     <ClInclude Include="WFixedCanvas.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="WControl.h">
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="IControl.h">
+      <Filter>Header Files\WARP-GFX\Engine\Control Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="WControlHandler.h">
+      <Filter>Header Files\WARP-GFX\Engine\Control Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -273,6 +279,9 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WFixedCanvas.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WControl.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
   </ItemGroup>
