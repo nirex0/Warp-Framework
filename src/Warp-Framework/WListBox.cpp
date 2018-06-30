@@ -5,26 +5,13 @@
 #include "WSafeRelease.h"
 
 WListBox::WListBox(W_INT zIndex)
-	: m_thickness(1.0F)
-	, m_zIndex(zIndex)
+	: WControl(zIndex)
+	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
 	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
 	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
 	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-
-	lbRec.Top(m_top);
-	lbRec.Left(m_left);
-
-	lbRec.Bottom(m_bottom);
-	lbRec.Right(m_right);
-
-	LBMouseDownRegistery = new WRegistry();
-	LBMouseUpRegistery = new WRegistry();
-	LBMouseEnterRegistery = new WRegistry();
-	LBMouseLeaveRegistery = new WRegistry();
-	LBMouseRollUpRegistery = new WRegistry();
-	LBMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -35,35 +22,17 @@ WListBox::WListBox(W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WListBox::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WListBox::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	m_isEnabled = true;
-	m_isVisible = true;
-	
-	WControlHandler::Add(this);
-	UpdateRect();
 	m_UseExtendedBorder = true;
 }
 
 WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
-	: m_thickness(1.0F)
-	, m_zIndex(zIndex)
+	: WControl(top, left, bottom, right, zIndex)
+	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
 	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
 	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
 	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-
-	m_top = top;
-	m_left = left;
-
-	m_bottom = bottom;
-	m_right = right;
-
-	LBMouseDownRegistery = new WRegistry();
-	LBMouseUpRegistery = new WRegistry();
-	LBMouseEnterRegistery = new WRegistry();
-	LBMouseLeaveRegistery = new WRegistry();
-	LBMouseRollUpRegistery = new WRegistry();
-	LBMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -74,35 +43,17 @@ WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WListBox::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WListBox::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	m_isEnabled = true;
-	m_isVisible = true;
-
-	WControlHandler::Add(this);
-	UpdateRect();
 	m_UseExtendedBorder = true;
 }
 
 WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
-	: m_thickness(1.0F)
-	, m_zIndex(zIndex)
+	: WControl(topleft, botright, zIndex)
+	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
 	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
 	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
 	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-
-	m_top = topleft.X();
-	m_left = topleft.Y();
-
-	m_bottom = botright.X();
-	m_right = botright.Y();
-
-	LBMouseDownRegistery = new WRegistry();
-	LBMouseUpRegistery = new WRegistry();
-	LBMouseEnterRegistery = new WRegistry();
-	LBMouseLeaveRegistery = new WRegistry();
-	LBMouseRollUpRegistery = new WRegistry();
-	LBMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -112,36 +63,18 @@ WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
 
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WListBox::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WListBox::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
-	
-	m_isEnabled = true;
-	m_isVisible = true;
 
-	WControlHandler::Add(this);
-	UpdateRect();
 	m_UseExtendedBorder = true;
 }
 
 WListBox::WListBox(WRectF location, W_INT zIndex)
-	: m_thickness(1.0F)
-	, m_zIndex(zIndex)
+	: WControl(location, zIndex)
+	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
 	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
 	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
 	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-
-	m_top = location.Top();
-	m_left = location.Left();
-
-	m_bottom = location.Bottom();
-	m_right = location.Right();
-
-	LBMouseDownRegistery = new WRegistry();
-	LBMouseUpRegistery = new WRegistry();
-	LBMouseEnterRegistery = new WRegistry();
-	LBMouseLeaveRegistery = new WRegistry();
-	LBMouseRollUpRegistery = new WRegistry();
-	LBMouseRollDownRegistery = new WRegistry();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -152,104 +85,13 @@ WListBox::WListBox(WRectF location, W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WListBox::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WListBox::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	m_isEnabled = true;
-	m_isVisible = true;
-
-	WControlHandler::Add(this);
-	UpdateRect();
 	m_UseExtendedBorder = true;
 }
 
 WListBox::~WListBox()
 {
-	delete LBMouseDownRegistery;
-	delete LBMouseUpRegistery;
-	delete LBMouseEnterRegistery;
-	delete LBMouseLeaveRegistery;
-	delete LBMouseRollUpRegistery; 
-	delete LBMouseRollDownRegistery;
-
 	delete ExBordLerpExtend;
 	delete ExBordLerpShrink;
-
-	WControlHandler::Remove(this);
-}
-
-WRectF WListBox::Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right)
-{
-	m_top = top;
-	m_left = left;
-
-	m_bottom = bottom;
-	m_right = right;
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WListBox::Location(WPointF topleft, WPointF botright)
-{
-	m_top = topleft.X();
-	m_left = topleft.Y();
-
-	m_bottom = botright.X();
-	m_right = botright.Y();
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WListBox::Location(WRectF location)
-{
-	m_top = location.Top();
-	m_left = location.Left();
-
-	m_bottom = location.Bottom();
-	m_right = location.Right();
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WListBox::RelLocation(W_FLOAT top, W_FLOAT left, W_FLOAT height, W_FLOAT width)
-{
-	m_top = top;
-	m_left = left;
-
-	m_bottom = top + height;
-	m_right = left + width;
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WListBox::RelLocation(WPointF topleft, WPointF heightwidth)
-{
-	m_top = topleft.X();
-	m_left = topleft.Y();
-
-	m_bottom = m_top + heightwidth.X();
-	m_right = m_left + heightwidth.Y();
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WListBox::RelLocation(WRectF location)
-{
-	m_top = location.Top();
-	m_left = location.Left();
-
-	m_bottom = m_top + location.Bottom();
-	m_right = m_left + location.Right();;
-
-	UpdateRect();
-	return WRectF(m_top, m_left, m_bottom, m_right);
-}
-
-WRectF WListBox::Location(void) const
-{
-	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
 W_FLOAT WListBox::BorderThickness(W_FLOAT f)
@@ -335,251 +177,55 @@ void WListBox::Render(void)
 	if (m_UseExtendedBorder)
 	{
 		// Top Bar
-		WRECTF TopBar = lbRec;
-		TopBar.Top(lbRec.Top() - 5);
-		TopBar.Left(lbRec.Left() - 5);
-		TopBar.Bottom(lbRec.Top() - 4);
-		TopBar.Right(lbRec.Left() + GetWidth() / ExBordRatio + 10);
+		WRECTF TopBar = ctRec;
+		TopBar.Top(ctRec.Top() - 5);
+		TopBar.Left(ctRec.Left() - 5);
+		TopBar.Bottom(ctRec.Top() - 4);
+		TopBar.Right(ctRec.Left() + GetWidth() / ExBordRatio + 10);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(TopBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(TopBar, 1, bordColor);
 
 		// Left Bar
-		WRECTF LeftBar = lbRec;
-		LeftBar.Top(lbRec.Top() - 5);
-		LeftBar.Left(lbRec.Left() - 5);
-		LeftBar.Bottom(lbRec.Top() + GetHeight() / ExBordRatio + 10);
-		LeftBar.Right(lbRec.Left() - 4);
+		WRECTF LeftBar = ctRec;
+		LeftBar.Top(ctRec.Top() - 5);
+		LeftBar.Left(ctRec.Left() - 5);
+		LeftBar.Bottom(ctRec.Top() + GetHeight() / ExBordRatio + 10);
+		LeftBar.Right(ctRec.Left() - 4);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(LeftBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(LeftBar, 1, bordColor);
 
 		// Bottom Bar
-		WRECTF BottomBar = lbRec;
+		WRECTF BottomBar = ctRec;
 
-		BottomBar.Top(lbRec.Bottom() + 4);
-		BottomBar.Left(lbRec.Right() - GetWidth() / ExBordRatio - 10);
-		BottomBar.Bottom(lbRec.Bottom() + 5);
-		BottomBar.Right(lbRec.Right() + 5);
+		BottomBar.Top(ctRec.Bottom() + 4);
+		BottomBar.Left(ctRec.Right() - GetWidth() / ExBordRatio - 10);
+		BottomBar.Bottom(ctRec.Bottom() + 5);
+		BottomBar.Right(ctRec.Right() + 5);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(BottomBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(BottomBar, 1, bordColor);
 
 		// Right Bar
-		WRECTF RightBar = lbRec;
-		RightBar.Top(lbRec.Bottom() - GetHeight() / ExBordRatio - 10);
-		RightBar.Left(lbRec.Right() + 4);
-		RightBar.Bottom(lbRec.Bottom() + 5);
-		RightBar.Right(lbRec.Right() + 5);
+		WRECTF RightBar = ctRec;
+		RightBar.Top(ctRec.Bottom() - GetHeight() / ExBordRatio - 10);
+		RightBar.Left(ctRec.Right() + 4);
+		RightBar.Bottom(ctRec.Bottom() + 5);
+		RightBar.Right(ctRec.Right() + 5);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(RightBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(RightBar, 1, bordColor);
 	}
 
-	WGraphicsContainer::Graphics()->DrawRoundRect(lbRec, m_thickness, 2, bordColor);
-	WGraphicsContainer::Graphics()->FillRoundRectSolid(lbRec, 1, backColor);
+	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
+	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
 	SafeRelease(&pSink);
-}
-
-WPointF WListBox::Displace(W_FLOAT X, W_FLOAT Y)
-{
-	m_top += Y;
-	m_bottom += Y;
-
-	m_left += X;
-	m_right += X;
-
-	UpdateRect();
-	return WPointF(X, Y);
-}
-
-WPointF WListBox::Displace(WPointF XY)
-{
-	m_top += XY.Y();
-	m_bottom += XY.Y();
-
-	m_left += XY.X();
-	m_right += XY.X();
-
-	UpdateRect();
-	return WPointF(XY.X(), XY.Y());
-}
-
-WRegistry* WListBox::MouseDownRegistery(void)
-{
-	return LBMouseDownRegistery;
-}
-
-WRegistry* WListBox::MouseUpRegistery(void)
-{
-	return LBMouseUpRegistery;
-}
-
-WRegistry* WListBox::MouseEnterRegistery(void)
-{
-	return LBMouseEnterRegistery;
-}
-
-WRegistry* WListBox::MouseLeaveRegistery(void)
-{
-	return LBMouseLeaveRegistery;
-}
-
-WRegistry* WListBox::MouseRollUpRegistery(void)
-{
-	return LBMouseRollUpRegistery;
-}
-
-WRegistry* WListBox::MouseRollDownRegistery(void)
-{
-	return LBMouseRollDownRegistery;
-}
-
-WRegistry* WListBox::MouseDownRegistery(WRegistry* intake)
-{
-	LBMouseDownRegistery = intake;
-	return LBMouseDownRegistery;
-}
-
-WRegistry* WListBox::MouseUpRegistery(WRegistry* intake)
-{
-	LBMouseUpRegistery = intake;
-	return LBMouseUpRegistery;
-}
-
-WRegistry* WListBox::MouseEnterRegistery(WRegistry* intake)
-{
-	LBMouseEnterRegistery = intake;
-	return LBMouseEnterRegistery;
-}
-
-WRegistry* WListBox::MouseLeaveRegistery(WRegistry* intake)
-{
-	LBMouseLeaveRegistery = intake;
-	return LBMouseLeaveRegistery;
-}
-
-WRegistry* WListBox::MouseRollUpRegistery(WRegistry* intake)
-{
-	LBMouseRollUpRegistery = intake;
-	return LBMouseRollUpRegistery;
-}
-
-WRegistry* WListBox::MouseRollDownRegistery(WRegistry* intake)
-{
-	LBMouseRollDownRegistery = intake;
-	return LBMouseRollDownRegistery;
-}
-
-W_INT WListBox::ZIndex(void) const
-{
-	return m_zIndex;
-}
-
-bool WListBox::IsEnabled(void) const
-{
-	return m_isEnabled;
-}
-
-bool WListBox::IsVisible(void) const
-{
-	return m_isVisible;
-}
-
-
-W_INT WListBox::ZIndex(W_INT input)
-{
-	WControlHandler::Remove(this);
-	m_zIndex = input;
-	WControlHandler::Add(this);
-	return m_zIndex;
-}
-
-bool WListBox::IsEnabled(bool input)
-{
-	m_isEnabled = input;
-	return m_isEnabled;
-}
-
-bool WListBox::IsVisible(bool input)
-{
-	m_isVisible = input;
-	return m_isVisible;
-}
-
-void WListBox::MouseDown(WMouseArgs* Args)
-{
-	if (!m_isEnabled)
-		return;
-	if (!m_isVisible)
-		return;
-
-	if (m_Parent)
-	{
-		if (!m_Parent->IsEnabled())
-			return;
-		if (!m_Parent->IsVisible())
-			return;
-	}
-
-	bool parentalControl = 1;
-
-	if (m_Parent)
-	{
-		if (m_Parent->IsWithin(Args))
-		{
-			parentalControl = 1;
-		}
-		else
-		{
-			parentalControl = 0;
-		}
-	}
-	if (IsWithin(Args) && Args->State() == KeyState::MouseDown && parentalControl)
-	{
-		m_isMouseDown = true;
-		LBMouseDownRegistery->Run(this, Args);
-	}
-}
-
-void WListBox::MouseUp(WMouseArgs* Args)
-{
-	if (!m_isEnabled)
-		return;
-	if (!m_isVisible)
-		return;
-
-	if (m_Parent)
-	{
-		if (!m_Parent->IsEnabled())
-			return;
-		if (!m_Parent->IsVisible())
-			return;
-	}
-
-	bool parentalControl = 1;
-
-	if (m_Parent)
-	{
-		if (m_Parent->IsWithin(Args))
-		{
-			parentalControl = 1;
-		}
-		else
-		{
-			parentalControl = 0;
-		}
-	}
-	if (IsWithin(Args) && Args->State() == KeyState::MouseUp && parentalControl)
-	{
-		m_isMouseDown = false;
-		LBMouseUpRegistery->Run(this, Args);
-	}
 }
 
 void WListBox::MouseEnter(WMouseArgs* Args)
@@ -623,7 +269,7 @@ void WListBox::MouseEnter(WMouseArgs* Args)
 			IsExtending = true;
 			ExBordLerpExtend->Perform();
 		}
-		LBMouseEnterRegistery->Run(this, Args);
+		WCTMouseEnterRegistery->Run(this, Args);
 	}
 }
 
@@ -668,7 +314,7 @@ void WListBox::MouseLeave(WMouseArgs* Args)
 			IsShrinking = true;
 			ExBordLerpShrink->Perform();
 		}
-		LBMouseLeaveRegistery->Run(this, Args);
+		WCTMouseLeaveRegistery->Run(this, Args);
 	}
 }
 
@@ -707,7 +353,7 @@ void WListBox::MouseRollUp(WMouseArgs* Args)
 			m_yDisplace -= m_DisplaceSpeed;
 		}
 		RenewItems();
-		LBMouseRollUpRegistery->Run(this, Args);
+		WCTMouseRollUpRegistery->Run(this, Args);
 	}
 }
 
@@ -746,47 +392,8 @@ void WListBox::MouseRollDown(WMouseArgs* Args)
 			m_yDisplace += m_DisplaceSpeed;
 		}
 		RenewItems();
-		LBMouseRollDownRegistery->Run(this, Args);
+		WCTMouseRollDownRegistery->Run(this, Args);
 	}
-}
-
-IControl* WListBox::Parent(IControl* intake)
-{
-	m_Parent = intake;
-	return m_Parent;
-}
-
-IControl* WListBox::Parent(void) const
-{
-	return m_Parent;
-}
-
-void WListBox::UpdateRect(void)
-{
-	lbRec.Top(m_top);
-	lbRec.Left(m_left);
-	lbRec.Bottom(m_bottom);
-	lbRec.Right(m_right);
-}
-
-bool WListBox::IsWithin(WMouseArgs* Args) const
-{
-	return Location().IsColliding(Args->Point());
-}
-
-void WListBox::SetZIndexNoChange(W_INT zIndex)
-{
-	m_zIndex = zIndex;
-}
-
-W_INT WListBox::GetWidth(void) const
-{
-	return (W_INT)(lbRec.Right() - lbRec.Left());
-}
-
-W_INT WListBox::GetHeight(void) const
-{
-	return (W_INT)(lbRec.Bottom() - lbRec.Top());
 }
 
 bool WListBox::UseExtendedBorder(void) const
