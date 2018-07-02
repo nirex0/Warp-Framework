@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_LISTBOX_H_
 #define _W_LISTBOX_H_
@@ -18,30 +18,30 @@ public:
 	WListBox(WRectF location, W_INT zIndex = 0);
 	~WListBox(void);
 	
-	// Setters
+// Setters
 	W_FLOAT BorderThickness(W_FLOAT f);
 	W_COLOR Background(W_COLOR col);
 	W_COLOR BorderBrush(W_COLOR col);
 
-	// Getters
+// Getters
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Background(void) const;
 	W_COLOR BorderBrush(void) const;
 
-	// Functions
+// Functions
 	void Render(void) override;
 
-	// Events
+// Events
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
 	void MouseRollUp(WMouseArgs* Args) override;
 	void MouseRollDown(WMouseArgs* Args) override;
 
-	// Extended Border
+// Extended Border
 	bool UseExtendedBorder(void) const;
 	bool UseExtendedBorder(bool intake);
 	
-	// Items
+// Items
 	WListBoxItem* CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListBox Item", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
 	int ItemCount(void) const;
 
@@ -51,7 +51,7 @@ public:
 	WListBoxItem* GetAt(int index);
 
 protected:
-	// Extended Border
+// Extended Border
 	void Extend(WEntity* sender, WEventArgs* args);
 	void Shrink(WEntity* sender, WEventArgs* args);
 
@@ -71,14 +71,14 @@ protected:
 
 	bool m_UseExtendedBorder;
 
-	// Normal
+// Normal
 	W_FLOAT m_thickness;
 
 	W_COLOR foreColor;
 	W_COLOR backColor;
 	W_COLOR bordColor;
 
-	// Items
+// Items
 	void RenewItems(void);
 
 	std::vector<WListBoxItem*> m_items;

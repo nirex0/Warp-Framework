@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WListBox.h"
 #include "WControlHandler.h"
@@ -9,9 +9,9 @@ WListBox::WListBox(W_INT zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
-	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
-	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	foreColor = WContainer::Theme().ColorText();
+	backColor = WContainer::Theme().ColorBack();
+	bordColor = WContainer::Theme().ColorBorder();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -30,9 +30,9 @@ WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
-	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
-	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	foreColor = WContainer::Theme().ColorText();
+	backColor = WContainer::Theme().ColorBack();
+	bordColor = WContainer::Theme().ColorBorder();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -51,9 +51,9 @@ WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
-	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
-	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	foreColor = WContainer::Theme().ColorText();
+	backColor = WContainer::Theme().ColorBack();
+	bordColor = WContainer::Theme().ColorBorder();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -72,9 +72,9 @@ WListBox::WListBox(WRectF location, W_INT zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
 {
-	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
-	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	foreColor = WContainer::Theme().ColorText();
+	backColor = WContainer::Theme().ColorBack();
+	bordColor = WContainer::Theme().ColorBorder();
 
 	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
 	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
@@ -154,11 +154,11 @@ void WListBox::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-	// Mask
+// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-	// Geometry Sink
+// Geometry Sink
 	ID2D1GeometrySink* pSink = NULL;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -169,14 +169,14 @@ void WListBox::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-	// Begin Mask Render
+// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(NULL, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
-	// Render Statements Go Here
+// Render Statements Go Here
 	if (m_UseExtendedBorder)
 	{
-		// Top Bar
+// Top Bar
 		WRECTF TopBar = ctRec;
 		TopBar.Top(ctRec.Top() - 5);
 		TopBar.Left(ctRec.Left() - 5);
@@ -186,7 +186,7 @@ void WListBox::Render(void)
 		WGraphicsContainer::Graphics()->DrawRoundRect(TopBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(TopBar, 1, bordColor);
 
-		// Left Bar
+// Left Bar
 		WRECTF LeftBar = ctRec;
 		LeftBar.Top(ctRec.Top() - 5);
 		LeftBar.Left(ctRec.Left() - 5);
@@ -196,7 +196,7 @@ void WListBox::Render(void)
 		WGraphicsContainer::Graphics()->DrawRoundRect(LeftBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(LeftBar, 1, bordColor);
 
-		// Bottom Bar
+// Bottom Bar
 		WRECTF BottomBar = ctRec;
 
 		BottomBar.Top(ctRec.Bottom() + 4);
@@ -207,7 +207,7 @@ void WListBox::Render(void)
 		WGraphicsContainer::Graphics()->DrawRoundRect(BottomBar, 2, 1, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(BottomBar, 1, bordColor);
 
-		// Right Bar
+// Right Bar
 		WRECTF RightBar = ctRec;
 		RightBar.Top(ctRec.Bottom() - GetHeight() / ExBordRatio - 10);
 		RightBar.Left(ctRec.Right() + 4);
@@ -221,7 +221,7 @@ void WListBox::Render(void)
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 
-	// End Mask Render
+// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
@@ -411,7 +411,7 @@ WListBoxItem* WListBox::CreateItem(W_COLOR background, W_COLOR foreground, W_COL
 {
 	m_itemCount++;
 
-	// Create a New Item
+// Create a New Item
 	WListBoxItem* NewListBoxItem = new WListBoxItem();
 
 	NewListBoxItem->Background(background);
@@ -422,19 +422,19 @@ WListBoxItem* WListBox::CreateItem(W_COLOR background, W_COLOR foreground, W_COL
 	NewListBoxItem->FontSize(fontSize);
 	NewListBoxItem->Alignment(alignment);
 
-	// Set the parent of the new Item
+// Set the parent of the new Item
 	NewListBoxItem->Parent(this);
 
-	// Set the location of the new Item
+// Set the location of the new Item
 	NewListBoxItem->Location
 	(
-		this->Location().Top() + ((m_itemCount - 1) * m_ListItemHeight) + (m_itemCount * 5) + m_yDisplace,	// Top
-		this->Location().Left() + 5,																		// Left
-		this->Location().Top() + ((m_ListItemHeight + 5)  * m_itemCount) + m_yDisplace,						// Bottom
-		this->Location().Right() - 5																		// Right
+		this->Location().Top() + ((m_itemCount - 1) * m_ListItemHeight) + (m_itemCount * 5) + m_yDisplace,// Top
+		this->Location().Left() + 5,																// Left
+		this->Location().Top() + ((m_ListItemHeight + 5)  * m_itemCount) + m_yDisplace,				// Bottom
+		this->Location().Right() - 5																// Right
 	);
 
-	// Push the new item
+// Push the new item
 	m_items.push_back(NewListBoxItem);
 	return NewListBoxItem;
 }
@@ -452,19 +452,19 @@ int WListBox::AddItem(WListBoxItem* item)
 {
 	m_itemCount++;
 
-	// Set the parent of the new Item
+// Set the parent of the new Item
 	item->Parent(this);
 
-	// Set the location of the new Item
+// Set the location of the new Item
 	item->Location
 	(
-		this->Location().Top() + ((m_itemCount - 1) * m_ListItemHeight) + (m_itemCount * 5) + m_yDisplace,	// Top
-		this->Location().Left() + 5,																		// Left
-		this->Location().Top() + ((m_ListItemHeight + 5)  * m_itemCount) + m_yDisplace,						// Bottom
-		this->Location().Right() - 5																		// Right
+		this->Location().Top() + ((m_itemCount - 1) * m_ListItemHeight) + (m_itemCount * 5) + m_yDisplace,// Top
+		this->Location().Left() + 5,																// Left
+		this->Location().Top() + ((m_ListItemHeight + 5)  * m_itemCount) + m_yDisplace,				// Bottom
+		this->Location().Right() - 5																// Right
 	);
 
-	// Push the new item
+// Push the new item
 	m_items.push_back(item);
 	return m_itemCount;
 }
@@ -525,10 +525,10 @@ void WListBox::RenewItems()
 	{
 		m_items[i - 1]->Location
 		(
-			this->Location().Top() + ((i - 1) * m_ListItemHeight) + (i * 5) + m_yDisplace,	// Top
-			this->Location().Left() + 5,													// Left
-			this->Location().Top() + ((m_ListItemHeight + 5) * i) + m_yDisplace,			// Bottom
-			this->Location().Right() - 5													// Right
+			this->Location().Top() + ((i - 1) * m_ListItemHeight) + (i * 5) + m_yDisplace,// Top
+			this->Location().Left() + 5,											// Left
+			this->Location().Top() + ((m_ListItemHeight + 5) * i) + m_yDisplace,	// Bottom
+			this->Location().Right() - 5											// Right
 		);
 	}
 }
