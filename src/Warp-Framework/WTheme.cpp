@@ -1,0 +1,222 @@
+// © 2018 NIREX ALL RIGHTS RESERVED
+
+#include "WTheme.h"
+
+void WTheme::ND_DarkRed(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x12, 0x12, 0x12),
+		FromRGB(0xB5, 0x24, 0x24),
+		FromRGB(0xB5, 0x24, 0x24)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x00, 0x00, 0x00),
+		FromRGB(0xEF, 0x2E, 0x2E),
+		FromRGB(0xEF, 0x2E, 0x2E)
+	);
+}
+
+void WTheme::ND_Teal(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x12, 0x15, 0x1E),
+		FromRGB(0x17, 0xBF, 0x76),
+		FromRGB(0x17, 0xBF, 0x76)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x21, 0x23, 0x2F),
+		FromRGB(0x1C, 0xED, 0x93),
+		FromRGB(0x1C, 0xED, 0x93)
+	);
+}
+
+void WTheme::ND_Yellow(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x21, 0x21, 0x21),
+		FromRGB(0xA8, 0xA8, 0x00),
+		FromRGB(0xA8, 0xA8, 0x00)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x17, 0x17, 0x17),
+		FromRGB(0xFF, 0xFF, 0x00),
+		FromRGB(0xFF, 0xFF, 0x00)
+	);
+}
+
+void WTheme::ND_Green(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x21, 0x21, 0x21),
+		FromRGB(0x00, 0x9C, 0x00),
+		FromRGB(0x00, 0x9C, 0x00)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x17, 0x17, 0x17),
+		FromRGB(0x00, 0xFF, 0x00),
+		FromRGB(0x00, 0xFF, 0x00)
+	);
+}
+
+void WTheme::ND_Purple(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x21, 0x21, 0x21),
+		FromRGB(0xAE, 0x00, 0xAE),
+		FromRGB(0xAE, 0x00, 0xAE)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x17, 0x17, 0x17),
+		FromRGB(0xFF,0x00,0xFF),
+		FromRGB(0xFF,0x00,0xFF)
+	);
+}
+
+void WTheme::ND_Blue(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x11, 0x15, 0x21),
+		FromRGB(0x1D, 0x1D, 0xA2),
+		FromRGB(0x1D, 0x1D, 0xA2)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x21, 0x23, 0x2F),
+		FromRGB(0xFF, 0x00, 0x00),
+		FromRGB(0xFF, 0x00, 0x00)
+	);
+}
+
+void WTheme::ND_LightGreen(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x3C, 0x3D, 0x5B),
+		FromRGB(0x81, 0xB4, 0x79),
+		FromRGB(0x81, 0xB4, 0x79)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x21, 0x23, 0x2F),
+		FromRGB(0x6E, 0xF7, 0x59),
+		FromRGB(0x6E, 0xF7, 0x59)
+	);
+}
+
+void WTheme::NS_Blue(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x02, 0x03, 0x05, 0.5F),
+		FromRGB(0x00, 0x9B, 0xFF),
+		FromRGB(0x00, 0x9B, 0xFF)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x02, 0x03, 0x05, 0.0F),
+		FromRGB(0x8B, 0xCE, 0xF9),
+		FromRGB(0x8B, 0xCE, 0xF9)
+	);
+}
+
+void WTheme::NS_Purple(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x02, 0x03, 0x05, 0.5F),
+		FromRGB(0x8C, 0x72, 0xFF),
+		FromRGB(0x8C, 0x72, 0xFF)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x02, 0x03, 0x05, 0.0F),
+		FromRGB(0xFF, 0x64, 0x41),
+		FromRGB(0xFF, 0x64, 0x41)
+	);
+}
+
+void WTheme::NS_Orange(void)
+{
+	UpdateNormal
+	(
+		FromRGB(0x02, 0x03, 0x05, 0.5F),
+		FromRGB(0xF1, 0xED, 0xFF),
+		FromRGB(0xF1, 0xED, 0xFF)
+	);
+
+	UpdateGlow
+	(
+		FromRGB(0x02, 0x03, 0x05, 0.0F),
+		FromRGB(0x8C, 0x72, 0xFF),
+		FromRGB(0x8C, 0x72, 0xFF)
+	);
+}
+
+W_COLOR WTheme::ColorBack(void)
+{
+	return m_ColorBack;
+}
+
+W_COLOR WTheme::ColorBackGlow(void)
+{
+	return m_ColorBackGlow;
+}
+
+W_COLOR WTheme::ColorBorder(void)
+{
+	return m_ColorBorder;
+}
+
+W_COLOR WTheme::ColorBorderGlow(void)
+{
+	return  m_ColorBorderGlow;
+}
+
+W_COLOR WTheme::ColorText(void)
+{
+	return m_ColorText;
+}
+
+W_COLOR WTheme::ColorTextGlow(void)
+{
+	return m_ColorTextGlow;
+}
+
+void WTheme::UpdateNormal(W_COLOR Back, W_COLOR Border, W_COLOR Text)
+{
+	m_ColorBack = Back;
+	m_ColorBorder = Border;
+	m_ColorText = Text;
+}
+
+void WTheme::UpdateGlow(W_COLOR Back, W_COLOR Border, W_COLOR Text)
+{
+	m_ColorBackGlow = Back;
+	m_ColorBorderGlow = Border;
+	m_ColorTextGlow = Text;
+}
+
+W_COLOR WTheme::FromRGB(W_INT R, W_INT G, W_INT B, W_FLOAT A)
+{
+	return WGraphicsContainer::Graphics()->FromRGBA(R, G, B, A);
+}
