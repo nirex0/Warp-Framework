@@ -255,6 +255,9 @@
     <ClInclude Include="WControlHandler.h">
       <Filter>Header Files\WARP-GFX\Engine\Control Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="WTheme.h">
+      <Filter>Header Files\WARP-GFX\Engine\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -283,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="WControl.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WTheme.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
