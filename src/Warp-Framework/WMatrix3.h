@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_MATRIX_3_H_
 #define _W_MATRIX_3_H_
@@ -109,7 +109,7 @@ public:
 	}
 
 public:
-	// [ row ][ col ]
+// [ row ][ col ]
 	T elements[3][3];
 };
 

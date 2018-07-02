@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_FIXEDCANVAS_H_
 #define _W_FIXEDCANVAS_H_
@@ -11,7 +11,7 @@ public:
 	WFixedCanvas(W_INT zIndex = 0);
 	~WFixedCanvas(void);
 
-	// Functions
+// Functions
 	void Render(void) override;
 };
 

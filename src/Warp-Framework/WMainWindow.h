@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_MAIN_WINDOW_H_
 #define _W_MAIN_WINDOW_H_
@@ -27,32 +27,32 @@ LRESULT WARP_CALL WindowsProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
 class WMainWindow final : public WEntity
 {
 public:
-	// Ctor
+// Ctor
 	WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowName = L"MAIN_WINDOW");
 
-	// Dtor
+// Dtor
 	~WMainWindow(void);
 
-	// Init the first window
+// Init the first window
 	W_INT Initialize(void);
 
-	// Main message loop handler
+// Main message loop handler
 	void MessageLoop(void);
 
-	// WinProc
+// WinProc
 	LRESULT WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 private:
 	void SetGRegisters(void);
 
-	// ---Win32 Members--- //
+// ---Win32 Members--- //
 	HINSTANCE m_hAppInstance;
 
-	// Devices
+// Devices
 	WMouse* m_mouse;
 	WKeyboard* m_keyboard;
 
-	// Main entry class
+// Main entry class
 	WEntry* m_entry;
 
 	LPWSTR m_windowName;

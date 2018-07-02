@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_ASYNCWORKER_H_
 #define _W_ASYNCWORKER_H_
@@ -25,20 +25,20 @@ public:
 		delete m_WorkRegistry;
 	}
 
-	// Getters
+// Getters
 	WRegistry* WorkRegistry(void) const
 	{
 		return m_WorkRegistry;
 	}
 
-	// Setters
+// Setters
 	WRegistry* WorkRegistry(WRegistry* intake)
 	{
 		m_WorkRegistry = intake;
 		return m_WorkRegistry;
 	}
 
-	// Functions
+// Functions
 	void RunWorkerAsync(void)
 	{
 		m_isRunning = true;

@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_AUDIO_H_
 #define _W_AUDIO_H_
@@ -14,11 +14,11 @@ public:
 	WAudio(const wchar_t* name, const wchar_t* path);
 	~WAudio(void);
 
-	// Getters
+// Getters
 	const wchar_t* Path(void) const;
 	const wchar_t* Name(void) const;
 
-	// Functions
+// Functions
 	void Play(void);
 	void Pause(void);
 	void Resume(void);

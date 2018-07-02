@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_LERP_H_
 #define _W_LERP_H_
@@ -36,7 +36,7 @@ public:
 		delete m_LerpDoneRegistry;
 	}
 
-	// Getters
+// Getters
 	WRegistry* TickRegistry(void) const { return m_LerpTickRegistry; }
 	WRegistry* DoneRegistry(void) const { return m_LerpDoneRegistry; }
 
@@ -47,7 +47,7 @@ public:
 	W_FLOAT Alpha(void) const { return m_alpha; }
 	bool IsRunning(void) { return m_isRunning; }
 
-	// Setters
+// Setters
 	WRegistry* TickRegistry(WRegistry* intake) { m_LerpTickRegistry = intake; return m_LerpTickRegistry; }
 	WRegistry* DoneRegistry(WRegistry* intake) { m_LerpDoneRegistry = intake; return m_LerpDoneRegistry; }
 
@@ -57,7 +57,7 @@ public:
 	W_FLOAT To(W_FLOAT intake) { m_to = intake; return m_to; }
 	W_FLOAT Alpha(W_FLOAT intake) { m_alpha = intake; return m_alpha; }
 
-	// Functions
+// Functions
 	void Perform(void)
 	{
 		m_value = m_from;

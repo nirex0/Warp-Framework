@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_REG_CONTAINER_H_
 #define _W_REG_CONTAINER_H_
@@ -8,7 +8,7 @@
 class WRegContainer
 {
 public:
-	// Keyboard
+// Keyboard
 	static void KeyboardKeyDown(WUniqueRegister* const kbdReg) { WRegContainer::KBD_KeyDownReg = kbdReg; }
 	static WUniqueRegister* KeyboardKeyDown(void) { return WRegContainer::KBD_KeyDownReg; }
 
@@ -18,7 +18,7 @@ public:
 	static void KeyboardOnChar(WUniqueRegister* const kbdReg) { WRegContainer::KBD_OnCharReg = kbdReg; }
 	static WUniqueRegister* KeyboardOnChar(void) { return WRegContainer::KBD_OnCharReg; }
 
-	// MOUSE
+// MOUSE
 	static void MouseDown(WRegistry* const mouseReg) { WRegContainer::MOS_MouseDown = mouseReg; }
 	static WRegistry* MouseDown(void) { return WRegContainer::MOS_MouseDown; }
 
@@ -34,7 +34,7 @@ public:
 	static void MouseRollDown(WRegistry* const mouseReg) { WRegContainer::MOS_MouseRollDown = mouseReg; }
 	static WRegistry* MouseRollDown(void) { return WRegContainer::MOS_MouseRollDown; }
 
-	// MAIN WINDOW
+// MAIN WINDOW
 	static void OnGDIPaint(WUniqueRegister* const gdiReg) { WRegContainer::WND_OnGDIPaint = gdiReg; }
 	static WUniqueRegister* OnGDIPaint(void) { return WRegContainer::WND_OnGDIPaint; }
 

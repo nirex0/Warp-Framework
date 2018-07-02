@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_GRAPHICS_H_
 #define _W_GRAPHICS_H_
@@ -77,7 +77,7 @@ public:
 	FLOAT						FontSize(void) const;
 	FLOAT						FontSize(FLOAT intake);
 
-	// Primitive Drawing
+// Primitive Drawing
 	HRESULT DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color);
 	HRESULT FillRectSolid(WRECTF boundaryRect, W_COLOR back_color);
 	HRESULT FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction);
@@ -100,33 +100,33 @@ public:
 	
 	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment = WTA_Center);
 	
-	// Primitive Component Drawing
+// Primitive Component Drawing
 	HRESULT DrawRect(WRECTF boundaryRect, WRectF borderThickness, W_COLOR bord_color);
 
-	// Helper Functions
+// Helper Functions
 	W_COLOR FromRGBA(INT R, INT G, INT B, FLOAT A = 1.0F) const;
 
-	// Window Helper Functions
+// Window Helper Functions
 	HRESULT SetTransparency(UINT alpha = 100);
 
 private:
-	// Direct2D Factory and Render Target
+// Direct2D Factory and Render Target
 	ID2D1Factory*				m_pD2D1Factory;
 	ID2D1HwndRenderTarget*		m_pD2D1RenderTarget;
 
-	// Brush Resources
+// Brush Resources
 	ID2D1SolidColorBrush*		m_pSolidColorBrush;
 	ID2D1LinearGradientBrush*	m_pLinearGradientBrush;
 	ID2D1RadialGradientBrush*	m_pRadialGradientBrush;
 
-	// Screen Rect
+// Screen Rect
 	RECT						m_ScreenRect;
 	
-	// DirectWrite Factory and Text Format
+// DirectWrite Factory and Text Format
 	IDWriteFactory*				m_pIDWriteFactory;
 	IDWriteTextFormat*			m_pIDWriteTextFormat;
 	
-	// DirectWrite Components
+// DirectWrite Components
 	wchar_t*					m_C_TEXT;
 	UINT32						m_TEXTLN;
 	wchar_t*					m_FontFamilyName;

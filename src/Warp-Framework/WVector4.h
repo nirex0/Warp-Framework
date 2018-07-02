@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_VECTOR_4_H_
 #define _W_VECTOR_4_H_
@@ -118,7 +118,7 @@ public:
 
 	WVector4 operator%(const WVector4& rhs) const
 	{
-		// w remains the same in this vector
+// w remains the same in this vector
 		return WVector4(
 			y * rhs.z - z * rhs.y,
 			z * rhs.x - x * rhs.z,

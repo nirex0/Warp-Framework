@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_CONTROL_H_
 #define _W_CONTROL_H_
@@ -21,7 +21,7 @@ public:
 	WControl(WRectF location, W_INT zIndex = 0);
 	virtual ~WControl(void);
 
-	// Setters
+// Setters
 	virtual WRectF Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right);
 	virtual WRectF Location(WPointF topleft, WPointF botright);
 	virtual WRectF Location(WRectF location);
@@ -30,16 +30,16 @@ public:
 	virtual WRectF RelLocation(WPointF topleft, WPointF heightwidth);
 	virtual WRectF RelLocation(WRectF location);
 
-	// Getters
+// Getters
 	virtual WRectF Location(void) const;
 
-	// Functions
+// Functions
 	virtual void Render(void) override = 0;
 
 	virtual WPointF Displace(W_FLOAT X, W_FLOAT Y);
 	virtual WPointF Displace(WPointF XY);
 
-	// Getters
+// Getters
 	virtual WRegistry* MouseDownRegistery(void);
 	virtual WRegistry* MouseUpRegistery(void);
 	virtual WRegistry* MouseEnterRegistery(void);
@@ -47,7 +47,7 @@ public:
 	virtual WRegistry* MouseRollUpRegistery(void);
 	virtual WRegistry* MouseRollDownRegistery(void);
 
-	// Setters
+// Setters
 	virtual WRegistry* MouseDownRegistery(WRegistry* intake);
 	virtual WRegistry* MouseUpRegistery(WRegistry* intake);
 	virtual WRegistry* MouseEnterRegistery(WRegistry* intake);
@@ -55,17 +55,17 @@ public:
 	virtual WRegistry* MouseRollUpRegistery(WRegistry* intake);
 	virtual WRegistry* MouseRollDownRegistery(WRegistry* intake);
 	
-	// Getters
+// Getters
 	virtual W_INT ZIndex(void) const override;
 	virtual bool IsEnabled(void) const override;
 	virtual bool IsVisible(void) const override;
 
-	// Setters
+// Setters
 	virtual W_INT ZIndex(W_INT input) override;
 	virtual bool IsEnabled(bool input) override;
 	virtual bool IsVisible(bool input) override;
 
-	// Events
+// Events
 	virtual void MouseDown(WMouseArgs* Args) ;
 	virtual void MouseUp(WMouseArgs* Args) override;
 	virtual void MouseEnter(WMouseArgs* Args) override;
@@ -73,11 +73,11 @@ public:
 	virtual void MouseRollUp(WMouseArgs* Args) override;
 	virtual void MouseRollDown(WMouseArgs* Args) override;
 
-	// Parent
+// Parent
 	virtual IControl* Parent(IControl* intake);
 	virtual IControl* Parent(void) const;
 
-	// Helpers
+// Helpers
 	virtual void UpdateRect(void);
 	virtual bool IsWithin(WMouseArgs* Args) const;
 	virtual void SetZIndexNoChange(W_INT zIndex) override;
@@ -85,7 +85,7 @@ public:
 	virtual W_INT GetHeight(void) const;
 
 protected:
-	// Normal
+// Normal
 	W_INT m_zIndex;
 
 	bool m_isEnabled;

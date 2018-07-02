@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_SMOOTHSTEP_H_
 #define _W_SMOOTHSTEP_H_
@@ -35,7 +35,7 @@ public:
 		delete m_SmoothStepDoneRegistry;
 	}
 
-	// Getters
+// Getters
 	WRegistry* TickRegistry(void) const { return m_SmoothStepTickRegistry; }
 	WRegistry* DoneRegistry(void) const { return m_SmoothStepDoneRegistry; }
 
@@ -45,7 +45,7 @@ public:
 	W_FLOAT To(void) const { return m_to; }
 	bool IsRunning(void) { return m_isRunning; }
 
-	// Setters
+// Setters
 	WRegistry* TickRegistry(WRegistry* intake) { m_SmoothStepTickRegistry = intake; return m_SmoothStepTickRegistry; }
 	WRegistry* DoneRegistry(WRegistry* intake) { m_SmoothStepDoneRegistry = intake; return m_SmoothStepDoneRegistry; }
 	
@@ -54,7 +54,7 @@ public:
 	W_FLOAT From(W_FLOAT intake) { m_from = intake; return m_from; }
 	W_FLOAT To(W_FLOAT intake) { m_to = intake; return m_to; }
 
-	// Functions
+// Functions
 	void Perform(void)
 	{
 		m_value = m_from;

@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WGraphics.h"
 #include "WContainer.h"
@@ -1142,10 +1142,10 @@ void W_MAIN_WINDOW::ResizeWindow(W_INT X, W_INT Y)
 	GetWindowRect(WContainer::Handle(), &wndRect);
 
 	SetWindowPos(WContainer::Handle(), HWND_TOP
-		, wndRect.left	// Position.X
-		, wndRect.top	// Position.Y
-		, X				// Width
-		, Y				// Height 
+		, wndRect.left// Position.X
+		, wndRect.top// Position.Y
+		, X		// Width
+		, Y		// Height 
 		, NULL);
 
 	WContainer::Width(X);
@@ -1158,9 +1158,9 @@ void W_MAIN_WINDOW::RepositionWindow(W_INT X, W_INT Y)
 	GetWindowRect(WContainer::Handle(), &wndRect);
 
 	SetWindowPos(WContainer::Handle(), HWND_TOP
-		, X, Y							// Position
-		, wndRect.right - wndRect.left	// Width
-		, wndRect.bottom - wndRect.top	// Height
+		, X, Y					// Position
+		, wndRect.right - wndRect.left// Width
+		, wndRect.bottom - wndRect.top// Height
 		, NULL);
 
 	WContainer::Width(wndRect.right - wndRect.left);

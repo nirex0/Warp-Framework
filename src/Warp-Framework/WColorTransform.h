@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_COLOR_TRANSFORM_H__H_
 #define _W_COLOR_TRANSFORM_H__H_
@@ -37,7 +37,7 @@ public:
 		delete m_CTDoneRegistry;
 	}
 
-	// Getters
+// Getters
 	WRegistry* TickRegistry(void) const { return m_CTTickRegistry; }
 	WRegistry* DoneRegistry(void) const { return m_CTDoneRegistry; }
 
@@ -48,7 +48,7 @@ public:
 	W_COLOR To(void) const { return m_to; }
 	bool IsRunning(void) { return m_isRunning; }
 
-	// Setters
+// Setters
 	WRegistry* TickRegistry(WRegistry* intake) { m_CTTickRegistry = intake; return m_CTTickRegistry; }
 	WRegistry* DoneRegistry(WRegistry* intake) { m_CTDoneRegistry = intake; return m_CTDoneRegistry; }
 
@@ -58,7 +58,7 @@ public:
 	W_COLOR From(W_COLOR intake) { m_from = intake; return m_from; }
 	W_COLOR To(W_COLOR intake) { m_to = intake; return m_to; }
 	
-	// Functions
+// Functions
 	void Perform(void)
 	{
 		m_value = m_from;

@@ -1,20 +1,20 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_GRADIENTDIRECTION_H_
 #define _W_GRADIENTDIRECTION_H_
 
 enum WLinearGradientDirection
 {
-	// Default
+// Default
 	WLG_Invalid,
 
-	// Edge
+// Edge
 	WLG_Left_Right,
 	WLG_Right_Left,
 	WLG_Top_Bottom,
 	WLG_Bottom_Top,
 
-	// Corner
+// Corner
 	WLG_TopLeft_BottomRight,
 	WLG_TopRight_BottomLeft,
 	WLG_BottomLeft_TopRight,
@@ -24,19 +24,19 @@ enum WLinearGradientDirection
 
 enum WLRadialGradientDirection
 {
-	// Default
+// Default
 	WRG_Invalid,
 
-	// Center
+// Center
 	WRG_Center,
 
-	// Edge
+// Edge
 	WRG_MiddleTop,
 	WRG_MiddleLeft,
 	WRG_MiddleBottom,
 	WRG_MiddleRight,
 
-	// Corner
+// Corner
 	WRG_TopLeft,
 	WRG_TopRight,
 	WRG_BottomLeft,
