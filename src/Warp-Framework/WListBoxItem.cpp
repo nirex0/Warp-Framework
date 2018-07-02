@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WListBoxItem.h"
 #include "WControlHandler.h"
@@ -8,9 +8,9 @@ WListBoxItem::WListBoxItem(W_INT zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 {
-	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
-	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	foreColor = WContainer::Theme().ColorText();
+	backColor = WContainer::Theme().ColorBack();
+	bordColor = WContainer::Theme().ColorBorder();
 
 	m_family = L"Arial";
 	m_alighment = WTA_Center;
@@ -20,9 +20,9 @@ WListBoxItem::WListBoxItem(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT ri
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 {
-	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
-	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	foreColor = WContainer::Theme().ColorText();
+	backColor = WContainer::Theme().ColorBack();
+	bordColor = WContainer::Theme().ColorBorder();
 
 	m_family = L"Arial";
 	m_alighment = WTA_Center;
@@ -32,9 +32,9 @@ WListBoxItem::WListBoxItem(WPointF topleft, WPointF botright, W_INT zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 {
-	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
-	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	foreColor = WContainer::Theme().ColorText();
+	backColor = WContainer::Theme().ColorBack();
+	bordColor = WContainer::Theme().ColorBorder();
 
 	m_family = L"Arial";
 	m_alighment = WTA_Center;
@@ -44,9 +44,9 @@ WListBoxItem::WListBoxItem(WRectF location, W_INT zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 {
-	foreColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
-	backColor = D2D1::ColorF(1.0F, 0.0F, 0.0F, 0.0F);
-	bordColor = D2D1::ColorF(1.0F, 1.0F, 1.0F, 1.0F);
+	foreColor = WContainer::Theme().ColorText();
+	backColor = WContainer::Theme().ColorBack();
+	bordColor = WContainer::Theme().ColorBorder();
 
 	m_family = L"Arial";
 	m_alighment = WTA_Center;
@@ -127,11 +127,11 @@ void WListBoxItem::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-	// Mask
+// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-	// Geometry Sink
+// Geometry Sink
 	ID2D1GeometrySink* pSink = NULL;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -142,16 +142,16 @@ void WListBoxItem::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-	// Begin Mask Render
+// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(NULL, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
-	// Render Statements Go Here
+// Render Statements Go Here
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 	WGraphicsContainer::Graphics()->WriteText(ctRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
 
-	// End Mask Render
+// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);

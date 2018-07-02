@@ -1,4 +1,4 @@
-//© 2018 NIREX ALL RIGHTS RESERVED
+// © 2018 NIREX ALL RIGHTS RESERVED
 
 #ifndef _W_LISTBOXITEM_H_
 #define _W_LISTBOXITEM_H_
@@ -14,40 +14,40 @@ public:
 	WListBoxItem(WRectF location, W_INT zIndex = 0);
 	~WListBoxItem(void);
 
-	// Setters
+// Setters
 	W_FLOAT BorderThickness(W_FLOAT f);
 	W_COLOR Foreground(W_COLOR col);
 	W_COLOR Background(W_COLOR col);
 	W_COLOR BorderBrush(W_COLOR col);
 
-	// Getters
+// Getters
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Foreground(void) const;
 	W_COLOR Background(void) const;
 	W_COLOR BorderBrush(void) const;
 
-	// Functions
+// Functions
 	void Render(void) override;
 
-	// Getters
+// Getters
 	wchar_t*				FontFamily(void) const;
 	wchar_t*				Content(UINT32& outLen) const;
 	W_FLOAT					FontSize(void) const;
 
-	// Setters
+// Setters
 	wchar_t*				FontFamily(wchar_t* intake);
 	wchar_t*				Content(wchar_t* content);
 	wchar_t*				Content(wchar_t* content, UINT32 Length);
 	W_FLOAT					FontSize(W_FLOAT intake);
 
-	// Getters
+// Getters
 	WTextAlignment Alignment(void) const;
 
-	// Setters
+// Setters
 	WTextAlignment Alignment(WTextAlignment intake);
 	
 protected:
-	// Normal
+// Normal
 	wchar_t* m_Content;
 	wchar_t* m_family;
 	W_FLOAT m_fsize = 14.0F;
