@@ -259,7 +259,7 @@
       <Filter>Header Files\WARP-GFX\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="WLabel.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -294,7 +294,7 @@
       <Filter>Source Files\WARP-GFX\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="WLabel.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
