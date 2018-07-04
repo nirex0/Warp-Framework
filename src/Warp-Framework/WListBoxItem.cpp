@@ -12,6 +12,29 @@ WListBoxItem::WListBoxItem(W_INT zIndex)
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
 
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+
+	HoverColorBord->TickRegistry()->Register(std::bind(&WListBoxItem::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->TickRegistry()->Register(std::bind(&WListBoxItem::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->TickRegistry()->Register(std::bind(&WListBoxItem::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	m_family = L"Arial";
 	m_alighment = WTA_Center;
 }
@@ -23,6 +46,29 @@ WListBoxItem::WListBoxItem(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT ri
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
+
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+
+	HoverColorBord->TickRegistry()->Register(std::bind(&WListBoxItem::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->TickRegistry()->Register(std::bind(&WListBoxItem::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->TickRegistry()->Register(std::bind(&WListBoxItem::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
 	m_alighment = WTA_Center;
@@ -36,6 +82,29 @@ WListBoxItem::WListBoxItem(WPointF topleft, WPointF botright, W_INT zIndex)
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
 
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+
+	HoverColorBord->TickRegistry()->Register(std::bind(&WListBoxItem::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->TickRegistry()->Register(std::bind(&WListBoxItem::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->TickRegistry()->Register(std::bind(&WListBoxItem::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	m_family = L"Arial";
 	m_alighment = WTA_Center;
 }
@@ -48,12 +117,43 @@ WListBoxItem::WListBoxItem(WRectF location, W_INT zIndex)
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
 
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+
+	HoverColorBord->TickRegistry()->Register(std::bind(&WListBoxItem::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->TickRegistry()->Register(std::bind(&WListBoxItem::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->TickRegistry()->Register(std::bind(&WListBoxItem::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->TickRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	m_family = L"Arial";
 	m_alighment = WTA_Center;
 }
 
 WListBoxItem::~WListBoxItem()
 {
+	delete HoverColorBord;
+	delete UnHoverColorBord;
+
+	delete HoverColorFore;
+	delete UnHoverColorFore;
+
+	delete HoverColorBack;
+	delete UnHoverColorBack;
 }
 
 W_FLOAT WListBoxItem::BorderThickness(W_FLOAT f)
@@ -158,6 +258,103 @@ void WListBoxItem::Render(void)
 	SafeRelease(&pSink);
 }
 
+void WListBoxItem::MouseEnter(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	WPointF p;
+	p.X((W_FLOAT)WContainer::HCX());
+	p.Y((W_FLOAT)WContainer::HCY());
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick && !Location().IsColliding(p) && parentalControl)
+	{
+
+		UnHoverColorBack->Lock();
+		UnHoverColorBord->Lock();
+		UnHoverColorFore->Lock();
+
+		HoverColorBack->Perform();
+		HoverColorBord->Perform();
+		HoverColorFore->Perform();
+
+		WCTMouseEnterRegistery->Run(this, Args);
+	}
+}
+
+void WListBoxItem::MouseLeave(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	WPointF p;
+	p.X((W_FLOAT)WContainer::HCX());
+	p.Y((W_FLOAT)WContainer::HCY());
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (!IsWithin(Args) && Args->State() == KeyState::NoClick && Location().IsColliding(p) && parentalControl)
+	{
+		UnHoverColorBack->Unlock();
+		UnHoverColorBord->Unlock();
+		UnHoverColorFore->Unlock();
+
+		HoverColorBack->Lock();
+		HoverColorBord->Lock();
+		HoverColorFore->Lock();
+
+		UnHoverColorBack->Perform();
+		UnHoverColorBord->Perform();
+		UnHoverColorFore->Perform();
+
+		WCTMouseLeaveRegistery->Run(this, Args);
+	}
+}
+
 wchar_t* WListBoxItem::FontFamily(void) const
 {
 	return m_family;
@@ -217,4 +414,82 @@ WTextAlignment WListBoxItem::Alignment(WTextAlignment intake)
 {
 	m_alighment = intake;
 	return m_alighment;
+}
+
+void WListBoxItem::HoverBorderTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	bordColor = Cargs->Value();
+}
+
+void WListBoxItem::HoverBorderDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	bordColor = Cargs->Value();
+	UnHoverColorBord->Unlock();
+}
+
+void WListBoxItem::UnHoverBorderTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	bordColor = Cargs->Value();
+}
+
+void WListBoxItem::UnHoverBorderDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	bordColor = Cargs->Value();
+	HoverColorBord->Unlock();
+}
+
+void WListBoxItem::HoverForegroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+}
+
+void WListBoxItem::HoverForegroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+	UnHoverColorFore->Unlock();
+}
+
+void WListBoxItem::UnHoverForegroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+}
+
+void WListBoxItem::UnHoverForegroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+	HoverColorFore->Unlock();
+}
+
+void WListBoxItem::HoverBackgroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	backColor = Cargs->Value();
+}
+
+void WListBoxItem::HoverBackgroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	backColor = Cargs->Value();
+	UnHoverColorBack->Unlock();
+}
+
+void WListBoxItem::UnHoverBackgroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	backColor = Cargs->Value();
+}
+
+void WListBoxItem::UnHoverBackgroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	backColor = Cargs->Value();
+	HoverColorBack->Unlock();
 }

@@ -29,6 +29,10 @@ public:
 // Functions
 	void Render(void) override;
 
+// Events
+	void MouseEnter(WMouseArgs* Args) override;
+	void MouseLeave(WMouseArgs* Args) override;
+
 // Getters
 	wchar_t*				FontFamily(void) const;
 	wchar_t*				Content(UINT32& outLen) const;
@@ -47,6 +51,34 @@ public:
 	WTextAlignment Alignment(WTextAlignment intake);
 	
 protected:
+// Dynamic Color
+	void HoverBorderTick(WEntity* sender, WEventArgs* args);
+	void HoverBorderDone(WEntity* sender, WEventArgs* args);
+
+	void UnHoverBorderTick(WEntity* sender, WEventArgs* args);
+	void UnHoverBorderDone(WEntity* sender, WEventArgs* args);
+
+	WColorTransform* HoverColorBord;
+	WColorTransform* UnHoverColorBord;
+
+	void HoverForegroundTick(WEntity* sender, WEventArgs* args);
+	void HoverForegroundDone(WEntity* sender, WEventArgs* args);
+
+	void UnHoverForegroundTick(WEntity* sender, WEventArgs* args);
+	void UnHoverForegroundDone(WEntity* sender, WEventArgs* args);
+
+	WColorTransform* HoverColorFore;
+	WColorTransform* UnHoverColorFore;
+
+	void HoverBackgroundTick(WEntity* sender, WEventArgs* args);
+	void HoverBackgroundDone(WEntity* sender, WEventArgs* args);
+
+	void UnHoverBackgroundTick(WEntity* sender, WEventArgs* args);
+	void UnHoverBackgroundDone(WEntity* sender, WEventArgs* args);
+
+	WColorTransform* HoverColorBack;
+	WColorTransform* UnHoverColorBack;
+
 // Normal
 	wchar_t* m_Content;
 	wchar_t* m_family;
