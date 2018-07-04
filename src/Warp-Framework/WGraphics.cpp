@@ -1126,7 +1126,10 @@ HRESULT WGraphics::DrawRect(WRECTF boundaryRect, WRectF borderThickness, W_COLOR
 
 W_COLOR WGraphics::FromRGBA(INT R, INT G, INT B, FLOAT A) const
 {
-	return D2D1::ColorF(RGB(R, G, B), A);
+	float fR = ((float)R / 255);
+	float fG = ((float)G / 255);
+	float fB = ((float)B / 255);
+	return D2D1::ColorF(fR, fG, fB, A);
 }
 
 
