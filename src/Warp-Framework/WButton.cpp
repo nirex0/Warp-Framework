@@ -21,7 +21,30 @@ WButton::WButton(W_INT zIndex)
 
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
-	
+
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+
+	HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->TickRegistry()->Register(std::bind(&WButton::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WButton::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->TickRegistry()->Register(std::bind(&WButton::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->TickRegistry()->Register(std::bind(&WButton::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord->DoneRegistry()->Register(std::bind(&WButton::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->DoneRegistry()->Register(std::bind(&WButton::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WButton::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WButton::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->DoneRegistry()->Register(std::bind(&WButton::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WButton::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	m_family = L"Arial";
 	m_UseExtendedBorder = true;
 }
@@ -43,6 +66,29 @@ WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT
 
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+
+	HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->TickRegistry()->Register(std::bind(&WButton::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WButton::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->TickRegistry()->Register(std::bind(&WButton::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->TickRegistry()->Register(std::bind(&WButton::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord->DoneRegistry()->Register(std::bind(&WButton::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->DoneRegistry()->Register(std::bind(&WButton::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WButton::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WButton::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->DoneRegistry()->Register(std::bind(&WButton::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WButton::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
 	m_UseExtendedBorder = true;
@@ -66,6 +112,29 @@ WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+
+	HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->TickRegistry()->Register(std::bind(&WButton::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WButton::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->TickRegistry()->Register(std::bind(&WButton::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->TickRegistry()->Register(std::bind(&WButton::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord->DoneRegistry()->Register(std::bind(&WButton::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->DoneRegistry()->Register(std::bind(&WButton::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WButton::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WButton::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->DoneRegistry()->Register(std::bind(&WButton::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WButton::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	m_family = L"Arial";
 	m_UseExtendedBorder = true;
 }
@@ -88,14 +157,46 @@ WButton::WButton(WRectF location, W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+
+	HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->TickRegistry()->Register(std::bind(&WButton::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WButton::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->TickRegistry()->Register(std::bind(&WButton::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->TickRegistry()->Register(std::bind(&WButton::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorBord->DoneRegistry()->Register(std::bind(&WButton::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBord->DoneRegistry()->Register(std::bind(&WButton::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WButton::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WButton::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	HoverColorBack->DoneRegistry()->Register(std::bind(&WButton::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WButton::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	m_family = L"Arial";
 	m_UseExtendedBorder = true;
 }
 
 WButton::~WButton(void)
-{	
+{
 	delete ExBordLerpExtend;
 	delete ExBordLerpShrink;
+
+	delete HoverColorBord;
+	delete UnHoverColorBord;
+
+	delete HoverColorFore;
+	delete UnHoverColorFore;
+
+	delete HoverColorBack;
+	delete UnHoverColorBack;
 }
 
 W_FLOAT WButton::BorderThickness(W_FLOAT f)
@@ -278,6 +379,15 @@ void WButton::MouseEnter(WMouseArgs* Args)
 	}
 	if (IsWithin(Args) && Args->State() == KeyState::NoClick && !Location().IsColliding(p) && parentalControl)
 	{
+						  
+		UnHoverColorBack->Lock();
+		UnHoverColorBord->Lock();
+		UnHoverColorFore->Lock();
+
+		HoverColorBack->Perform();
+		HoverColorBord->Perform();
+		HoverColorFore->Perform();
+
 		if (IsShrinked && !IsExtending)
 		{
 			ExBordLerpShrink->Lock();
@@ -322,6 +432,18 @@ void WButton::MouseLeave(WMouseArgs* Args)
 	}
 	if (!IsWithin(Args) && Args->State() == KeyState::NoClick && Location().IsColliding(p) && parentalControl)
 	{
+		UnHoverColorBack->Unlock();
+		UnHoverColorBord->Unlock();
+		UnHoverColorFore->Unlock();
+
+		HoverColorBack->Lock();
+		HoverColorBord->Lock();
+		HoverColorFore->Lock();
+
+		UnHoverColorBack->Perform();
+		UnHoverColorBord->Perform();
+		UnHoverColorFore->Perform();
+
 		if (!IsShrinking)
 		{
 			ExBordLerpExtend->Lock();
@@ -392,6 +514,84 @@ bool WButton::UseExtendedBorder(bool intake)
 {
 	m_UseExtendedBorder = intake;
 	return m_UseExtendedBorder;
+}
+
+void WButton::HoverBorderTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	bordColor = Cargs->Value();
+}
+
+void WButton::HoverBorderDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	bordColor = Cargs->Value();
+	UnHoverColorBord->Unlock();
+}
+
+void WButton::UnHoverBorderTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	bordColor = Cargs->Value();
+}
+
+void WButton::UnHoverBorderDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	bordColor = Cargs->Value();
+	HoverColorBord->Unlock();
+}
+
+void WButton::HoverForegroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+}
+
+void WButton::HoverForegroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+	UnHoverColorFore->Unlock();
+}
+
+void WButton::UnHoverForegroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+}
+
+void WButton::UnHoverForegroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+	HoverColorFore->Unlock();
+}
+
+void WButton::HoverBackgroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	backColor = Cargs->Value();
+}
+
+void WButton::HoverBackgroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	backColor = Cargs->Value();
+	UnHoverColorBack->Unlock();
+}
+
+void WButton::UnHoverBackgroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	backColor = Cargs->Value();
+}
+
+void WButton::UnHoverBackgroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	backColor = Cargs->Value();
+	HoverColorBack->Unlock();
 }
 
 void WButton::Extend(WEntity* sender, WEventArgs* args)

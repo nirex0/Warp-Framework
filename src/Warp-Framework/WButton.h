@@ -50,6 +50,34 @@ public:
 	bool UseExtendedBorder(bool intake);
 	
 protected:
+// Dynamic Color
+	void HoverBorderTick(WEntity* sender, WEventArgs* args);
+	void HoverBorderDone(WEntity* sender, WEventArgs* args);
+
+	void UnHoverBorderTick(WEntity* sender, WEventArgs* args);
+	void UnHoverBorderDone(WEntity* sender, WEventArgs* args);
+
+	WColorTransform* HoverColorBord;
+	WColorTransform* UnHoverColorBord;
+
+	void HoverForegroundTick(WEntity* sender, WEventArgs* args);
+	void HoverForegroundDone(WEntity* sender, WEventArgs* args);
+
+	void UnHoverForegroundTick(WEntity* sender, WEventArgs* args);
+	void UnHoverForegroundDone(WEntity* sender, WEventArgs* args);
+
+	WColorTransform* HoverColorFore;
+	WColorTransform* UnHoverColorFore;
+
+	void HoverBackgroundTick(WEntity* sender, WEventArgs* args);
+	void HoverBackgroundDone(WEntity* sender, WEventArgs* args);
+
+	void UnHoverBackgroundTick(WEntity* sender, WEventArgs* args);
+	void UnHoverBackgroundDone(WEntity* sender, WEventArgs* args);
+
+	WColorTransform* HoverColorBack;
+	WColorTransform* UnHoverColorBack;
+
 // Extended Border
 	void Extend(WEntity* sender, WEventArgs* args);
 	void Shrink(WEntity* sender, WEventArgs* args);
