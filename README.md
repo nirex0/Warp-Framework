@@ -40,6 +40,8 @@ PLANS
 
 - ✔️ Child-Parent Relation between Controls 
 
+- ✔️ Theme System
+
 - ✔️ Audio Support (All Formats)
 
 - ⚠️ Video Support (All Formats)
@@ -59,6 +61,8 @@ PLANS
 - ✔️ List Box Item
 
 - ✔️ Fixed Canvas
+
+- ✔️ Label
 
 - ⚙️ Scroll View
 
@@ -83,6 +87,8 @@ PLANS
 - ✔️ Predefined animation formulae (Lerp, Smoothstep, etc...)
 
 - ✔️ Smooth Color Changing (Lerp)
+
+- ✔️ Smooth Color Changing Control Implementation 
 
 ### WARP-NETWORK
 
