@@ -10,6 +10,8 @@
 class WTheme : public WEntity
 {
 public:
+	WTheme(void);
+
 // Themes
 	void ND_DarkRed(void);
 	void ND_Teal(void);
@@ -38,7 +40,6 @@ public:
 private:
 	void UpdateNormal(W_COLOR Back, W_COLOR Border, W_COLOR Text);
 	void UpdateGlow(W_COLOR Back, W_COLOR Border, W_COLOR Text);
-	W_COLOR WTheme::FromRGB(W_INT R, W_INT G, W_INT B, W_FLOAT A = 1.0F);
 
 private:
 	W_COLOR m_ColorBack;
