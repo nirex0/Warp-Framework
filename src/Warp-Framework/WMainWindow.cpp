@@ -10,13 +10,12 @@ WPARAM WContainer::wParam = {};
 LPARAM WContainer::lParam = {};
 WEntry WContainer::WFramework = {};
 DELTATIME WContainer::DeltaTime = {};
-WTheme WContainer::wTheme = {};
 
 // Background Color Componenets
-W_INT WContainer::BGA = 255;// Background Alfa
-W_INT WContainer::BGR = 12;// Background Red
-W_INT WContainer::BGG = 21;// Background Blue
-W_INT WContainer::BGB = 30;// Background Green
+W_INT WContainer::BGA = 255;	// Background Alfa
+W_INT WContainer::BGR = 12;		// Background Red
+W_INT WContainer::BGG = 21;		// Background Blue
+W_INT WContainer::BGB = 30;		// Background Green
 
 W_INT WContainer::W_WIDTH = 1280;
 W_INT WContainer::W_HEIGHT = 720;
@@ -100,8 +99,6 @@ WMainWindow::WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowN
 	, m_windowTitle(WindowTitle)
 	, m_windowName(WindowName)
 {
-	WContainer::Theme().NS_Blue();
-
 	m_mouse = new WMouse();
 	m_keyboard = new WKeyboard();
 	m_entry = new WEntry();
@@ -219,14 +216,14 @@ void WMainWindow::MessageLoop(void)
 		}
 		else
 		{
-	// Dragmove
+// Dragmove
 			if (!WContainer::DragMove())
 			{
 				POINT tmpPoint;
 				GetCursorPos(&tmpPoint);
 				ScreenToClient(WContainer::Handle(), &tmpPoint);
 
-		// HC Stands for 'Helper Coordinate'
+// HC Stands for 'Helper Coordinate'
 				WContainer::HCX(tmpPoint.x);
 				WContainer::HCY(tmpPoint.y);
 			}
@@ -239,24 +236,38 @@ void WMainWindow::MessageLoop(void)
 			typedef std::common_type<decltype(frameTime), decltype(kMaxDeltatime)>::type common_duration;
 			auto mDeltaTime = std::min<common_duration>(frameTime, kMaxDeltatime);
 
-	// std::ratio<1, 1> for seconds instead of miliseconds
+// std::ratio<1, 1> for seconds instead of miliseconds
 			milliseconds = std::chrono::duration_cast<std::chrono::duration<W_DOUBLE, std::milli>>(mDeltaTime).count();
 			WContainer::DeltaSeconds(milliseconds);
 
-	// Update & Render
-	// Note: Render statements should be written after all of the Update statements
-	// Update
+// Update & Render
+// Note: Render statements should be written after all of the Update statements
+// Update
 			m_entry->Update(milliseconds);
 			
-	// Render
+// Render
 			m_graphics->SafeBeginDraw();
 			m_graphics->ClearWindow(D2D1::ColorF((W_FLOAT)WContainer::BackR() / 255, (W_FLOAT)WContainer::BackG() / 255, (W_FLOAT)WContainer::BackB() / 255, (W_FLOAT)WContainer::BackA() / 255));
 			m_entry->Render(milliseconds);
 			
-	// Render all the controls
+// Render all the controls
+
 			WControlHandler::Render();
 			m_graphics->SafeEndDraw();
 
+// We assume the mouse is always moving (Smoother Input) 
+// use #define WARP_OMI if you don't want to use this method.
+#ifndef WARP_OMI
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(WContainer::Handle(), &pt);
+			m_mouse->MouseKey(WMouseKey::MK_INVALID);
+			m_mouse->MPoint(pt.x, pt.y);
+			m_mouse->MouseDown();
+
+			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_INVALID, KeyState::NoClick);
+			WControlHandler::MouseMove(args);
+#endif
 			if (WContainer::DragMove())
 			{
 				W_MAIN_WINDOW::DragMoveWindow();
@@ -279,7 +290,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 
 	switch (msg)
 	{
-   // WINDOW RESIZE
+// WINDOW RESIZE
 	case WM_SIZING:
 	{
 		W_UINT width = LOWORD(lParam);
@@ -349,6 +360,10 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 // MOUSE MESSAGES
 	case WM_MOUSEMOVE:
 	{
+
+#ifndef WARP_OMI
+		break;
+#endif
 		m_mouse->MouseKey(WMouseKey::MK_INVALID);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
