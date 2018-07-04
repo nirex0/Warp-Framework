@@ -20,6 +20,10 @@ public:
 // Functions
 	void Render(void) override;
 
+// Events
+	void MouseEnter(WMouseArgs* Args) override;
+	void MouseLeave(WMouseArgs* Args) override;
+
 // Getters
 	wchar_t*				FontFamily(void) const;
 	wchar_t*				Content(UINT32& outLen) const;
@@ -32,6 +36,17 @@ public:
 	W_FLOAT					FontSize(W_FLOAT intake);
 
 private:
+// Dynamic Color
+	void HoverForegroundTick(WEntity* sender, WEventArgs* args);
+	void HoverForegroundDone(WEntity* sender, WEventArgs* args);
+
+	void UnHoverForegroundTick(WEntity* sender, WEventArgs* args);
+	void UnHoverForegroundDone(WEntity* sender, WEventArgs* args);
+
+	WColorTransform* HoverColorFore;
+	WColorTransform* UnHoverColorFore;
+
+// Text
 	wchar_t* m_Content;
 	wchar_t* m_family;
 	W_FLOAT m_fsize = 14.0F;

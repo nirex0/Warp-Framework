@@ -7,6 +7,15 @@
 WLabel::WLabel(W_INT zIndex)
 	: WControl(zIndex)
 {
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorFore->TickRegistry()->Register(std::bind(&WLabel::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WLabel::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	foreColor = WContainer::Theme().ColorText();
 	m_family = L"Arial";
 }
@@ -14,6 +23,15 @@ WLabel::WLabel(W_INT zIndex)
 WLabel::WLabel(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
 	: WControl(zIndex)
 {
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorFore->TickRegistry()->Register(std::bind(&WLabel::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WLabel::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	foreColor = WContainer::Theme().ColorText();
 	m_family = L"Arial";
 }
@@ -21,6 +39,15 @@ WLabel::WLabel(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT z
 WLabel::WLabel(WPointF topleft, WPointF botright, W_INT zIndex)
 	: WControl(zIndex)
 {
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorFore->TickRegistry()->Register(std::bind(&WLabel::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WLabel::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	foreColor = WContainer::Theme().ColorText();
 	m_family = L"Arial";
 }
@@ -28,12 +55,23 @@ WLabel::WLabel(WPointF topleft, WPointF botright, W_INT zIndex)
 WLabel::WLabel(WRectF location, W_INT zIndex)
 	: WControl(zIndex)
 {
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+
+	HoverColorFore->TickRegistry()->Register(std::bind(&WLabel::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->TickRegistry()->Register(std::bind(&WLabel::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+
+	HoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+	UnHoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+
 	foreColor = WContainer::Theme().ColorText();
 	m_family = L"Arial";
 }
 
 WLabel::~WLabel()
 {
+	delete HoverColorFore;
+	delete UnHoverColorFore;
 }
 
 W_COLOR WLabel::Foreground(W_COLOR col)
@@ -103,6 +141,87 @@ void WLabel::Render(void)
 	SafeRelease(&pSink);
 }
 
+void WLabel::MouseEnter(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	WPointF p;
+	p.X((W_FLOAT)WContainer::HCX());
+	p.Y((W_FLOAT)WContainer::HCY());
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::NoClick && !Location().IsColliding(p) && parentalControl)
+	{
+		UnHoverColorFore->Lock();
+		HoverColorFore->Perform();
+		WCTMouseEnterRegistery->Run(this, Args);
+	}
+}
+
+void WLabel::MouseLeave(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	WPointF p;
+	p.X((W_FLOAT)WContainer::HCX());
+	p.Y((W_FLOAT)WContainer::HCY());
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (!IsWithin(Args) && Args->State() == KeyState::NoClick && Location().IsColliding(p) && parentalControl)
+	{
+		UnHoverColorFore->Unlock();
+		HoverColorFore->Lock();
+		UnHoverColorFore->Perform();
+		WCTMouseLeaveRegistery->Run(this, Args);
+	}
+}
+
 wchar_t* WLabel::FontFamily(void) const
 {
 	return m_family;
@@ -151,4 +270,30 @@ W_FLOAT WLabel::FontSize(W_FLOAT intake)
 {
 	m_fsize = intake;
 	return m_fsize;
+}
+
+void WLabel::HoverForegroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+}
+
+void WLabel::HoverForegroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+	UnHoverColorFore->Unlock();
+}
+
+void WLabel::UnHoverForegroundTick(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+}
+
+void WLabel::UnHoverForegroundDone(WEntity* sender, WEventArgs* args)
+{
+	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
+	foreColor = Cargs->Value();
+	HoverColorFore->Unlock();
 }
