@@ -13,8 +13,8 @@ WButton::WButton(W_INT zIndex)
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
 
-	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
-	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
+	ExBordLerpExtend = new WLerp(500, 100, 0.03F, 1);
+	ExBordLerpShrink = new WLerp(100, 500, 0.03F, 1);
 
 	ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Shrink, this, std::placeholders::_1, std::placeholders::_2));
@@ -22,14 +22,14 @@ WButton::WButton(W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
-	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.03F, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.03F, 1);
 
-	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
-	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.03F, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.03F, 1);
 
-	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
-	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.03F, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.03F, 1);
 
 	HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
 	UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
@@ -58,8 +58,8 @@ WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
 
-	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
-	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
+	ExBordLerpExtend = new WLerp(500, 100, 0.03F, 1);
+	ExBordLerpShrink = new WLerp(100, 500, 0.03F, 1);
 
 	ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Shrink, this, std::placeholders::_1, std::placeholders::_2));
@@ -67,14 +67,14 @@ WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
-	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.07F, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.07F, 1);
 
-	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
-	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.07F, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.07F, 1);
 
-	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
-	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.07F, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.07F, 1);
 
 	HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
 	UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
@@ -103,8 +103,8 @@ WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
 
-	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
-	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
+	ExBordLerpExtend = new WLerp(500, 100, 0.03F, 1);
+	ExBordLerpShrink = new WLerp(100, 500, 0.03F, 1);
 
 	ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Shrink, this, std::placeholders::_1, std::placeholders::_2));
@@ -112,14 +112,14 @@ WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
-	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.07F, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.07F, 1);
 
-	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
-	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.07F, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.07F, 1);
 
-	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
-	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.07F, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.07F, 1);
 
 	HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
 	UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
@@ -148,8 +148,8 @@ WButton::WButton(WRectF location, W_INT zIndex)
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
 
-	ExBordLerpExtend = new WLerp(500, 100, 0.07F, 1);
-	ExBordLerpShrink = new WLerp(100, 500, 0.07F, 1);
+	ExBordLerpExtend = new WLerp(500, 100, 0.03F, 1);
+	ExBordLerpShrink = new WLerp(100, 500, 0.03F, 1);
 
 	ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Shrink, this, std::placeholders::_1, std::placeholders::_2));
@@ -157,14 +157,14 @@ WButton::WButton(WRectF location, W_INT zIndex)
 	ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 	ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ShrinkDone, this, std::placeholders::_1, std::placeholders::_2));
 
-	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.007f, 1);
-	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.007f, 1);
+	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.03F, 1);
+	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.03F, 1);
 
-	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.007f, 1);
-	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.007f, 1);
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.03F, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.03F, 1);
 
-	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.007f, 1);
-	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.007f, 1);
+	HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.03F, 1);
+	UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.03F, 1);
 
 	HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
 	UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
@@ -299,8 +299,8 @@ void WButton::Render(void)
 		TopBar.Bottom(ctRec.Top() - 4);
 		TopBar.Right(ctRec.Left() + GetWidth() / ExBordRatio + 10);
 
-		WGraphicsContainer::Graphics()->DrawRoundRect(TopBar, 2, 1, bordColor);
-		WGraphicsContainer::Graphics()->FillRoundRectSolid(TopBar, 1, bordColor);
+		WGraphicsContainer::Graphics()->DrawRect(TopBar, 2, bordColor);
+		WGraphicsContainer::Graphics()->FillRectSolid(TopBar, bordColor);
 
 // Left Bar
 		WRECTF LeftBar = ctRec;
@@ -309,8 +309,8 @@ void WButton::Render(void)
 		LeftBar.Bottom(ctRec.Top() + GetHeight() / ExBordRatio + 10);
 		LeftBar.Right(ctRec.Left() - 4);
 
-		WGraphicsContainer::Graphics()->DrawRoundRect(LeftBar, 2, 1, bordColor);
-		WGraphicsContainer::Graphics()->FillRoundRectSolid(LeftBar, 1, bordColor);
+		WGraphicsContainer::Graphics()->DrawRect(LeftBar, 2, bordColor);
+		WGraphicsContainer::Graphics()->FillRectSolid(LeftBar, bordColor);
 
 // Bottom Bar
 		WRECTF BottomBar = ctRec;
@@ -320,8 +320,8 @@ void WButton::Render(void)
 		BottomBar.Bottom(ctRec.Bottom() + 5);
 		BottomBar.Right(ctRec.Right() + 5);
 
-		WGraphicsContainer::Graphics()->DrawRoundRect(BottomBar, 2, 1, bordColor);
-		WGraphicsContainer::Graphics()->FillRoundRectSolid(BottomBar, 1, bordColor);
+		WGraphicsContainer::Graphics()->DrawRect(BottomBar, 2, bordColor);
+		WGraphicsContainer::Graphics()->FillRectSolid(BottomBar, bordColor);
 
 // Right Bar
 		WRECTF RightBar = ctRec;
@@ -330,8 +330,8 @@ void WButton::Render(void)
 		RightBar.Bottom(ctRec.Bottom() + 5);
 		RightBar.Right(ctRec.Right() + 5);
 
-		WGraphicsContainer::Graphics()->DrawRoundRect(RightBar, 2, 1, bordColor);
-		WGraphicsContainer::Graphics()->FillRoundRectSolid(RightBar, 1, bordColor);
+		WGraphicsContainer::Graphics()->DrawRect(RightBar, 2, bordColor);
+		WGraphicsContainer::Graphics()->FillRectSolid(RightBar, bordColor);
 	}
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
@@ -379,21 +379,58 @@ void WButton::MouseEnter(WMouseArgs* Args)
 	}
 	if (IsWithin(Args) && Args->State() == KeyState::NoClick && !Location().IsColliding(p) && parentalControl)
 	{
-						  
-		UnHoverColorBack->Lock();
-		UnHoverColorBord->Lock();
-		UnHoverColorFore->Lock();
-
-		HoverColorBack->Perform();
-		HoverColorBord->Perform();
-		HoverColorFore->Perform();
-
-		if (IsShrinked && !IsExtending)
+		if (UnHoverColorBord)
 		{
-			ExBordLerpShrink->Lock();
-			IsExtending = true;
+			UnHoverColorBord->Stop();
+		}
+		if (!HoverColorBord->IsRunning())
+		{
+			delete HoverColorBord;
+			HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.03F, 1);
+			HoverColorBord->TickRegistry()->Register(std::bind(&WButton::HoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+			HoverColorBord->DoneRegistry()->Register(std::bind(&WButton::HoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+			HoverColorBord->Perform();
+		}
+
+		if (UnHoverColorFore)
+		{
+			UnHoverColorFore->Stop();
+		}
+		if (!HoverColorFore->IsRunning())
+		{
+			delete HoverColorFore;
+			HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.03F, 1);
+			HoverColorFore->TickRegistry()->Register(std::bind(&WButton::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+			HoverColorFore->DoneRegistry()->Register(std::bind(&WButton::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+			HoverColorFore->Perform();
+		}
+
+		if (UnHoverColorBack)
+		{
+			UnHoverColorBack->Stop();
+		}
+		if (!HoverColorBack->IsRunning())
+		{
+			delete HoverColorBack;
+			HoverColorBack = new WColorTransform(WContainer::Theme().ColorBack(), WContainer::Theme().ColorBackGlow(), 0.03F, 1);
+			HoverColorBack->TickRegistry()->Register(std::bind(&WButton::HoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+			HoverColorBack->DoneRegistry()->Register(std::bind(&WButton::HoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+			HoverColorBack->Perform();
+		}
+
+		if (ExBordLerpShrink)
+		{
+			ExBordLerpShrink->Stop();
+		}
+		if (!ExBordLerpExtend->IsRunning())
+		{
+			delete ExBordLerpExtend;
+			ExBordLerpExtend = new WLerp(500, 100, 0.03F, 1);
+			ExBordLerpExtend->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
+			ExBordLerpExtend->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 			ExBordLerpExtend->Perform();
 		}
+
 		WCTMouseEnterRegistery->Run(this, Args);
 	}
 }
@@ -432,23 +469,55 @@ void WButton::MouseLeave(WMouseArgs* Args)
 	}
 	if (!IsWithin(Args) && Args->State() == KeyState::NoClick && Location().IsColliding(p) && parentalControl)
 	{
-		UnHoverColorBack->Unlock();
-		UnHoverColorBord->Unlock();
-		UnHoverColorFore->Unlock();
-
-		HoverColorBack->Lock();
-		HoverColorBord->Lock();
-		HoverColorFore->Lock();
-
-		UnHoverColorBack->Perform();
-		UnHoverColorBord->Perform();
-		UnHoverColorFore->Perform();
-
-		if (!IsShrinking)
+		if (HoverColorBord)
 		{
-			ExBordLerpExtend->Lock();
-			ExBordLerpShrink->Unlock();
-			IsShrinking = true;
+			HoverColorBord->Stop();
+		}
+		if (!UnHoverColorBord->IsRunning())
+		{
+			delete UnHoverColorBord;
+			UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.03F, 1);
+			UnHoverColorBord->TickRegistry()->Register(std::bind(&WButton::UnHoverBorderTick, this, std::placeholders::_1, std::placeholders::_2));
+			UnHoverColorBord->DoneRegistry()->Register(std::bind(&WButton::UnHoverBorderDone, this, std::placeholders::_1, std::placeholders::_2));
+			UnHoverColorBord->Perform();
+		}
+
+		if (HoverColorFore)
+		{
+			HoverColorFore->Stop();
+		}
+		if (!UnHoverColorFore->IsRunning())
+		{
+			delete UnHoverColorFore;
+			UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.03F, 1);
+			UnHoverColorFore->TickRegistry()->Register(std::bind(&WButton::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
+			UnHoverColorFore->DoneRegistry()->Register(std::bind(&WButton::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
+			UnHoverColorFore->Perform();
+		}
+
+		if (HoverColorBack)
+		{
+			HoverColorBack->Stop();
+		}
+		if (!UnHoverColorBack->IsRunning())
+		{
+			delete UnHoverColorBack;
+			UnHoverColorBack = new WColorTransform(WContainer::Theme().ColorBackGlow(), WContainer::Theme().ColorBack(), 0.03F, 1);
+			UnHoverColorBack->TickRegistry()->Register(std::bind(&WButton::UnHoverBackgroundTick, this, std::placeholders::_1, std::placeholders::_2));
+			UnHoverColorBack->DoneRegistry()->Register(std::bind(&WButton::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
+			UnHoverColorBack->Perform();
+		}
+		
+		if (ExBordLerpExtend)
+		{
+			ExBordLerpExtend->Stop();
+		}
+		if (!ExBordLerpShrink->IsRunning())
+		{
+			delete ExBordLerpShrink;
+			ExBordLerpShrink = new WLerp(ExBordRatio * 100, 500, 0.03F, 1);
+			ExBordLerpShrink->TickRegistry()->Register(std::bind(&WButton::Extend, this, std::placeholders::_1, std::placeholders::_2));
+			ExBordLerpShrink->DoneRegistry()->Register(std::bind(&WButton::ExtendDone, this, std::placeholders::_1, std::placeholders::_2));
 			ExBordLerpShrink->Perform();
 		}
 		WCTMouseLeaveRegistery->Run(this, Args);
@@ -526,7 +595,6 @@ void WButton::HoverBorderDone(WEntity* sender, WEventArgs* args)
 {
 	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
 	bordColor = Cargs->Value();
-	UnHoverColorBord->Unlock();
 }
 
 void WButton::UnHoverBorderTick(WEntity* sender, WEventArgs* args)
@@ -539,7 +607,6 @@ void WButton::UnHoverBorderDone(WEntity* sender, WEventArgs* args)
 {
 	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
 	bordColor = Cargs->Value();
-	HoverColorBord->Unlock();
 }
 
 void WButton::HoverForegroundTick(WEntity* sender, WEventArgs* args)
@@ -552,7 +619,6 @@ void WButton::HoverForegroundDone(WEntity* sender, WEventArgs* args)
 {
 	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
 	foreColor = Cargs->Value();
-	UnHoverColorFore->Unlock();
 }
 
 void WButton::UnHoverForegroundTick(WEntity* sender, WEventArgs* args)
@@ -565,7 +631,6 @@ void WButton::UnHoverForegroundDone(WEntity* sender, WEventArgs* args)
 {
 	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
 	foreColor = Cargs->Value();
-	HoverColorFore->Unlock();
 }
 
 void WButton::HoverBackgroundTick(WEntity* sender, WEventArgs* args)
@@ -578,7 +643,6 @@ void WButton::HoverBackgroundDone(WEntity* sender, WEventArgs* args)
 {
 	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
 	backColor = Cargs->Value();
-	UnHoverColorBack->Unlock();
 }
 
 void WButton::UnHoverBackgroundTick(WEntity* sender, WEventArgs* args)
@@ -591,14 +655,12 @@ void WButton::UnHoverBackgroundDone(WEntity* sender, WEventArgs* args)
 {
 	WColorTransformArgs* Cargs = (WColorTransformArgs*)args;
 	backColor = Cargs->Value();
-	HoverColorBack->Unlock();
 }
 
 void WButton::Extend(WEntity* sender, WEventArgs* args)
 {
 	WLerpArgs* Largs = (WLerpArgs*)args;
 	ExBordRatio = Largs->ValueExact() / 100;
-	ExBordLerpShrink->From(Largs->ValueExact());
 }
 
 void WButton::Shrink(WEntity* sender, WEventArgs* args)
@@ -609,16 +671,12 @@ void WButton::Shrink(WEntity* sender, WEventArgs* args)
 
 void WButton::ExtendDone(WEntity* sender, WEventArgs* args)
 {
-	ExBordLerpShrink->Unlock();
-	IsExtending = false;
-	IsExtended = true;
-	IsShrinked = false;
+	WLerpArgs* Largs = (WLerpArgs*)args;
+	ExBordRatio = Largs->ValueExact() / 100;
 }
 
 void WButton::ShrinkDone(WEntity* sender, WEventArgs* args)
 {
-	ExBordLerpExtend->Unlock();
-	IsShrinking = false;
-	IsExtended = false;
-	IsShrinked = true;
+	WLerpArgs* Largs = (WLerpArgs*)args;
+	ExBordRatio = Largs->ValueExact() / 100;
 }
