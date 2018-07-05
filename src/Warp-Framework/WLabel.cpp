@@ -7,8 +7,8 @@
 WLabel::WLabel(W_INT zIndex)
 	: WControl(zIndex)
 {
-	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.03F, 1);
-	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.03F, 1);
+	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.005F, 1);
+	UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.005F, 1);
 
 	HoverColorFore->TickRegistry()->Register(std::bind(&WLabel::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
 	UnHoverColorFore->TickRegistry()->Register(std::bind(&WLabel::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
@@ -182,7 +182,7 @@ void WLabel::MouseEnter(WMouseArgs* Args)
 		if (!HoverColorFore->IsRunning())
 		{
 			delete HoverColorFore;
-			HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.03F, 1);
+			HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.005F, 1);
 			HoverColorFore->TickRegistry()->Register(std::bind(&WLabel::HoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
 			HoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::HoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
 			HoverColorFore->Perform();
@@ -233,7 +233,7 @@ void WLabel::MouseLeave(WMouseArgs* Args)
 		if (!UnHoverColorFore->IsRunning())
 		{
 			delete UnHoverColorFore;
-			UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.03F, 1);
+			UnHoverColorFore = new WColorTransform(WContainer::Theme().ColorTextGlow(), WContainer::Theme().ColorText(), 0.005F, 1);
 			UnHoverColorFore->TickRegistry()->Register(std::bind(&WLabel::UnHoverForegroundTick, this, std::placeholders::_1, std::placeholders::_2));
 			UnHoverColorFore->DoneRegistry()->Register(std::bind(&WLabel::UnHoverForegroundDone, this, std::placeholders::_1, std::placeholders::_2));
 			UnHoverColorFore->Perform();
