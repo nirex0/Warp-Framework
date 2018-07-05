@@ -24,6 +24,8 @@ public:
 		, m_value(from)
 		, m_delay(delay)
 	{
+		thr = new std::thread();
+
 		m_LerpTickRegistry = new WRegistry();
 		m_LerpDoneRegistry = new WRegistry();
 
@@ -32,6 +34,7 @@ public:
 
 	~WLerp()
 	{
+		delete thr;
 		delete m_LerpTickRegistry;
 		delete m_LerpDoneRegistry;
 	}
@@ -61,23 +64,28 @@ public:
 	void Perform(void)
 	{
 		m_value = m_from;
-		thr = WorkThread();
-		thr.detach();
+		if(WorkThread(*thr))
+		{ 
+			thr->detach();
+		}
 	}
 
 	void PerformSafe(void)
 	{
 		if (!m_isRunning)
 		{
-			m_value = m_from;
-			thr = WorkThread();
-			thr.detach();
+			m_value = m_from;		
+			if (WorkThread(*thr))
+			{
+				thr->detach();
+			}
 		}
 	}
 
 	bool IsLocked(void) const { return m_isLocked; }
 	void Lock(void) { m_isLocked = true; }
 	void Unlock(void) { m_isLocked = false; }
+	void Stop(void) { m_stop = true; }
 
 private:
 	void WorkerWork(void)
@@ -85,9 +93,16 @@ private:
 		m_isRunning = true;
 		while (!isNear(m_value, m_to, 1) && !m_isLocked)
 		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
-			std::lock_guard<std::mutex> lock(m_MutexLock);
+			if (m_stop)
+			{
+				m_stop = false;
+				m_isRunning = false;
+				WLerpArgs* lerpArgsDone = new WLerpArgs(m_to);
+				m_LerpDoneRegistry->Run(this, lerpArgsDone);
+				return;
+			}
 
+			std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
 			m_value = m_value + (m_to - m_value) * m_alpha;
 
 			WLerpArgs* lerpArgsTick = new WLerpArgs(m_value);
@@ -98,9 +113,10 @@ private:
 		m_LerpDoneRegistry->Run(this, lerpArgsDone);
 	}
 
-	std::thread WorkThread()
+	bool WorkThread(std::thread& out)
 	{
-		return std::thread([=] { WorkerWork(); });
+		out = std::thread([=] { WorkerWork(); });
+		return true;
 	}
 
 private:
@@ -110,9 +126,10 @@ private:
 	W_FLOAT m_to;
 	W_FLOAT m_alpha;
 
-	std::thread thr;
+	std::thread* thr;
 	std::mutex m_MutexLock;
 
+	bool m_stop;
 	bool m_isRunning;
 	bool m_isLocked;
 
