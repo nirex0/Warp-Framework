@@ -87,12 +87,6 @@ protected:
 	void ExtendDone(WEntity* sender, WEventArgs* args);
 	void ShrinkDone(WEntity* sender, WEventArgs* args);
 
-	bool IsExtended = false;
-	bool IsShrinked = true;
-
-	bool IsExtending = false;
-	bool IsShrinking = false;
-
 	WLerp* ExBordLerpExtend;
 	WLerp* ExBordLerpShrink;
 
