@@ -25,6 +25,8 @@ public:
 		, m_delay(Delay)
 		, m_value(From)
 	{
+		thr = new std::thread();
+
 		m_CTTickRegistry = new WRegistry();
 		m_CTDoneRegistry = new WRegistry();
 
@@ -33,6 +35,7 @@ public:
 
 	~WColorTransform()
 	{
+		delete thr;
 		delete m_CTTickRegistry;
 		delete m_CTDoneRegistry;
 	}
@@ -62,8 +65,10 @@ public:
 	void Perform(void)
 	{
 		m_value = m_from;
-		thr = WorkThread();
-		thr.detach();
+		if (WorkThread(*thr))
+		{
+			thr->detach();
+		}
 	}
 
 	void PerformSafe(void)
@@ -71,14 +76,17 @@ public:
 		if (!m_isRunning)
 		{
 			m_value = m_from;
-			thr = WorkThread();
-			thr.detach();
+			if (WorkThread(*thr))
+			{
+				thr->detach();
+			}
 		}
 	}
 
 	bool IsLocked(void) const { return m_isLocked; }
 	void Lock(void) { m_isLocked = true; }
 	void Unlock(void) { m_isLocked = false; }
+	void Stop(void) { m_stop = true; }
 
 private:
 	void WorkerWork(void)
@@ -90,6 +98,14 @@ private:
 			!isNear(m_value.b, m_to.b, 0.01F) ||
 			!isNear(m_value.a, m_to.a, 0.01F))
 		{
+			if (m_stop)
+			{
+				m_stop = false;
+				m_isRunning = false;
+				WColorTransformArgs* CTArgsDone = new WColorTransformArgs(m_to);
+				m_CTDoneRegistry->Run(this, CTArgsDone);
+				return;
+			}
 			if (m_isLocked)
 			{
 				break;
@@ -111,9 +127,10 @@ private:
 		m_CTDoneRegistry->Run(this, CTArgsDone);
 	}
 
-	std::thread WorkThread()
+	bool WorkThread(std::thread& out)
 	{
-		return std::thread([=] { WorkerWork(); });
+		out = std::thread([=] { WorkerWork(); });
+		return true;
 	}
 
 private:
@@ -123,9 +140,10 @@ private:
 	W_COLOR m_from;
 	W_COLOR m_to;
 
-	std::thread thr;
+	std::thread* thr;
 	std::mutex m_MutexLock;
 
+	bool m_stop;
 	bool m_isRunning;
 	bool m_isLocked;
 
