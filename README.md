@@ -50,6 +50,8 @@ PLANS
 
 - ❌ OpenGL Implementation
 
+- ❌ Lua scripting Implementation
+
 #### *CONTROLS
 
 - ✔️ Base Control
@@ -78,7 +80,9 @@ PLANS
 
 - ⚙️ Seek Bar
 
-- ⚙️ Media Viewer (Video, Audio, Image)
+- ⚙️ Image Box
+
+- ⚙️ Media Viewer (Video, Audio)
 
 ### WARP-ASYNC
 
