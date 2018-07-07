@@ -80,7 +80,7 @@ PLANS
 
 - ⚙️ Seek Bar
 
-- ⚙️ Image Box
+- ✔️ Image Box
 
 - ⚙️ Media Viewer (Video, Audio)
 
