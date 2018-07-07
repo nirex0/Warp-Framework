@@ -132,13 +132,13 @@ W_INT WMainWindow::Initialize(void)
 // Setup the WCEX 
 	wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wcex.cbSize = sizeof(WNDCLASSEXW);
-	wcex.cbClsExtra = NULL;
-	wcex.cbWndExtra = NULL;
-	wcex.lpszMenuName = NULL;
+	wcex.cbClsExtra = {};
+	wcex.cbWndExtra = {};
+	wcex.lpszMenuName = {};
 	wcex.lpszClassName = m_windowName;
 	wcex.lpfnWndProc = WindowsProcedure;
 	wcex.hInstance = m_hAppInstance;
-	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wcex.hCursor = LoadCursor({}, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 
 // Register the class
@@ -161,7 +161,7 @@ W_INT WMainWindow::Initialize(void)
 
 // WS_EX_LAYERED for Transparency Support
 // WS_POPUP for no default top bar
-	hWnd = CreateWindowEx(WS_EX_LAYERED, m_windowName, m_windowTitle, WS_POPUP, centX, centY, WContainer::Width(), WContainer::Height(), NULL, NULL, m_hAppInstance, NULL);
+	hWnd = CreateWindowEx(WS_EX_LAYERED, m_windowName, m_windowTitle, WS_POPUP, centX, centY, WContainer::Width(), WContainer::Height(), {}, {}, m_hAppInstance, {});
 	
 	if (!hWnd)
 	{
@@ -209,7 +209,7 @@ void WMainWindow::MessageLoop(void)
 // Main Loop
 	while (msg.message != WM_QUIT)
 	{
-		if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
+		if (PeekMessage(&msg, nullptr, {}, {}, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -322,7 +322,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		PAINTSTRUCT ps;
 		BeginPaint(hWnd, &ps);
 
-		ValidateRect(hWnd, NULL);
+		ValidateRect(hWnd, nullptr);
 		WGDIPaintArgs* args = new WGDIPaintArgs(&ps, &hWnd);
 		m_OnGDIPaint->Run(this, args);
 
