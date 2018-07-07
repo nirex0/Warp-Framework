@@ -11,12 +11,16 @@ WAudio::WAudio(const wchar_t* name, const wchar_t* path)
 	cmd += m_path; 
 	cmd += L"\" type mpegvideo alias ";
 	cmd += m_name;
-	mciSendString(cmd.c_str(), NULL, 0, WContainer::Handle());
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 }
 
 WAudio::~WAudio(void)
 {
-	mciSendString(L"close mp3", NULL, 0, NULL);
+	std::wstring cmd = L"";
+	cmd = L"";
+	cmd += L"close ";
+	cmd += m_name;
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 }
 
 const wchar_t* WAudio::Path(void) const
@@ -34,12 +38,12 @@ void WAudio::Play(void)
 	std::wstring cmd = L"";
 	cmd += L"stop ";
 	cmd += m_name;
-	mciSendString(cmd.c_str(), NULL, 0, WContainer::Handle());
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 
 	cmd = L"";
 	cmd += L"play ";
 	cmd += m_name;
-	mciSendString(cmd.c_str(), NULL, 0, WContainer::Handle());
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 }
 
 void WAudio::Pause(void)
@@ -47,7 +51,7 @@ void WAudio::Pause(void)
 	std::wstring cmd = L"";
 	cmd += L"pause ";
 	cmd += m_name;
-	mciSendString(cmd.c_str(), NULL, 0, WContainer::Handle());
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 }
 
 void WAudio::Resume(void)
@@ -55,7 +59,7 @@ void WAudio::Resume(void)
 	std::wstring cmd = L"";
 	cmd += L"resume ";
 	cmd += m_name;
-	mciSendString(cmd.c_str(), NULL, 0, WContainer::Handle());
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 }
 
 void WAudio::Stop(void)
@@ -63,8 +67,7 @@ void WAudio::Stop(void)
 	std::wstring cmd = L"";
 	cmd += L"stop ";
 	cmd += m_name;
-	mciSendString(cmd.c_str(), NULL, 0, WContainer::Handle());
-	mciSendString(L"stop mp3", NULL, 0, NULL);
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 }
 
 void WAudio::PlayOnRepeat(void)
@@ -72,11 +75,11 @@ void WAudio::PlayOnRepeat(void)
 	std::wstring cmd = L"";
 	cmd += L"stop ";
 	cmd += m_name;
-	mciSendString(cmd.c_str(), NULL, 0, WContainer::Handle());
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 
 	cmd = L"";
 	cmd += L"play ";
 	cmd += m_name;
 	cmd += L" repeat";
-	mciSendString(cmd.c_str(), NULL, 0, WContainer::Handle());
+	mciSendString(cmd.c_str(), nullptr, 0, WContainer::Handle());
 }
