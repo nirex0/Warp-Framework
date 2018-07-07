@@ -70,9 +70,6 @@
     <Filter Include="Source Files\WARP-GFX\Engine\Audio">
       <UniqueIdentifier>{52d05d79-0dde-426d-8da2-cab38f072fd9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\User-Filter">
-      <UniqueIdentifier>{25b61b91-2fd6-4a16-aa2c-3bcd62b39b8c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\WARP-ASYNC">
       <UniqueIdentifier>{7fce6c25-aa53-4027-aa10-d96325e63c21}</UniqueIdentifier>
     </Filter>
@@ -262,7 +259,7 @@
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WImageBox.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -277,9 +274,6 @@
     </ClCompile>
     <ClCompile Include="WAudio.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="WEntry.cpp">
-      <Filter>Source Files\User-Filter</Filter>
     </ClCompile>
     <ClCompile Include="WListBox.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
@@ -300,7 +294,10 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WImageBox.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WEntry.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Graphics\Main Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
