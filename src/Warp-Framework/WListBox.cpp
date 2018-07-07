@@ -260,7 +260,7 @@ void WListBox::Render(void)
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
 // Geometry Sink
-	ID2D1GeometrySink* pSink = NULL;
+	ID2D1GeometrySink* pSink = nullptr;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
 	pSink->BeginFigure(D2D1::Point2F(ParentRect.left, ParentRect.top), D2D1_FIGURE_BEGIN_FILLED);
@@ -271,7 +271,7 @@ void WListBox::Render(void)
 	pSink->Close();
 
 // Begin Mask Render
-	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(NULL, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
 // Render Statements Go Here
