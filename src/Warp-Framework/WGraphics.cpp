@@ -7,13 +7,13 @@
 #include "WCODEC.h"
 
 WGraphics::WGraphics(void)
-	: m_pD2D1Factory(NULL)
-	, m_pD2D1RenderTarget(NULL)
-	, m_pSolidColorBrush(NULL)
-	, m_pLinearGradientBrush(NULL)
-	, m_pRadialGradientBrush(NULL)
-	, m_pIDWriteFactory(NULL)
-	, m_pIDWriteTextFormat(NULL)
+	: m_pD2D1Factory(nullptr)
+	, m_pD2D1RenderTarget(nullptr)
+	, m_pSolidColorBrush(nullptr)
+	, m_pLinearGradientBrush(nullptr)
+	, m_pRadialGradientBrush(nullptr)
+	, m_pIDWriteFactory(nullptr)
+	, m_pIDWriteTextFormat(nullptr)
 {
 	m_FontFamilyName = L"Arial";
 	m_FontSize = 14.0F;
@@ -184,7 +184,7 @@ HRESULT WGraphics::CreateLinearColorBrush(const W_COLOR& color0, const W_COLOR& 
 	{
 		m_bIsLinearGradientBrushCreated = 1;
 
-		ID2D1GradientStopCollection *pGradientStops = NULL;
+		ID2D1GradientStopCollection *pGradientStops = nullptr;
 		D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES lbProps;
 		lbProps.startPoint.x = pos0.x;
 		lbProps.startPoint.y = pos0.y;
@@ -214,7 +214,7 @@ HRESULT WGraphics::UpdateLinearColorBrush(const W_COLOR& color0, const W_COLOR& 
 	SafeRelease(&m_pLinearGradientBrush);
 	if (!m_pLinearGradientBrush)
 	{
-		ID2D1GradientStopCollection *pGradientStops = NULL;
+		ID2D1GradientStopCollection *pGradientStops = nullptr;
 		D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES lbProps;
 		lbProps.startPoint.x = pos0.x;
 		lbProps.startPoint.y = pos0.y;
@@ -243,7 +243,7 @@ HRESULT WGraphics::CreateRadialColorBrush(const W_COLOR& color0, const W_COLOR& 
 	{
 		m_bIsRadialGradientBrushCreated = 1;
 
-		ID2D1GradientStopCollection *pGradientStops = NULL;
+		ID2D1GradientStopCollection *pGradientStops = nullptr;
 		D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES rbProps;
 		rbProps.center.x = center.x;
 		rbProps.center.y = center.y;
@@ -274,7 +274,7 @@ HRESULT WGraphics::UpdateRadialColorBrush(const W_COLOR & color0, const W_COLOR 
 	SafeRelease(&m_pRadialGradientBrush);
 	if (!m_pRadialGradientBrush)
 	{
-		ID2D1GradientStopCollection *pGradientStops = NULL;
+		ID2D1GradientStopCollection *pGradientStops = nullptr;
 		D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES rbProps;
 		rbProps.center.x = center.x;
 		rbProps.center.y = center.y;
@@ -339,7 +339,7 @@ HRESULT WGraphics::CreateFormat(void)
 		WContainer::hResult(
 			m_pIDWriteFactory->CreateTextFormat(
 				m_FontFamilyName,
-				NULL,
+				nullptr,
 				DWRITE_FONT_WEIGHT_REGULAR,
 				DWRITE_FONT_STYLE_NORMAL,
 				DWRITE_FONT_STRETCH_NORMAL,
@@ -365,7 +365,7 @@ HRESULT WGraphics::UpdateFormat(void)
 		WContainer::hResult(
 			m_pIDWriteFactory->CreateTextFormat(
 				m_FontFamilyName,
-				NULL,
+				nullptr,
 				DWRITE_FONT_WEIGHT_REGULAR,
 				DWRITE_FONT_STYLE_NORMAL,
 				DWRITE_FONT_STRETCH_NORMAL,
@@ -1018,19 +1018,19 @@ HRESULT WGraphics::DrawPoint(POINTF Coords, W_COLOR color)
 
 HRESULT WGraphics::LoadIMG(LPCWSTR uri, W_IMAGE** ppImage)
 {
-	IWICImagingFactory*	pIWICFactory = NULL;
-	IWICBitmapDecoder *pDecoder = NULL;
-	IWICBitmapFrameDecode *pSource = NULL;
-	IWICStream *pStream = NULL;
-	IWICFormatConverter *pConverter = NULL;
-	IWICBitmapScaler *pScaler = NULL;
+	IWICImagingFactory*	pIWICFactory = nullptr;
+	IWICBitmapDecoder *pDecoder = nullptr;
+	IWICBitmapFrameDecode *pSource = nullptr;
+	IWICStream *pStream = nullptr;
+	IWICFormatConverter *pConverter = nullptr;
+	IWICBitmapScaler *pScaler = nullptr;
 
-	WContainer::hResult(CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_IWICImagingFactory, (LPVOID*)&pIWICFactory));
-	WContainer::hResult(pIWICFactory->CreateDecoderFromFilename(uri, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder));
+	WContainer::hResult(CoCreateInstance(CLSID_WICImagingFactory, nullptr, CLSCTX_INPROC_SERVER, IID_IWICImagingFactory, (LPVOID*)&pIWICFactory));
+	WContainer::hResult(pIWICFactory->CreateDecoderFromFilename(uri, nullptr, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder));
 	WContainer::hResult(pDecoder->GetFrame(0, &pSource));
 	WContainer::hResult(pIWICFactory->CreateFormatConverter(&pConverter));
-	WContainer::hResult(pConverter->Initialize(pSource, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, NULL, 0.0f, WICBitmapPaletteTypeMedianCut));
-	WContainer::hResult(m_pD2D1RenderTarget->CreateBitmapFromWicBitmap(pConverter, NULL, ppImage));
+	WContainer::hResult(pConverter->Initialize(pSource, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, nullptr, 0.0f, WICBitmapPaletteTypeMedianCut));
+	WContainer::hResult(m_pD2D1RenderTarget->CreateBitmapFromWicBitmap(pConverter, nullptr, ppImage));
 
 	SafeRelease(&pDecoder);
 	SafeRelease(&pSource);
@@ -1149,7 +1149,7 @@ void W_MAIN_WINDOW::ResizeWindow(W_INT X, W_INT Y)
 		, wndRect.top		// Position.Y
 		, X					// Width
 		, Y					// Height 
-		, NULL);
+		, {});
 
 	WContainer::Width(X);
 	WContainer::Height(Y);
@@ -1164,7 +1164,7 @@ void W_MAIN_WINDOW::RepositionWindow(W_INT X, W_INT Y)
 		, X, Y					// Position
 		, wndRect.right - wndRect.left// Width
 		, wndRect.bottom - wndRect.top// Height
-		, NULL);
+		, {});
 
 	WContainer::Width(wndRect.right - wndRect.left);
 	WContainer::Height(wndRect.bottom - wndRect.top);
