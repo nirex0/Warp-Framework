@@ -9,20 +9,20 @@
 class WDXContainer
 {
 public:
-	static void Factory(ID2D1Factory* factory) { WDXContainer::DX_Factory = factory; }
-	static const ID2D1Factory* Factory(void) { return WDXContainer::DX_Factory; }
+	static void Factory(ID2D1Factory* factory);
+	static const ID2D1Factory* Factory(void);
 
-	static void RenderTarget(ID2D1HwndRenderTarget* rt) { WDXContainer::DX_RT = rt; }
-	static const ID2D1HwndRenderTarget* RenderTarget(void) { return WDXContainer::DX_RT; }
+	static void RenderTarget(ID2D1HwndRenderTarget* rt);
+	static const ID2D1HwndRenderTarget* RenderTarget(void);
 
-	static void ClientArea(RECT rect) { WDXContainer::DX_cRect = rect; }
-	static const RECT ClientArea(void) { return WDXContainer::DX_cRect; }
+	static void ClientArea(RECT rect);
+	static const RECT ClientArea(void);
 
-	static void WriteFactory(IDWriteFactory* factory) { WDXContainer::DX_WFactory = factory; }
-	static const IDWriteFactory* WriteFactory(void) { return WDXContainer::DX_WFactory; }
+	static void WriteFactory(IDWriteFactory* factory);
+	static const IDWriteFactory* WriteFactory(void);
 
-	static void TextFormat(IDWriteTextFormat* tf) { WDXContainer::DX_TextFormat = tf; }
-	static const IDWriteTextFormat* TextFormat(void) { return WDXContainer::DX_TextFormat; }
+	static void TextFormat(IDWriteTextFormat* tf);
+	static const IDWriteTextFormat* TextFormat(void);
 
 private:
 	static ID2D1Factory* WDXContainer::DX_Factory;
