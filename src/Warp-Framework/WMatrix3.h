@@ -3,6 +3,7 @@
 #ifndef _W_MATRIX_3_H_
 #define _W_MATRIX_3_H_
 
+#include "WDefines.h"
 #include "WVector3.h"
 
 //Base class for a 3x3 matrix
@@ -36,7 +37,7 @@ public:
 	
 	WMatrix3& operator*=(const WMatrix3& rhs)
 	{
-		return *this = *this * rhs;
+		return *this = *this* rhs;
 	}
 	
 	WMatrix3 operator*(const WMatrix3& rhs) const
@@ -49,7 +50,7 @@ public:
 				T sum = (T)0.0;
 				for (size_t i = 0; i < 3; i++)
 				{
-					sum += elements[j][i] * rhs.elements[i][k];
+					sum += elements[j][i]* rhs.elements[i][k];
 				}
 				result.elements[j][k] = sum;
 			}
@@ -116,16 +117,16 @@ public:
 template<typename T>
 WVector3<T>& operator*=(WVector3<T>& lhs, const WMatrix3<T>& rhs)
 {
-	return lhs = lhs * rhs;
+	return lhs = lhs* rhs;
 }
 
 template<typename T>
 WVector3<T> operator*(const WVector3<T>& lhs, const WMatrix3<T>& rhs)
 {
 	return{
-		lhs.x * rhs.elements[0][0] + lhs.y * rhs.elements[1][0] + lhs.z * rhs.elements[2][0],
-		lhs.x * rhs.elements[0][1] + lhs.y * rhs.elements[1][1] + lhs.z * rhs.elements[2][1],
-		lhs.x * rhs.elements[0][2] + lhs.y * rhs.elements[1][2] + lhs.z * rhs.elements[2][2]
+		lhs.x* rhs.elements[0][0] + lhs.y* rhs.elements[1][0] + lhs.z* rhs.elements[2][0],
+		lhs.x* rhs.elements[0][1] + lhs.y* rhs.elements[1][1] + lhs.z* rhs.elements[2][1],
+		lhs.x* rhs.elements[0][2] + lhs.y* rhs.elements[1][2] + lhs.z* rhs.elements[2][2]
 	};
 }
 

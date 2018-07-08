@@ -3,6 +3,7 @@
 #ifndef _W_MATRIX_2_H_
 #define _W_MATRIX_2_H_
 
+#include "WDefines.h"
 #include "WMath.h"
 #include "WEntity.h"
 #include "WVector2.h"
@@ -46,7 +47,7 @@ public:
 				T sum = (T)0.0;
 				for (size_t i = 0; i < 2; i++)
 				{
-					sum += elements[j][i] * rhs.elements[i][k];
+					sum += elements[j][i]* rhs.elements[i][k];
 				}
 				result.elements[j][k] = sum;
 			}
@@ -84,15 +85,15 @@ public:
 template<typename T>
 WVector2<T>& operator*=(WVector2<T>& lhs, const WMatrix2<T>& rhs)
 {
-	return lhs = lhs * rhs;
+	return lhs = lhs* rhs;
 }
 
 template<typename T>
 WVector2<T> operator*(const WVector2<T>& lhs, const WMatrix2<T>& rhs)
 {
 	return {
-		lhs.x * rhs.elements[0][0] + lhs.y * rhs.elements[1][0],
-		lhs.x * rhs.elements[0][1] + lhs.y * rhs.elements[1][1]
+		lhs.x* rhs.elements[0][0] + lhs.y* rhs.elements[1][0],
+		lhs.x* rhs.elements[0][1] + lhs.y* rhs.elements[1][1]
 	};
 }
 
