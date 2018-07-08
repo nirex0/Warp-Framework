@@ -11,44 +11,14 @@
 
 typedef std::function<void __stdcall (WEntity* sender, WEventArgs* args)> Annex;
 
-
 class WUniqueRegister final : public WEntity
 {
 public:	
-	~WUniqueRegister()
-	{
-		m_Register.release();
-	}
-
-	WUniqueRegister* Register(const Annex& intake)
-	{
-		m_Register = std::make_unique<Annex>(*(new Annex(intake)));
-		return this;
-	}
-
-	WUniqueRegister* Unregister(void)
-	{
-		m_Register.release();
-		return this;
-	}
-
-	WUniqueRegister* operator()(WEntity* sender, WEventArgs* args)
-	{
-		if (m_Register != nullptr)
-		{
-			(*m_Register)(sender, args);
-		}
-		return this;
-	}
-
-	WUniqueRegister* Run(WEntity* sender, WEventArgs* args)
-	{
-		if (m_Register != nullptr)
-		{
-			(*m_Register)(sender, args);
-		}
-		return this;
-	}
+	~WUniqueRegister();
+	WUniqueRegister* operator()(WEntity* sender, WEventArgs* args);
+	WUniqueRegister* Run(WEntity* sender, WEventArgs* args);
+	WUniqueRegister* Register(const Annex& intake);
+	WUniqueRegister* Unregister(void);
 
 private:
 	std::unique_ptr<Annex> m_Register;
