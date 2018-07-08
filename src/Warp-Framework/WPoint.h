@@ -3,6 +3,8 @@
 #ifndef _W_POINT_H_
 #define _W_POINT_H_
 
+#include "WDefines.h"
+
 // X is HEIGHT	, Y is WIDTH
 // X is TOP		, Y Is LEFT
 // X is BOT		, Y Is RIGHT
