@@ -10,19 +10,9 @@ typedef unsigned char WKey;
 class WKeyboardArgs : public WEventArgs
 {
 public:
-	WKeyboardArgs(WKey key)
-		: m_Key(key)
-	{
-	}
-
-	~WKeyboardArgs()
-	{
-	}
-
-	const WKey GetKey(void) const
-	{
-		return this->m_Key;
-	}
+	WKeyboardArgs(WKey key);
+	~WKeyboardArgs() = default;
+	const WKey GetKey(void) const;
 
 private:
 	WKey m_Key;
