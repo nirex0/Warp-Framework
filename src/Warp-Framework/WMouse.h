@@ -12,164 +12,39 @@
 class WMouse final : public WEntity
 {
 public:
-	WMouse(void)
-	{
-		m_MouseDown = new WRegistry();
-		m_MouseUp = new WRegistry();
-		m_MouseMove = new WRegistry();
-		m_MouseRollUp = new WRegistry();
-		m_MouseRollDown = new WRegistry();
+	WMouse(void);
+	WMouse(const WMouse& iWMouse);
+	~WMouse(void);
 
-		m_mPoint = new WPointF();
+	WMouse* MouseDown(void);
+	WMouse* MouseUp(void);
+	WMouse* MouseMove(void);
+	WMouse* MouseMiddleUp(void);
+	WMouse* MouseMiddleDown(void);
 
-		m_mPoint->X(0);
-		m_mPoint->Y(0);
+	WRegistry* MouseDownRegistry(void);
+	WMouse* MouseDownRegistry(WRegistry* const intake);
 
-		SetGRegisters();
-	}
+	WRegistry* MouseUpRegistry(void);
+	WMouse* MouseUpRegistry(WRegistry* const intake);
 
-	WMouse(const WMouse& iWMouse)
-		: m_MouseDown(iWMouse.m_MouseDown)
-		, m_MouseUp(iWMouse.m_MouseUp)
-		, m_MouseMove(iWMouse.m_MouseMove)
-		, m_MouseRollUp(iWMouse.m_MouseRollUp)
-		, m_MouseRollDown(iWMouse.m_MouseRollDown)
-	{
-		SetGRegisters();
-	}
+	WRegistry* MouseMoveRegistry(void);
+	WMouse* MouseMoveRegistry(WRegistry* const intake);
 
+	WRegistry* MouseRollUpRegistry(void);
+	WMouse* MouseRollUpRegistry(WRegistry* const intake);
 
-	~WMouse(void)
-	{
-		delete m_MouseDown;
-		delete m_MouseUp;
-		delete m_MouseMove;
-		delete m_MouseRollUp;
-		delete m_MouseRollDown;
-	}
+	WRegistry* MouseRollDownRegistry(void);
+	WMouse* MouseRollDownRegistry(WRegistry* const intake);
 
-	inline WMouse* MouseDown(void)
-	{
-		WMouseArgs* ARGS = new WMouseArgs((W_INT)(this->m_mPoint->X()), (W_INT)(this->m_mPoint->Y()), this->m_WMKPrev, KeyState::MouseDown);
-		m_MouseDown->Run(this, ARGS);
-		return this;
-	}
-	inline WMouse* MouseUp(void)
-	{
-		WMouseArgs* ARGS = new WMouseArgs((W_INT)(this->m_mPoint->X()), (W_INT)(this->m_mPoint->Y()), this->m_WMKPrev, KeyState::MouseUp);
-		m_MouseUp->Run(this, ARGS);
-		return this;
-	}
-	inline WMouse* MouseMove(void)
-	{
-		WMouseArgs* ARGS = new WMouseArgs((W_INT)(this->m_mPoint->X()), (W_INT)(this->m_mPoint->Y()), this->m_WMKPrev, KeyState::NoClick);
-		m_MouseMove->Run(this, ARGS);
-		return this;
-	}
+	WPointF* MPoint(void);
+	WMouse* MPoint(W_UINT x, W_UINT y);
 
-	inline WMouse* MouseMiddleUp(void)
-	{
-		WMouseArgs* ARGS = new WMouseArgs((W_INT)(this->m_mPoint->X()), (W_INT)(this->m_mPoint->Y()), this->m_WMKPrev, KeyState::MouseUp);
-		m_MouseRollUp->Run(this, ARGS);
-		return this;
-	}
-
-	inline WMouse* MouseMiddleDown(void)
-	{
-		WMouseArgs* ARGS = new WMouseArgs((W_INT)(this->m_mPoint->X()), (W_INT)(this->m_mPoint->Y()), this->m_WMKPrev, KeyState::MouseDown);
-		m_MouseRollDown->Run(this, ARGS);
-		return this;
-	}
-
-	inline WRegistry* MouseDownRegistry(void)
-	{
-		return this->m_MouseDown;
-	}
-
-	inline WMouse* MouseDownRegistry(WRegistry* const intake)
-	{
-		this->m_MouseDown = intake;
-		return this;
-	}
-
-	inline WRegistry* MouseUpRegistry(void)
-	{
-		return this->m_MouseUp;
-	}
-
-	inline WMouse* MouseUpRegistry(WRegistry* const intake)
-	{
-		this->m_MouseUp = intake;
-		return this;
-	}
-
-	inline WRegistry* MouseMoveRegistry(void)
-	{
-		return this->m_MouseMove;
-	}
-
-	inline WMouse* MouseMoveRegistry(WRegistry* const intake)
-	{
-		this->m_MouseMove = intake;
-		return this;
-	}
-
-	inline WRegistry* MouseRollUpRegistry(void)
-	{
-		return this->m_MouseRollUp;
-	}
-
-	inline WMouse* MouseRollUpRegistry(WRegistry* const intake)
-	{
-		this->m_MouseRollUp = intake;
-		return this;
-	}
-
-	inline WRegistry* MouseRollDownRegistry(void)
-	{
-		return this->m_MouseRollDown;
-	}
-
-	inline WMouse* MouseRollDownRegistry(WRegistry* const intake)
-	{
-		this->m_MouseRollDown = intake;
-		return this;
-	}
-
-
-	inline WPointF* MPoint(void)
-	{
-		return this->m_mPoint;
-	}
-
-	inline WMouse* MPoint(W_UINT x, W_UINT y)
-	{
-		this->m_mPoint->X((W_FLOAT)x);
-		this->m_mPoint->Y((W_FLOAT)y);
-		return this;
-	}
-
-	inline WMouseKey MouseKey(void) const
-	{
-		return m_WMKPrev;
-	}
-
-	inline WMouse* MouseKey(WMouseKey intake)
-	{
-		m_WMKPrev = intake;
-		return this;
-	}
+	WMouseKey MouseKey(void) const;
+	WMouse* MouseKey(WMouseKey intake);
 
 private:
-
-	void SetGRegisters(void)
-	{
-		WRegContainer::MouseDown(m_MouseDown);
-		WRegContainer::MouseUp(m_MouseUp);
-		WRegContainer::MouseMove(m_MouseMove);
-		WRegContainer::MouseRollUp(m_MouseRollUp);
-		WRegContainer::MouseRollDown(m_MouseRollDown);
-	}
+	void SetGRegisters(void);
 	
 	WRegistry* m_MouseDown;
 	WRegistry* m_MouseUp;
