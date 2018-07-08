@@ -3,6 +3,7 @@
 #ifndef _W_VECTOR_4_H_
 #define _W_VECTOR_4_H_
 
+#include "WDefines.h"
 #include "WVector3.h"
 
 template <typename T>
@@ -89,7 +90,7 @@ public:
 
 	T operator*(const WVector4 &rhs) const
 	{
-		return x * rhs.x + y * rhs.y + z * rhs.z + w * rhs.w;
+		return x* rhs.x + y* rhs.y + z* rhs.z + w* rhs.w;
 	}
 
 	WVector4 operator+(const WVector4 &rhs) const
@@ -120,9 +121,9 @@ public:
 	{
 // w remains the same in this vector
 		return WVector4(
-			y * rhs.z - z * rhs.y,
-			z * rhs.x - x * rhs.z,
-			x * rhs.y - y * rhs.x
+			y* rhs.z - z* rhs.y,
+			z* rhs.x - x* rhs.z,
+			x* rhs.y - y* rhs.x
 			w);
 	}
 

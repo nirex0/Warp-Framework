@@ -3,6 +3,7 @@
 #ifndef _W_VECTOR_2_H_
 #define _W_VECTOR_2_H_
 
+#include "WDefines.h"
 #include "WEntity.h"
 
 template <typename T>
@@ -82,7 +83,7 @@ public:
 
 	T operator*(const WVector2 &rhs) const
 	{
-		return x * rhs.x + y * rhs.y;
+		return x* rhs.x + y* rhs.y;
 	}
 
 	WVector2 operator+(const WVector2 &rhs) const

@@ -3,6 +3,7 @@
 #ifndef _W_VECTOR_3_H_
 #define _W_VECTOR_3_H_
 
+#include "WDefines.h"
 #include "WVector2.h"
 
 template <typename T>
@@ -85,7 +86,7 @@ public:
 
 	T operator*(const WVector3 &rhs) const
 	{
-		return x * rhs.x + y * rhs.y + z * rhs.z;
+		return x* rhs.x + y* rhs.y + z* rhs.z;
 	}
 
 	WVector3 operator+(const WVector3 &rhs) const
@@ -114,9 +115,9 @@ public:
 	WVector3 operator%(const WVector3& rhs) const
 	{
 		return WVector3(
-			y * rhs.z - z * rhs.y,
-			z * rhs.x - x * rhs.z,
-			x * rhs.y - y * rhs.x);
+			y* rhs.z - z* rhs.y,
+			z* rhs.x - x* rhs.z,
+			x* rhs.y - y* rhs.x);
 	}
 
 	WVector3& operator/=(const T &rhs)
