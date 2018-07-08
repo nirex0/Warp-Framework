@@ -3,6 +3,7 @@
 #ifndef _W_RECT_H_
 #define _W_RECT_H_
 
+#include "WDefines.h"
 #include "WPoint.h"
 
 template <typename T>
