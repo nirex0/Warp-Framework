@@ -15,70 +15,23 @@
 class WAsyncWorker : public WEntity
 {
 public:
-	WAsyncWorker()
-	{
-		m_WorkRegistry = new WRegistry();
-	}
-
-	~WAsyncWorker() 
-	{
-		delete m_WorkRegistry;
-	}
+	WAsyncWorker();
+	~WAsyncWorker();
 
 // Getters
-	WRegistry* WorkRegistry(void) const
-	{
-		return m_WorkRegistry;
-	}
+	WRegistry* WorkRegistry(void) const;
 
 // Setters
-	WRegistry* WorkRegistry(WRegistry* intake)
-	{
-		m_WorkRegistry = intake;
-		return m_WorkRegistry;
-	}
+	WRegistry* WorkRegistry(WRegistry* intake);
 
 // Functions
-	void RunWorkerAsync(void)
-	{
-		m_isRunning = true;
-
-		thr = WorkThread();
-		thr.detach();
-
-		m_isRunning = false;
-	}
-
-	void RunWorkerAsyncSafe(void)
-	{
-		if (!m_isRunning)
-		{
-			m_isRunning = true;
-
-			thr = WorkThread();
-			thr.detach();
-
-			m_isRunning = false;
-		}
-	}
-
-	bool IsRunning(void)
-	{
-		return m_isRunning;
-	}
+	void RunWorkerAsync(void);
+	void RunWorkerAsyncSafe(void);
+	bool IsRunning(void);
 
 private:
-	void WorkerWork(void)
-	{
-		std::lock_guard<std::mutex> lock(m_MutexLock);
-		WAsyncArgs* args = new WAsyncArgs();
-		m_WorkRegistry->Run(this, args);		
-	}
-
-	std::thread WorkThread()
-	{
-		return std::thread([=] { WorkerWork(); });
-	}
+	void WorkerWork(void);
+	bool WorkThread(std::thread& out);
 
 private:
 	std::thread thr;
