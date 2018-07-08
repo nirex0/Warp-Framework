@@ -9,25 +9,11 @@
 class WGDIPaintArgs : public WEventArgs
 {
 public:
-	WGDIPaintArgs(PAINTSTRUCT* ps, HWND* hWnd)
-		: m_ps(ps)
-		, m_hWnd(hWnd)
-	{
-	}
+	WGDIPaintArgs(PAINTSTRUCT* ps, HWND* hWnd);
+	~WGDIPaintArgs() = default;
 
-	~WGDIPaintArgs()
-	{
-	}
-
-	PAINTSTRUCT* GetPaintStruct(void) const
-	{
-		return this->m_ps;
-	}
-
-	HWND* GetHandle(void) const
-	{
-		return this->m_hWnd;
-	}
+	PAINTSTRUCT* GetPaintStruct(void) const;
+	HWND* GetHandle(void) const;
 
 private:
 	PAINTSTRUCT* m_ps;
