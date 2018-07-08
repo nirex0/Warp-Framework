@@ -10,15 +10,8 @@
 class WColorTransformArgs : public WEventArgs
 {
 public:
-	WColorTransformArgs(W_COLOR col)
-		: m_val(col)
-	{
-	}
-
-	W_COLOR Value(void) const 
-	{ 
-		return m_val; 
-	}
+	WColorTransformArgs(W_COLOR col);
+	W_COLOR Value(void) const;
 
 private:
 	W_COLOR	m_val;
