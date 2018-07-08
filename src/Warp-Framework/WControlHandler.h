@@ -15,77 +15,17 @@
 class WControlHandler
 {
 public:
-	static void Add(IControl* intake)
-	{
-		for (const W_INT &p : stcz)
-		{
-			if (intake->ZIndex() == p)
-			{
-				intake->SetZIndexNoChange(p + 1);
-			}
-		}
-		stcz.emplace(intake->ZIndex());
-		mtcp.emplace(std::make_pair(intake->ZIndex(), intake));
-	}
-	static void Remove(IControl* intake)
-	{
-		stcz.erase(intake->ZIndex());
-		mtcp.erase(intake->ZIndex());
-	}
-	static void MouseDown(WMouseArgs* args)
-	{
-		for (const auto &p : mtcp)
-		{
-			mtcp.at(p.first)->MouseDown(args);
-		}
-	}
-	static void MouseUp(WMouseArgs* args)
-	{
-		for (const auto &p : mtcp)
-		{
-			mtcp.at(p.first)->MouseUp(args);
-		}
-	}
-	static void MouseEnter(WMouseArgs* args)
-	{
-		for (const auto &p : mtcp)
-		{
-			mtcp.at(p.first)->MouseEnter(args);
-		}
-	}
-	static void MouseLeave(WMouseArgs* args)
-	{
-		for (const auto &p : mtcp)
-		{
-			mtcp.at(p.first)->MouseLeave(args);
-		}
-	}
-	static void MouseRollUp(WMouseArgs* args)
-	{
-		for (const auto &p : mtcp)
-		{
-			mtcp.at(p.first)->MouseRollUp(args);
-		}
-	}
-	static void MouseRollDown(WMouseArgs* args)
-	{
-		for (const auto &p : mtcp)
-		{
-			mtcp.at(p.first)->MouseRollDown(args);
-		}
-	}
-	static void MouseMove(WMouseArgs* args)
-	{
-		WControlHandler::MouseLeave(args);
-		WControlHandler::MouseEnter(args);
-	}
-	static void Render(void)
-	{
-		for (const auto &p : mtcp)
-		{
-			mtcp.at(p.first)->Render();
-		}
-	}
+	static void Add(IControl* intake);
+	static void Remove(IControl* intake);
+	static void MouseDown(WMouseArgs* args);
+	static void MouseUp(WMouseArgs* args);
+	static void MouseEnter(WMouseArgs* args);
+	static void MouseLeave(WMouseArgs* args);
+	static void MouseRollUp(WMouseArgs* args);
+	static void MouseRollDown(WMouseArgs* args);
+	static void MouseMove(WMouseArgs* args);
+	static void Render(void);
+
 private:
 	static std::map<W_INT, IControl*> WControlHandler::mtcp;
 	static std::set<W_INT> WControlHandler::stcz;
