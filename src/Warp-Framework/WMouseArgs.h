@@ -3,6 +3,7 @@
 #ifndef _W_MOUSE_ARGS_H_
 #define _W_MOUSE_ARGS_H_
 
+#include "WDefines.h"
 #include "WEventArgs.h"
 #include "WPoint.h"
 
@@ -16,50 +17,17 @@ enum KeyState
 class WMouseArgs : public WEventArgs
 {
 public:
-	WMouseArgs(W_INT x, W_INT y, WMouseKey key, KeyState keyState)
-	{
-		this->m_wmk = key;
-		this->m_Point.X((W_FLOAT)x);
-		this->m_Point.Y((W_FLOAT)y);
-		this->m_keyState = keyState;
-	}
+	WMouseArgs(W_INT x, W_INT y, WMouseKey key, KeyState keyState);
+	WMouseArgs(WPointF point, WMouseKey key, KeyState keyState);
+	~WMouseArgs(void) = default;
 
-	WMouseArgs(WPointF point, WMouseKey key, KeyState keyState)
-	{
-		this->m_wmk = key;
-		this->m_Point = point;
-		this->m_keyState = keyState;
-	}
+	WPointF const Point(void);
+	WMouseKey const Key(void) const;
 
-	~WMouseArgs(void)
-	{
+	W_INT X(void) const;
+	W_INT Y(void) const;
 
-	}
-
-	WPointF const Point(void)
-	{
-		return m_Point;
-	}
-
-	WMouseKey const Key(void) const
-	{
-		return m_wmk;
-	}
-
-	W_INT X(void) const
-	{
-		return (W_INT)m_Point.X();
-	}
-
-	W_INT Y(void) const
-	{
-		return (W_INT)m_Point.Y();
-	}
-
-	KeyState State(void) const
-	{
-		return m_keyState;
-	}
+	KeyState State(void) const;
 
 private:
 	WPointF m_Point;
