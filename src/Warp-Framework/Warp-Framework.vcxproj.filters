@@ -67,9 +67,6 @@
     <Filter Include="Source Files\WARP-GFX\Engine\Controls">
       <UniqueIdentifier>{cac18e69-1a47-4fe2-a314-3b4ca94a9b0f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\WARP-GFX\Engine\Audio">
-      <UniqueIdentifier>{52d05d79-0dde-426d-8da2-cab38f072fd9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\WARP-ASYNC">
       <UniqueIdentifier>{7fce6c25-aa53-4027-aa10-d96325e63c21}</UniqueIdentifier>
     </Filter>
@@ -91,11 +88,44 @@
     <Filter Include="Header Files\WARP-ASYNC\Animations\Color">
       <UniqueIdentifier>{cc7ea95d-2a17-4594-ab83-02bdcb4e7420}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\WARP-GFX\Engine\Graphics\Main Window">
-      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\WARP-GFX\Engine\Control Helpers">
       <UniqueIdentifier>{9f27ee11-dc74-42a3-a512-bec31dcf7731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Animations">
+      <UniqueIdentifier>{e228de91-e156-4452-ab6b-e32f4ceef952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Core">
+      <UniqueIdentifier>{395ae778-a8de-4a0b-a73e-dc4a88796760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Animations\Color">
+      <UniqueIdentifier>{211a9643-9f28-4c96-8ce7-978b45c3a851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Animations\Lerp">
+      <UniqueIdentifier>{468f5a6f-60a5-429d-8d06-8e1b92d66a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Animations\Smoothstep">
+      <UniqueIdentifier>{3880791e-70b0-4431-abf4-f2871510a818}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Audio">
+      <UniqueIdentifier>{52d05d79-0dde-426d-8da2-cab38f072fd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Containers">
+      <UniqueIdentifier>{d539b2ff-2f9a-4e8f-896c-cf513515aad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Control Helpers">
+      <UniqueIdentifier>{d915e811-4b8c-426c-9486-402cebe9fd32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Core">
+      <UniqueIdentifier>{eef99d99-f16d-4181-9040-2ae68acbe698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Devices">
+      <UniqueIdentifier>{ec04f148-14b6-43a3-a0ae-22eb88f2c883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Main Window">
+      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\EventArgs">
+      <UniqueIdentifier>{4f3587be-6906-4793-b28e-006deb9626dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Graphics\Main Window</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Main Window</Filter>
     </ClCompile>
     <ClCompile Include="WGraphics.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Graphics</Filter>
@@ -273,7 +303,7 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WAudio.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Audio</Filter>
+      <Filter>Source Files\WARP-GFX\Audio</Filter>
     </ClCompile>
     <ClCompile Include="WListBox.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
@@ -297,7 +327,73 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WEntry.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Graphics\Main Window</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Main Window</Filter>
+    </ClCompile>
+    <ClCompile Include="WAsyncArgs.cpp">
+      <Filter>Source Files\WARP-ASYNC\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WAsyncWorker.cpp">
+      <Filter>Source Files\WARP-ASYNC\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WSmoothStep.cpp">
+      <Filter>Source Files\WARP-ASYNC\Animations\Smoothstep</Filter>
+    </ClCompile>
+    <ClCompile Include="WSmoothStepArgs.cpp">
+      <Filter>Source Files\WARP-ASYNC\Animations\Smoothstep</Filter>
+    </ClCompile>
+    <ClCompile Include="WLerp.cpp">
+      <Filter>Source Files\WARP-ASYNC\Animations\Lerp</Filter>
+    </ClCompile>
+    <ClCompile Include="WLerpArgs.cpp">
+      <Filter>Source Files\WARP-ASYNC\Animations\Lerp</Filter>
+    </ClCompile>
+    <ClCompile Include="WColorTransform.cpp">
+      <Filter>Source Files\WARP-ASYNC\Animations\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="WColorTransformArgs.cpp">
+      <Filter>Source Files\WARP-ASYNC\Animations\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="WContainer.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="WDXContainer.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="WGFXContainer.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="WRegContainer.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="WControlHandler.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Control Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="WEntity.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WEventArgs.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WRegistry.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WUniqueRegister.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WKeyboard.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="WMouse.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="WGDIPaintEventArgs.cpp">
+      <Filter>Source Files\WARP-GFX\EventArgs</Filter>
+    </ClCompile>
+    <ClCompile Include="WKeyboardArgs.cpp">
+      <Filter>Source Files\WARP-GFX\EventArgs</Filter>
+    </ClCompile>
+    <ClCompile Include="WMouseArgs.cpp">
+      <Filter>Source Files\WARP-GFX\EventArgs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

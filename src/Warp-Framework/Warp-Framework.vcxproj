@@ -167,18 +167,40 @@
     <ClInclude Include="WWin.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="WAsyncArgs.cpp" />
+    <ClCompile Include="WAsyncWorker.cpp" />
     <ClCompile Include="WAudio.cpp" />
     <ClCompile Include="WButton.cpp" />
+    <ClCompile Include="WColorTransform.cpp" />
+    <ClCompile Include="WColorTransformArgs.cpp" />
+    <ClCompile Include="WContainer.cpp" />
     <ClCompile Include="WControl.cpp" />
+    <ClCompile Include="WControlHandler.cpp" />
+    <ClCompile Include="WDXContainer.cpp" />
+    <ClCompile Include="WEntity.cpp" />
     <ClCompile Include="WEntry.cpp" />
+    <ClCompile Include="WEventArgs.cpp" />
     <ClCompile Include="WFixedCanvas.cpp" />
+    <ClCompile Include="WGDIPaintEventArgs.cpp" />
+    <ClCompile Include="WGFXContainer.cpp" />
     <ClCompile Include="WGraphics.cpp" />
     <ClCompile Include="WImageBox.cpp" />
+    <ClCompile Include="WKeyboard.cpp" />
+    <ClCompile Include="WKeyboardArgs.cpp" />
     <ClCompile Include="WLabel.cpp" />
+    <ClCompile Include="WLerp.cpp" />
+    <ClCompile Include="WLerpArgs.cpp" />
     <ClCompile Include="WListBox.cpp" />
     <ClCompile Include="WListBoxItem.cpp" />
     <ClCompile Include="WMainWindow.cpp" />
+    <ClCompile Include="WMouse.cpp" />
+    <ClCompile Include="WMouseArgs.cpp" />
+    <ClCompile Include="WRegContainer.cpp" />
+    <ClCompile Include="WRegistry.cpp" />
+    <ClCompile Include="WSmoothStep.cpp" />
+    <ClCompile Include="WSmoothStepArgs.cpp" />
     <ClCompile Include="WTheme.cpp" />
+    <ClCompile Include="WUniqueRegister.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
