@@ -82,7 +82,7 @@ PLANS
 
 - ✔️ Image Box
 
-- ⚙️ Media Viewer (Video, Audio)
+- ⚙️ Media Viewer (Video)
 
 ### WARP-ASYNC
 
