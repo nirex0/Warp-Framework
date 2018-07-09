@@ -74,7 +74,7 @@ PLANS
 
 - ⚙️ Toggle Button
 
-- ⚙️ Check Box
+- ✔️ Check Box
 
 - ⚙️ Radio Button
 
