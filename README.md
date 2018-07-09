@@ -74,7 +74,7 @@ PLANS
 
 - ⚙️ Toggle Button
 
-- ⚙️ Check Box
+- ✔️ Check Box
 
 - ⚙️ Radio Button
 
@@ -82,7 +82,7 @@ PLANS
 
 - ✔️ Image Box
 
-- ⚙️ Media Viewer (Video, Audio)
+- ⚙️ Media Viewer (Video)
 
 ### WARP-ASYNC
 
