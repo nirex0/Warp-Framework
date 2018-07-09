@@ -239,7 +239,7 @@ void WCheckBox::Render(void)
 		WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	}
 
-	W_INT offset = 5;
+	W_INT offset = 10;
 
 	WRECTF checkrec;
 	checkrec.Top(ctRec.Top() + offset);
@@ -259,7 +259,7 @@ void WCheckBox::Render(void)
 	textrec.Left(ctRec.Left() + (checkrec.Right() - ctRec.Left()) + toffset);
 	textrec.Bottom(ctRec.Bottom() - toffset);
 	textrec.Right(ctRec.Right() - toffset);
-	WGraphicsContainer::Graphics()->WriteText(textrec, m_Content, m_conLen, m_family, m_fsize, foreColor, WTA_LeftToRight);
+	WGraphicsContainer::Graphics()->WriteText(textrec, m_Content, m_conLen, m_family, m_fsize, foreColor);
 
 	if (m_DrawBorders)
 	{
