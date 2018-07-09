@@ -291,6 +291,9 @@
     <ClInclude Include="WImageBox.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="WCheckBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -394,6 +397,9 @@
     </ClCompile>
     <ClCompile Include="WMouseArgs.cpp">
       <Filter>Source Files\WARP-GFX\EventArgs</Filter>
+    </ClCompile>
+    <ClCompile Include="WCheckBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
