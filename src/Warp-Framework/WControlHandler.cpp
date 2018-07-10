@@ -75,6 +75,14 @@ void WControlHandler::MouseMove(WMouseArgs* args)
 	WControlHandler::MouseEnter(args);
 }
 
+void WControlHandler::Update(void)
+{
+	for (const auto &p : mtcp)
+	{
+		mtcp.at(p.first)->UpdateRect();
+	}
+}
+
 void WControlHandler::Render(void)
 {
 	for (const auto &p : mtcp)

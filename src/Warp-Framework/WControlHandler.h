@@ -24,6 +24,7 @@ public:
 	static void MouseRollUp(WMouseArgs* args);
 	static void MouseRollDown(WMouseArgs* args);
 	static void MouseMove(WMouseArgs* args);
+	static void Update(void);
 	static void Render(void);
 
 private:
