@@ -251,7 +251,7 @@ void WMainWindow::MessageLoop(void)
 			m_entry->Render(milliseconds);
 			
 // Render all the controls
-
+			WControlHandler::Update();
 			WControlHandler::Render();
 			m_graphics->SafeEndDraw();
 
