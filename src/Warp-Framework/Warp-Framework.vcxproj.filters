@@ -297,6 +297,15 @@
     <ClInclude Include="WScrollView.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="WLogicalBound.h">
+      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WEventBound.h">
+      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WProgressBar.h">
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -405,6 +414,15 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WScrollView.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WLogicalBound.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WEventBound.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WProgressBar.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
   </ItemGroup>

@@ -112,8 +112,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="WCheckBox.h" />
+    <ClInclude Include="WEventBound.h" />
     <ClInclude Include="WImageBox.h" />
     <ClInclude Include="WLabel.h" />
+    <ClInclude Include="WLogicalBound.h" />
+    <ClInclude Include="WProgressBar.h" />
     <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WTheme.h" />
     <ClInclude Include="WControl.h" />
@@ -183,6 +186,7 @@
     <ClCompile Include="WEntity.cpp" />
     <ClCompile Include="WEntry.cpp" />
     <ClCompile Include="WEventArgs.cpp" />
+    <ClCompile Include="WEventBound.cpp" />
     <ClCompile Include="WFixedCanvas.cpp" />
     <ClCompile Include="WGDIPaintEventArgs.cpp" />
     <ClCompile Include="WGFXContainer.cpp" />
@@ -195,9 +199,11 @@
     <ClCompile Include="WLerpArgs.cpp" />
     <ClCompile Include="WListBox.cpp" />
     <ClCompile Include="WListBoxItem.cpp" />
+    <ClCompile Include="WLogicalBound.cpp" />
     <ClCompile Include="WMainWindow.cpp" />
     <ClCompile Include="WMouse.cpp" />
     <ClCompile Include="WMouseArgs.cpp" />
+    <ClCompile Include="WProgressBar.cpp" />
     <ClCompile Include="WRegContainer.cpp" />
     <ClCompile Include="WRegistry.cpp" />
     <ClCompile Include="WScrollView.cpp" />
