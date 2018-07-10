@@ -42,11 +42,17 @@ PLANS
 
 - ✔️ Theme System
 
-- ✔️ Audio Support (All Formats)
+- ✔️ Audio Support ((Almost) All Formats)
 
-- ⚠️ Video Support (All Formats)
+- ⚠️ Video Support ((Almost) All Formats)
+
+- ⚙️ Control Binding
 
 - ⚠️ Custom 2D Space
+
+- ⚠️ Python Wrapper
+
+- ⚠️ LUA Support
 
 - ❌ OpenGL Implementation
 
@@ -92,7 +98,7 @@ PLANS
 
 - ✔️ Smooth Color Changing (Lerp)
 
-- ✔️ Smooth Color Changing Control Implementation 
+- ✔️ Smooth Color Changing Control Integration 
 
 ### WARP-NETWORK
 
