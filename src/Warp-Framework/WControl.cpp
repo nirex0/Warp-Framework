@@ -190,7 +190,18 @@ WRectF WControl::RelLocation(WRectF location)
 
 WRectF WControl::Location(void) const
 {
-	return WRectF(m_top, m_left, m_bottom, m_right);
+	W_FLOAT gxOffset = 0;
+	W_FLOAT gyOffset = 0;
+	if (m_Parent)
+	{
+		gxOffset = m_Parent->XOffset();
+		gyOffset = m_Parent->YOffset();
+	}
+
+	return WRectF(m_top + gyOffset,
+		m_left + gxOffset,
+		m_bottom + gyOffset,
+		m_right + gxOffset);
 }
 
 WPointF WControl::Displace(W_FLOAT X, W_FLOAT Y)
@@ -570,7 +581,7 @@ void WControl::UpdateRect(void)
 	if (m_Parent)
 	{
 		gxOffset = m_Parent->XOffset();
-		gxOffset = m_Parent->YOffset();
+		gyOffset = m_Parent->YOffset();
 	}
 
 	ctRec.Top(m_top + gyOffset);
