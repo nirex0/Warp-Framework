@@ -46,6 +46,8 @@ PLANS
 
 - ⚠️ Video Support ((Almost) All Formats)
 
+- ⚙️ Control Binding
+
 - ⚠️ Custom 2D Space
 
 - ⚠️ Python Wrapper
