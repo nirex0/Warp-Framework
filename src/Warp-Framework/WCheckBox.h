@@ -33,20 +33,20 @@ public:
 	void MouseLeave(WMouseArgs* Args) override;
 
 // Getters
-	bool					Checked(void) const;
-	bool					ShowBorder(void) const;
-	wchar_t*				FontFamily(void) const;
-	wchar_t*				Content(UINT32& outLen) const;
-	W_FLOAT					FontSize(void) const;
+	bool Checked(void) const;
+	bool ShowBorder(void) const;
+	wchar_t* FontFamily(void) const;
+	wchar_t* Content(UINT32& outLen) const;
+	W_FLOAT	FontSize(void) const;
 
 
 // Setters
-	bool					Checked(bool intake);
-	bool					ShowBorder(bool intake);
-	wchar_t*				FontFamily(wchar_t* intake);
-	wchar_t*				Content(wchar_t* content);
-	wchar_t*				Content(wchar_t* content, UINT32 Length);
-	W_FLOAT					FontSize(W_FLOAT intake);
+	bool Checked(bool intake);
+	bool ShowBorder(bool intake);
+	wchar_t* FontFamily(wchar_t* intake);
+	wchar_t* Content(wchar_t* content);
+	wchar_t* Content(wchar_t* content, UINT32 Length);
+	W_FLOAT	FontSize(W_FLOAT intake);
 
 // Checkbox
 	void ToggleBorder(void);
