@@ -46,7 +46,9 @@ PLANS
 
 - ⚠️ Video Support ((Almost) All Formats)
 
-- ⚙️ Control Binding
+- ✔️ Function Binding
+
+- ✔️ Event Binding
 
 - ⚠️ Custom 2D Space
 
@@ -76,7 +78,7 @@ PLANS
 
 - ⚙️ Text Box
 
-- ⚙️ Progress Bar
+- ✔️ Progress Bar
 
 - ⚙️ Toggle Button
 
