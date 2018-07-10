@@ -6,6 +6,8 @@
 
 WControl::WControl(W_INT zIndex)
 	: m_zIndex(zIndex)
+	, m_xoffset(0)
+	, m_yoffset(0)
 {
 	ctRec.Top(m_top);
 	ctRec.Left(m_left);
@@ -29,7 +31,8 @@ WControl::WControl(W_INT zIndex)
 
 WControl::WControl(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex) 
 	: m_zIndex(zIndex)
-
+	, m_xoffset(0)
+	, m_yoffset(0)
 {
 	m_top = top;
 	m_left = left;
@@ -53,7 +56,8 @@ WControl::WControl(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 
 WControl::WControl(WPointF topleft, WPointF botright, W_INT zIndex) 
 	: m_zIndex(zIndex)
-
+	, m_xoffset(0)
+	, m_yoffset(0)
 {
 	m_top = topleft.X();
 	m_left = topleft.Y();
@@ -77,7 +81,8 @@ WControl::WControl(WPointF topleft, WPointF botright, W_INT zIndex)
 
 WControl::WControl(WRectF location, W_INT zIndex) 
 	: m_zIndex(zIndex)
-
+	, m_xoffset(0)
+	, m_yoffset(0)
 {
 	m_top = location.Top();
 	m_left = location.Left();
@@ -109,7 +114,6 @@ WControl::~WControl()
 	delete WCTMouseRollDownRegistery;
 
 	WControlHandler::Remove(this);
-
 }
 
 WRectF WControl::Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right)
@@ -526,24 +530,53 @@ void WControl::MouseRollDown(WMouseArgs* Args)
 	}
 }
 
-
-IControl* WControl::Parent(IControl* intake)
+WControl* WControl::Parent(WControl* intake)
 {
 	m_Parent = intake;
 	return m_Parent;
 }
 
-IControl* WControl::Parent(void) const
+WControl* WControl::Parent(void) const
 {
 	return m_Parent;
 }
 
+W_FLOAT WControl::XOffset(void) const
+{
+	return m_xoffset;
+}
+
+W_FLOAT WControl::XOffset(W_FLOAT intake)
+{
+	m_xoffset = intake;
+	return m_xoffset;
+}
+
+W_FLOAT WControl::YOffset(void) const
+{
+	return m_yoffset;
+}
+
+W_FLOAT WControl::YOffset(W_FLOAT intake)
+{
+	m_yoffset = intake;
+	return m_yoffset;
+}
+
 void WControl::UpdateRect(void)
 {
-	ctRec.Top(m_top);
-	ctRec.Left(m_left);
-	ctRec.Bottom(m_bottom);
-	ctRec.Right(m_right);
+	W_FLOAT gxOffset = 0;
+	W_FLOAT gyOffset = 0;
+	if (m_Parent)
+	{
+		gxOffset = m_Parent->XOffset();
+		gxOffset = m_Parent->YOffset();
+	}
+
+	ctRec.Top(m_top + gyOffset);
+	ctRec.Left(m_left + gxOffset);
+	ctRec.Bottom(m_bottom + gyOffset);
+	ctRec.Right(m_right + gxOffset);
 }
 
 bool WControl::IsWithin(WMouseArgs* Args) const

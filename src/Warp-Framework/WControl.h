@@ -74,8 +74,14 @@ public:
 	virtual void MouseRollDown(WMouseArgs* Args) override;
 
 // Parent
-	virtual IControl* Parent(IControl* intake);
-	virtual IControl* Parent(void) const;
+	virtual WControl* Parent(WControl* intake);
+	virtual WControl* Parent(void) const;
+
+	virtual W_FLOAT XOffset(void) const;
+	virtual W_FLOAT XOffset(W_FLOAT intake);
+
+	virtual W_FLOAT YOffset(void) const;
+	virtual W_FLOAT YOffset(W_FLOAT intake);
 
 // Helpers
 	virtual void UpdateRect(void);
@@ -87,6 +93,8 @@ public:
 protected:
 // Normal
 	W_INT m_zIndex;
+	W_FLOAT m_xoffset;
+	W_FLOAT m_yoffset;
 
 	bool m_isEnabled;
 	bool m_isVisible;
@@ -107,7 +115,7 @@ protected:
 	WRegistry* WCTMouseRollUpRegistery;
 	WRegistry* WCTMouseRollDownRegistery;
 
-	IControl* m_Parent;
+	WControl* m_Parent;
 };
 
 #endif // !_W_CONTROL_H_
