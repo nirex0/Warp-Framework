@@ -240,7 +240,6 @@ void WCheckBox::Render(void)
 	}
 
 	W_INT offset = 10;
-
 	WRECTF checkrec;
 	checkrec.Top(ctRec.Top() + offset);
 	checkrec.Left(ctRec.Left() + offset);
