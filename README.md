@@ -98,7 +98,7 @@ PLANS
 
 - ✔️ Smooth Color Changing (Lerp)
 
-- ✔️ Smooth Color Changing Control Implementation 
+- ✔️ Smooth Color Changing Control Integration 
 
 ### WARP-NETWORK
 
