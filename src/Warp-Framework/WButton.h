@@ -35,15 +35,15 @@ public:
 	void MouseLeave(WMouseArgs* Args) override;
 
 // Getters
-	wchar_t*				FontFamily(void) const;
-	wchar_t*				Content(UINT32& outLen) const;
-	W_FLOAT					FontSize(void) const;
+	wchar_t* FontFamily(void) const;
+	wchar_t* Content(UINT32& outLen) const;
+	W_FLOAT	FontSize(void) const;
 
 // Setters
-	wchar_t*				FontFamily(wchar_t* intake);
-	wchar_t*				Content(wchar_t* content);
-	wchar_t*				Content(wchar_t* content, UINT32 Length);
-	W_FLOAT					FontSize(W_FLOAT intake);
+	wchar_t* FontFamily(wchar_t* intake);
+	wchar_t* Content(wchar_t* content);
+	wchar_t* Content(wchar_t* content, UINT32 Length);
+	W_FLOAT	FontSize(W_FLOAT intake);
 
 // Extended Border
 	bool UseExtendedBorder(void) const;
