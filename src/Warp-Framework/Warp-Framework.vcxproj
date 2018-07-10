@@ -114,6 +114,7 @@
     <ClInclude Include="WCheckBox.h" />
     <ClInclude Include="WImageBox.h" />
     <ClInclude Include="WLabel.h" />
+    <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WTheme.h" />
     <ClInclude Include="WControl.h" />
     <ClInclude Include="WFixedCanvas.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="WMouseArgs.cpp" />
     <ClCompile Include="WRegContainer.cpp" />
     <ClCompile Include="WRegistry.cpp" />
+    <ClCompile Include="WScrollView.cpp" />
     <ClCompile Include="WSmoothStep.cpp" />
     <ClCompile Include="WSmoothStepArgs.cpp" />
     <ClCompile Include="WTheme.cpp" />
