@@ -66,7 +66,7 @@ PLANS
 
 - ✔️ Label
 
-- ⚙️ Scroll View
+- ✔️ Scroll View
 
 - ⚙️ Text Box
 
