@@ -37,6 +37,7 @@ public:
 	virtual bool IsEnabled(bool input) = 0;
 
 // Visual
+	virtual void UpdateRect(void) = 0;
 	virtual void Render(void) = 0;
 };
 
