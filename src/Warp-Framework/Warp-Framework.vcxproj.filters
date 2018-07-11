@@ -306,6 +306,9 @@
     <ClInclude Include="WProgressBar.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="WSeekBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -424,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="WProgressBar.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WSeekBar.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
