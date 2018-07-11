@@ -305,7 +305,7 @@ void WProgressBar::ChangeValue(W_FLOAT intake)
 	}
 }
 
-void WProgressBar::MouseEnter(WMouseArgs * Args)
+void WProgressBar::MouseEnter(WMouseArgs* Args)
 {
 	if (!m_isEnabled)
 		return;
@@ -381,7 +381,7 @@ void WProgressBar::MouseEnter(WMouseArgs * Args)
 	}
 }
 
-void WProgressBar::MouseLeave(WMouseArgs * Args)
+void WProgressBar::MouseLeave(WMouseArgs* Args)
 {
 	if (!m_isEnabled)
 		return;
