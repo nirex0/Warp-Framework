@@ -86,7 +86,7 @@ PLANS
 
 - ⚙️ Radio Button
 
-- ⚙️ Seek Bar
+- ✔️ Seek Bar
 
 - ✔️ Image Box
 
