@@ -66,7 +66,7 @@ public:
 	virtual bool IsVisible(bool input) override;
 
 // Events
-	virtual void MouseDown(WMouseArgs* Args) ;
+	virtual void MouseDown(WMouseArgs* Args) override;
 	virtual void MouseUp(WMouseArgs* Args) override;
 	virtual void MouseEnter(WMouseArgs* Args) override;
 	virtual void MouseLeave(WMouseArgs* Args) override;
