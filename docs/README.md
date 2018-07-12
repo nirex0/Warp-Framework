@@ -54,7 +54,7 @@ PLANS
 
 - ⚠️ Python Wrapper
 
-- ⚠️ LUA Support
+- ❌ Python Wrapper
 
 - ❌ OpenGL Implementation
 
