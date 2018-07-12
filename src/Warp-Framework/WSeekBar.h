@@ -29,7 +29,6 @@ public:
 
 // Functions
 	void Render(void) override;
-	void ChangeValue(W_FLOAT intake);
 
 // Events
 	void MouseDown(WMouseArgs* Args) override;

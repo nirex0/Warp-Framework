@@ -259,7 +259,8 @@ void WSeekBar::Render(void)
 // Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
-	
+
+// Only Update if the mouse key is down on the control
 	if (m_shouldSeek)
 	{
 // Geo Graphical Calculation
@@ -297,27 +298,6 @@ void WSeekBar::Render(void)
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
 	SafeRelease(&pSink);
-}
-
-void WSeekBar::ChangeValue(W_FLOAT intake)
-{
-	if (intake >= m_maxValue)
-		intake = m_maxValue;
-	else if (intake <= 0)
-		intake = 0;
-
-	if (ChangeLerp)
-	{
-		ChangeLerp->Stop();
-	}
-	if (!ChangeLerp->IsRunning())
-	{
-		delete ChangeLerp;
-		ChangeLerp = new WLerp(m_value * 10, intake * 10, 0.01F, 1);
-		ChangeLerp->TickRegistry()->Register(std::bind(&WSeekBar::ChangeTick, this, std::placeholders::_1, std::placeholders::_2));
-		ChangeLerp->DoneRegistry()->Register(std::bind(&WSeekBar::ChangeDone, this, std::placeholders::_1, std::placeholders::_2));
-		ChangeLerp->Perform();
-	}
 }
 
 void WSeekBar::MouseDown(WMouseArgs* Args)
