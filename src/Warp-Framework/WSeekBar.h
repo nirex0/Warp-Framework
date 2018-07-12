@@ -15,43 +15,42 @@ public:
 	WSeekBar(WRectF location, W_INT zIndex = 0);
 	~WSeekBar(void);
 
-	// Setters
+// Setters
 	W_FLOAT BorderThickness(W_FLOAT f);
 	W_COLOR Foreground(W_COLOR col);
 	W_COLOR Background(W_COLOR col);
 	W_COLOR BorderBrush(W_COLOR col);
 
-	// Getters
+// Getters
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Foreground(void) const;
 	W_COLOR Background(void) const;
 	W_COLOR BorderBrush(void) const;
 
-	// Functions
+// Functions
 	void Render(void) override;
 	void ChangeValue(W_FLOAT intake);
 
-	// Events
+// Events
 	void MouseDown(WMouseArgs* Args) override;
 	void MouseUp(WMouseArgs* Args) override;
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
 
-	// Getters
+// Getters
 	W_FLOAT	Value(void) const;
 	W_FLOAT	MaxValue(void) const;
 
-	// Setters
-	W_FLOAT Value(W_FLOAT intake);
+// Setters
 	W_FLOAT MaxValue(W_FLOAT intake);
 
 protected:
-	// Dynamic Value
+// Dynamic Value
 	void ChangeTick(WEntity* sender, WEventArgs* args);
 	void ChangeDone(WEntity* sender, WEventArgs* args);
 	WLerp* ChangeLerp;
 
-	// Dynamic Color
+// Dynamic Color
 	void HoverBorderTick(WEntity* sender, WEventArgs* args);
 	void HoverBorderDone(WEntity* sender, WEventArgs* args);
 
@@ -79,8 +78,9 @@ protected:
 	WColorTransform* HoverColorBack;
 	WColorTransform* UnHoverColorBack;
 
-	// Normal
+// Normal
 	W_FLOAT m_value;
+	W_FLOAT m_offset;
 	W_FLOAT m_maxValue;
 	W_FLOAT m_thickness;
 

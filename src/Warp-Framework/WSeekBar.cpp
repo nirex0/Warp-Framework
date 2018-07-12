@@ -241,11 +241,11 @@ void WSeekBar::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-	// Mask
+// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-	// Geometry Sink
+// Geometry Sink
 	ID2D1GeometrySink* pSink = nullptr;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -256,37 +256,43 @@ void WSeekBar::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-	// Begin Mask Render
+// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 	
 	if (m_shouldSeek)
 	{
+// Geo Graphical Calculation
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(WContainer::Handle(), &pt);
 
-		m_value = pt.x - Location().Left();
-
+		m_offset = pt.x - Location().Left();
+ 
 		if (pt.x >= Location().Right())
-			m_value = Location().Right() - ctRec.Left();
+			m_offset = Location().Right() - Location().Left();
 
 		if (pt.x < Location().Left())
-			m_value = 0;
+			m_offset = 0;
 
+// Value Calculation
+		W_FLOAT fullValue = Location().Right() - Location().Left();
+		W_FLOAT onePercent = m_maxValue / 100;
+		W_FLOAT value = ((m_offset / 100) * onePercent) * 100;
+		m_value = value;
 	}
 
 	WRECTF checkrec;
 	checkrec.Top(ctRec.Top());
 	checkrec.Left(ctRec.Left());
 	checkrec.Bottom(ctRec.Bottom());
-	checkrec.Right(ctRec.Left() + m_value);
+	checkrec.Right(ctRec.Left() + m_offset);
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrec, 1, bordColor);
 
-	// End Mask Render
+// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
@@ -544,22 +550,6 @@ W_FLOAT WSeekBar::Value(void) const
 W_FLOAT WSeekBar::MaxValue(void) const
 {
 	return m_maxValue;
-}
-
-W_FLOAT WSeekBar::Value(W_FLOAT intake)
-{
-	if (intake >= m_maxValue)
-	{
-		m_value = m_maxValue;
-		return m_value;
-	}
-	if (intake <= 0)
-	{
-		m_value = 0;
-		return m_value;
-	}
-	m_value = intake;
-	return m_value;
 }
 
 W_FLOAT WSeekBar::MaxValue(W_FLOAT intake)
