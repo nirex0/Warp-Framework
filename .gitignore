@@ -33,3 +33,7 @@
 
 # Custom
 src/Warp-Framework/x64
+src/.vs
+src/Warp-Module-Creator/x64
+src/WMC
+src/x64
