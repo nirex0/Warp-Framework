@@ -58,24 +58,24 @@ public:
 	HRESULT SaveResources(void);
 	HRESULT ClearWindow(W_COLOR color);
 
-	ID2D1Factory*				GetFactory(void) const;
-	ID2D1HwndRenderTarget*		GetRenderTarget(void) const;
+	ID2D1Factory* GetFactory(void) const;
+	ID2D1HwndRenderTarget* GetRenderTarget(void) const;
 	
-	ID2D1SolidColorBrush*		GetSolidColorBrush(void) const;
-	ID2D1LinearGradientBrush*	GetLinearColorBrush(void) const;
-	ID2D1RadialGradientBrush*	GetRadialColorBrush(void) const;
+	ID2D1SolidColorBrush* GetSolidColorBrush(void) const;
+	ID2D1LinearGradientBrush* GetLinearColorBrush(void) const;
+	ID2D1RadialGradientBrush* GetRadialColorBrush(void) const;
 
-	RECT						GetClientArea(void) const;
-	IDWriteFactory*				GetWriteFactory(void) const;
-	IDWriteTextFormat*			GetTextFormat(void) const;
-	wchar_t*					GetText(void) const;
-	UINT32						GetTextLength(void) const;
+	RECT GetClientArea(void) const;
+	IDWriteFactory* GetWriteFactory(void) const;
+	IDWriteTextFormat* GetTextFormat(void) const;
+	wchar_t* GetText(void) const;
+	UINT32 GetTextLength(void) const;
 
-	wchar_t*					FontFamily(void) const;
-	wchar_t*					FontFamily(wchar_t* familyName);
+	wchar_t* FontFamily(void) const;
+	wchar_t* FontFamily(wchar_t* familyName);
 
-	FLOAT						FontSize(void) const;
-	FLOAT						FontSize(FLOAT intake);
+	FLOAT FontSize(void) const;
+	FLOAT FontSize(FLOAT intake);
 
 // Primitive Drawing
 	HRESULT DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color);
@@ -111,26 +111,26 @@ public:
 
 private:
 // Direct2D Factory and Render Target
-	ID2D1Factory*				m_pD2D1Factory;
-	ID2D1HwndRenderTarget*		m_pD2D1RenderTarget;
+	ID2D1Factory* m_pD2D1Factory;
+	ID2D1HwndRenderTarget* m_pD2D1RenderTarget;
 
 // Brush Resources
-	ID2D1SolidColorBrush*		m_pSolidColorBrush;
-	ID2D1LinearGradientBrush*	m_pLinearGradientBrush;
-	ID2D1RadialGradientBrush*	m_pRadialGradientBrush;
+	ID2D1SolidColorBrush* m_pSolidColorBrush;
+	ID2D1LinearGradientBrush* m_pLinearGradientBrush;
+	ID2D1RadialGradientBrush* m_pRadialGradientBrush;
 
 // Screen Rect
-	RECT						m_ScreenRect;
+	RECT m_ScreenRect;
 	
 // DirectWrite Factory and Text Format
-	IDWriteFactory*				m_pIDWriteFactory;
-	IDWriteTextFormat*			m_pIDWriteTextFormat;
+	IDWriteFactory* m_pIDWriteFactory;
+	IDWriteTextFormat* m_pIDWriteTextFormat;
 	
 // DirectWrite Components
-	wchar_t*					m_C_TEXT;
-	UINT32						m_TEXTLN;
-	wchar_t*					m_FontFamilyName;
-	FLOAT						m_FontSize = 14.0F;
+	wchar_t* m_C_TEXT;
+	UINT32 m_TEXTLN;
+	wchar_t* m_FontFamilyName;
+	FLOAT m_FontSize = 14.0F;
 
 	BOOL m_bIsFactoryCreated = 0;
 	BOOL m_bIsRenderTargetCreated = 0;
