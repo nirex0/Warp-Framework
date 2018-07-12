@@ -52,9 +52,7 @@ PLANS
 
 - ⚠️ Custom 2D Space
 
-- ⚠️ Python Wrapper
-
-- ⚠️ LUA Support
+- ❌ Python Wrapper
 
 - ❌ OpenGL Implementation
 
