@@ -119,6 +119,7 @@
     <ClInclude Include="WProgressBar.h" />
     <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WSeekBar.h" />
+    <ClInclude Include="WSeekBarValueChangeArgs.h" />
     <ClInclude Include="WTheme.h" />
     <ClInclude Include="WControl.h" />
     <ClInclude Include="WFixedCanvas.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="WRegistry.cpp" />
     <ClCompile Include="WScrollView.cpp" />
     <ClCompile Include="WSeekBar.cpp" />
+    <ClCompile Include="WSeekBarValueChangeArgs.cpp" />
     <ClCompile Include="WSmoothStep.cpp" />
     <ClCompile Include="WSmoothStepArgs.cpp" />
     <ClCompile Include="WTheme.cpp" />
