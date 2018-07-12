@@ -4,7 +4,7 @@
 
 WUniqueRegister::~WUniqueRegister()
 {
-	m_Register.release();
+	m_Register.reset();
 }
 
 WUniqueRegister* WUniqueRegister::operator()(WEntity* sender, WEventArgs* args)
@@ -32,6 +32,6 @@ WUniqueRegister* WUniqueRegister::Register(const Annex & intake)
 
 WUniqueRegister* WUniqueRegister::Unregister(void)
 {
-	m_Register.release();
+	m_Register.reset();
 	return this;
 }
