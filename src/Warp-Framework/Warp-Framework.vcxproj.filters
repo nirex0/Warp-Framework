@@ -310,7 +310,7 @@
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WSeekBarValueChangeArgs.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\WARP-GFX\EventArgs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -435,7 +435,7 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WSeekBarValueChangeArgs.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\WARP-GFX\EventArgs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
