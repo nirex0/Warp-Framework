@@ -30,11 +30,18 @@ public:
 // Functions
 	void Render(void) override;
 
+// Getters
+	virtual WRegistry* ValueChangeRegistery(void);
+
+// Setters
+	virtual WRegistry* ValueChangeRegistery(WRegistry* intake);
+
 // Events
 	void MouseDown(WMouseArgs* Args) override;
 	void MouseUp(WMouseArgs* Args) override;
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
+	void ValueChange(W_FLOAT value);
 
 // Getters
 	W_FLOAT	Value(void) const;
@@ -86,6 +93,9 @@ protected:
 	
 	bool m_isVertical;
 	bool m_shouldSeek;
+
+// Seek Bar
+	WRegistry* WSCValueChangeRegistery;
 };
 
 #endif // !_W_SEEK_BAR_H_

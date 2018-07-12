@@ -3,6 +3,7 @@
 #include "WSeekBar.h"
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
+#include "WSeekBarValueChangeArgs.h"
 
 WSeekBar::WSeekBar(W_INT zIndex)
 	: WControl(zIndex)
@@ -274,6 +275,8 @@ void WSeekBar::Render(void)
 			W_FLOAT onePercent = m_maxValue / 100;
 			W_FLOAT value = ((m_offset / 100) * onePercent) * 100;
 			m_value = value;
+
+			ValueChange(value);
 		}
 		// Horizontal Seek Bar
 		else
@@ -292,6 +295,8 @@ void WSeekBar::Render(void)
 			W_FLOAT onePercent = m_maxValue / 100;
 			W_FLOAT value = ((m_offset / 100) * onePercent) * 100;
 			m_value = value;
+
+			ValueChange(value);
 		}
 	}
 
@@ -319,6 +324,16 @@ void WSeekBar::Render(void)
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
 	SafeRelease(&pSink);
+}
+
+WRegistry* WSeekBar::ValueChangeRegistery(void)
+{
+	return WSCValueChangeRegistery;
+}
+
+WRegistry* WSeekBar::ValueChangeRegistery(WRegistry* intake)
+{
+	return WSCValueChangeRegistery;
 }
 
 void WSeekBar::MouseDown(WMouseArgs* Args)
@@ -541,6 +556,12 @@ void WSeekBar::MouseLeave(WMouseArgs * Args)
 		}
 		WCTMouseLeaveRegistery->Run(this, Args);
 	}
+}
+
+void WSeekBar::ValueChange(W_FLOAT value)
+{
+	WSeekBarValueChangeArgs* Args = new WSeekBarValueChangeArgs(value);
+	WCTMouseLeaveRegistery->Run(this, Args);
 }
 
 W_FLOAT WSeekBar::Value(void) const
