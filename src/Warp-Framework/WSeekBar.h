@@ -39,16 +39,13 @@ public:
 // Getters
 	W_FLOAT	Value(void) const;
 	W_FLOAT	MaxValue(void) const;
+	bool IsVertical(void) const;
 
 // Setters
 	W_FLOAT MaxValue(W_FLOAT intake);
+	bool IsVertical(bool intake);
 
 protected:
-// Dynamic Value
-	void ChangeTick(WEntity* sender, WEventArgs* args);
-	void ChangeDone(WEntity* sender, WEventArgs* args);
-	WLerp* ChangeLerp;
-
 // Dynamic Color
 	void HoverBorderTick(WEntity* sender, WEventArgs* args);
 	void HoverBorderDone(WEntity* sender, WEventArgs* args);
@@ -86,8 +83,9 @@ protected:
 	W_COLOR foreColor;
 	W_COLOR backColor;
 	W_COLOR bordColor;
-
-	bool m_shouldSeek = 0;
+	
+	bool m_isVertical;
+	bool m_shouldSeek;
 };
 
 #endif // !_W_SEEK_BAR_H_

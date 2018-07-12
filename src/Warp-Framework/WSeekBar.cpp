@@ -9,14 +9,12 @@ WSeekBar::WSeekBar(W_INT zIndex)
 	, m_thickness(1.0F)
 	, m_maxValue(100.0F)
 	, m_value(0)
+	, m_isVertical(0)
+	, m_shouldSeek(0)
 {
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
-
-	ChangeLerp = new WLerp(m_value, m_maxValue, 0.01F, 1);
-	ChangeLerp->TickRegistry()->Register(std::bind(&WSeekBar::ChangeTick, this, std::placeholders::_1, std::placeholders::_2));
-	ChangeLerp->DoneRegistry()->Register(std::bind(&WSeekBar::ChangeDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.005F, 1);
 	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.005F, 1);
@@ -47,14 +45,12 @@ WSeekBar::WSeekBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	, m_thickness(1.0F)
 	, m_maxValue(100.0F)
 	, m_value(0)
+	, m_isVertical(0)
+	, m_shouldSeek(0)
 {
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
-
-	ChangeLerp = new WLerp(m_value, m_maxValue, 0.01F, 1);
-	ChangeLerp->TickRegistry()->Register(std::bind(&WSeekBar::ChangeTick, this, std::placeholders::_1, std::placeholders::_2));
-	ChangeLerp->DoneRegistry()->Register(std::bind(&WSeekBar::ChangeDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.07F, 1);
 	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.07F, 1);
@@ -85,14 +81,12 @@ WSeekBar::WSeekBar(WPointF topleft, WPointF botright, W_INT zIndex)
 	, m_thickness(1.0F)
 	, m_maxValue(100.0F)
 	, m_value(0)
+	, m_isVertical(0)
+	, m_shouldSeek(0)
 {
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
-
-	ChangeLerp = new WLerp(m_value, m_maxValue, 0.01F, 1);
-	ChangeLerp->TickRegistry()->Register(std::bind(&WSeekBar::ChangeTick, this, std::placeholders::_1, std::placeholders::_2));
-	ChangeLerp->DoneRegistry()->Register(std::bind(&WSeekBar::ChangeDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.07F, 1);
 	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.07F, 1);
@@ -123,14 +117,12 @@ WSeekBar::WSeekBar(WRectF location, W_INT zIndex)
 	, m_thickness(1.0F)
 	, m_maxValue(100.0F)
 	, m_value(0)
+	, m_isVertical(0)
+	, m_shouldSeek(0)
 {
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
 	bordColor = WContainer::Theme().ColorBorder();
-
-	ChangeLerp = new WLerp(m_value, m_maxValue, 0.01F, 1);
-	ChangeLerp->TickRegistry()->Register(std::bind(&WSeekBar::ChangeTick, this, std::placeholders::_1, std::placeholders::_2));
-	ChangeLerp->DoneRegistry()->Register(std::bind(&WSeekBar::ChangeDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	HoverColorBord = new WColorTransform(WContainer::Theme().ColorBorder(), WContainer::Theme().ColorBorderGlow(), 0.005F, 1);
 	UnHoverColorBord = new WColorTransform(WContainer::Theme().ColorBorderGlow(), WContainer::Theme().ColorBorder(), 0.005F, 1);
@@ -158,8 +150,6 @@ WSeekBar::WSeekBar(WRectF location, W_INT zIndex)
 
 WSeekBar::~WSeekBar(void)
 {
-	delete ChangeLerp;
-
 	delete HoverColorBord;
 	delete UnHoverColorBord;
 
@@ -263,32 +253,63 @@ void WSeekBar::Render(void)
 // Only Update if the mouse key is down on the control
 	if (m_shouldSeek)
 	{
-// Geo Graphical Calculation
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(WContainer::Handle(), &pt);
+	
+		// Vertical Seek Bar
+		if (!m_isVertical)
+		{
+			// Graphical Calculation
+			m_offset = pt.x - Location().Left();
 
-		m_offset = pt.x - Location().Left();
- 
-		if (pt.x >= Location().Right())
-			m_offset = Location().Right() - Location().Left();
+			if (pt.x >= Location().Right())
+				m_offset = Location().Right() - Location().Left();
 
-		if (pt.x < Location().Left())
-			m_offset = 0;
+			if (pt.x < Location().Left())
+				m_offset = 0;
 
-// Value Calculation
-		W_FLOAT fullValue = Location().Right() - Location().Left();
-		W_FLOAT onePercent = m_maxValue / 100;
-		W_FLOAT value = ((m_offset / 100) * onePercent) * 100;
-		m_value = value;
+			// Value Calculation
+			W_FLOAT fullValue = Location().Right() - Location().Left();
+			W_FLOAT onePercent = m_maxValue / 100;
+			W_FLOAT value = ((m_offset / 100) * onePercent) * 100;
+			m_value = value;
+		}
+		// Horizontal Seek Bar
+		else
+		{
+			// Graphical Calculation
+			m_offset = Location().Top() - pt.y;
+
+			if (pt.y >= Location().Bottom())
+				m_offset = Location().Top() - Location().Bottom();
+
+			if (pt.y <= Location().Top())
+				m_offset = 0;
+
+			// Value Calculation
+			W_FLOAT fullValue = Location().Top() - Location().Bottom();
+			W_FLOAT onePercent = m_maxValue / 100;
+			W_FLOAT value = ((m_offset / 100) * onePercent) * 100;
+			m_value = value;
+		}
 	}
 
-	WRECTF checkrec;
-	checkrec.Top(ctRec.Top());
-	checkrec.Left(ctRec.Left());
-	checkrec.Bottom(ctRec.Bottom());
-	checkrec.Right(ctRec.Left() + m_offset);
-
+	WRECTF checkrec = {};
+	if (!m_isVertical)
+	{
+		checkrec.Top(ctRec.Top());
+		checkrec.Left(ctRec.Left());
+		checkrec.Bottom(ctRec.Bottom());
+		checkrec.Right(ctRec.Left() + m_offset);
+	}
+	else
+	{
+		checkrec.Top(ctRec.Top() - m_offset);
+		checkrec.Left(ctRec.Left());
+		checkrec.Bottom(ctRec.Bottom());
+		checkrec.Right(ctRec.Right());
+	}
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrec, 1, bordColor);
@@ -532,22 +553,21 @@ W_FLOAT WSeekBar::MaxValue(void) const
 	return m_maxValue;
 }
 
+bool WSeekBar::IsVertical(void) const
+{
+	return m_isVertical;
+}
+
 W_FLOAT WSeekBar::MaxValue(W_FLOAT intake)
 {
 	m_maxValue = intake;
 	return m_maxValue;
 }
 
-void WSeekBar::ChangeTick(WEntity* sender, WEventArgs* args)
+bool WSeekBar::IsVertical(bool intake)
 {
-	WLerpArgs* Largs = (WLerpArgs*)args;
-	m_value = Largs->ValueExact() / 10;
-}
-
-void WSeekBar::ChangeDone(WEntity* sender, WEventArgs* args)
-{
-	WLerpArgs* Largs = (WLerpArgs*)args;
-	m_value = Largs->ValueExact() / 10;
+	m_isVertical = intake;
+	return m_isVertical;
 }
 
 void WSeekBar::HoverBorderTick(WEntity* sender, WEventArgs* args)
