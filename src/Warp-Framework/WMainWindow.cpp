@@ -265,8 +265,9 @@ void WMainWindow::MessageLoop(void)
 			m_mouse->MPoint(pt.x, pt.y);
 			m_mouse->MouseDown();
 
-			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_INVALID, KeyState::NoClick);
-			WControlHandler::MouseMove(args);
+			std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_INVALID, KeyState::NoClick));
+			WControlHandler::MouseMove(args.get());
+			args.reset();
 #endif
 			if (WContainer::DragMove())
 			{
@@ -323,9 +324,10 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		BeginPaint(hWnd, &ps);
 
 		ValidateRect(hWnd, nullptr);
-		WGDIPaintArgs* args = new WGDIPaintArgs(&ps, &hWnd);
-		m_OnGDIPaint->Run(this, args);
+		std::unique_ptr<WGDIPaintArgs> args = std::make_unique<WGDIPaintArgs>(WGDIPaintArgs(&ps, &hWnd));
+		m_OnGDIPaint->Run(this, args.get());
 
+		args.release();
 		EndPaint(hWnd, &ps);
 		break;
 	}
@@ -360,7 +362,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 // MOUSE MESSAGES
 	case WM_MOUSEMOVE:
 	{
-
 #ifndef WARP_OMI
 		break;
 #endif
@@ -368,8 +369,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
 
-		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_INVALID, KeyState::NoClick);
-		WControlHandler::MouseMove(args);
+		std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_INVALID, KeyState::NoClick));
+		WControlHandler::MouseMove(args.get());
+		args.reset();
 		break;
 	}
 	case WM_LBUTTONDOWN:
@@ -378,8 +380,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
 
-		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_LEFT, KeyState::MouseDown);
-		WControlHandler::MouseDown(args);
+		std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_LEFT, KeyState::MouseDown));
+		WControlHandler::MouseDown(args.get());
+		args.reset();
 		break;
 	}
 	case WM_LBUTTONUP:
@@ -388,8 +391,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
 
-		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_LEFT, KeyState::MouseUp);
-		WControlHandler::MouseUp(args);
+		std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_LEFT, KeyState::MouseUp));
+		WControlHandler::MouseUp(args.get());
+		args.reset();
 		break;
 	}
 	case WM_RBUTTONDOWN:
@@ -398,8 +402,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
 
-		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_RIGHT, KeyState::MouseDown);
-		WControlHandler::MouseDown(args);
+		std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_RIGHT, KeyState::MouseDown));
+		WControlHandler::MouseDown(args.get());
+		args.reset();
 		break;
 	}
 	case WM_RBUTTONUP:
@@ -408,8 +413,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
 
-		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_RIGHT, KeyState::MouseUp);
-		WControlHandler::MouseUp(args);
+		std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_RIGHT, KeyState::MouseUp));
+		WControlHandler::MouseUp(args.get());
+		args.reset();
 		break;
 	}
 	case WM_MBUTTONDOWN:
@@ -418,8 +424,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseDown();
 
-		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::MouseDown);
-		WControlHandler::MouseDown(args);
+		std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::MouseDown));
+		WControlHandler::MouseDown(args.get());
+		args.reset();
 		break;
 	}
 	case WM_MBUTTONUP:
@@ -428,8 +435,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
 
-		WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::MouseUp);
-		WControlHandler::MouseUp(args);
+		std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::MouseUp));
+		WControlHandler::MouseUp(args.get());
+		args.reset();
 		break;
 	}
 	case WM_MOUSEWHEEL:
@@ -440,8 +448,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 			m_mouse->MPoint(pt.x, pt.y);
 			m_mouse->MouseMiddleDown();
 
-			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick);
-			WControlHandler::MouseRollDown(args);
+			std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick));
+			WControlHandler::MouseRollDown(args.get());
+			args.reset();
 		}
 		else if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
 		{
@@ -450,8 +459,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 			m_mouse->MPoint(pt.x, pt.y);
 			m_mouse->MouseMiddleUp();
 
-			WMouseArgs* args = new WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick);
-			WControlHandler::MouseRollUp(args);
+			std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_MIDDLE, KeyState::NoClick));
+			WControlHandler::MouseRollUp(args.get());
+			args.reset();
 		}
 		break;
 	}
