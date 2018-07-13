@@ -232,11 +232,11 @@ void WSeekBar::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-// Mask
+	// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-// Geometry Sink
+	// Geometry Sink
 	ID2D1GeometrySink* pSink = nullptr;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -247,17 +247,17 @@ void WSeekBar::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-// Begin Mask Render
+	// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
-// Only Update if the mouse key is down on the control
+	// Only Update if the mouse key is down on the control
 	if (m_shouldSeek)
 	{
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(WContainer::Handle(), &pt);
-	
+
 		// Vertical Seek Bar
 		if (!m_isVertical)
 		{
@@ -319,7 +319,7 @@ void WSeekBar::Render(void)
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrec, 1, bordColor);
 
-// End Mask Render
+	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
@@ -366,6 +366,7 @@ void WSeekBar::MouseDown(WMouseArgs* Args)
 	}
 	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
 	{
+		m_isClicked = 1;
 		m_shouldSeek = 1;
 		WCTMouseDownRegistery->Run(this, Args);
 	}
@@ -404,6 +405,7 @@ void WSeekBar::MouseUp(WMouseArgs * Args)
 		WCTMouseDownRegistery->Run(this, Args);
 	}
 	m_shouldSeek = 0;
+	m_isClicked = 0;
 }
 
 void WSeekBar::MouseEnter(WMouseArgs* Args)
