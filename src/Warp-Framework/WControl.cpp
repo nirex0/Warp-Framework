@@ -360,6 +360,7 @@ void WControl::MouseDown(WMouseArgs* Args)
 	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
 	{
 		WCTMouseDownRegistery->Run(this, Args);
+		m_isClicked = 1;
 	}
 }
 
@@ -395,6 +396,7 @@ void WControl::MouseUp(WMouseArgs* Args)
 	{
 		WCTMouseUpRegistery->Run(this, Args);
 	}
+	m_isClicked = 0;
 }
 
 void WControl::MouseEnter(WMouseArgs* Args)

@@ -21,7 +21,6 @@ public:
 	WControl(WRectF location, W_INT zIndex = 0);
 	virtual ~WControl(void);
 
-// Setters
 	virtual WRectF Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right);
 	virtual WRectF Location(WPointF topleft, WPointF botright);
 	virtual WRectF Location(WRectF location);
@@ -30,16 +29,13 @@ public:
 	virtual WRectF RelLocation(WPointF topleft, WPointF heightwidth);
 	virtual WRectF RelLocation(WRectF location);
 
-// Getters
 	virtual WRectF Location(void) const;
 
-// Functions
 	virtual void Render(void) override = 0;
 
 	virtual WPointF Displace(W_FLOAT X, W_FLOAT Y);
 	virtual WPointF Displace(WPointF XY);
 
-// Getters
 	virtual WRegistry* MouseDownRegistery(void);
 	virtual WRegistry* MouseUpRegistery(void);
 	virtual WRegistry* MouseEnterRegistery(void);
@@ -47,25 +43,21 @@ public:
 	virtual WRegistry* MouseRollUpRegistery(void);
 	virtual WRegistry* MouseRollDownRegistery(void);
 
-// Setters
 	virtual WRegistry* MouseDownRegistery(WRegistry* intake);
 	virtual WRegistry* MouseUpRegistery(WRegistry* intake);
 	virtual WRegistry* MouseEnterRegistery(WRegistry* intake);
 	virtual WRegistry* MouseLeaveRegistery(WRegistry* intake);
 	virtual WRegistry* MouseRollUpRegistery(WRegistry* intake);
 	virtual WRegistry* MouseRollDownRegistery(WRegistry* intake);
-	
-// Getters
+
 	virtual W_INT ZIndex(void) const override;
 	virtual bool IsEnabled(void) const override;
 	virtual bool IsVisible(void) const override;
 
-// Setters
 	virtual W_INT ZIndex(W_INT input) override;
 	virtual bool IsEnabled(bool input) override;
 	virtual bool IsVisible(bool input) override;
 
-// Events
 	virtual void MouseDown(WMouseArgs* Args) override;
 	virtual void MouseUp(WMouseArgs* Args) override;
 	virtual void MouseEnter(WMouseArgs* Args) override;
@@ -73,7 +65,6 @@ public:
 	virtual void MouseRollUp(WMouseArgs* Args) override;
 	virtual void MouseRollDown(WMouseArgs* Args) override;
 
-// Parent
 	virtual WControl* Parent(WControl* intake);
 	virtual WControl* Parent(void) const;
 
@@ -83,7 +74,6 @@ public:
 	virtual W_FLOAT YOffset(void) const;
 	virtual W_FLOAT YOffset(W_FLOAT intake);
 
-// Helpers
 	virtual void UpdateRect(void);
 	virtual bool IsWithin(WMouseArgs* Args) const;
 	virtual void SetZIndexNoChange(W_INT zIndex) override;
@@ -91,11 +81,12 @@ public:
 	virtual W_INT GetHeight(void) const;
 
 protected:
-// Normal
+	// Normal
 	W_INT m_zIndex;
 	W_FLOAT m_xoffset;
 	W_FLOAT m_yoffset;
 
+	bool m_isClicked;
 	bool m_isEnabled;
 	bool m_isVisible;
 
@@ -108,10 +99,10 @@ protected:
 
 	WRegistry* WCTMouseDownRegistery;
 	WRegistry* WCTMouseUpRegistery;
-			   
+
 	WRegistry* WCTMouseEnterRegistery;
 	WRegistry* WCTMouseLeaveRegistery;
-			   
+
 	WRegistry* WCTMouseRollUpRegistery;
 	WRegistry* WCTMouseRollDownRegistery;
 
