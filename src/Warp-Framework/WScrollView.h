@@ -17,26 +17,21 @@ public:
 	WScrollView(WRectF location, W_INT zIndex = 0);
 	~WScrollView(void);
 
-	// Setters
 	W_FLOAT BorderThickness(W_FLOAT f);
 	W_COLOR Background(W_COLOR col);
 	W_COLOR BorderBrush(W_COLOR col);
 
-	// Getters
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Background(void) const;
 	W_COLOR BorderBrush(void) const;
 
-	// Functions
 	void Render(void) override;
 
-	// Events
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
 	void MouseRollUp(WMouseArgs* Args) override;
 	void MouseRollDown(WMouseArgs* Args) override;
 
-	// Extended Border
 	bool UseExtendedBorder(void) const;
 	bool UseExtendedBorder(bool intake);
 

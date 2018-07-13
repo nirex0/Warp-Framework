@@ -255,11 +255,11 @@ void WScrollView::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-// Mask
+	// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-// Geometry Sink
+	// Geometry Sink
 	ID2D1GeometrySink* pSink = nullptr;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -270,14 +270,14 @@ void WScrollView::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-// Begin Mask Render
+	// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
 	// Render Statements Go Here
 	if (m_UseExtendedBorder)
 	{
-// Top Bar
+		// Top Bar
 		WRECTF TopBar = ctRec;
 		TopBar.Top(ctRec.Top() - 5);
 		TopBar.Left(ctRec.Left() - 5);
@@ -287,7 +287,7 @@ void WScrollView::Render(void)
 		WGraphicsContainer::Graphics()->DrawRect(TopBar, 2, bordColor);
 		WGraphicsContainer::Graphics()->FillRectSolid(TopBar, bordColor);
 
-// Left Bar
+		// Left Bar
 		WRECTF LeftBar = ctRec;
 		LeftBar.Top(ctRec.Top() - 5);
 		LeftBar.Left(ctRec.Left() - 5);
@@ -297,7 +297,7 @@ void WScrollView::Render(void)
 		WGraphicsContainer::Graphics()->DrawRect(LeftBar, 2, bordColor);
 		WGraphicsContainer::Graphics()->FillRectSolid(LeftBar, bordColor);
 
-// Bottom Bar
+		// Bottom Bar
 		WRECTF BottomBar = ctRec;
 
 		BottomBar.Top(ctRec.Bottom() + 4);
@@ -308,7 +308,7 @@ void WScrollView::Render(void)
 		WGraphicsContainer::Graphics()->DrawRect(BottomBar, 2, bordColor);
 		WGraphicsContainer::Graphics()->FillRectSolid(BottomBar, bordColor);
 
-// Right Bar
+		// Right Bar
 		WRECTF RightBar = ctRec;
 		RightBar.Top(ctRec.Bottom() - GetHeight() / ExBordRatio - 10);
 		RightBar.Left(ctRec.Right() + 4);
@@ -322,7 +322,7 @@ void WScrollView::Render(void)
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 
-// End Mask Render
+	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
