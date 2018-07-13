@@ -11,7 +11,6 @@ public:
 	WFixedCanvas(W_INT zIndex = 0);
 	~WFixedCanvas(void);
 
-// Functions
 	void Render(void) override;
 };
 
