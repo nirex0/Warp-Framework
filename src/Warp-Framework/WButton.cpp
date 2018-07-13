@@ -247,7 +247,7 @@ void WButton::Render(void)
 {
 	if (!m_isVisible)
 		return;
-	
+
 	ID2D1Layer* maskLayer;
 	D2D_RECT_F ParentRect;
 	if (m_Parent)
@@ -263,18 +263,18 @@ void WButton::Render(void)
 		ParentRect.right = m_Parent->Location().Right();
 	}
 	else
-	{	
+	{
 		ParentRect.top = 0.0F;
 		ParentRect.left = 0.0F;
 		ParentRect.bottom = (W_FLOAT)INFINITE;
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-// Mask
+	// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-// Geometry Sink
+	// Geometry Sink
 	ID2D1GeometrySink* pSink = nullptr;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -285,14 +285,15 @@ void WButton::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-// Begin Mask Render
+	// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
-// Render Statements Go Here
+	// Render Statements Go Here
+	// Extended Border
 	if (m_UseExtendedBorder)
 	{
-// Top Bar
+		// Top Bar
 		WRECTF TopBar = ctRec;
 		TopBar.Top(ctRec.Top() - 5);
 		TopBar.Left(ctRec.Left() - 5);
@@ -302,7 +303,7 @@ void WButton::Render(void)
 		WGraphicsContainer::Graphics()->DrawRect(TopBar, 2, bordColor);
 		WGraphicsContainer::Graphics()->FillRectSolid(TopBar, bordColor);
 
-// Left Bar
+		// Left Bar
 		WRECTF LeftBar = ctRec;
 		LeftBar.Top(ctRec.Top() - 5);
 		LeftBar.Left(ctRec.Left() - 5);
@@ -312,7 +313,7 @@ void WButton::Render(void)
 		WGraphicsContainer::Graphics()->DrawRect(LeftBar, 2, bordColor);
 		WGraphicsContainer::Graphics()->FillRectSolid(LeftBar, bordColor);
 
-// Bottom Bar
+		// Bottom Bar
 		WRECTF BottomBar = ctRec;
 
 		BottomBar.Top(ctRec.Bottom() + 4);
@@ -323,7 +324,7 @@ void WButton::Render(void)
 		WGraphicsContainer::Graphics()->DrawRect(BottomBar, 2, bordColor);
 		WGraphicsContainer::Graphics()->FillRectSolid(BottomBar, bordColor);
 
-// Right Bar
+		// Right Bar
 		WRECTF RightBar = ctRec;
 		RightBar.Top(ctRec.Bottom() - GetHeight() / ExBordRatio - 10);
 		RightBar.Left(ctRec.Right() + 4);
@@ -334,15 +335,81 @@ void WButton::Render(void)
 		WGraphicsContainer::Graphics()->FillRectSolid(RightBar, bordColor);
 	}
 
+	// Background Circle
+	W_FLOAT stopPosition;
+	if (ctRec.Right() - ctRec.Left() > ctRec.Bottom() - ctRec.Top())
+	{
+		stopPosition = ctRec.Right() - ctRec.Left();
+	}
+	else
+	{
+		stopPosition = ctRec.Bottom() - ctRec.Top();
+	}
+	stopPosition += 10;
+
+	if (m_isClicked)
+	{
+		m_radius += stopPosition / 15;
+		if (m_radius > stopPosition)
+		{
+			m_radius = stopPosition;
+		}
+	}
+	else
+	{
+		m_radius = 0;
+	}
+
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
+	WGraphicsContainer::Graphics()->FillEllipseSolid(m_circleLocation, m_radius, m_radius, WContainer::Theme().ColorBackCircle(), ctRec);
 	WGraphicsContainer::Graphics()->WriteText(ctRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
 
-// End Mask Render
+	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
 	SafeRelease(&pSink);
+}
+
+void WButton::MouseDown(WMouseArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
+	{
+		m_isClicked = 1;
+		m_radius = 0;
+
+		m_circleLocation.x = (W_FLOAT)Args->X();
+		m_circleLocation.y = (W_FLOAT)Args->Y();
+
+		WCTMouseDownRegistery->Run(this, Args);
+	}
 }
 
 void WButton::MouseEnter(WMouseArgs* Args)
