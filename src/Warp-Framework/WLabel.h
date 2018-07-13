@@ -17,26 +17,22 @@ public:
 	W_COLOR Foreground(W_COLOR col);
 	W_COLOR Foreground(void) const;
 
-// Functions
 	void Render(void) override;
 
-// Events
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
 
-// Getters
 	wchar_t* FontFamily(void) const;
 	wchar_t* Content(UINT32& outLen) const;
 	W_FLOAT	 FontSize(void) const;
 
-// Setters
 	wchar_t* FontFamily(wchar_t* intake);
 	wchar_t* Content(wchar_t* content);
 	wchar_t* Content(wchar_t* content, UINT32 Length);
 	W_FLOAT	FontSize(W_FLOAT intake);
 
 private:
-// Dynamic Color
+	// Dynamic Color
 	void HoverForegroundTick(WEntity* sender, WEventArgs* args);
 	void HoverForegroundDone(WEntity* sender, WEventArgs* args);
 
@@ -46,7 +42,7 @@ private:
 	WColorTransform* HoverColorFore;
 	WColorTransform* UnHoverColorFore;
 
-// Text
+	// Text
 	wchar_t* m_Content;
 	wchar_t* m_family;
 	W_FLOAT m_fsize = 14.0F;
