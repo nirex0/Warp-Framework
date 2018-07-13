@@ -17,31 +17,25 @@ public:
 	WListBox(WPointF topleft, WPointF botright, W_INT zIndex = 0);
 	WListBox(WRectF location, W_INT zIndex = 0);
 	~WListBox(void);
-	
-// Setters
+
 	W_FLOAT BorderThickness(W_FLOAT f);
 	W_COLOR Background(W_COLOR col);
 	W_COLOR BorderBrush(W_COLOR col);
 
-// Getters
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Background(void) const;
 	W_COLOR BorderBrush(void) const;
 
-// Functions
 	void Render(void) override;
 
-// Events
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
 	void MouseRollUp(WMouseArgs* Args) override;
 	void MouseRollDown(WMouseArgs* Args) override;
 
-// Extended Border
 	bool UseExtendedBorder(void) const;
 	bool UseExtendedBorder(bool intake);
-	
-// Items
+
 	WListBoxItem* CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListBox Item", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
 	WListBoxItem* CreateItem(wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListBox Item", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
 	int ItemCount(void) const;
@@ -52,7 +46,7 @@ public:
 	WListBoxItem* GetAt(int index);
 
 protected:
-// Dynamic Color
+	// Dynamic Color
 	void HoverBorderTick(WEntity* sender, WEventArgs* args);
 	void HoverBorderDone(WEntity* sender, WEventArgs* args);
 
@@ -80,7 +74,7 @@ protected:
 	WColorTransform* HoverColorBack;
 	WColorTransform* UnHoverColorBack;
 
-// Extended Border
+	// Extended Border
 	void Extend(WEntity* sender, WEventArgs* args);
 	void Shrink(WEntity* sender, WEventArgs* args);
 
@@ -94,14 +88,14 @@ protected:
 
 	bool m_UseExtendedBorder;
 
-// Normal
+	// Normal
 	W_FLOAT m_thickness;
 
 	W_COLOR foreColor;
 	W_COLOR backColor;
 	W_COLOR bordColor;
 
-// Items
+	// Items
 	void RenewItems(void);
 
 	std::vector<WListBoxItem*> m_items;
