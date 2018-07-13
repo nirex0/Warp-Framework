@@ -15,7 +15,6 @@ public:
 	WImageBox(wchar_t* URL, WRectF location, W_INT zIndex = 0);
 	~WImageBox(void);
 
-// Functions
 	void Render(void) override;
 
 	wchar_t* URL(void) const;
