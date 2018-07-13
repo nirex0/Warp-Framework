@@ -227,11 +227,11 @@ void WListBoxItem::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-// Mask
+	// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-// Geometry Sink
+	// Geometry Sink
 	ID2D1GeometrySink* pSink = nullptr;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -242,20 +242,87 @@ void WListBoxItem::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-// Begin Mask Render
+	// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
-// Render Statements Go Here
+	// Render Statements Go Here
+
+	// Background Circle
+	W_FLOAT stopPosition;
+	if (ctRec.Right() - ctRec.Left() > ctRec.Bottom() - ctRec.Top())
+	{
+		stopPosition = ctRec.Right() - ctRec.Left();
+	}
+	else
+	{
+		stopPosition = ctRec.Bottom() - ctRec.Top();
+	}
+	stopPosition += 10;
+
+	if (m_isClicked)
+	{
+		m_radius += stopPosition / 15;
+		if (m_radius > stopPosition)
+		{
+			m_radius = stopPosition;
+		}
+	}
+	else
+	{
+		m_radius = 0;
+	}
+
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
+	WGraphicsContainer::Graphics()->FillEllipseSolid(m_circleLocation, m_radius, m_radius, WContainer::Theme().ColorBackCircle(), ctRec);
 	WGraphicsContainer::Graphics()->WriteText(ctRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
 
-// End Mask Render
+	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
 	SafeRelease(&pSink);
+}
+
+void WListBoxItem::MouseDown(WMouseArgs * Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsWithin(Args))
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
+	{
+		m_isClicked = 1;
+		m_radius = 0;
+
+		m_circleLocation.x = (W_FLOAT)Args->X();
+		m_circleLocation.y = (W_FLOAT)Args->Y();
+
+		WCTMouseDownRegistery->Run(this, Args);
+	}
 }
 
 void WListBoxItem::MouseEnter(WMouseArgs* Args)
