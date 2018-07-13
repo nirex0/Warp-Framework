@@ -37,9 +37,11 @@ public:
 	W_COLOR ColorText(void);
 	W_COLOR ColorTextGlow(void);
 
+	W_COLOR ColorBackCircle(void);
+
 private:
-	void UpdateNormal(W_COLOR Back, W_COLOR Border, W_COLOR Text);
-	void UpdateGlow(W_COLOR Back, W_COLOR Border, W_COLOR Text);
+	void UpdateNormal(W_COLOR Back, W_COLOR Border, W_COLOR Text, W_COLOR Circle);
+	void UpdateGlow(W_COLOR Back, W_COLOR Border, W_COLOR Text, W_COLOR Circle);
 
 private:
 	W_COLOR m_ColorBack;
@@ -50,6 +52,8 @@ private:
 
 	W_COLOR m_ColorText;
 	W_COLOR m_ColorTextGlow;
+
+	W_COLOR m_BackCircle;
 };
 
 #endif // !_W_THEME_H_
