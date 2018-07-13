@@ -549,8 +549,33 @@ FLOAT WGraphics::FontSize(FLOAT intake)
 	return m_FontSize;
 }
 
-HRESULT WGraphics::DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color)
+HRESULT WGraphics::DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+	
+// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
+
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
 	D2D1RECTF.left = boundaryRect.Left();
@@ -560,10 +585,16 @@ HRESULT WGraphics::DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR b
 	CreateSolidColorBrush(bord_color); 
 	m_pD2D1RenderTarget->DrawRectangle(D2D1RECTF, m_pSolidColorBrush, bord_thickness);
 	
+// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRectSolid(WRECTF boundaryRect, W_COLOR back_color)
+HRESULT WGraphics::FillRectSolid(WRECTF boundaryRect, W_COLOR back_color, WRECTF Mask)
 {
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
@@ -577,8 +608,32 @@ HRESULT WGraphics::FillRectSolid(WRECTF boundaryRect, W_COLOR back_color)
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction)
+HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
 	D2D1RECTF.left = boundaryRect.Left();
@@ -653,11 +708,41 @@ HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_CO
 
 	m_pD2D1RenderTarget->FillRectangle(D2D1RECTF, m_pLinearGradientBrush);
 
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRectRadial(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction)
+HRESULT WGraphics::FillRectRadial(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
 	D2D1RECTF.left = boundaryRect.Left();
@@ -738,11 +823,41 @@ HRESULT WGraphics::FillRectRadial(WRECTF boundaryRect, W_COLOR back_color0, W_CO
 	CreateRadialColorBrush(back_color0, back_color1, CENTER_POINT, offset, radX, radY);
 	m_pD2D1RenderTarget->FillRectangle(D2D1RECTF, m_pRadialGradientBrush);
 
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, W_COLOR bord_color)
+HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, W_COLOR bord_color, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D1_ROUNDED_RECT D2D1RECTF;
 	D2D1RECTF.rect.top = boundaryRect.Top();
 	D2D1RECTF.rect.left = boundaryRect.Left();
@@ -754,11 +869,41 @@ HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOA
 	m_pSolidColorBrush->SetColor(bord_color);
 	m_pD2D1RenderTarget->DrawRoundedRectangle(D2D1RECTF, m_pSolidColorBrush, bord_thickness);
 
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRoundRectSolid(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color)
+HRESULT WGraphics::FillRoundRectSolid(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D1_ROUNDED_RECT D2D1RECTF;
 	D2D1RECTF.rect.top = boundaryRect.Top();
 	D2D1RECTF.rect.left = boundaryRect.Left();
@@ -769,12 +914,42 @@ HRESULT WGraphics::FillRoundRectSolid(WRECTF boundaryRect, FLOAT bord_radius, W_
 
 	CreateSolidColorBrush(back_color); 
 	m_pD2D1RenderTarget->FillRoundedRectangle(D2D1RECTF, m_pSolidColorBrush);
-	
+
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction)
+HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D1_ROUNDED_RECT D2D1RECTF;
 	D2D1RECTF.rect.top = boundaryRect.Top();
 	D2D1RECTF.rect.left = boundaryRect.Left();
@@ -849,11 +1024,42 @@ HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W
 	}
 
 	m_pD2D1RenderTarget->FillRoundedRectangle(D2D1RECTF, m_pLinearGradientBrush);
+
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRoundRectRadial(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction)
+HRESULT WGraphics::FillRoundRectRadial(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D1_ROUNDED_RECT D2D1RECTF;
 	D2D1RECTF.rect.top = boundaryRect.Top();
 	D2D1RECTF.rect.left = boundaryRect.Left();
@@ -936,11 +1142,41 @@ HRESULT WGraphics::FillRoundRectRadial(WRECTF boundaryRect, FLOAT bord_radius, W
 	CreateRadialColorBrush(back_color0, back_color1, CENTER_POINT, offset, radX, radY);
 	m_pD2D1RenderTarget->FillRoundedRectangle(D2D1RECTF, m_pRadialGradientBrush);
 
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, W_COLOR bord_color)
+HRESULT WGraphics::DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, W_COLOR bord_color, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D1_ELLIPSE D2D1ELIPSE;
 	D2D1ELIPSE.point.x = center.x;
 	D2D1ELIPSE.point.y = center.y;
@@ -950,11 +1186,41 @@ HRESULT WGraphics::DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord
 	CreateSolidColorBrush(bord_color);
 	m_pD2D1RenderTarget->DrawEllipse(D2D1ELIPSE, m_pSolidColorBrush, bord_thickness);
 
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color)
+HRESULT WGraphics::FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D1_ELLIPSE D2D1ELIPSE;
 	D2D1ELIPSE.point.x = center.x;
 	D2D1ELIPSE.point.y = center.y;
@@ -964,11 +1230,41 @@ HRESULT WGraphics::FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COL
 	CreateSolidColorBrush(back_color);
 	m_pD2D1RenderTarget->FillEllipse(D2D1ELIPSE, m_pSolidColorBrush);
 
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, W_COLOR back_color0, W_COLOR back_color1)
+HRESULT WGraphics::FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, W_COLOR back_color0, W_COLOR back_color1, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D1_ELLIPSE D2D1ELIPSE;
 	D2D1ELIPSE.point.x = center.x;
 	D2D1ELIPSE.point.y = center.y;
@@ -980,11 +1276,41 @@ HRESULT WGraphics::FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_CO
 	Null_Point.y = 0;
 
 	CreateRadialColorBrush(back_color0, back_color1, center, Null_Point, radX, radY);
+
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thickness)
+HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thickness, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
 	D2D1_POINT_2F D2D1POINTBEGIN;
 	D2D1POINTBEGIN.x = begin.x;
@@ -996,12 +1322,42 @@ HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thick
 
 	CreateSolidColorBrush(color);
 	m_pD2D1RenderTarget->DrawLine(D2D1POINTBEGIN, D2D1POINTEND, m_pSolidColorBrush, thickness);
-		
+
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawPoint(POINTF Coords, W_COLOR color)
+HRESULT WGraphics::DrawPoint(POINTF Coords, W_COLOR color, WRECTF Mask)
 {	
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D1_POINT_2F D2D1POINTBEGIN;
 	D2D1POINTBEGIN.x = Coords.x;
 	D2D1POINTBEGIN.y = Coords.y;
@@ -1012,6 +1368,12 @@ HRESULT WGraphics::DrawPoint(POINTF Coords, W_COLOR color)
 
 	CreateSolidColorBrush(color);
 	m_pD2D1RenderTarget->DrawLine(D2D1POINTBEGIN, D2D1POINTEND, m_pSolidColorBrush);
+
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
 
 	return WContainer::hResult(S_OK);
 }
@@ -1042,8 +1404,32 @@ HRESULT WGraphics::LoadIMG(LPCWSTR uri, W_IMAGE** ppImage)
 	return WContainer::hResult();
 }
 
-HRESULT WGraphics::DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity)
+HRESULT WGraphics::DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
 	D2D1RECTF.left = boundaryRect.Left();
@@ -1051,12 +1437,42 @@ HRESULT WGraphics::DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity)
 	D2D1RECTF.right = boundaryRect.Right();
 
 	m_pD2D1RenderTarget->DrawBitmap(pImage, D2D1RECTF, opacity);
-	
+
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
+
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment)
+HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment, WRECTF Mask)
 {
+	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
+	{
+		Mask.Right((W_FLOAT)INFINITE);
+		Mask.Bottom((W_FLOAT)INFINITE);
+	}
+
+	// Masking
+	ID2D1Layer* maskLayer;
+	ID2D1PathGeometry* MaskGeo;
+	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
+	ID2D1GeometrySink* pSink = nullptr;
+	MaskGeo->Open(&pSink);
+	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+	pSink->BeginFigure(D2D1::Point2F(Mask.Left(), Mask.Top()), D2D1_FIGURE_BEGIN_FILLED);
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Top()));
+	pSink->AddLine(D2D1::Point2F(Mask.Right(), Mask.Bottom()));
+	pSink->AddLine(D2D1::Point2F(Mask.Left(), Mask.Bottom()));
+	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+	pSink->Close();
+
+	// Begin Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
+
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
 	D2D1RECTF.left = boundaryRect.Left();
@@ -1084,6 +1500,12 @@ HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, 
 	
 	CreateSolidColorBrush(text_color);
 	m_pD2D1RenderTarget->DrawTextW(text, strLengh, m_pIDWriteTextFormat, D2D1RECTF, m_pSolidColorBrush);
+
+	// End Mask Render
+	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
+	SafeRelease(&maskLayer);
+	SafeRelease(&MaskGeo);
+	SafeRelease(&pSink);
 
 	return WContainer::hResult(S_OK);
 }
