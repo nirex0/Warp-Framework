@@ -241,11 +241,11 @@ void WProgressBar::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-// Mask
+	// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-// Geometry Sink
+	// Geometry Sink
 	ID2D1GeometrySink* pSink = nullptr;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -256,11 +256,11 @@ void WProgressBar::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-// Begin Mask Render
+	// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
-// Render Statements Go Here
+	// Render Statements Go Here
 	W_FLOAT percentValue = m_maxValue / 100;
 	W_FLOAT filledValue = m_value / percentValue;
 
@@ -276,8 +276,8 @@ void WProgressBar::Render(void)
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrec, 1, bordColor);
-	
-// End Mask Render
+
+	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
