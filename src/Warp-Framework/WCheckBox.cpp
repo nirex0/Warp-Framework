@@ -305,6 +305,7 @@ void WCheckBox::MouseUp(WMouseArgs* Args)
 	{
 		m_isChecked = !m_isChecked;
 	}
+	m_isClicked = 0;
 }
 
 void WCheckBox::MouseEnter(WMouseArgs* Args)

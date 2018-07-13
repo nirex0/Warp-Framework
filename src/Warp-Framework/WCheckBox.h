@@ -14,25 +14,25 @@ public:
 	WCheckBox(WRectF location, W_INT zIndex = 0);
 	~WCheckBox(void);
 
-// Setters
+	// Setters
 	W_COLOR Foreground(W_COLOR col);
 	W_COLOR Background(W_COLOR col);
 	W_COLOR BorderBrush(W_COLOR col);
 
-// Getters
+	// Getters
 	W_COLOR Foreground(void) const;
 	W_COLOR Background(void) const;
 	W_COLOR BorderBrush(void) const;
 
-// Functions
+	// Functions
 	void Render(void) override;
 
-// Events
+	// Events
 	void MouseUp(WMouseArgs* Args) override;
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
 
-// Getters
+	// Getters
 	bool Checked(void) const;
 	bool ShowBorder(void) const;
 	wchar_t* FontFamily(void) const;
@@ -40,7 +40,7 @@ public:
 	W_FLOAT	FontSize(void) const;
 
 
-// Setters
+	// Setters
 	bool Checked(bool intake);
 	bool ShowBorder(bool intake);
 	wchar_t* FontFamily(wchar_t* intake);
@@ -48,12 +48,12 @@ public:
 	wchar_t* Content(wchar_t* content, UINT32 Length);
 	W_FLOAT	FontSize(W_FLOAT intake);
 
-// Checkbox
+	// Checkbox
 	void ToggleBorder(void);
 	void ToggleValue(void);
 
 protected:
-// Dynamic Color
+	// Dynamic Color
 	void HoverBorderTick(WEntity* sender, WEventArgs* args);
 	void HoverBorderDone(WEntity* sender, WEventArgs* args);
 
@@ -81,7 +81,7 @@ protected:
 	WColorTransform* HoverColorBack;
 	WColorTransform* UnHoverColorBack;
 
-// Normal	
+	// Normal	
 	wchar_t* m_Content;
 	wchar_t* m_family;
 	W_FLOAT m_fsize = 14.0F;
@@ -95,8 +95,6 @@ protected:
 	W_COLOR foreColor;
 	W_COLOR backColor;
 	W_COLOR bordColor;
-
-	
 };
 
 #endif // !_W_CHECKBOX_H_
