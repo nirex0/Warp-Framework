@@ -129,7 +129,7 @@ W_INT WMainWindow::Initialize(void)
 	WNDCLASSEX wcex = {};
 	ZeroMemory(&wcex, sizeof(WNDCLASSEXW));
 
-// Setup the WCEX 
+	// Setup the WCEX 
 	wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wcex.cbSize = sizeof(WNDCLASSEXW);
 	wcex.cbClsExtra = {};
@@ -141,16 +141,16 @@ W_INT WMainWindow::Initialize(void)
 	wcex.hCursor = LoadCursor({}, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 
-// Register the class
+	// Register the class
 	RegisterClassExW(&wcex);
 
 	W_STYLE wStyle = WS_OVERLAPPEDWINDOW | WS_OVERLAPPED | WS_SYSMENU | WS_VISIBLE | WS_CAPTION | WS_MINIMIZEBOX;
 
-// We need to do this to make the window EXACTLY (width * height) big
+	// We need to do this to make the window EXACTLY (width * height) big
 	RECT whRect = { 0, 0, WContainer::Width(), WContainer::Height() };
 	AdjustWindowRect(&whRect, wStyle, FALSE);
-	
-// Use this ONLY if you use A Normal window (With default top bar)
+
+	// Use this ONLY if you use A Normal window (With default top bar)
 	UINT uWidth = whRect.right - whRect.left;
 	UINT uHeight = whRect.bottom - whRect.top;
 
@@ -159,10 +159,10 @@ W_INT WMainWindow::Initialize(void)
 	UINT SCR_WIDTH = GetSystemMetrics(SM_CXSCREEN);
 	UINT SCR_HEIGHT = GetSystemMetrics(SM_CYSCREEN);
 
-// WS_EX_LAYERED for Transparency Support
-// WS_POPUP for no default top bar
+	// WS_EX_LAYERED for Transparency Support
+	// WS_POPUP for no default top bar
 	hWnd = CreateWindowEx(WS_EX_LAYERED, m_windowName, m_windowTitle, WS_POPUP, centX, centY, WContainer::Width(), WContainer::Height(), {}, {}, m_hAppInstance, {});
-	
+
 	if (!hWnd)
 	{
 		WContainer::hResult(E_OUTOFMEMORY);
@@ -172,8 +172,8 @@ W_INT WMainWindow::Initialize(void)
 
 	WContainer::hResult(S_OK);
 	WContainer::Handle(hWnd);
-	
-// Show the window
+
+	// Show the window
 	ShowWindow(hWnd, SW_SHOW);
 	SetForegroundWindow(hWnd);
 	SetFocus(hWnd);
@@ -196,6 +196,7 @@ void WMainWindow::MessageLoop(void)
 
 	// Initialize Keyboard
 	m_entry->Keyboard(m_keyboard);
+	m_keyboard->EnableAutorepeat();
 
 	// Initialize Mouse
 	m_entry->Mouse(m_mouse);
@@ -340,9 +341,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		// No autorepeat
 		if (!(lParam & 0x40000000) || m_keyboard->AutorepeatIsEnabled())
 		{
+			break;
 			m_keyboard->LastKey((static_cast<W_BYTE>(wParam)));
 			m_keyboard->RunKeyDown();
-
 			std::unique_ptr<WKeyboardArgs> args = std::make_unique<WKeyboardArgs>(WKeyboardArgs((static_cast<W_BYTE>(wParam))));
 			WControlHandler::KeyDown(args.get());
 			args.reset();
@@ -362,8 +363,13 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	case WM_CHAR:
 	{
+		// On Char
 		m_keyboard->LastKey((static_cast<W_BYTE>(wParam)));
 		m_keyboard->RunOnChar();
+
+		std::unique_ptr<WKeyboardArgs> args = std::make_unique<WKeyboardArgs>(WKeyboardArgs((static_cast<W_BYTE>(wParam))));
+		WControlHandler::KeyChar(args.get());
+		args.reset();
 		break;
 	}
 	// END OF KEYBOARD MESSAGES
