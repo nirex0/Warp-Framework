@@ -183,30 +183,30 @@ W_INT WMainWindow::Initialize(void)
 
 void WMainWindow::MessageLoop(void)
 {
-// Windows MSG
+	// Windows MSG
 	MSG msg = {};
 	ZeroMemory(&msg, sizeof(MSG));
 
-// Create Graphics Resources
+	// Create Graphics Resources
 	m_graphics->CreateFactory();
 	m_graphics->CreateRenderTarget();
 	m_graphics->CreateSolidColorBrush(D2D1::ColorF(0xFFFFFFFF));
 	m_graphics->CreateWriteFactory();
 	m_graphics->CreateFormat();
 
-// Initialize Keyboard
+	// Initialize Keyboard
 	m_entry->Keyboard(m_keyboard);
 
-// Initialize Mouse
+	// Initialize Mouse
 	m_entry->Mouse(m_mouse);
 
-// Initialize Graphics
+	// Initialize Graphics
 	m_entry->Graphics(m_graphics);
 
-// Start 
+	// Start 
 	m_entry->Start();
 
-// Main Loop
+	// Main Loop
 	while (msg.message != WM_QUIT)
 	{
 		if (PeekMessage(&msg, nullptr, {}, {}, PM_REMOVE))
@@ -216,14 +216,14 @@ void WMainWindow::MessageLoop(void)
 		}
 		else
 		{
-// Dragmove
+			// Dragmove
 			if (!WContainer::DragMove())
 			{
 				POINT tmpPoint;
 				GetCursorPos(&tmpPoint);
 				ScreenToClient(WContainer::Handle(), &tmpPoint);
 
-// HC Stands for 'Helper Coordinate'
+				// HC Stands for 'Helper Coordinate'
 				WContainer::HCX(tmpPoint.x);
 				WContainer::HCY(tmpPoint.y);
 			}
@@ -236,27 +236,27 @@ void WMainWindow::MessageLoop(void)
 			typedef std::common_type<decltype(frameTime), decltype(kMaxDeltatime)>::type common_duration;
 			auto mDeltaTime = std::min<common_duration>(frameTime, kMaxDeltatime);
 
-// std::ratio<1, 1> for seconds instead of miliseconds
+			// std::ratio<1, 1> for seconds instead of miliseconds
 			milliseconds = std::chrono::duration_cast<std::chrono::duration<W_DOUBLE, std::milli>>(mDeltaTime).count();
 			WContainer::DeltaSeconds(milliseconds);
 
-// Update & Render
-// Note: Render statements should be written after all of the Update statements
-// Update
+			// Update & Render
+			// Note: Render statements should be written after all of the Update statements
+			// Update
 			m_entry->Update(milliseconds);
-			
-// Render
+
+			// Render
 			m_graphics->SafeBeginDraw();
 			m_graphics->ClearWindow(D2D1::ColorF((W_FLOAT)WContainer::BackR() / 255, (W_FLOAT)WContainer::BackG() / 255, (W_FLOAT)WContainer::BackB() / 255, (W_FLOAT)WContainer::BackA() / 255));
 			m_entry->Render(milliseconds);
-			
-// Render all the controls
+
+			// Render all the controls
 			WControlHandler::Update();
 			WControlHandler::Render();
 			m_graphics->SafeEndDraw();
 
-// We assume the mouse is always moving (Smoother Input) 
-// use #define WARP_OMI if you don't want to use this method.
+			// We assume the mouse is always moving (Smoother Input) 
+			// use #define WARP_OMI if you don't want to use this method.
 #ifndef WARP_OMI
 			POINT pt;
 			GetCursorPos(&pt);
@@ -279,7 +279,7 @@ void WMainWindow::MessageLoop(void)
 
 LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-// Update the container's static Members
+	// Update the container's static Members
 	WContainer::Handle(hWnd);
 	WContainer::Message(msg);
 	WContainer::WParam(wParam);
@@ -291,7 +291,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 
 	switch (msg)
 	{
-// WINDOW RESIZE
+		// WINDOW RESIZE
 	case WM_SIZING:
 	{
 		W_UINT width = LOWORD(lParam);
@@ -302,7 +302,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		break;
 	}
 
-// WINDOW RESIZED
+	// WINDOW RESIZED
 	case WM_SIZE:
 	{
 		W_UINT width = LOWORD(lParam);
@@ -316,7 +316,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		break;
 	}
 
-// PAINT MESSAGE (#Define WARP_GDI_SUPPORT to Enable WM_PAINT and GDI Support)
+	// PAINT MESSAGE (#Define WARP_GDI_SUPPORT to Enable WM_PAINT and GDI Support)
 #ifdef WARP_GDI_SUPPORT
 	case WM_PAINT:
 	{
@@ -333,23 +333,31 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 #endif WARP_GDI_SUPPORT
 
-// KEYBOARD MESSAGES
+	// KEYBOARD MESSAGES
 	case WM_KEYDOWN:
 	{
-// Key Down
-// No autorepeat
+		// Key Down
+		// No autorepeat
 		if (!(lParam & 0x40000000) || m_keyboard->AutorepeatIsEnabled())
 		{
 			m_keyboard->LastKey((static_cast<W_BYTE>(wParam)));
 			m_keyboard->RunKeyDown();
+
+			std::unique_ptr<WKeyboardArgs> args = std::make_unique<WKeyboardArgs>(WKeyboardArgs((static_cast<W_BYTE>(wParam))));
+			WControlHandler::KeyDown(args.get());
+			args.reset();
 		}
 		break;
 	}
 	case WM_KEYUP:
 	{
-// Key Up
+		// Key Up
 		m_keyboard->LastKey((static_cast<W_BYTE>(wParam)));
 		m_keyboard->RunKeyUp();
+
+		std::unique_ptr<WKeyboardArgs> args = std::make_unique<WKeyboardArgs>(WKeyboardArgs((static_cast<W_BYTE>(wParam))));
+		WControlHandler::KeyUp(args.get());
+		args.reset();
 		break;
 	}
 	case WM_CHAR:
@@ -358,8 +366,8 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		m_keyboard->RunOnChar();
 		break;
 	}
-// END OF KEYBOARD MESSAGES
-// MOUSE MESSAGES
+	// END OF KEYBOARD MESSAGES
+	// MOUSE MESSAGES
 	case WM_MOUSEMOVE:
 	{
 #ifndef WARP_OMI
@@ -386,7 +394,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		break;
 	}
 	case WM_LBUTTONUP:
-	{		
+	{
 		m_mouse->MouseKey(WMouseKey::MK_LEFT);
 		m_mouse->MPoint(pt.x, pt.y);
 		m_mouse->MouseUp();
@@ -465,7 +473,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		}
 		break;
 	}
-// END OF MOUSE MESSAGES
+	// END OF MOUSE MESSAGES
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
@@ -477,7 +485,7 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		break;
 	}
 	}
-// Safeguard
+	// Safeguard
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
