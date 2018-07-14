@@ -36,6 +36,7 @@ WListBoxItem::WListBoxItem(W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
+	m_Content = L"";
 	m_alighment = WTA_Center;
 }
 
@@ -71,6 +72,7 @@ WListBoxItem::WListBoxItem(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT ri
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
+	m_Content = L"";
 	m_alighment = WTA_Center;
 }
 
@@ -106,6 +108,7 @@ WListBoxItem::WListBoxItem(WPointF topleft, WPointF botright, W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
+	m_Content = L"";
 	m_alighment = WTA_Center;
 }
 
@@ -141,6 +144,7 @@ WListBoxItem::WListBoxItem(WRectF location, W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WListBoxItem::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
+	m_Content = L"";
 	m_alighment = WTA_Center;
 }
 
@@ -276,7 +280,7 @@ void WListBoxItem::Render(void)
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
 	WGraphicsContainer::Graphics()->FillEllipseSolid(m_circleLocation, m_radius, m_radius, WContainer::Theme().ColorBackCircle(), ctRec);
-	WGraphicsContainer::Graphics()->WriteText(ctRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
+	WGraphicsContainer::Graphics()->WriteText(ctRec, (wchar_t*)m_Content.c_str(), m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_Center, ctRec);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
@@ -484,14 +488,13 @@ void WListBoxItem::MouseLeave(WMouseArgs* Args)
 	}
 }
 
-wchar_t* WListBoxItem::FontFamily(void) const
+std::wstring WListBoxItem::FontFamily(void) const
 {
 	return m_family;
 }
 
-wchar_t* WListBoxItem::Content(UINT32& outLen) const
+std::wstring WListBoxItem::Content(void) const
 {
-	outLen = m_conLen;
 	return m_Content;
 }
 
@@ -500,31 +503,15 @@ W_FLOAT WListBoxItem::FontSize(void) const
 	return m_fsize;
 }
 
-wchar_t* WListBoxItem::FontFamily(wchar_t* intake)
+std::wstring WListBoxItem::FontFamily(std::wstring intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-wchar_t* WListBoxItem::Content(wchar_t* content)
+std::wstring WListBoxItem::Content(std::wstring content)
 {
-	m_conLen = lstrlenW(content);
-	m_Content = new wchar_t[m_conLen];
-	for (size_t i = 0; i < m_conLen; i++)
-	{
-		m_Content[i] = content[i];
-	}
-	return m_Content;
-}
-
-wchar_t* WListBoxItem::Content(wchar_t* content, UINT32 Length)
-{
-	m_conLen = Length;
-	m_Content = new wchar_t[m_conLen];
-	for (size_t i = 0; i < Length; i++)
-	{
-		m_Content[i] = content[i];
-	}
+	m_Content = content;
 	return m_Content;
 }
 

@@ -30,13 +30,12 @@ public:
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
 
-	wchar_t* FontFamily(void) const;
-	wchar_t* Content(UINT32& outLen) const;
+	std::wstring FontFamily(void) const;
+	std::wstring Content(void) const;
 	W_FLOAT	FontSize(void) const;
 
-	wchar_t* FontFamily(wchar_t* intake);
-	wchar_t* Content(wchar_t* content);
-	wchar_t* Content(wchar_t* content, UINT32 Length);
+	std::wstring FontFamily(std::wstring intake);
+	std::wstring Content(std::wstring content);
 	W_FLOAT	FontSize(W_FLOAT intake);
 
 	WTextAlignment Alignment(void) const;
@@ -77,10 +76,9 @@ protected:
 	POINTF m_circleLocation;
 
 	// Normal
-	wchar_t* m_Content;
-	wchar_t* m_family;
+	std::wstring m_Content;
+	std::wstring m_family;
 	W_FLOAT m_fsize = 14.0F;
-	UINT32 m_conLen = 0;
 
 	W_FLOAT m_thickness;
 
