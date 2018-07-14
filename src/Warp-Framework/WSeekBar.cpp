@@ -366,9 +366,14 @@ void WSeekBar::MouseDown(WMouseArgs* Args)
 	}
 	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
 	{
+		m_isActive = 1;
 		m_isClicked = 1;
 		m_shouldSeek = 1;
 		WCTMouseDownRegistery->Run(this, Args);
+	}
+	else if (!IsWithin(Args))
+	{
+		m_isActive = 0;
 	}
 }
 
