@@ -120,6 +120,7 @@
     <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WSeekBar.h" />
     <ClInclude Include="WSeekBarValueChangeArgs.h" />
+    <ClInclude Include="WTextBox.h" />
     <ClInclude Include="WTheme.h" />
     <ClInclude Include="WControl.h" />
     <ClInclude Include="WFixedCanvas.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="WSeekBarValueChangeArgs.cpp" />
     <ClCompile Include="WSmoothStep.cpp" />
     <ClCompile Include="WSmoothStepArgs.cpp" />
+    <ClCompile Include="WTextBox.cpp" />
     <ClCompile Include="WTheme.cpp" />
     <ClCompile Include="WUniqueRegister.cpp" />
   </ItemGroup>

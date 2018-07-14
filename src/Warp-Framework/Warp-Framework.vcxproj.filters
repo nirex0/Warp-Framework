@@ -312,6 +312,9 @@
     <ClInclude Include="WSeekBarValueChangeArgs.h">
       <Filter>Header Files\WARP-GFX\EventArgs</Filter>
     </ClInclude>
+    <ClInclude Include="WTextBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -436,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="WSeekBarValueChangeArgs.cpp">
       <Filter>Source Files\WARP-GFX\EventArgs</Filter>
+    </ClCompile>
+    <ClCompile Include="WTextBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
