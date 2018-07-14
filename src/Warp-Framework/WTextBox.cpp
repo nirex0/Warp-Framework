@@ -46,6 +46,7 @@ WTextBox::WTextBox(W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WTextBox::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
+	m_Content = L"";
 	m_UseExtendedBorder = true;
 }
 
@@ -91,6 +92,7 @@ WTextBox::WTextBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WTextBox::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
+	m_Content = L"";
 	m_UseExtendedBorder = true;
 }
 
@@ -136,6 +138,7 @@ WTextBox::WTextBox(WPointF topleft, WPointF botright, W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WTextBox::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
+	m_Content = L"";
 	m_UseExtendedBorder = true;
 }
 
@@ -181,6 +184,7 @@ WTextBox::WTextBox(WRectF location, W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WTextBox::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 
 	m_family = L"Arial";
+	m_Content = L"";
 	m_UseExtendedBorder = true;
 }
 
@@ -337,7 +341,7 @@ void WTextBox::Render(void)
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
-	WGraphicsContainer::Graphics()->WriteText(ctRec, m_Content, m_conLen, m_family, m_fsize, foreColor, WTA_LeftToRight);
+	WGraphicsContainer::Graphics()->WriteText(ctRec, (wchar_t*)m_Content.c_str(), m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_LeftToRight, ctRec);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
@@ -346,7 +350,7 @@ void WTextBox::Render(void)
 	SafeRelease(&pSink);
 }
 
-void WTextBox::KeyDown(WKeyboardArgs* Args)
+void WTextBox::KeyChar(WKeyboardArgs* Args)
 {
 	if (!m_isEnabled)
 		return;
@@ -376,28 +380,14 @@ void WTextBox::KeyDown(WKeyboardArgs* Args)
 	}
 	if (m_isActive && parentalControl)
 	{
-		UINT32 len;
-		std::wstring ctn = Content(len);
-		std::wstring nctn = L"";
-		for (size_t i = 0; i < len; i++)
+		if (Args->GetKey() != 8)
 		{
-			nctn += ctn[i];
+			m_Content.push_back(Args->GetKey());
 		}
-		if (Args->GetKey() == 8)
+		else if(m_Content.length() != 0)
 		{
-			len--;
+			m_Content.pop_back();
 		}
-		else
-		{
-			len++;
-		}
-
-		nctn += (wchar_t)Args->GetKey();
-		
-		wchar_t* fullctn = (wchar_t*)nctn.c_str();
-
-		Content(fullctn, len);
-
 		WCTKeyDownRegistery->Run(this, Args);
 	}
 }
@@ -621,14 +611,13 @@ void WTextBox::MouseLeave(WMouseArgs* Args)
 	}
 }
 
-wchar_t* WTextBox::FontFamily(void) const
+std::wstring WTextBox::FontFamily(void) const
 {
 	return m_family;
 }
 
-wchar_t* WTextBox::Content(UINT32& outLen) const
+std::wstring WTextBox::Content(void) const
 {
-	outLen = m_conLen;
 	return m_Content;
 }
 
@@ -637,31 +626,15 @@ W_FLOAT WTextBox::FontSize(void) const
 	return m_fsize;
 }
 
-wchar_t* WTextBox::FontFamily(wchar_t* intake)
+std::wstring WTextBox::FontFamily(std::wstring intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-wchar_t* WTextBox::Content(wchar_t* content)
+std::wstring WTextBox::Content(std::wstring content)
 {
-	m_conLen = lstrlenW(content);
-	m_Content = new wchar_t[m_conLen];
-	for (size_t i = 0; i < m_conLen; i++)
-	{
-		m_Content[i] = content[i];
-	}
-	return m_Content;
-}
-
-wchar_t* WTextBox::Content(wchar_t* content, UINT32 Length)
-{
-	m_conLen = Length;
-	m_Content = new wchar_t[m_conLen];
-	for (size_t i = 0; i < Length; i++)
-	{
-		m_Content[i] = content[i];
-	}
+	m_Content = content;
 	return m_Content;
 }
 
