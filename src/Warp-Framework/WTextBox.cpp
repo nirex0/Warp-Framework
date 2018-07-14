@@ -341,7 +341,7 @@ void WTextBox::Render(void)
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
-	WGraphicsContainer::Graphics()->WriteText(ctRec, (wchar_t*)m_Content.c_str(), m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_LeftToRight, ctRec);
+	WGraphicsContainer::Graphics()->WriteText(ctRec, (wchar_t*)m_Content.c_str(), (UINT32)m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_LeftToRight, ctRec);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
