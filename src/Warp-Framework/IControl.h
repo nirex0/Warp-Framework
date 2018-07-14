@@ -15,6 +15,7 @@ public:
 	// Events
 	virtual void KeyDown(WKeyboardArgs* Args) = 0;
 	virtual void KeyUp(WKeyboardArgs* Args) = 0;
+	virtual void KeyChar(WKeyboardArgs* Args) = 0;
 	virtual void MouseDown(WMouseArgs* Args) = 0;
 	virtual void MouseUp(WMouseArgs* Args) = 0;
 	virtual void MouseEnter(WMouseArgs* Args) = 0;
