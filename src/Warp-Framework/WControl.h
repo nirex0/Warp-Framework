@@ -36,6 +36,8 @@ public:
 	virtual WPointF Displace(W_FLOAT X, W_FLOAT Y);
 	virtual WPointF Displace(WPointF XY);
 
+	virtual WRegistry* KeyDownRegistery(void);
+	virtual WRegistry* KeyUpRegistery(void);
 	virtual WRegistry* MouseDownRegistery(void);
 	virtual WRegistry* MouseUpRegistery(void);
 	virtual WRegistry* MouseEnterRegistery(void);
@@ -43,6 +45,8 @@ public:
 	virtual WRegistry* MouseRollUpRegistery(void);
 	virtual WRegistry* MouseRollDownRegistery(void);
 
+	virtual WRegistry* KeyDownRegistery(WRegistry* intake);
+	virtual WRegistry* KeyUpRegistery(WRegistry* intake);
 	virtual WRegistry* MouseDownRegistery(WRegistry* intake);
 	virtual WRegistry* MouseUpRegistery(WRegistry* intake);
 	virtual WRegistry* MouseEnterRegistery(WRegistry* intake);
@@ -51,13 +55,17 @@ public:
 	virtual WRegistry* MouseRollDownRegistery(WRegistry* intake);
 
 	virtual W_INT ZIndex(void) const override;
+	virtual bool IsActive(void) const override;
 	virtual bool IsEnabled(void) const override;
 	virtual bool IsVisible(void) const override;
 
 	virtual W_INT ZIndex(W_INT input) override;
+	virtual bool IsActive(bool input) override;
 	virtual bool IsEnabled(bool input) override;
 	virtual bool IsVisible(bool input) override;
 
+	virtual void KeyDown(WKeyboardArgs* Args) override;
+	virtual void KeyUp(WKeyboardArgs* Args) override;
 	virtual void MouseDown(WMouseArgs* Args) override;
 	virtual void MouseUp(WMouseArgs* Args) override;
 	virtual void MouseEnter(WMouseArgs* Args) override;
@@ -86,6 +94,7 @@ protected:
 	W_FLOAT m_xoffset;
 	W_FLOAT m_yoffset;
 
+	bool m_isActive;
 	bool m_isClicked;
 	bool m_isEnabled;
 	bool m_isVisible;
@@ -96,6 +105,9 @@ protected:
 	W_FLOAT m_right;
 
 	WRECTF ctRec;
+
+	WRegistry* WCTKeyDownRegistery;
+	WRegistry* WCTKeyUpRegistery;
 
 	WRegistry* WCTMouseDownRegistery;
 	WRegistry* WCTMouseUpRegistery;

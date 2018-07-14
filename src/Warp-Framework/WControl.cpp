@@ -15,6 +15,8 @@ WControl::WControl(W_INT zIndex)
 	ctRec.Bottom(m_bottom);
 	ctRec.Right(m_right);
 
+	WCTKeyDownRegistery = new WRegistry();
+	WCTKeyUpRegistery = new WRegistry();
 	WCTMouseDownRegistery = new WRegistry();
 	WCTMouseUpRegistery = new WRegistry();
 	WCTMouseEnterRegistery = new WRegistry();
@@ -40,6 +42,8 @@ WControl::WControl(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	m_bottom = bottom;
 	m_right = right;
 
+	WCTKeyDownRegistery = new WRegistry();
+	WCTKeyUpRegistery = new WRegistry();
 	WCTMouseDownRegistery = new WRegistry();
 	WCTMouseUpRegistery = new WRegistry();
 	WCTMouseEnterRegistery = new WRegistry();
@@ -65,6 +69,8 @@ WControl::WControl(WPointF topleft, WPointF botright, W_INT zIndex)
 	m_bottom = botright.X();
 	m_right = botright.Y();
 
+	WCTKeyDownRegistery = new WRegistry();
+	WCTKeyUpRegistery = new WRegistry();
 	WCTMouseDownRegistery = new WRegistry();
 	WCTMouseUpRegistery = new WRegistry();
 	WCTMouseEnterRegistery = new WRegistry();
@@ -90,6 +96,8 @@ WControl::WControl(WRectF location, W_INT zIndex)
 	m_bottom = location.Bottom();
 	m_right = location.Right();
 
+	WCTKeyDownRegistery = new WRegistry();
+	WCTKeyUpRegistery = new WRegistry();
 	WCTMouseDownRegistery = new WRegistry();
 	WCTMouseUpRegistery = new WRegistry();
 	WCTMouseEnterRegistery = new WRegistry();
@@ -106,6 +114,8 @@ WControl::WControl(WRectF location, W_INT zIndex)
 
 WControl::~WControl()
 {
+	delete WCTKeyDownRegistery;
+	delete WCTKeyUpRegistery;
 	delete WCTMouseDownRegistery;
 	delete WCTMouseUpRegistery;
 	delete WCTMouseEnterRegistery;
@@ -228,6 +238,16 @@ WPointF WControl::Displace(WPointF XY)
 	return WPointF(XY.X(), XY.Y());
 }
 
+WRegistry* WControl::KeyDownRegistery(void)
+{
+	return WCTKeyDownRegistery;
+}
+
+WRegistry* WControl::KeyUpRegistery(void)
+{
+	return WCTKeyUpRegistery;
+}
+
 WRegistry* WControl::MouseDownRegistery(void)
 {
 	return WCTMouseDownRegistery;
@@ -256,6 +276,18 @@ WRegistry* WControl::MouseRollUpRegistery(void)
 WRegistry* WControl::MouseRollDownRegistery(void)
 {
 	return WCTMouseRollDownRegistery;
+}
+
+WRegistry* WControl::KeyDownRegistery(WRegistry* intake)
+{
+	WCTKeyDownRegistery = intake;
+	return WCTKeyDownRegistery;
+}
+
+WRegistry* WControl::KeyUpRegistery(WRegistry* intake)
+{
+	WCTKeyUpRegistery = intake;
+	return WCTKeyUpRegistery;
 }
 
 WRegistry* WControl::MouseDownRegistery(WRegistry* intake)
@@ -299,6 +331,11 @@ W_INT WControl::ZIndex(void) const
 	return m_zIndex;
 }
 
+bool WControl::IsActive(void) const
+{
+	return m_isActive;
+}
+
 bool WControl::IsEnabled(void) const
 {
 	return m_isEnabled;
@@ -317,6 +354,12 @@ W_INT WControl::ZIndex(W_INT input)
 	return m_zIndex;
 }
 
+bool WControl::IsActive(bool input)
+{
+	m_isActive = input;
+	return m_isActive;
+}
+
 bool WControl::IsEnabled(bool input)
 {
 	m_isEnabled = input;
@@ -327,6 +370,74 @@ bool WControl::IsVisible(bool input)
 {
 	m_isVisible = input;
 	return m_isVisible;
+}
+
+void WControl::KeyDown(WKeyboardArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsActive())
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (m_isActive && parentalControl)
+	{
+		WCTKeyDownRegistery->Run(this, Args);
+	}
+}
+
+void WControl::KeyUp(WKeyboardArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsActive())
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (m_isActive && parentalControl)
+	{
+		WCTKeyUpRegistery->Run(this, Args);
+	}
 }
 
 void WControl::MouseDown(WMouseArgs* Args)
@@ -359,8 +470,13 @@ void WControl::MouseDown(WMouseArgs* Args)
 	}
 	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
 	{
-		WCTMouseDownRegistery->Run(this, Args);
+		m_isActive = 1;
 		m_isClicked = 1;
+		WCTMouseDownRegistery->Run(this, Args);
+	}
+	else if (!IsWithin(Args))
+	{
+		m_isActive = 0;
 	}
 }
 
