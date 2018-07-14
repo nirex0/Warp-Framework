@@ -567,8 +567,9 @@ void WSeekBar::MouseLeave(WMouseArgs * Args)
 
 void WSeekBar::ValueChange(W_FLOAT value)
 {
-	WSeekBarValueChangeArgs* Args = new WSeekBarValueChangeArgs(value);
-	WCTMouseLeaveRegistery->Run(this, Args);
+	std::unique_ptr<WSeekBarValueChangeArgs> Args = std::make_unique<WSeekBarValueChangeArgs>((value));
+	WCTMouseLeaveRegistery->Run(this, Args.get());
+	Args.reset();
 }
 
 W_FLOAT WSeekBar::Value(void) const
