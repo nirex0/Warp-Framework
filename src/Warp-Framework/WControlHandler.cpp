@@ -37,6 +37,14 @@ void WControlHandler::KeyUp(WKeyboardArgs* args)
 	}
 }
 
+void WControlHandler::KeyChar(WKeyboardArgs* args)
+{
+	for (const auto &p : mtcp)
+	{
+		mtcp.at(p.first)->KeyChar(args);
+	}
+}
+
 void WControlHandler::MouseDown(WMouseArgs* args)
 {
 	for (const auto &p : mtcp)
