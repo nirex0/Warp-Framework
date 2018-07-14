@@ -1475,9 +1475,9 @@ HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, 
 
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
-	D2D1RECTF.left = boundaryRect.Left();
+	D2D1RECTF.left = boundaryRect.Left() + 5;
 	D2D1RECTF.bottom = boundaryRect.Bottom();
-	D2D1RECTF.right = boundaryRect.Right();
+	D2D1RECTF.right = boundaryRect.Right() - 5;
 
 	FontSize(fontsize);
 	FontFamily(fontfamily);
