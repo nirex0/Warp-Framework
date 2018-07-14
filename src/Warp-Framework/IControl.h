@@ -7,11 +7,14 @@
 #include "WRect.h"
 #include "WRegistry.h"
 #include "WMouseArgs.h"
+#include "WKeyboardArgs.h"
 
 class IControl : public WEntity
 {
 public:
-// Events
+	// Events
+	virtual void KeyDown(WKeyboardArgs* Args) = 0;
+	virtual void KeyUp(WKeyboardArgs* Args) = 0;
 	virtual void MouseDown(WMouseArgs* Args) = 0;
 	virtual void MouseUp(WMouseArgs* Args) = 0;
 	virtual void MouseEnter(WMouseArgs* Args) = 0;
@@ -19,24 +22,26 @@ public:
 	virtual void MouseRollUp(WMouseArgs* Args) = 0;
 	virtual void MouseRollDown(WMouseArgs* Args) = 0;
 
-// Location
+	// Location
 	virtual WRectF Location(void) const = 0;
 	virtual bool IsWithin(WMouseArgs* Args) const = 0;
 
-// ZIndex
+	// ZIndex
 	virtual W_INT ZIndex(void) const = 0;
 	virtual W_INT ZIndex(W_INT input) = 0;
 	virtual void SetZIndexNoChange(W_INT zIndex) = 0;
 
-// Getters
+	// Getters
+	virtual bool IsActive(void) const = 0;
 	virtual bool IsVisible(void) const = 0;
 	virtual bool IsVisible(bool input) = 0;
 
-// Setters
+	// Setters
+	virtual bool IsActive(bool input) = 0;
 	virtual bool IsEnabled(void) const = 0;
 	virtual bool IsEnabled(bool input) = 0;
 
-// Visual
+	// Visual
 	virtual void UpdateRect(void) = 0;
 	virtual void Render(void) = 0;
 };
