@@ -258,7 +258,7 @@ void WCheckBox::Render(void)
 	textrec.Left(ctRec.Left() + (checkrec.Right() - ctRec.Left()) + toffset);
 	textrec.Bottom(ctRec.Bottom() - toffset);
 	textrec.Right(ctRec.Right() - toffset);
-	WGraphicsContainer::Graphics()->WriteText(textrec, m_Content, m_conLen, m_family, m_fsize, foreColor);
+	WGraphicsContainer::Graphics()->WriteText(ctRec, (wchar_t*)m_Content.c_str(), (UINT32)m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_Center, ctRec);
 
 	if (m_DrawBorders)
 	{
@@ -470,14 +470,13 @@ bool WCheckBox::ShowBorder(void) const
 	return m_DrawBorders;
 }
 
-wchar_t* WCheckBox::FontFamily(void) const
+std::wstring WCheckBox::FontFamily(void) const
 {
 	return m_family;
 }
 
-wchar_t* WCheckBox::Content(UINT32 & outLen) const
+std::wstring WCheckBox::Content(void) const
 {
-	outLen = m_conLen;
 	return m_Content;
 }
 
@@ -498,31 +497,15 @@ bool WCheckBox::ShowBorder(bool intake)
 	return m_DrawBorders;
 }
 
-wchar_t* WCheckBox::FontFamily(wchar_t* intake)
+std::wstring WCheckBox::FontFamily(std::wstring intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-wchar_t* WCheckBox::Content(wchar_t* content)
+std::wstring WCheckBox::Content(std::wstring content)
 {
-	m_conLen = lstrlenW(content);
-	m_Content = new wchar_t[m_conLen];
-	for (size_t i = 0; i < m_conLen; i++)
-	{
-		m_Content[i] = content[i];
-	}
-	return m_Content;
-}
-
-wchar_t* WCheckBox::Content(wchar_t* content, UINT32 Length)
-{
-	m_conLen = Length;
-	m_Content = new wchar_t[m_conLen];
-	for (size_t i = 0; i < Length; i++)
-	{
-		m_Content[i] = content[i];
-	}
+	m_Content = content;
 	return m_Content;
 }
 
