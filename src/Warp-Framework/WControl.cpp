@@ -17,6 +17,7 @@ WControl::WControl(W_INT zIndex)
 
 	WCTKeyDownRegistery = new WRegistry();
 	WCTKeyUpRegistery = new WRegistry();
+	WCTKeyCharRegistery = new WRegistry();
 	WCTMouseDownRegistery = new WRegistry();
 	WCTMouseUpRegistery = new WRegistry();
 	WCTMouseEnterRegistery = new WRegistry();
@@ -44,6 +45,7 @@ WControl::WControl(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 
 	WCTKeyDownRegistery = new WRegistry();
 	WCTKeyUpRegistery = new WRegistry();
+	WCTKeyCharRegistery = new WRegistry();
 	WCTMouseDownRegistery = new WRegistry();
 	WCTMouseUpRegistery = new WRegistry();
 	WCTMouseEnterRegistery = new WRegistry();
@@ -71,6 +73,7 @@ WControl::WControl(WPointF topleft, WPointF botright, W_INT zIndex)
 
 	WCTKeyDownRegistery = new WRegistry();
 	WCTKeyUpRegistery = new WRegistry();
+	WCTKeyCharRegistery = new WRegistry();
 	WCTMouseDownRegistery = new WRegistry();
 	WCTMouseUpRegistery = new WRegistry();
 	WCTMouseEnterRegistery = new WRegistry();
@@ -98,6 +101,7 @@ WControl::WControl(WRectF location, W_INT zIndex)
 
 	WCTKeyDownRegistery = new WRegistry();
 	WCTKeyUpRegistery = new WRegistry();
+	WCTKeyCharRegistery = new WRegistry();
 	WCTMouseDownRegistery = new WRegistry();
 	WCTMouseUpRegistery = new WRegistry();
 	WCTMouseEnterRegistery = new WRegistry();
@@ -116,6 +120,7 @@ WControl::~WControl()
 {
 	delete WCTKeyDownRegistery;
 	delete WCTKeyUpRegistery;
+	delete WCTKeyCharRegistery;
 	delete WCTMouseDownRegistery;
 	delete WCTMouseUpRegistery;
 	delete WCTMouseEnterRegistery;
@@ -248,6 +253,11 @@ WRegistry* WControl::KeyUpRegistery(void)
 	return WCTKeyUpRegistery;
 }
 
+WRegistry* WControl::KeyCharRegistery(void)
+{
+	return WCTKeyCharRegistery;
+}
+
 WRegistry* WControl::MouseDownRegistery(void)
 {
 	return WCTMouseDownRegistery;
@@ -288,6 +298,12 @@ WRegistry* WControl::KeyUpRegistery(WRegistry* intake)
 {
 	WCTKeyUpRegistery = intake;
 	return WCTKeyUpRegistery;
+}
+
+WRegistry* WControl::KeyCharRegistery(WRegistry* intake)
+{
+	WCTKeyCharRegistery = intake;
+	return WCTKeyCharRegistery;
 }
 
 WRegistry* WControl::MouseDownRegistery(WRegistry* intake)
@@ -437,6 +453,40 @@ void WControl::KeyUp(WKeyboardArgs* Args)
 	if (m_isActive && parentalControl)
 	{
 		WCTKeyUpRegistery->Run(this, Args);
+	}
+}
+
+void WControl::KeyChar(WKeyboardArgs* Args)
+{
+	if (!m_isEnabled)
+		return;
+	if (!m_isVisible)
+		return;
+
+	if (m_Parent)
+	{
+		if (!m_Parent->IsEnabled())
+			return;
+		if (!m_Parent->IsVisible())
+			return;
+	}
+
+	bool parentalControl = 1;
+
+	if (m_Parent)
+	{
+		if (m_Parent->IsActive())
+		{
+			parentalControl = 1;
+		}
+		else
+		{
+			parentalControl = 0;
+		}
+	}
+	if (m_isActive && parentalControl)
+	{
+		WCTKeyCharRegistery->Run(this, Args);
 	}
 }
 

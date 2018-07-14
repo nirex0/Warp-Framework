@@ -38,6 +38,7 @@ public:
 
 	virtual WRegistry* KeyDownRegistery(void);
 	virtual WRegistry* KeyUpRegistery(void);
+	virtual WRegistry* KeyCharRegistery(void);
 	virtual WRegistry* MouseDownRegistery(void);
 	virtual WRegistry* MouseUpRegistery(void);
 	virtual WRegistry* MouseEnterRegistery(void);
@@ -47,6 +48,7 @@ public:
 
 	virtual WRegistry* KeyDownRegistery(WRegistry* intake);
 	virtual WRegistry* KeyUpRegistery(WRegistry* intake);
+	virtual WRegistry* KeyCharRegistery(WRegistry* intake);
 	virtual WRegistry* MouseDownRegistery(WRegistry* intake);
 	virtual WRegistry* MouseUpRegistery(WRegistry* intake);
 	virtual WRegistry* MouseEnterRegistery(WRegistry* intake);
@@ -66,6 +68,7 @@ public:
 
 	virtual void KeyDown(WKeyboardArgs* Args) override;
 	virtual void KeyUp(WKeyboardArgs* Args) override;
+	virtual void KeyChar(WKeyboardArgs* Args) override;
 	virtual void MouseDown(WMouseArgs* Args) override;
 	virtual void MouseUp(WMouseArgs* Args) override;
 	virtual void MouseEnter(WMouseArgs* Args) override;
@@ -108,6 +111,7 @@ protected:
 
 	WRegistry* WCTKeyDownRegistery;
 	WRegistry* WCTKeyUpRegistery;
+	WRegistry* WCTKeyCharRegistery;
 
 	WRegistry* WCTMouseDownRegistery;
 	WRegistry* WCTMouseUpRegistery;
