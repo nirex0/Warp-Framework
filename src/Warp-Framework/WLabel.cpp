@@ -132,7 +132,7 @@ void WLabel::Render(void)
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
 	// Render Statements Go Here
-	WGraphicsContainer::Graphics()->WriteText(ctRec, m_Content, m_conLen, m_family, m_fsize, foreColor);
+	WGraphicsContainer::Graphics()->WriteText(ctRec, (wchar_t*)m_Content.c_str(), (UINT32)m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_Center, ctRec);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
@@ -243,14 +243,13 @@ void WLabel::MouseLeave(WMouseArgs* Args)
 	}
 }
 
-wchar_t* WLabel::FontFamily(void) const
+std::wstring WLabel::FontFamily(void) const
 {
 	return m_family;
 }
 
-wchar_t* WLabel::Content(UINT32 & outLen) const
+std::wstring WLabel::Content(void) const
 {
-	outLen = m_conLen;
 	return m_Content;
 }
 
@@ -259,31 +258,15 @@ W_FLOAT WLabel::FontSize(void) const
 	return m_fsize;
 }
 
-wchar_t* WLabel::FontFamily(wchar_t* intake)
+std::wstring WLabel::FontFamily(std::wstring intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-wchar_t* WLabel::Content(wchar_t* content)
+std::wstring WLabel::Content(std::wstring content)
 {
-	m_conLen = lstrlenW(content);
-	m_Content = new wchar_t[m_conLen];
-	for (size_t i = 0; i < m_conLen; i++)
-	{
-		m_Content[i] = content[i];
-	}
-	return m_Content;
-}
-
-wchar_t* WLabel::Content(wchar_t* content, UINT32 Length)
-{
-	m_conLen = Length;
-	m_Content = new wchar_t[m_conLen];
-	for (size_t i = 0; i < Length; i++)
-	{
-		m_Content[i] = content[i];
-	}
+	m_Content = content;
 	return m_Content;
 }
 
