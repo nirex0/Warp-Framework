@@ -377,7 +377,7 @@ void WSeekBar::MouseDown(WMouseArgs* Args)
 	}
 }
 
-void WSeekBar::MouseUp(WMouseArgs * Args)
+void WSeekBar::MouseUp(WMouseArgs* Args)
 {
 	if (!m_isEnabled)
 		return;
