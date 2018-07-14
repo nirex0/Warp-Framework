@@ -17,6 +17,8 @@ class WControlHandler
 public:
 	static void Add(IControl* intake);
 	static void Remove(IControl* intake);
+	static void KeyDown(WKeyboardArgs* args);
+	static void KeyUp(WKeyboardArgs* args);
 	static void MouseDown(WMouseArgs* args);
 	static void MouseUp(WMouseArgs* args);
 	static void MouseEnter(WMouseArgs* args);

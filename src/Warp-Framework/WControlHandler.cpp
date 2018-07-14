@@ -21,6 +21,22 @@ void WControlHandler::Remove(IControl* intake)
 	mtcp.erase(intake->ZIndex());
 }
 
+void WControlHandler::KeyDown(WKeyboardArgs* args)
+{
+	for (const auto &p : mtcp)
+	{
+		mtcp.at(p.first)->KeyDown(args);
+	}
+}
+
+void WControlHandler::KeyUp(WKeyboardArgs* args)
+{
+	for (const auto &p : mtcp)
+	{
+		mtcp.at(p.first)->KeyUp(args);
+	}
+}
+
 void WControlHandler::MouseDown(WMouseArgs* args)
 {
 	for (const auto &p : mtcp)
