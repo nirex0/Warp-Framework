@@ -76,7 +76,7 @@ PLANS
 
 - ✔️ Scroll View
 
-- ⚙️ Text Box
+- ✔️ Text Box (WIP)
 
 - ✔️ Progress Bar
 
