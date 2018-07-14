@@ -402,6 +402,7 @@ void WButton::MouseDown(WMouseArgs* Args)
 	}
 	if (IsWithin(Args) && Args->State() == KeyState::MouseDown  && parentalControl)
 	{
+		m_isActive = 1;
 		m_isClicked = 1;
 		m_radius = 0;
 
@@ -409,6 +410,10 @@ void WButton::MouseDown(WMouseArgs* Args)
 		m_circleLocation.y = (W_FLOAT)Args->Y();
 
 		WCTMouseDownRegistery->Run(this, Args);
+	}
+	else if (!IsWithin(Args))
+	{
+		m_isActive = 0;
 	}
 }
 
