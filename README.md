@@ -100,6 +100,11 @@ PLANS
 
 - ✔️ Smooth Color Changing Control Integration 
 
+
+### WARP-TEST
+
+- ✔️ Unit Testing base class (WIP)
+
 ### WARP-NETWORK
 
 - ❌ Socket Programming
