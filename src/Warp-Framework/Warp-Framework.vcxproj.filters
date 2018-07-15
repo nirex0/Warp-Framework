@@ -55,23 +55,11 @@
     <Filter Include="Header Files\WARP-GFX\EventArgs">
       <UniqueIdentifier>{17279c38-01ee-4dac-aed0-abf91f287031}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\WARP-GFX\Math">
-      <UniqueIdentifier>{31a8fad3-6a0f-498e-b5ec-99ac37dae209}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\WARP-GFX\Engine">
       <UniqueIdentifier>{592305f7-260e-4bb3-b757-bd62d69fa83d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\WARP-GFX\Engine\Core">
-      <UniqueIdentifier>{b6515c69-e28e-4c1a-a4fc-25587a5a44bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\WARP-GFX\Engine\Devices">
       <UniqueIdentifier>{ddeb7bc9-d8ed-4397-98d0-7dea79087f54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-GFX\Engine\Main Window">
-      <UniqueIdentifier>{d8be893e-995e-443e-b862-2f274ff20d78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-GFX\Engine\System">
-      <UniqueIdentifier>{7246f845-b98c-49d9-8ca6-49bd7076bdf7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\WARP-GFX\Engine\Graphics">
       <UniqueIdentifier>{7bec0380-ee09-49c6-95d0-18efd27e2eb2}</UniqueIdentifier>
@@ -87,9 +75,6 @@
     </Filter>
     <Filter Include="Header Files\WARP-GFX\Engine\Helpers">
       <UniqueIdentifier>{6136097d-2e18-437d-b453-9769a9b46afe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-GFX\Engine\Control Helpers">
-      <UniqueIdentifier>{9f27ee11-dc74-42a3-a512-bec31dcf7731}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\WARP-GFX\Audio">
       <UniqueIdentifier>{60368118-c2d4-49bf-adad-3a7c6d6c1641}</UniqueIdentifier>
@@ -109,17 +94,8 @@
     <Filter Include="Source Files\WARP-GFX\Engine\Containers">
       <UniqueIdentifier>{d539b2ff-2f9a-4e8f-896c-cf513515aad2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\WARP-GFX\Engine\Control Helpers">
-      <UniqueIdentifier>{d915e811-4b8c-426c-9486-402cebe9fd32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-GFX\Engine\Core">
-      <UniqueIdentifier>{eef99d99-f16d-4181-9040-2ae68acbe698}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\WARP-GFX\Engine\Devices">
       <UniqueIdentifier>{ec04f148-14b6-43a3-a0ae-22eb88f2c883}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-GFX\Engine\Main Window">
-      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\WARP-GFX\Audio">
       <UniqueIdentifier>{52d05d79-0dde-426d-8da2-cab38f072fd9}</UniqueIdentifier>
@@ -127,13 +103,61 @@
     <Filter Include="Source Files\WARP-GFX\EventArgs">
       <UniqueIdentifier>{4f3587be-6906-4793-b28e-006deb9626dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\Control Auxiliary">
+      <UniqueIdentifier>{9f27ee11-dc74-42a3-a512-bec31dcf7731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Control Auxiliary">
+      <UniqueIdentifier>{d915e811-4b8c-426c-9486-402cebe9fd32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-TEST">
+      <UniqueIdentifier>{5c47a314-7207-4384-bc98-7dc3b0eb18f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-TEST">
+      <UniqueIdentifier>{6df4efd8-721a-4c93-abdf-72c106003a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-TEST\Core">
+      <UniqueIdentifier>{d766465b-ddb1-4082-bb20-5fd1fddd0b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-TEST\Core">
+      <UniqueIdentifier>{30ff2838-522e-4b64-92eb-b8683fee61dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-CORE">
+      <UniqueIdentifier>{6f117f1a-5630-4a0a-b5b7-e7aec2d963c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-CORE">
+      <UniqueIdentifier>{22fc8e49-9fb9-4c58-9448-0abb6faded02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-CORE\Core">
+      <UniqueIdentifier>{eef99d99-f16d-4181-9040-2ae68acbe698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-CORE\Core">
+      <UniqueIdentifier>{b6515c69-e28e-4c1a-a4fc-25587a5a44bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-CORE\System">
+      <UniqueIdentifier>{7246f845-b98c-49d9-8ca6-49bd7076bdf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-CORE\Math">
+      <UniqueIdentifier>{31a8fad3-6a0f-498e-b5ec-99ac37dae209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-TEST\Helpers">
+      <UniqueIdentifier>{4bc590c8-60e3-4ab3-82dd-72873973df50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-TEST\Helpers">
+      <UniqueIdentifier>{e6519b1b-a4a1-47cb-a36d-7ca55ef87d85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-CORE\Main Window">
+      <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-CORE\Main Window">
+      <UniqueIdentifier>{d8be893e-995e-443e-b862-2f274ff20d78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
       <Filter>Header Files\WARP-GFX\EventArgs</Filter>
     </ClInclude>
     <ClInclude Include="WEntity.h">
-      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Header Files\WARP-CORE\Core</Filter>
     </ClInclude>
     <ClInclude Include="WMouse.h">
       <Filter>Header Files\WARP-GFX\Engine\Devices</Filter>
@@ -142,46 +166,46 @@
       <Filter>Header Files\WARP-GFX\Engine\Devices</Filter>
     </ClInclude>
     <ClInclude Include="WEventArgs.h">
-      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Header Files\WARP-CORE\Core</Filter>
     </ClInclude>
     <ClInclude Include="WUserSettings.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WMainWindow.h">
-      <Filter>Header Files\WARP-GFX\Engine\Main Window</Filter>
+      <Filter>Header Files\WARP-CORE\Main Window</Filter>
     </ClInclude>
     <ClInclude Include="WEntry.h">
-      <Filter>Header Files\WARP-GFX\Engine\Main Window</Filter>
+      <Filter>Header Files\WARP-CORE\Main Window</Filter>
     </ClInclude>
     <ClInclude Include="WDefines.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WWin.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WMath.h">
-      <Filter>Header Files\WARP-GFX\Math</Filter>
+      <Filter>Header Files\WARP-CORE\Math</Filter>
     </ClInclude>
     <ClInclude Include="WMatrix2.h">
-      <Filter>Header Files\WARP-GFX\Math</Filter>
+      <Filter>Header Files\WARP-CORE\Math</Filter>
     </ClInclude>
     <ClInclude Include="WMatrix3.h">
-      <Filter>Header Files\WARP-GFX\Math</Filter>
+      <Filter>Header Files\WARP-CORE\Math</Filter>
     </ClInclude>
     <ClInclude Include="WVector2.h">
-      <Filter>Header Files\WARP-GFX\Math</Filter>
+      <Filter>Header Files\WARP-CORE\Math</Filter>
     </ClInclude>
     <ClInclude Include="WVector3.h">
-      <Filter>Header Files\WARP-GFX\Math</Filter>
+      <Filter>Header Files\WARP-CORE\Math</Filter>
     </ClInclude>
     <ClInclude Include="WVector4.h">
-      <Filter>Header Files\WARP-GFX\Math</Filter>
+      <Filter>Header Files\WARP-CORE\Math</Filter>
     </ClInclude>
     <ClInclude Include="WKeyboardArgs.h">
       <Filter>Header Files\WARP-GFX\EventArgs</Filter>
     </ClInclude>
     <ClInclude Include="WUniqueRegister.h">
-      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Header Files\WARP-CORE\Core</Filter>
     </ClInclude>
     <ClInclude Include="WGDIPaintEventArgs.h">
       <Filter>Header Files\WARP-GFX\EventArgs</Filter>
@@ -193,10 +217,10 @@
       <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WDX.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WSafeRelease.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WDXContainer.h">
       <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
@@ -211,13 +235,13 @@
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WCODEC.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WChrono.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WAlgorithm.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WGradientDirection.h">
       <Filter>Header Files\WARP-GFX\Engine\Helpers</Filter>
@@ -232,7 +256,7 @@
       <Filter>Header Files\WARP-GFX\Audio</Filter>
     </ClInclude>
     <ClInclude Include="WMci.h">
-      <Filter>Header Files\WARP-GFX\Engine\System</Filter>
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WAsyncArgs.h">
       <Filter>Header Files\WARP-ASYNC\Core</Filter>
@@ -253,7 +277,7 @@
       <Filter>Header Files\WARP-ASYNC\Animations\Smoothstep</Filter>
     </ClInclude>
     <ClInclude Include="WRegistry.h">
-      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Header Files\WARP-CORE\Core</Filter>
     </ClInclude>
     <ClInclude Include="WColorTransform.h">
       <Filter>Header Files\WARP-ASYNC\Animations\Color</Filter>
@@ -277,10 +301,10 @@
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="IControl.h">
-      <Filter>Header Files\WARP-GFX\Engine\Control Helpers</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Control Auxiliary</Filter>
     </ClInclude>
     <ClInclude Include="WControlHandler.h">
-      <Filter>Header Files\WARP-GFX\Engine\Control Helpers</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Control Auxiliary</Filter>
     </ClInclude>
     <ClInclude Include="WTheme.h">
       <Filter>Header Files\WARP-GFX\Engine\Graphics</Filter>
@@ -298,10 +322,10 @@
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WLogicalBound.h">
-      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Header Files\WARP-CORE\Core</Filter>
     </ClInclude>
     <ClInclude Include="WEventBound.h">
-      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Header Files\WARP-CORE\Core</Filter>
     </ClInclude>
     <ClInclude Include="WProgressBar.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
@@ -316,12 +340,15 @@
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WTestRegistry.h">
-      <Filter>Header Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Header Files\WARP-TEST\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WTestAuxiliary.h">
+      <Filter>Header Files\WARP-TEST\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Main Window</Filter>
+      <Filter>Source Files\WARP-CORE\Main Window</Filter>
     </ClCompile>
     <ClCompile Include="WGraphics.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Graphics</Filter>
@@ -354,7 +381,7 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WEntry.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Main Window</Filter>
+      <Filter>Source Files\WARP-CORE\Main Window</Filter>
     </ClCompile>
     <ClCompile Include="WAsyncArgs.cpp">
       <Filter>Source Files\WARP-ASYNC\Core</Filter>
@@ -393,19 +420,19 @@
       <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
     </ClCompile>
     <ClCompile Include="WControlHandler.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Control Helpers</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Control Auxiliary</Filter>
     </ClCompile>
     <ClCompile Include="WEntity.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
     <ClCompile Include="WEventArgs.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
     <ClCompile Include="WRegistry.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
     <ClCompile Include="WUniqueRegister.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
     <ClCompile Include="WKeyboard.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Devices</Filter>
@@ -429,10 +456,10 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WLogicalBound.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
     <ClCompile Include="WEventBound.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
     <ClCompile Include="WProgressBar.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
@@ -447,7 +474,10 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WTestRegistry.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Core</Filter>
+      <Filter>Source Files\WARP-TEST\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WTestAuxiliary.cpp">
+      <Filter>Source Files\WARP-TEST\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
