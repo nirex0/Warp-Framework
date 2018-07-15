@@ -213,11 +213,11 @@ void WCheckBox::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
-// Mask
+	// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
 
-// Geometry Sink
+	// Geometry Sink
 	ID2D1GeometrySink* pSink = nullptr;
 	MaskGeo->Open(&pSink);
 	pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
@@ -228,11 +228,11 @@ void WCheckBox::Render(void)
 	pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	pSink->Close();
 
-// Begin Mask Render
+	// Begin Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->CreateLayer(nullptr, &maskLayer);
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
-// Render Statements Go Here
+	// Render Statements Go Here
 
 	if (m_DrawBorders)
 	{
@@ -247,9 +247,17 @@ void WCheckBox::Render(void)
 	checkrec.Right(ctRec.Left() + (checkrec.Bottom() - checkrec.Top() + offset));
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(checkrec, m_thickness, 2, foreColor);
+
+
+	WRECTF checkrecFill;
+	checkrecFill.Top(checkrec.Top() + 5);
+	checkrecFill.Left(checkrec.Left() + 5);
+	checkrecFill.Bottom(checkrec.Bottom() - 5);
+	checkrecFill.Right(checkrec.Right() - 5);
+
 	if (m_isChecked)
 	{
-		WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrec, 1, foreColor);
+		WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrecFill, 1, foreColor);
 	}
 
 	W_INT toffset = 5;
@@ -258,14 +266,10 @@ void WCheckBox::Render(void)
 	textrec.Left(ctRec.Left() + (checkrec.Right() - ctRec.Left()) + toffset);
 	textrec.Bottom(ctRec.Bottom() - toffset);
 	textrec.Right(ctRec.Right() - toffset);
-	WGraphicsContainer::Graphics()->WriteText(ctRec, (wchar_t*)m_Content.c_str(), (UINT32)m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_Center, ctRec);
+	WGraphicsContainer::Graphics()->WriteText(textrec, (wchar_t*)m_Content.c_str(), (UINT32)m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_Center, ctRec);
 
-	if (m_DrawBorders)
-	{
-		WGraphicsContainer::Graphics()->DrawRoundRect(textrec, m_thickness, 2, bordColor);
-	}
 
-// End Mask Render
+	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
 	SafeRelease(&MaskGeo);
