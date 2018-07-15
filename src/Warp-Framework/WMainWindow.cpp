@@ -1,6 +1,19 @@
 // © 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WMainWindow.h"
+#include "WSafeRelease.h"
+#include "WUserSettings.h"
+#include "WChrono.h"
+#include "WAlgorithm.h"
+
+#include "WContainer.h"
+#include "WDXContainer.h"
+#include "WGFXContainer.h"
+#include "WRegContainer.h"
+#include "WControlHandler.h"
+#include "WTestAuxiliary.h"
+
+#include "WGDIPaintEventArgs.h"
 
 // We Need to Initialize the container's static memebers to nullptr ({} = ZeroMemory}
 HRESULT WContainer::HR = {};
@@ -49,6 +62,10 @@ WUniqueRegister* WRegContainer::WND_OnGDIPaint = {};
 
 // Same with the GFX Container
 WGraphics* WGraphicsContainer::gfx = {};
+
+// Same with the TestAux
+
+std::set<WTestRegistry*> WTestAuxiliary::stwp = {};
 
 // D2D1_RENDER_TARGET_TYPE_HARDWARE	: The main render target uses hardware rendering only.
 // D2D1_RENDER_TARGET_TYPE_SOFTWARE	: The main render target uses software rendering only.
