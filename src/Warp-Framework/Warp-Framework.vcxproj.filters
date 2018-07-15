@@ -13,6 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\WARP-ASYNC">
+      <UniqueIdentifier>{7fce6c25-aa53-4027-aa10-d96325e63c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC">
+      <UniqueIdentifier>{ffd4083d-3fdf-4373-8a0a-bcfcac524043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Core">
+      <UniqueIdentifier>{71a013c9-3c8d-4ded-8941-ca73a73024d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Animations">
+      <UniqueIdentifier>{9f98f87a-a6da-4fb6-ab6f-2f10c2d6592c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Animations\Lerp">
+      <UniqueIdentifier>{38512774-ef04-42e3-9acf-3313a15d95cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Animations\Smoothstep">
+      <UniqueIdentifier>{e996a232-b2dd-4077-ba38-296b52720811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-ASYNC\Animations\Color">
+      <UniqueIdentifier>{cc7ea95d-2a17-4594-ab83-02bdcb4e7420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Animations">
+      <UniqueIdentifier>{e228de91-e156-4452-ab6b-e32f4ceef952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Core">
+      <UniqueIdentifier>{395ae778-a8de-4a0b-a73e-dc4a88796760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Animations\Color">
+      <UniqueIdentifier>{211a9643-9f28-4c96-8ce7-978b45c3a851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Animations\Lerp">
+      <UniqueIdentifier>{468f5a6f-60a5-429d-8d06-8e1b92d66a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-ASYNC\Animations\Smoothstep">
+      <UniqueIdentifier>{3880791e-70b0-4431-abf4-f2871510a818}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\WARP-GFX">
       <UniqueIdentifier>{20a4920a-b386-43a7-9773-a0f51f44246d}</UniqueIdentifier>
     </Filter>
@@ -52,6 +88,9 @@
     <Filter Include="Header Files\WARP-GFX\Engine\Helpers">
       <UniqueIdentifier>{6136097d-2e18-437d-b453-9769a9b46afe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\Control Helpers">
+      <UniqueIdentifier>{9f27ee11-dc74-42a3-a512-bec31dcf7731}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\WARP-GFX\Audio">
       <UniqueIdentifier>{60368118-c2d4-49bf-adad-3a7c6d6c1641}</UniqueIdentifier>
     </Filter>
@@ -66,48 +105,6 @@
     </Filter>
     <Filter Include="Source Files\WARP-GFX\Engine\Controls">
       <UniqueIdentifier>{cac18e69-1a47-4fe2-a314-3b4ca94a9b0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-ASYNC">
-      <UniqueIdentifier>{7fce6c25-aa53-4027-aa10-d96325e63c21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-ASYNC">
-      <UniqueIdentifier>{ffd4083d-3fdf-4373-8a0a-bcfcac524043}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-ASYNC\Core">
-      <UniqueIdentifier>{71a013c9-3c8d-4ded-8941-ca73a73024d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-ASYNC\Animations">
-      <UniqueIdentifier>{9f98f87a-a6da-4fb6-ab6f-2f10c2d6592c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-ASYNC\Animations\Lerp">
-      <UniqueIdentifier>{38512774-ef04-42e3-9acf-3313a15d95cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-ASYNC\Animations\Smoothstep">
-      <UniqueIdentifier>{e996a232-b2dd-4077-ba38-296b52720811}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-ASYNC\Animations\Color">
-      <UniqueIdentifier>{cc7ea95d-2a17-4594-ab83-02bdcb4e7420}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\WARP-GFX\Engine\Control Helpers">
-      <UniqueIdentifier>{9f27ee11-dc74-42a3-a512-bec31dcf7731}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-ASYNC\Animations">
-      <UniqueIdentifier>{e228de91-e156-4452-ab6b-e32f4ceef952}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-ASYNC\Core">
-      <UniqueIdentifier>{395ae778-a8de-4a0b-a73e-dc4a88796760}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-ASYNC\Animations\Color">
-      <UniqueIdentifier>{211a9643-9f28-4c96-8ce7-978b45c3a851}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-ASYNC\Animations\Lerp">
-      <UniqueIdentifier>{468f5a6f-60a5-429d-8d06-8e1b92d66a39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-ASYNC\Animations\Smoothstep">
-      <UniqueIdentifier>{3880791e-70b0-4431-abf4-f2871510a818}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-GFX\Audio">
-      <UniqueIdentifier>{52d05d79-0dde-426d-8da2-cab38f072fd9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\WARP-GFX\Engine\Containers">
       <UniqueIdentifier>{d539b2ff-2f9a-4e8f-896c-cf513515aad2}</UniqueIdentifier>
@@ -124,8 +121,17 @@
     <Filter Include="Source Files\WARP-GFX\Engine\Main Window">
       <UniqueIdentifier>{0301540a-9d4c-487b-8b2d-26d4463f6401}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\WARP-GFX\Audio">
+      <UniqueIdentifier>{52d05d79-0dde-426d-8da2-cab38f072fd9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\WARP-GFX\EventArgs">
       <UniqueIdentifier>{4f3587be-6906-4793-b28e-006deb9626dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-TEST">
+      <UniqueIdentifier>{7aa02160-4cb5-4958-a859-61d4993d330e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-TEST">
+      <UniqueIdentifier>{1afa40a0-41ab-4330-9dfb-44645c6f3d73}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +320,9 @@
     </ClInclude>
     <ClInclude Include="WTextBox.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="WTest.h">
+      <Filter>Header Files\WARP-TEST</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -120,6 +120,7 @@
     <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WSeekBar.h" />
     <ClInclude Include="WSeekBarValueChangeArgs.h" />
+    <ClInclude Include="WTest.h" />
     <ClInclude Include="WTextBox.h" />
     <ClInclude Include="WTheme.h" />
     <ClInclude Include="WControl.h" />
