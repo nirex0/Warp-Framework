@@ -127,12 +127,6 @@
     <Filter Include="Source Files\WARP-GFX\EventArgs">
       <UniqueIdentifier>{4f3587be-6906-4793-b28e-006deb9626dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\WARP-TEST">
-      <UniqueIdentifier>{7aa02160-4cb5-4958-a859-61d4993d330e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-TEST">
-      <UniqueIdentifier>{1afa40a0-41ab-4330-9dfb-44645c6f3d73}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -321,8 +315,8 @@
     <ClInclude Include="WTextBox.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="WTest.h">
-      <Filter>Header Files\WARP-TEST</Filter>
+    <ClInclude Include="WTestRegistry.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +445,9 @@
     </ClCompile>
     <ClCompile Include="WTextBox.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WTestRegistry.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

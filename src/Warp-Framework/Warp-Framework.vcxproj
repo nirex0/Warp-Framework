@@ -120,7 +120,7 @@
     <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WSeekBar.h" />
     <ClInclude Include="WSeekBarValueChangeArgs.h" />
-    <ClInclude Include="WTest.h" />
+    <ClInclude Include="WTestRegistry.h" />
     <ClInclude Include="WTextBox.h" />
     <ClInclude Include="WTheme.h" />
     <ClInclude Include="WControl.h" />
@@ -215,6 +215,7 @@
     <ClCompile Include="WSeekBarValueChangeArgs.cpp" />
     <ClCompile Include="WSmoothStep.cpp" />
     <ClCompile Include="WSmoothStepArgs.cpp" />
+    <ClCompile Include="WTestRegistry.cpp" />
     <ClCompile Include="WTextBox.cpp" />
     <ClCompile Include="WTheme.cpp" />
     <ClCompile Include="WUniqueRegister.cpp" />
