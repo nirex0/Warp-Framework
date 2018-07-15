@@ -3,6 +3,7 @@
 #ifndef _W_DEFINES_H_
 #define _W_DEFINES_H_
 
+#define WDBG
 #define W_CALL					__stdcall
 #define W_ENTRY					__stdcall
 #define WARP_CALL				__stdcall
