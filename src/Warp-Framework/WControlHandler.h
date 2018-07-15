@@ -3,9 +3,7 @@
 #ifndef _W_CONTROL_HANDLER_H_
 #define _W_CONTROL_HANDLER_H_
 
-
 #include "IControl.h"
-#include "WButton.h"
 #include "WContainer.h"
 
 #include <map>
