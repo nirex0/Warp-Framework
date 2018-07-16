@@ -64,9 +64,6 @@
     <Filter Include="Header Files\WARP-GFX\Engine\Graphics">
       <UniqueIdentifier>{7bec0380-ee09-49c6-95d0-18efd27e2eb2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\WARP-GFX\Engine\Containers">
-      <UniqueIdentifier>{fbe055ce-7748-4d5f-80af-304582daadff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\WARP-GFX\Engine\Controls">
       <UniqueIdentifier>{efff0d63-a65e-4518-b323-fd8f42a54770}</UniqueIdentifier>
     </Filter>
@@ -90,9 +87,6 @@
     </Filter>
     <Filter Include="Source Files\WARP-GFX\Engine\Controls">
       <UniqueIdentifier>{cac18e69-1a47-4fe2-a314-3b4ca94a9b0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\WARP-GFX\Engine\Containers">
-      <UniqueIdentifier>{d539b2ff-2f9a-4e8f-896c-cf513515aad2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\WARP-GFX\Engine\Devices">
       <UniqueIdentifier>{ec04f148-14b6-43a3-a0ae-22eb88f2c883}</UniqueIdentifier>
@@ -150,6 +144,12 @@
     </Filter>
     <Filter Include="Header Files\WARP-CORE\Main Window">
       <UniqueIdentifier>{d8be893e-995e-443e-b862-2f274ff20d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-CORE\Containers">
+      <UniqueIdentifier>{d539b2ff-2f9a-4e8f-896c-cf513515aad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-CORE\Containers">
+      <UniqueIdentifier>{fbe055ce-7748-4d5f-80af-304582daadff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -211,10 +211,10 @@
       <Filter>Header Files\WARP-GFX\EventArgs</Filter>
     </ClInclude>
     <ClInclude Include="WContainer.h">
-      <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
+      <Filter>Header Files\WARP-CORE\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WRegContainer.h">
-      <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
+      <Filter>Header Files\WARP-CORE\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WDX.h">
       <Filter>Header Files\WARP-CORE\System</Filter>
@@ -223,13 +223,13 @@
       <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
     <ClInclude Include="WDXContainer.h">
-      <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
+      <Filter>Header Files\WARP-CORE\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WGraphics.h">
       <Filter>Header Files\WARP-GFX\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="WGFXContainer.h">
-      <Filter>Header Files\WARP-GFX\Engine\Containers</Filter>
+      <Filter>Header Files\WARP-CORE\Containers</Filter>
     </ClInclude>
     <ClInclude Include="WButton.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
@@ -408,16 +408,16 @@
       <Filter>Source Files\WARP-ASYNC\Animations\Color</Filter>
     </ClCompile>
     <ClCompile Include="WContainer.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
+      <Filter>Source Files\WARP-CORE\Containers</Filter>
     </ClCompile>
     <ClCompile Include="WDXContainer.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
+      <Filter>Source Files\WARP-CORE\Containers</Filter>
     </ClCompile>
     <ClCompile Include="WGFXContainer.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
+      <Filter>Source Files\WARP-CORE\Containers</Filter>
     </ClCompile>
     <ClCompile Include="WRegContainer.cpp">
-      <Filter>Source Files\WARP-GFX\Engine\Containers</Filter>
+      <Filter>Source Files\WARP-CORE\Containers</Filter>
     </ClCompile>
     <ClCompile Include="WControlHandler.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Control Auxiliary</Filter>
