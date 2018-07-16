@@ -15,7 +15,6 @@ so don't worry read the plans and see where I'm going with this.
 PLANS
 =====
 
-
 ### WARP-GFX
 
 - ✔️ Deltatime 
@@ -76,10 +75,6 @@ PLANS
 
 - ⚠️ Video Support ((Almost) All Formats)
 
-- ✔️ Function Binding
-
-- ✔️ Event Binding
-
 - ⚠️ Custom 2D Space
 
 - ❌ Python Wrapper
@@ -87,6 +82,13 @@ PLANS
 - ❌ OpenGL Implementation
 
 - ❌ Lua scripting Implementation
+
+### WARP-CORE
+
+- ✔️ Function Binding
+
+- ✔️ Event Binding
+
 
 ### WARP-ASYNC
 
