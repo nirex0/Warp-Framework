@@ -24,7 +24,37 @@ PLANS
 
 - ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
-- ⚙️ Intractable Controls*
+- ⚙️ Intractable Controls
+
+  - ✔️ Base Control
+  
+  - ✔️ Button
+  
+  - ✔️ List Box
+  
+  - ✔️ List Box Item
+  
+  - ✔️ Fixed Canvas
+  
+  - ✔️ Label
+  
+  - ✔️ Scroll View
+  
+  - ✔️ Text Box
+  
+  - ✔️ Progress Bar
+  
+  - ⚙️ Toggle Button
+  
+  - ✔️ Check Box
+  
+  - ⚙️ Radio Button
+  
+  - ✔️ Seek Bar
+  
+  - ✔️ Image Box
+  
+  - ⚙️ Media Viewer (Video)
 
 - ✔️ Texture Support (All Formats)
 
@@ -58,38 +88,6 @@ PLANS
 
 - ❌ Lua scripting Implementation
 
-#### *CONTROLS
-
-- ✔️ Base Control
-
-- ✔️ Button
-
-- ✔️ List Box
-
-- ✔️ List Box Item
-
-- ✔️ Fixed Canvas
-
-- ✔️ Label
-
-- ✔️ Scroll View
-
-- ✔️ Text Box
-
-- ✔️ Progress Bar
-
-- ⚙️ Toggle Button
-
-- ✔️ Check Box
-
-- ⚙️ Radio Button
-
-- ✔️ Seek Bar
-
-- ✔️ Image Box
-
-- ⚙️ Media Viewer (Video)
-
 ### WARP-ASYNC
 
 - ✔️ Concurrent Programming with WAsyncWorker
@@ -99,7 +97,6 @@ PLANS
 - ✔️ Smooth Color Changing (Lerp)
 
 - ✔️ Smooth Color Changing Control Integration 
-
 
 ### WARP-TEST
 
