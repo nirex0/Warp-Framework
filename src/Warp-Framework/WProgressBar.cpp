@@ -274,8 +274,8 @@ void WProgressBar::Render(void)
 	checkrec.Right(ctRec.Left() + offset);
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
-	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
-	WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrec, 1, bordColor);
+	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 2, backColor);
+	WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrec, 2, bordColor);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
