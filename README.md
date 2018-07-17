@@ -55,6 +55,10 @@ PLANS
   
   - ⚠️ Media Viewer (Video)
 
+- ⚙️ Graphical Extentions
+  
+  - ⚙️ Extended Border Component
+
 - ✔️ Texture Support (All Formats)
 
 - ✔️ Render Double Buffering
