@@ -14,7 +14,6 @@
 
 #define WIN32_LEAN_AND_MEAN
 #define NOGDICAPMASKS
-//#define NOSYSMETRICS /* We actually need this one! */
 #define NOMENUS
 #define NOICONS
 #define NOSYSCOMMANDS
