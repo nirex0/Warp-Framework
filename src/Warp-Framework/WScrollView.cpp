@@ -320,7 +320,7 @@ void WScrollView::Render(void)
 	}
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
-	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 1, backColor);
+	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 2, backColor);
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
