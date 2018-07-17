@@ -145,6 +145,11 @@ So for now, feel free to use it for any reason you want, and remember that there
 
 But keep in mind that when this goes to production stage I probably will write a custom license for it.
 
+FRAMEWORK VIEW
+==============
+
+![alt text](https://raw.githubusercontent.com/nirex0/warp-framework/master/docs/warp-000.png)
+
 CONTACT
 =======
 
