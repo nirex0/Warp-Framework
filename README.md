@@ -152,7 +152,7 @@ But keep in mind that when this goes to production stage I probably will write a
 FRAMEWORK VIEW
 ==============
 
-![alt text](https://raw.githubusercontent.com/nirex0/warp-framework/master/docs/warp-000.png)
+![alt text](https://raw.githubusercontent.com/nirex0/warp-framework/master/repo-resources/warp-000.png)
 
 CONTACT
 =======
