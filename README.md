@@ -43,7 +43,7 @@ PLANS
   
   - ✔️ Progress Bar
   
-  - ⚙️ Toggle Button
+  - ✔️ Toggle Button
   
   - ✔️ Check Box
   
@@ -53,7 +53,7 @@ PLANS
   
   - ✔️ Image Box
   
-  - ⚙️ Media Viewer (Video)
+  - ⚠️ Media Viewer (Video)
 
 - ✔️ Texture Support (All Formats)
 
