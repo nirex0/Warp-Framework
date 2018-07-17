@@ -345,6 +345,9 @@
     <ClInclude Include="WTestAuxiliary.h">
       <Filter>Header Files\WARP-TEST\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="WToggleButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -478,6 +481,9 @@
     </ClCompile>
     <ClCompile Include="WTestAuxiliary.cpp">
       <Filter>Source Files\WARP-TEST\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="WToggleButton.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

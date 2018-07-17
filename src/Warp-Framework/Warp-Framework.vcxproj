@@ -160,6 +160,7 @@
     <ClInclude Include="WRegContainer.h" />
     <ClInclude Include="WSafeRelease.h" />
     <ClInclude Include="WRect.h" />
+    <ClInclude Include="WToggleButton.h" />
     <ClInclude Include="WUniqueRegister.h" />
     <ClInclude Include="WUserSettings.h" />
     <ClInclude Include="WDefines.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="WTestRegistry.cpp" />
     <ClCompile Include="WTextBox.cpp" />
     <ClCompile Include="WTheme.cpp" />
+    <ClCompile Include="WToggleButton.cpp" />
     <ClCompile Include="WUniqueRegister.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
