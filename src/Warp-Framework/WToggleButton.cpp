@@ -290,9 +290,9 @@ void WToggleButton::Render(void)
 		indLoc.Bottom(ctRec.Bottom() - 5);
 
 		WGraphicsContainer::Graphics()->DrawRoundRect(indLoc, m_thickness, 2, bordColor);
-		WGraphicsContainer::Graphics()->FillRoundRectSolid(indLoc, 2, bordColor);
+		WGraphicsContainer::Graphics()->FillRoundRectSolid(indLoc, 2, foreColor);
 	}
-	else if(!m_isTransitioning)
+	else if(!m_bIsOn && !m_isTransitioning)
 	{
 		WRECTF indLoc;
 		indLoc.Top(ctRec.Top() + 5);
@@ -303,7 +303,18 @@ void WToggleButton::Render(void)
 		WGraphicsContainer::Graphics()->DrawRoundRect(indLoc, m_thickness, 2, bordColor);
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(indLoc, 2, backColor);
 	}
-	else if (m_isTransitioning)
+	else if (m_isTransitioning && m_bIsOn)
+	{
+		WRECTF indLoc;
+		indLoc.Top(ctRec.Top() + 5);
+		indLoc.Left(m_transitLocation.Left());
+		indLoc.Right(m_transitLocation.Right());
+		indLoc.Bottom(ctRec.Bottom() - 5);
+
+		WGraphicsContainer::Graphics()->DrawRoundRect(indLoc, m_thickness, 2, bordColor);
+		WGraphicsContainer::Graphics()->FillRoundRectSolid(indLoc, 2, foreColor);
+	}
+	else if (m_isTransitioning && !m_bIsOn)
 	{
 		WRECTF indLoc;
 		indLoc.Top(ctRec.Top() + 5);
