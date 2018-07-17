@@ -15,7 +15,6 @@ so don't worry read the plans and see where I'm going with this.
 PLANS
 =====
 
-
 ### WARP-GFX
 
 - ✔️ Deltatime 
@@ -24,7 +23,37 @@ PLANS
 
 - ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
-- ⚙️ Intractable Controls*
+- ⚙️ Intractable Controls
+
+  - ✔️ Base Control
+  
+  - ✔️ Button
+  
+  - ✔️ List Box
+  
+  - ✔️ List Box Item
+  
+  - ✔️ Fixed Canvas
+  
+  - ✔️ Label
+  
+  - ✔️ Scroll View
+  
+  - ✔️ Text Box
+  
+  - ✔️ Progress Bar
+  
+  - ⚙️ Toggle Button
+  
+  - ✔️ Check Box
+  
+  - ⚙️ Radio Button
+  
+  - ✔️ Seek Bar
+  
+  - ✔️ Image Box
+  
+  - ⚙️ Media Viewer (Video)
 
 - ✔️ Texture Support (All Formats)
 
@@ -46,10 +75,6 @@ PLANS
 
 - ⚠️ Video Support ((Almost) All Formats)
 
-- ✔️ Function Binding
-
-- ✔️ Event Binding
-
 - ⚠️ Custom 2D Space
 
 - ❌ Python Wrapper
@@ -58,37 +83,12 @@ PLANS
 
 - ❌ Lua scripting Implementation
 
-#### *CONTROLS
+### WARP-CORE
 
-- ✔️ Base Control
+- ✔️ Function Binding
 
-- ✔️ Button
+- ✔️ Event Binding
 
-- ✔️ List Box
-
-- ✔️ List Box Item
-
-- ✔️ Fixed Canvas
-
-- ✔️ Label
-
-- ✔️ Scroll View
-
-- ✔️ Text Box
-
-- ✔️ Progress Bar
-
-- ⚙️ Toggle Button
-
-- ✔️ Check Box
-
-- ⚙️ Radio Button
-
-- ✔️ Seek Bar
-
-- ✔️ Image Box
-
-- ⚙️ Media Viewer (Video)
 
 ### WARP-ASYNC
 
@@ -100,10 +100,11 @@ PLANS
 
 - ✔️ Smooth Color Changing Control Integration 
 
-
 ### WARP-TEST
 
 - ✔️ Unit Testing base class (WIP)
+
+- ⚙️ Unit Testing Assertions
 
 ### WARP-NETWORK
 
