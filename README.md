@@ -55,6 +55,10 @@ PLANS
   
   - ⚠️ Media Viewer (Video)
 
+- ⚙️ Graphical Extentions
+  
+  - ⚙️ Extended Border Component
+
 - ✔️ Texture Support (All Formats)
 
 - ✔️ Render Double Buffering
@@ -144,6 +148,11 @@ For now there's no license file available to tell you what you can or can't do w
 So for now, feel free to use it for any reason you want, and remember that there is absolutely no warranty!
 
 But keep in mind that when this goes to production stage I probably will write a custom license for it.
+
+FRAMEWORK VIEW
+==============
+
+![alt text](https://raw.githubusercontent.com/nirex0/warp-framework/master/repo-resources/warp-000.png)
 
 CONTACT
 =======
