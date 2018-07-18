@@ -8,14 +8,12 @@ Anyhow, here's a list of what I aim to do with this framework.
 DOCUMENTATION
 =============
 
-Sadly there's no doc available yet, I mean the framework needs to be 100% completed then I can start working on the doc, right? RIGHT?
-
-so don't worry read the plans and see where I'm going with this.
+The documentation is finally being worked on, you can find in in the [docs](/docs) folder.
 
 PLANS
 =====
 
-**✔️ CURRENT: OPTIMIZATION**
+**🔧 CURRENTLY WORKING ON: DOCUMENTATION**
 
 ### WARP-GFX
 
