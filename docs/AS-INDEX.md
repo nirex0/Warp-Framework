@@ -1,5 +1,4 @@
 # WARP ASYNC DOCUMENTATION: MAIN INDEX
-----
 #### WARP-ASYNC QUICKSTART
 | TITLE 				  | DESCRIPTION 																|
 |-------------------------|-----------------------------------------------------------------------------|
