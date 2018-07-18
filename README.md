@@ -15,7 +15,7 @@ so don't worry read the plans and see where I'm going with this.
 PLANS
 =====
 
-**🔧 CURRENT: OPTIMIZATION**
+**✔️ CURRENT: OPTIMIZATION**
 
 ### WARP-GFX
 
