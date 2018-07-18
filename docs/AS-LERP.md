@@ -202,13 +202,13 @@ auto main(int argc, char** argv) -> int
     *ExtentionLerp->TickRegistry() += [&](WEntity* sender, WEventArgs* args)
     {
         WLerpArgs* LArgs = (WLerpArgs*)args;
-        value = LArgs;
+        value = LArgs->ValueExact();
     }
     
     *ExtentionLerp->DoneRegistry() += [&](WEntity* sender, WEventArgs* args)
     {
         WLerpArgs* LArgs = (WLerpArgs*)args;
-        value = LArgs;
+        value = (float)LArgs->ValueRounded();
     }
 
     ExtentionLerp.Perform();
