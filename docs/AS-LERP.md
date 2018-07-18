@@ -43,9 +43,9 @@ class WLerp : public WEntity;
 
 Warp Lerp class is different from a regular linear interpolation.
 
-When warp calculates the Lep it sets the 'from' value to the last calculated Lerp() value, Creating a smooth transition between ```from``` and ```to```.
+When warp calculates the Lerp it sets the 'from' value to the last calculated Lerp() value, Creating a smooth transition between ```from``` and ```to```.
 
-WLerp does this calculation on every **Lerp Tick** and raises and event (see WRegistry) which holds this calculated value within it's argument (see WLerpArgument) which is later used to create animations.
+WLerp does this calculation on every **Lerp Tick** and raises and event (see WRegistry) which holds this calculated value within it's argument (see [WLerpArgs](AS-LERPARGS.md)) which is later used to create animations.
 
 ---
 
@@ -170,7 +170,7 @@ The "Stop" method sets the m_stop flag to 0 after the lerp has stopped.
 
 **TICK** is raised everytime the calculation makes a progress.
 
-**TICK** sends the instance of the WLerp class and a new instance of WLerpArgs class holding the current calculation value.
+**TICK** sends the instance of the WLerp class and a new instance of [WLerpArgs](AS-LERPARGS.md) class holding the current calculation value.
 
 |Parameters| Types      | Values |
 |----------|------------|--------|
@@ -181,7 +181,7 @@ The "Stop" method sets the m_stop flag to 0 after the lerp has stopped.
 
 **DONE** is raised when the calculation is 100% completed.
 
-**DONE** sends the instance of the WLerp calss and a new instance of WLerpArgs class holding the ```to``` value of the WLerp class.
+**DONE** sends the instance of the WLerp calss and a new instance of [WLerpArgs](AS-LERPARGS.md) class holding the ```to``` value of the WLerp class.
 
 |Parameters| Types      | Values |
 |----------|------------|--------|
