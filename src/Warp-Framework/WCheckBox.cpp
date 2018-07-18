@@ -265,7 +265,6 @@ void WCheckBox::Render(void)
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(checkrec, m_thickness, 2, foreColor);
 
-
 	WRECTF checkrecFill;
 	checkrecFill.Top(checkrec.Top() + 5);
 	checkrecFill.Left(checkrec.Left() + 5);
@@ -285,6 +284,7 @@ void WCheckBox::Render(void)
 	textrec.Right(ctRec.Right() - toffset);
 	WGraphicsContainer::Graphics()->WriteText(textrec, (wchar_t*)m_Content.c_str(), (UINT32)m_Content.length(), (wchar_t*)m_family.c_str(), m_fsize, foreColor, WTA_Center, ctRec);
 
+	WGraphicsContainer::Graphics()->SafeFlush();
 
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
