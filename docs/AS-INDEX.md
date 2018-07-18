@@ -15,7 +15,7 @@
 |[**Arguments: Color**](AS-COLORARGS.md)| Smooth color transition argument class		|
 |[**Animation: Lerp**](AS-LERP.md) | Linear Interpolation class					|
 |[**Arguments: Lerp**](AS-LERPARGS.md) | Linear Interpolation argument class 			|
-|[**Animation: SmoothStep**](AS-SMOOTHSTOP.md)| Smooth Step class 						|
+|[**Animation: SmoothStep**](AS-SMOOTHSTEP.md)| Smooth Step class 						|
 |[**Arguments: SmoothStep**](AS-SMOOTHSTEPARGS.md)|	Smooth Step  argument class				|
 
 #### WARP-ASYNC CORE REFERENCE
