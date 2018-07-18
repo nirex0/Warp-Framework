@@ -1,5 +1,4 @@
 # WARP ASYNC: LERP
----
 Article content:
 - _Linear interpolation_
 - _Linear interpolation in Warp_
