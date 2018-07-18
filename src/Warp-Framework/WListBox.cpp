@@ -255,6 +255,23 @@ void WListBox::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
+	WRectF parent;
+	parent.Top(ParentRect.top);
+	parent.Left(ParentRect.left);
+	parent.Bottom(ParentRect.bottom);
+	parent.Right(ParentRect.right);
+
+	WRectF ct;
+	ct.Top(ctRec.Top());
+	ct.Left(ctRec.Left());
+	ct.Bottom(ctRec.Bottom());
+	ct.Right(ctRec.Right());
+
+	if (!parent.IsColliding(ct))
+	{
+		return;
+	}
+
 	// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
