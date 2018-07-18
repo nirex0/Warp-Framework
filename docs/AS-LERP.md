@@ -20,9 +20,16 @@ Linearly interpolating is finding a value that is some percentage between two gi
 Return Value: **```from``` + (```to``` - ```from```) * ```alpha```**
 
 EXAMPLE: 
+
 _Lerp( 0, 100, 0.1) = 10_
+
+
 _Lerp( 0, 100, 0.8) = 80_
+
+
 _Lerp( 0, 50, 0.5 ) = 25_
+
+
 _Lerp( 100, 0, 0.5 ) = 50_
 
 ---
