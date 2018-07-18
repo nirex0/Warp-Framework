@@ -491,10 +491,10 @@
     <ClCompile Include="WToggleButton.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="WRadioButton.cpp">
+    <ClCompile Include="WRadioButtonHandler.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Control Auxiliary</Filter>
     </ClCompile>
-    <ClCompile Include="WRadioButtonHandler.cpp">
+    <ClCompile Include="WRadioButton.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
   </ItemGroup>
