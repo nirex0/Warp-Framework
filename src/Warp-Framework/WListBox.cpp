@@ -339,6 +339,8 @@ void WListBox::Render(void)
 	WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 2, backColor);
 
+	WGraphicsContainer::Graphics()->SafeFlush();
+
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
