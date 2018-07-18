@@ -18,7 +18,8 @@ The class thread represents a single thread of execution. Threads allow multiple
 
 Threads begin execution immediately upon construction of the associated thread object (pending any OS scheduling delays), starting at the top-level function provided as a constructor argument. The return value of the top-level function is ignored and if it terminates by throwing an exception, std::terminate is called. The top-level function may communicate its return value or an exception to the caller via std::promise or by modifying shared variables.
 
-**Header File: <thread>**
+**Header File: ```<thread>```**
+
 [**CppReference Link**](https://en.cppreference.com/w/cpp/thread/thread)
 
 ---
@@ -45,7 +46,8 @@ release: the promise gives up its reference to the shared state. If this was the
 abandon: the promise stores the exception of type std::future_error with error code std::future_errc::broken_promise, makes the shared state ready, and then releases it.
 The promise is the "push" end of the promise-future communication channel: the operation that stores a value in the shared state synchronizes-with (as defined in std::memory_order) the successful return from any function that is waiting on the shared state (such as std::future::get). Concurrent access to the same shared state may conflict otherwise: for example multiple callers of std::shared_future::get must either all be read-only or provide external synchronization.
 
-**Header File: <future>**
+**Header File: ```<future>```**
+
 [**CppReference Link**](https://en.cppreference.com/w/cpp/thread/promise)
 
 ---
@@ -66,7 +68,8 @@ The behavior of a program is undefined if a mutex is destroyed while still owned
 
 std::mutex is neither copyable nor movable.
 
-**Header File: <mutex>**
+**Header File: ```<mutex>```**
+
 [**CppReference Link**](https://en.cppreference.com/w/cpp/thread/mutex)
 
 ---
@@ -106,7 +109,8 @@ If a destructor reset the terminate handler during stack unwinding, it is unspec
 | (none)   | (none)     | [LWG 2111](https://cplusplus.github.io/LWG/issue2111)|
 
 
-**Header File: <exception>**
+**Header File: ```<exception>```**
+
 [**CppReference Link**](https://en.cppreference.com/w/cpp/error/terminate)
 
 ---
