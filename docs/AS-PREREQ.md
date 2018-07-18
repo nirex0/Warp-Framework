@@ -1,5 +1,4 @@
 # WARP ASYNC: PREREQUISITES
----
 Article content:
 - _std::thread_
 - _std::promise_
