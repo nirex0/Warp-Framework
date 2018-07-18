@@ -41,8 +41,11 @@ The class template std::promise provides a facility to store a value or an excep
 Each promise is associated with a shared state, which contains some state information and a result which may be not yet evaluated, evaluated to a value (possibly void) or evaluated to an exception. A promise may do three things with the shared state:
 
 make ready: the promise stores the result or the exception in the shared state. Marks the state ready and unblocks any thread waiting on a future associated with the shared state.
+
 release: the promise gives up its reference to the shared state. If this was the last such reference, the shared state is destroyed. Unless this was a shared state created by std::async which is not yet ready, this operation does not block.
+
 abandon: the promise stores the exception of type std::future_error with error code std::future_errc::broken_promise, makes the shared state ready, and then releases it.
+
 The promise is the "push" end of the promise-future communication channel: the operation that stores a value in the shared state synchronizes-with (as defined in std::memory_order) the successful return from any function that is waiting on the shared state (such as std::future::get). Concurrent access to the same shared state may conflict otherwise: for example multiple callers of std::shared_future::get must either all be read-only or provide external synchronization.
 
 **Header File: ```<future>```**
@@ -61,8 +64,11 @@ The mutex class is a synchronization primitive that can be used to protect share
 mutex offers exclusive, non-recursive ownership semantics:
 
 A calling thread owns a mutex from the time that it successfully calls either lock or try_lock until it calls unlock.
+
 When a thread owns a mutex, all other threads will block (for calls to lock) or receive a false return value (for try_lock) if they attempt to claim ownership of the mutex.
+
 A calling thread must not own the mutex prior to calling lock or try_lock.
+
 The behavior of a program is undefined if a mutex is destroyed while still owned by any threads, or a thread terminates while owning a mutex. The mutex class satisfies all requirements of Mutex and StandardLayoutType.
 
 std::mutex is neither copyable nor movable.
