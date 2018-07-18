@@ -242,6 +242,23 @@ void WRadioButton::Render(void)
 		ParentRect.right = (W_FLOAT)INFINITE;
 	}
 
+	WRectF parent;
+	parent.Top(ParentRect.top);
+	parent.Left(ParentRect.left);
+	parent.Bottom(ParentRect.bottom);
+	parent.Right(ParentRect.right);
+
+	WRectF ct;
+	ct.Top(ctRec.Top());
+	ct.Left(ctRec.Left());
+	ct.Bottom(ctRec.Bottom());
+	ct.Right(ctRec.Right());
+
+	if (!parent.IsColliding(ct))
+	{
+		return;
+	}
+
 	// Mask
 	ID2D1PathGeometry* MaskGeo;
 	WGraphicsContainer::Graphics()->GetFactory()->CreatePathGeometry(&MaskGeo);
@@ -262,11 +279,6 @@ void WRadioButton::Render(void)
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
 	// Render Statements Go Here
-	
-	if (m_DrawBorders)
-	{
-		WGraphicsContainer::Graphics()->DrawRoundRect(ctRec, m_thickness, 2, bordColor);
-	}
 
 	W_INT offset = 10;
 	WRECTF checkrec;
@@ -276,7 +288,6 @@ void WRadioButton::Render(void)
 	checkrec.Right(ctRec.Left() + (checkrec.Bottom() - checkrec.Top() + offset));
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(checkrec, m_thickness, 2, foreColor);
-
 
 	WRECTF checkrecFill;
 	checkrecFill.Top(checkrec.Top() + 5);
