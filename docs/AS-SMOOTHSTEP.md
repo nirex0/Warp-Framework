@@ -192,7 +192,7 @@ The "Stop" method sets the m_stop flag to 0 after the smoothstep has stopped.
 #include <iostream>
 #include "WSmoothStep.h"
 
-WSmoothStep* ExtentionStep = new ExtentionStep(0, 100, 1);
+WSmoothStep* ExtentionStep = new WSmoothStep(0, 100, 1);
 float value;
 
 auto main(int argc, char** argv) -> int
