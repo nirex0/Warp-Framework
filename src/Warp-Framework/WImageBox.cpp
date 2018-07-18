@@ -107,6 +107,8 @@ void WImageBox::Render(void)
 	// Render Statements Go Here
 	WGraphicsContainer::Graphics()->DrawIMG(img, ctRec, opacity);
 
+	WGraphicsContainer::Graphics()->SafeFlush();
+
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
