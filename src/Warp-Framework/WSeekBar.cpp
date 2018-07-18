@@ -336,6 +336,8 @@ void WSeekBar::Render(void)
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(ctRec, 2, backColor);
 	WGraphicsContainer::Graphics()->FillRoundRectSolid(checkrec, 2, bordColor);
 
+	WGraphicsContainer::Graphics()->SafeFlush();
+
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
