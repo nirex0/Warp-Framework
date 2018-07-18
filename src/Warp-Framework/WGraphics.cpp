@@ -452,7 +452,9 @@ HRESULT WGraphics::SafeEndDraw(void)
 
 HRESULT WGraphics::SafeFlush(void)
 {
-	return WContainer::hResult(m_pD2D1RenderTarget->Flush());
+	if (m_bIsDrawing)
+		return WContainer::hResult(m_pD2D1RenderTarget->Flush());
+	return WContainer::hResult(E_ABORT);
 }
 
 HRESULT WGraphics::SaveResources(void)
