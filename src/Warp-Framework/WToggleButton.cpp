@@ -343,6 +343,8 @@ void WToggleButton::Render(void)
 		WGraphicsContainer::Graphics()->FillRoundRectSolid(indLoc, 2, backColor);
 	}
 
+	WGraphicsContainer::Graphics()->SafeFlush();
+
 	// End Mask Render
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PopLayer();
 	SafeRelease(&maskLayer);
