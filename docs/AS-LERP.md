@@ -42,6 +42,7 @@ class WLerp : public WEntity;
 ```
 
 Warp Lerp class is different from a regular linear interpolation.
+
 When warp calculates the Lep it sets the 'from' value to the last calculated Lerp() value, Creating a smooth transition between ```from``` and ```to```.
 
 WLerp does this calculation on every **Lerp Tick** and raises and event (see WRegistry) which holds this calculated value within it's argument (see WLerpArgument) which is later used to create animations.
@@ -71,7 +72,9 @@ void Perform(void);
 ```
 
 The "Perform" method starts the calculation in and raises the **TICK** event everytime the calculation makes progress.
+
 The "Perform" method sets the m_isRunning flag to 1 on call.
+
 The "Perform" methods raises the **DONE** event when it's finished its calculation.
 
 
@@ -87,8 +90,11 @@ void PerformSafe(void);
 ```
 
 The "PerformSafe" method returns if the m_isRunning flag is already set to 1.
+
 The "PerformSafe" method starts the calculation in and raises the **TICK** event everytime the calculation makes progress.
+
 The "PerformSafe" method sets the m_isRunning flag to 1 on call.
+
 The "PerformSafe" methods raises the **DONE** event when it's finished its calculation.
 
 |Parameters|Return Value|Events Raised  |
@@ -103,6 +109,7 @@ void Lock(void);
 ```
 
 The "Lock" method locks the lerp to its current value and won't let any events to be raised.
+
 The "Lock" method sets the m_isLocked to 1.
 
 |Parameters|Return Value|Events Raised  |
@@ -117,6 +124,7 @@ void Unlock(void);
 ```
 
 The "Lock" method unlocks the lerp and allows the calculation to be continued.
+
 The "Lock" method sets the m_isLocked to 0.
 
 |Parameters|Return Value|Events Raised  |
@@ -132,6 +140,7 @@ bool IsLocked(void) const;
 
 The "IsLocked" method returns the m_isLocked flag without changing it.
 
+
 |Parameters|Return Value|Events Raised  |
 |----------|------------|---------------|
 | (none)   | m_isLocked | (none)        |
@@ -145,7 +154,9 @@ void Stop(void);
 ```
 
 The "Stop" method tries to stop the class's continuation of calculation. 
+
 The "Stop" method sets the m_stop flag to 1.
+
 The "Stop" method sets the m_stop flag to 0 after the lerp has stopped.
 
 |Parameters|Return Value|Events Raised  |
@@ -158,6 +169,7 @@ The "Stop" method sets the m_stop flag to 0 after the lerp has stopped.
 ##### 1) WLERP::TICK
 
 **TICK** is raised everytime the calculation makes a progress.
+
 **TICK** sends the instance of the WLerp class and a new instance of WLerpArgs class holding the current calculation value.
 
 |Parameters| Types      | Values |
@@ -168,6 +180,7 @@ The "Stop" method sets the m_stop flag to 0 after the lerp has stopped.
 ##### 2) WLERP::DONE
 
 **DONE** is raised when the calculation is 100% completed.
+
 **DONE** sends the instance of the WLerp calss and a new instance of WLerpArgs class holding the ```to``` value of the WLerp class.
 
 |Parameters| Types      | Values |
