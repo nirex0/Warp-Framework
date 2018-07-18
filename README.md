@@ -15,6 +15,8 @@ so don't worry read the plans and see where I'm going with this.
 PLANS
 =====
 
+**🔧 CURRENT: OPTIMIZATION**
+
 ### WARP-GFX
 
 - ✔️ Deltatime 
@@ -23,7 +25,7 @@ PLANS
 
 - ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
-- ⚙️ Intractable Controls
+- ⚠️ Intractable Controls
 
   - ✔️ Base Control
   
@@ -47,7 +49,7 @@ PLANS
   
   - ✔️ Check Box
   
-  - ⚙️ Radio Button
+  - ✔️ Radio Button
   
   - ✔️ Seek Bar
   
