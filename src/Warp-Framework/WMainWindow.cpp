@@ -12,6 +12,7 @@
 #include "WRegContainer.h"
 #include "WControlHandler.h"
 #include "WTestAuxiliary.h"
+#include "WRadioButtonHandler.h"
 
 #include "WGDIPaintEventArgs.h"
 
@@ -64,8 +65,8 @@ WUniqueRegister* WRegContainer::WND_OnGDIPaint = {};
 WGraphics* WGraphicsContainer::gfx = {};
 
 // Same with the TestAux
-
 std::set<WTestRegistry*> WTestAuxiliary::stwp = {};
+
 
 // D2D1_RENDER_TARGET_TYPE_HARDWARE	: The main render target uses hardware rendering only.
 // D2D1_RENDER_TARGET_TYPE_SOFTWARE	: The main render target uses software rendering only.
