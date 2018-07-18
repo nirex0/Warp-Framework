@@ -348,6 +348,12 @@
     <ClInclude Include="WToggleButton.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="WRadioButtonHandler.h">
+      <Filter>Header Files\WARP-GFX\Engine\Control Auxiliary</Filter>
+    </ClInclude>
+    <ClInclude Include="WRadioButton.h">
+      <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -483,6 +489,12 @@
       <Filter>Source Files\WARP-TEST\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="WToggleButton.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WRadioButton.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Control Auxiliary</Filter>
+    </ClCompile>
+    <ClCompile Include="WRadioButtonHandler.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
   </ItemGroup>

@@ -117,6 +117,8 @@
     <ClInclude Include="WLabel.h" />
     <ClInclude Include="WLogicalBound.h" />
     <ClInclude Include="WProgressBar.h" />
+    <ClInclude Include="WRadioButton.h" />
+    <ClInclude Include="WRadioButtonHandler.h" />
     <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WSeekBar.h" />
     <ClInclude Include="WSeekBarValueChangeArgs.h" />
@@ -210,6 +212,8 @@
     <ClCompile Include="WMouse.cpp" />
     <ClCompile Include="WMouseArgs.cpp" />
     <ClCompile Include="WProgressBar.cpp" />
+    <ClCompile Include="WRadioButton.cpp" />
+    <ClCompile Include="WRadioButtonHandler.cpp" />
     <ClCompile Include="WRegContainer.cpp" />
     <ClCompile Include="WRegistry.cpp" />
     <ClCompile Include="WScrollView.cpp" />
