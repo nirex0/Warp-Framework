@@ -110,7 +110,8 @@ void WControlHandler::Update(void)
 void WControlHandler::Render(void)
 {
 	for (const auto &p : mtcp)
-	{
-		mtcp.at(p.first)->Render();
+	{	
+		if(mtcp.at(p.first)->IsVisible())
+			mtcp.at(p.first)->Render();
 	}
 }
