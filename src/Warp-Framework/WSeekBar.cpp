@@ -609,7 +609,6 @@ W_FLOAT WSeekBar::Value(W_FLOAT intake)
 		W_FLOAT onePercentGeo = fullValueGeo / 100;
 		W_FLOAT filled = onePercentGeo * intake;
 		m_offset = filled;
-		m_value = filled;
 	}
 	else
 	{
@@ -617,11 +616,9 @@ W_FLOAT WSeekBar::Value(W_FLOAT intake)
 		W_FLOAT onePercentGeo = fullValueGeo / 100;
 		W_FLOAT filled = onePercentGeo * intake;
 		m_offset = ((Location().Top() - Location().Bottom()) - filled);
-		m_value = filled;
-		m_value += 100;
-		m_value *= -1;
 	}
 
+	m_value = intake;
 	ValueChange(intake);
 	return intake;
 }
