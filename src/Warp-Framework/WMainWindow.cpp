@@ -191,7 +191,7 @@ W_INT WMainWindow::Initialize(void)
 	WContainer::hResult(S_OK);
 	WContainer::Handle(hWnd);
 
-	m_graphics->SetTransparency(100);
+	SetLayeredWindowAttributes(hWnd, 0, 255, LWA_ALPHA);
 
 	// Show the window
 	ShowWindow(hWnd, SW_SHOW);
