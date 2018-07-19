@@ -355,7 +355,7 @@
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
     <ClInclude Include="WLogger.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\WARP-TEST\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -501,7 +501,7 @@
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
     </ClCompile>
     <ClCompile Include="WLogger.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\WARP-TEST\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
