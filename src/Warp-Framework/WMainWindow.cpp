@@ -191,6 +191,8 @@ W_INT WMainWindow::Initialize(void)
 	WContainer::hResult(S_OK);
 	WContainer::Handle(hWnd);
 
+	m_graphics->SetTransparency(100);
+
 	// Show the window
 	ShowWindow(hWnd, SW_SHOW);
 	SetForegroundWindow(hWnd);
