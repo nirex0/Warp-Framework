@@ -38,10 +38,9 @@ public:
 	void ValueChange(W_FLOAT value);
 
 	W_FLOAT	Value(void) const;
-	W_FLOAT	MaxValue(void) const;
 	bool IsVertical(void) const;
 
-	W_FLOAT MaxValue(W_FLOAT intake);
+	W_FLOAT	Value(W_FLOAT intake);
 	bool IsVertical(bool intake);
 
 protected:
@@ -76,7 +75,6 @@ protected:
 	// Normal
 	W_FLOAT m_value;
 	W_FLOAT m_offset;
-	W_FLOAT m_maxValue;
 	W_FLOAT m_thickness;
 
 	W_COLOR foreColor;
