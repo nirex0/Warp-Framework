@@ -108,6 +108,8 @@ PLANS
 
 - ✔️ Unit Testing base class (WIP)
 
+- ✔️ Logger class
+
 - ⚙️ Unit Testing Assertions
 
 ### WARP-NETWORK
