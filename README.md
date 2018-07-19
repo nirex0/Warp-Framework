@@ -25,40 +25,42 @@ PLANS
 
 - ⚠️ Intractable Controls
 
-  - ✔️ Base Control
+  1) ✔️ Base Control
   
-  - ✔️ Button
+  2) ✔️ Button
   
-  - ✔️ List Box
+  3) ✔️ List Box
   
-  - ✔️ List Box Item
+  4) ✔️ List Box Item
   
-  - ✔️ Fixed Canvas
+  5) ✔️ Fixed Canvas
   
-  - ✔️ Label
+  6) ✔️ Label
   
-  - ✔️ Scroll View
+  7) ✔️ Scroll View
   
-  - ✔️ Text Box
+  8) ✔️ Text Box
   
-  - ✔️ Progress Bar
+  9) ✔️ Progress Bar
   
-  - ✔️ Toggle Button
+  10) ✔️ Toggle Button
   
-  - ✔️ Check Box
+  11) ✔️ Check Box
   
-  - ✔️ Radio Button
+  12) ✔️ Radio Button
   
-  - ✔️ Seek Bar
+  13) ✔️ Seek Bar
   
-  - ✔️ Image Box
+  14) ✔️ Image Box
   
-  - ⚠️ Media Viewer (Video)
+  15) ⚠️ Media Viewer (Video)
 
 - ⚙️ Graphical Extentions
   
-  - ⚙️ Extended Border Component
-
+   1) ⚙️ Grid Component
+  
+   2) ⚙️ Extended Border Component
+  
 - ✔️ Texture Support (All Formats)
 
 - ✔️ Render Double Buffering
