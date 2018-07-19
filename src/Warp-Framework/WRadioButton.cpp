@@ -280,12 +280,8 @@ void WRadioButton::Render(void)
 
 	// Render Statements Go Here
 
-	W_INT offset = 10;
-	WRECTF checkrec;
-	checkrec.Top(ctRec.Top() + offset);
-	checkrec.Left(ctRec.Left() + offset);
-	checkrec.Bottom(ctRec.Bottom() - offset);
-	checkrec.Right(ctRec.Left() + (checkrec.Bottom() - checkrec.Top() + offset));
+	WRECTF checkrec = ctRec;
+	checkrec.Right(ctRec.Left() + (checkrec.Bottom() - checkrec.Top()));
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(checkrec, m_thickness, 2, foreColor);
 
