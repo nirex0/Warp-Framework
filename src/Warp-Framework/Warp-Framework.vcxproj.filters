@@ -354,6 +354,9 @@
     <ClInclude Include="WRadioButton.h">
       <Filter>Header Files\WARP-GFX\Engine\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="WLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -496,6 +499,9 @@
     </ClCompile>
     <ClCompile Include="WRadioButton.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="WLogger.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

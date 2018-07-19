@@ -115,6 +115,7 @@
     <ClInclude Include="WEventBound.h" />
     <ClInclude Include="WImageBox.h" />
     <ClInclude Include="WLabel.h" />
+    <ClInclude Include="WLogger.h" />
     <ClInclude Include="WLogicalBound.h" />
     <ClInclude Include="WProgressBar.h" />
     <ClInclude Include="WRadioButton.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="WLerpArgs.cpp" />
     <ClCompile Include="WListBox.cpp" />
     <ClCompile Include="WListBoxItem.cpp" />
+    <ClCompile Include="WLogger.cpp" />
     <ClCompile Include="WLogicalBound.cpp" />
     <ClCompile Include="WMainWindow.cpp" />
     <ClCompile Include="WMouse.cpp" />
