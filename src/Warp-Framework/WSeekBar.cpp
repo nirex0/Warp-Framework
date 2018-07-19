@@ -8,7 +8,6 @@
 WSeekBar::WSeekBar(W_INT zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
-	, m_maxValue(100.0F)
 	, m_value(0)
 	, m_isVertical(0)
 	, m_shouldSeek(0)
@@ -44,7 +43,6 @@ WSeekBar::WSeekBar(W_INT zIndex)
 WSeekBar::WSeekBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
-	, m_maxValue(100.0F)
 	, m_value(0)
 	, m_isVertical(0)
 	, m_shouldSeek(0)
@@ -80,7 +78,6 @@ WSeekBar::WSeekBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 WSeekBar::WSeekBar(WPointF topleft, WPointF botright, W_INT zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
-	, m_maxValue(100.0F)
 	, m_value(0)
 	, m_isVertical(0)
 	, m_shouldSeek(0)
@@ -116,7 +113,6 @@ WSeekBar::WSeekBar(WPointF topleft, WPointF botright, W_INT zIndex)
 WSeekBar::WSeekBar(WRectF location, W_INT zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
-	, m_maxValue(100.0F)
 	, m_value(0)
 	, m_isVertical(0)
 	, m_shouldSeek(0)
@@ -288,12 +284,11 @@ void WSeekBar::Render(void)
 				m_offset = 0;
 
 			// Value Calculation
-			W_FLOAT fullValue = Location().Right() - Location().Left();
-			W_FLOAT onePercent = m_maxValue / 100;
-			W_FLOAT value = ((m_offset / 100) * onePercent) * 100;
-			m_value = value;
-
-			ValueChange(value);
+			W_FLOAT fullValueGeo = Location().Right() - Location().Left();
+			W_FLOAT onePercentGeo = fullValueGeo / 100;
+			W_FLOAT currentValueGeo = pt.x - Location().Left();
+			m_value = currentValueGeo / onePercentGeo;
+			ValueChange(m_value);
 		}
 		// Horizontal Seek Bar
 		else
@@ -308,12 +303,13 @@ void WSeekBar::Render(void)
 				m_offset = 0;
 
 			// Value Calculation
-			W_FLOAT fullValue = Location().Top() - Location().Bottom();
-			W_FLOAT onePercent = m_maxValue / 100;
-			W_FLOAT value = ((m_offset / 100) * onePercent) * 100;
-			m_value = value;
-
-			ValueChange(value);
+			W_FLOAT fullValueGeo = Location().Top() - Location().Bottom();
+			W_FLOAT onePercentGeo = fullValueGeo / 100;
+			W_FLOAT currentValueGeo = Location().Top() - pt.y;
+			m_value = currentValueGeo / onePercentGeo;
+			m_value -= 100;
+			m_value *= -1;
+			ValueChange(m_value);
 		}
 	}
 
@@ -595,21 +591,9 @@ W_FLOAT WSeekBar::Value(void) const
 {
 	return m_value;
 }
-
-W_FLOAT WSeekBar::MaxValue(void) const
-{
-	return m_maxValue;
-}
-
 bool WSeekBar::IsVertical(void) const
 {
 	return m_isVertical;
-}
-
-W_FLOAT WSeekBar::MaxValue(W_FLOAT intake)
-{
-	m_maxValue = intake;
-	return m_maxValue;
 }
 
 bool WSeekBar::IsVertical(bool intake)
