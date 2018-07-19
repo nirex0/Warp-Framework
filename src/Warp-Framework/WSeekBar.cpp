@@ -596,6 +596,36 @@ bool WSeekBar::IsVertical(void) const
 	return m_isVertical;
 }
 
+W_FLOAT WSeekBar::Value(W_FLOAT intake)
+{
+	if (intake > 100)
+		intake = 100;
+	if (intake < 0)
+		intake = 0;
+
+	if (!m_isVertical)
+	{
+		W_FLOAT fullValueGeo = Location().Right() - Location().Left();
+		W_FLOAT onePercentGeo = fullValueGeo / 100;
+		W_FLOAT filled = onePercentGeo * intake;
+		m_offset = filled;
+		m_value = filled;
+	}
+	else
+	{
+		W_FLOAT fullValueGeo = Location().Top() - Location().Bottom();
+		W_FLOAT onePercentGeo = fullValueGeo / 100;
+		W_FLOAT filled = onePercentGeo * intake;
+		m_offset = ((Location().Top() - Location().Bottom()) - filled);
+		m_value = filled;
+		m_value += 100;
+		m_value *= -1;
+	}
+
+	ValueChange(intake);
+	return intake;
+}
+
 bool WSeekBar::IsVertical(bool intake)
 {
 	m_isVertical = intake;
