@@ -280,12 +280,12 @@ void WRadioButton::Render(void)
 
 	// Render Statements Go Here
 
-	WRECTF checkrec = ctRec;
+	WRectF checkrec = ctRec;
 	checkrec.Right(ctRec.Left() + (checkrec.Bottom() - checkrec.Top()));
 
 	WGraphicsContainer::Graphics()->DrawRoundRect(checkrec, m_thickness, 2, foreColor);
 
-	WRECTF checkrecFill;
+	WRectF checkrecFill;
 	checkrecFill.Top(checkrec.Top() + 5);
 	checkrecFill.Left(checkrec.Left() + 5);
 	checkrecFill.Bottom(checkrec.Bottom() - 5);
@@ -297,7 +297,7 @@ void WRadioButton::Render(void)
 	}
 
 	W_INT toffset = 5;
-	WRECTF textrec;
+	WRectF textrec;
 	textrec.Top(ctRec.Top() + toffset);
 	textrec.Left(ctRec.Left() + (checkrec.Right() - ctRec.Left()) + toffset);
 	textrec.Bottom(ctRec.Bottom() - toffset);
