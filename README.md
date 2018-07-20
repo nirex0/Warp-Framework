@@ -59,7 +59,7 @@ PLANS
   
    1) ⚙️ Grid Component
   
-   2) ⚙️ Extended Border Component
+   2) ✔️ Extended Border Component
   
 - ✔️ Texture Support (All Formats)
 
