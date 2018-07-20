@@ -284,7 +284,7 @@ void WProgressBar::Render(void)
 	W_FLOAT percentValueGeo = (ctRec.Right() - ctRec.Left()) / 100;
 	W_FLOAT offset = percentValueGeo * filledValue;
 
-	WRECTF checkrec;
+	WRectF checkrec;
 	checkrec.Top(ctRec.Top());
 	checkrec.Left(ctRec.Left());
 	checkrec.Bottom(ctRec.Bottom());
