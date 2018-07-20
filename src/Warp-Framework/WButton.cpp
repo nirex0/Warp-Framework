@@ -315,7 +315,7 @@ void WButton::Render(void)
 	if (m_UseExtendedBorder)
 	{
 		// Top Bar
-		WRECTF TopBar = ctRec;
+		WRectF TopBar = ctRec;
 		TopBar.Top(ctRec.Top() - 5);
 		TopBar.Left(ctRec.Left() - 5);
 		TopBar.Bottom(ctRec.Top() - 4);
@@ -325,7 +325,7 @@ void WButton::Render(void)
 		WGraphicsContainer::Graphics()->FillRectSolid(TopBar, bordColor);
 
 		// Left Bar
-		WRECTF LeftBar = ctRec;
+		WRectF LeftBar = ctRec;
 		LeftBar.Top(ctRec.Top() - 5);
 		LeftBar.Left(ctRec.Left() - 5);
 		LeftBar.Bottom(ctRec.Top() + GetHeight() / ExBordRatio + 10);
@@ -335,7 +335,7 @@ void WButton::Render(void)
 		WGraphicsContainer::Graphics()->FillRectSolid(LeftBar, bordColor);
 
 		// Bottom Bar
-		WRECTF BottomBar = ctRec;
+		WRectF BottomBar = ctRec;
 
 		BottomBar.Top(ctRec.Bottom() + 4);
 		BottomBar.Left(ctRec.Right() - GetWidth() / ExBordRatio - 10);
@@ -346,7 +346,7 @@ void WButton::Render(void)
 		WGraphicsContainer::Graphics()->FillRectSolid(BottomBar, bordColor);
 
 		// Right Bar
-		WRECTF RightBar = ctRec;
+		WRectF RightBar = ctRec;
 		RightBar.Top(ctRec.Bottom() - GetHeight() / ExBordRatio - 10);
 		RightBar.Left(ctRec.Right() + 4);
 		RightBar.Bottom(ctRec.Bottom() + 5);
