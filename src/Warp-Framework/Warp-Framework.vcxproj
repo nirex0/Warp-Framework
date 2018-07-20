@@ -145,7 +145,6 @@
     <ClInclude Include="WAudio.h" />
     <ClInclude Include="WGradientDirection.h" />
     <ClInclude Include="IControl.h" />
-    <ClInclude Include="WAlgorithm.h" />
     <ClInclude Include="WChrono.h" />
     <ClInclude Include="WCODEC.h" />
     <ClInclude Include="WButton.h" />
