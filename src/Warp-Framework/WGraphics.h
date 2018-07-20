@@ -6,7 +6,6 @@
 #include "WDX.h"
 #include "WEntity.h"
 #include "WDefines.h"
-#include "WRECTF.h"
 #include "WRect.h"
 #include "WTextAlignment.h"
 #include "WGradientDirection.h"
@@ -78,30 +77,30 @@ public:
 	FLOAT FontSize(FLOAT intake);
 
 // Primitive Drawing
-	HRESULT DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT FillRectSolid(WRECTF boundaryRect, W_COLOR back_color, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT FillRectRadial(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRECTF Mask = {0, 0, 0, 0});
+	HRESULT DrawRect(WRectF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color, WRectF Mask = {0, 0, 0, 0});
+	HRESULT FillRectSolid(WRectF boundaryRect, W_COLOR back_color, WRectF Mask = {0, 0, 0, 0});
+	HRESULT FillRectLinear(WRectF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRectF Mask = {0, 0, 0, 0});
+	HRESULT FillRectRadial(WRectF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRectF Mask = {0, 0, 0, 0});
 
-	HRESULT DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, W_COLOR bord_color, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT FillRoundRectSolid(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT FillRoundRectRadial(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRECTF Mask = {0, 0, 0, 0});
+	HRESULT DrawRoundRect(WRectF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, W_COLOR bord_color, WRectF Mask = {0, 0, 0, 0});
+	HRESULT FillRoundRectSolid(WRectF boundaryRect, FLOAT bord_radius, W_COLOR back_color, WRectF Mask = {0, 0, 0, 0});
+	HRESULT FillRoundRectLinear(WRectF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRectF Mask = {0, 0, 0, 0});
+	HRESULT FillRoundRectRadial(WRectF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRectF Mask = {0, 0, 0, 0});
 
-	HRESULT DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, W_COLOR bord_color, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, W_COLOR back_color0, W_COLOR back_color1, WRECTF Mask = {0, 0, 0, 0});
+	HRESULT DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, W_COLOR bord_color, WRectF Mask = {0, 0, 0, 0});
+	HRESULT FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, WRectF Mask = {0, 0, 0, 0});
+	HRESULT FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, W_COLOR back_color0, W_COLOR back_color1, WRectF Mask = {0, 0, 0, 0});
 
-	HRESULT DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thickness, WRECTF Mask = {0, 0, 0, 0});
-	HRESULT DrawPoint(POINTF Coords, W_COLOR color, WRECTF Mask = {0, 0, 0, 0});
+	HRESULT DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thickness, WRectF Mask = {0, 0, 0, 0});
+	HRESULT DrawPoint(POINTF Coords, W_COLOR color, WRectF Mask = {0, 0, 0, 0});
 	
 	HRESULT LoadIMG(LPCWSTR uri, W_IMAGE** ppImage);
-	HRESULT DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity, WRECTF Mask = {0, 0, 0, 0});
+	HRESULT DrawIMG(W_IMAGE* pImage, WRectF boundaryRect, FLOAT opacity, WRectF Mask = {0, 0, 0, 0});
 	
-	HRESULT WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment = WTA_Center, WRECTF Mask = {0, 0, 0, 0});
+	HRESULT WriteText(WRectF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment = WTA_Center, WRectF Mask = {0, 0, 0, 0});
 	
 // Primitive Component Drawing
-	HRESULT DrawRect(WRECTF boundaryRect, WRectF borderThickness, W_COLOR bord_color);
+	HRESULT DrawRect(WRectF boundaryRect, WRectF borderThickness, W_COLOR bord_color);
 
 // Helper Functions
 	W_COLOR FromRGBA(INT R, INT G, INT B, FLOAT A = 1.0F) const;

@@ -551,7 +551,7 @@ FLOAT WGraphics::FontSize(FLOAT intake)
 	return m_FontSize;
 }
 
-HRESULT WGraphics::DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color, WRECTF Mask)
+HRESULT WGraphics::DrawRect(WRectF boundaryRect, FLOAT bord_thickness, W_COLOR bord_color, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -596,7 +596,7 @@ HRESULT WGraphics::DrawRect(WRECTF boundaryRect, FLOAT bord_thickness, W_COLOR b
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRectSolid(WRECTF boundaryRect, W_COLOR back_color, WRECTF Mask)
+HRESULT WGraphics::FillRectSolid(WRectF boundaryRect, W_COLOR back_color, WRectF Mask)
 {
 	D2D_RECT_F D2D1RECTF;
 	D2D1RECTF.top = boundaryRect.Top();
@@ -610,7 +610,7 @@ HRESULT WGraphics::FillRectSolid(WRECTF boundaryRect, W_COLOR back_color, WRECTF
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRECTF Mask)
+HRESULT WGraphics::FillRectLinear(WRectF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -719,7 +719,7 @@ HRESULT WGraphics::FillRectLinear(WRECTF boundaryRect, W_COLOR back_color0, W_CO
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRectRadial(WRECTF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRECTF Mask)
+HRESULT WGraphics::FillRectRadial(WRectF boundaryRect, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -834,7 +834,7 @@ HRESULT WGraphics::FillRectRadial(WRECTF boundaryRect, W_COLOR back_color0, W_CO
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, W_COLOR bord_color, WRECTF Mask)
+HRESULT WGraphics::DrawRoundRect(WRectF boundaryRect, FLOAT bord_thickness, FLOAT bord_radius, W_COLOR bord_color, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -880,7 +880,7 @@ HRESULT WGraphics::DrawRoundRect(WRECTF boundaryRect, FLOAT bord_thickness, FLOA
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRoundRectSolid(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color, WRECTF Mask)
+HRESULT WGraphics::FillRoundRectSolid(WRectF boundaryRect, FLOAT bord_radius, W_COLOR back_color, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -926,7 +926,7 @@ HRESULT WGraphics::FillRoundRectSolid(WRECTF boundaryRect, FLOAT bord_radius, W_
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRECTF Mask)
+HRESULT WGraphics::FillRoundRectLinear(WRectF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, WLinearGradientDirection direction, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1036,7 +1036,7 @@ HRESULT WGraphics::FillRoundRectLinear(WRECTF boundaryRect, FLOAT bord_radius, W
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillRoundRectRadial(WRECTF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRECTF Mask)
+HRESULT WGraphics::FillRoundRectRadial(WRectF boundaryRect, FLOAT bord_radius, W_COLOR back_color0, W_COLOR back_color1, POINTF offset, FLOAT radX, FLOAT radY, WLRadialGradientDirection direction, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1153,7 +1153,7 @@ HRESULT WGraphics::FillRoundRectRadial(WRECTF boundaryRect, FLOAT bord_radius, W
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, W_COLOR bord_color, WRECTF Mask)
+HRESULT WGraphics::DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord_thickness, W_COLOR bord_color, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1197,7 +1197,7 @@ HRESULT WGraphics::DrawEllipse(POINTF center, FLOAT radX, FLOAT radY, FLOAT bord
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, WRECTF Mask)
+HRESULT WGraphics::FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1241,7 +1241,7 @@ HRESULT WGraphics::FillEllipseSolid(POINTF center, FLOAT radX, FLOAT radY, W_COL
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, W_COLOR back_color0, W_COLOR back_color1, WRECTF Mask)
+HRESULT WGraphics::FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_COLOR back_color, W_COLOR back_color0, W_COLOR back_color1, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1288,7 +1288,7 @@ HRESULT WGraphics::FillEllipseRadial(POINTF center, FLOAT radX, FLOAT radY, W_CO
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thickness, WRECTF Mask)
+HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thickness, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1334,7 +1334,7 @@ HRESULT WGraphics::DrawLine(POINTF begin, POINTF end, W_COLOR color, FLOAT thick
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawPoint(POINTF Coords, W_COLOR color, WRECTF Mask)
+HRESULT WGraphics::DrawPoint(POINTF Coords, W_COLOR color, WRectF Mask)
 {	
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1406,7 +1406,7 @@ HRESULT WGraphics::LoadIMG(LPCWSTR uri, W_IMAGE** ppImage)
 	return WContainer::hResult();
 }
 
-HRESULT WGraphics::DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity, WRECTF Mask)
+HRESULT WGraphics::DrawIMG(W_IMAGE* pImage, WRectF boundaryRect, FLOAT opacity, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1449,7 +1449,7 @@ HRESULT WGraphics::DrawIMG(W_IMAGE* pImage, WRECTF boundaryRect, FLOAT opacity, 
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment, WRECTF Mask)
+HRESULT WGraphics::WriteText(WRectF boundaryRect, WCHAR* text, UINT32 strLengh, WCHAR* fontfamily, FLOAT fontsize, W_COLOR text_color, WTextAlignment alignment, WRectF Mask)
 {
 	if (Mask.Top() == Mask.Bottom() && Mask.Left() == Mask.Right() && Mask.Top() == Mask.Left() && Mask.Right() == 0.0F)
 	{
@@ -1512,7 +1512,7 @@ HRESULT WGraphics::WriteText(WRECTF boundaryRect, WCHAR* text, UINT32 strLengh, 
 	return WContainer::hResult(S_OK);
 }
 
-HRESULT WGraphics::DrawRect(WRECTF boundaryRect, WRectF borderThickness, W_COLOR bord_color)
+HRESULT WGraphics::DrawRect(WRectF boundaryRect, WRectF borderThickness, W_COLOR bord_color)
 {
 	D2D1_COLOR_F D2D1TMPCOLOR(m_pSolidColorBrush->GetColor());
 
