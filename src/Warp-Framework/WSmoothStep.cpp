@@ -143,8 +143,6 @@ void WSmoothStep::WorkerWork(void)
 		{
 			m_stop = false;
 			m_isRunning = false;
-			WSmoothStepArgs* SSArgsDone = new WSmoothStepArgs(m_to);
-			m_SmoothStepDoneRegistry->Run(this, SSArgsDone);
 			return;
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
