@@ -363,6 +363,9 @@
     <ClInclude Include="WExtendedBorderComponent.h">
       <Filter>Header Files\WARP-GFX\Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="WGridComponent.h">
+      <Filter>Header Files\WARP-GFX\Engine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -510,6 +513,9 @@
       <Filter>Source Files\WARP-TEST\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="WExtendedBorderComponent.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="WGridComponent.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
