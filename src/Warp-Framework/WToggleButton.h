@@ -36,7 +36,7 @@ public:
 
 protected:
 	// Dynamic Movement
-	WRECTF m_transitLocation;
+	WRectF m_transitLocation;
 	bool m_isTransitioning;
 
 	void ToLeftTick(WEntity* sender, WEventArgs* args);

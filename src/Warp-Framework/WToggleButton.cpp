@@ -300,7 +300,7 @@ void WToggleButton::Render(void)
 
 	if (m_bIsOn && !m_isTransitioning)
 	{
-		WRECTF indLoc;
+		WRectF indLoc;
 		indLoc.Top(ctRec.Top() + 5);
 		indLoc.Left(((ctRec.Right() - ctRec.Left()) / 2) + ctRec.Left() + 5);
 		indLoc.Right(ctRec.Right() - 5);
@@ -311,7 +311,7 @@ void WToggleButton::Render(void)
 	}
 	else if(!m_bIsOn && !m_isTransitioning)
 	{
-		WRECTF indLoc;
+		WRectF indLoc;
 		indLoc.Top(ctRec.Top() + 5);
 		indLoc.Left(ctRec.Left() + 5);
 		indLoc.Right(((ctRec.Right() - ctRec.Left()) / 2) + ctRec.Left() - 5);
@@ -322,7 +322,7 @@ void WToggleButton::Render(void)
 	}
 	else if (m_isTransitioning && m_bIsOn)
 	{
-		WRECTF indLoc;
+		WRectF indLoc;
 		indLoc.Top(ctRec.Top() + 5);
 		indLoc.Left(m_transitLocation.Left());
 		indLoc.Right(m_transitLocation.Right());
@@ -333,7 +333,7 @@ void WToggleButton::Render(void)
 	}
 	else if (m_isTransitioning && !m_bIsOn)
 	{
-		WRECTF indLoc;
+		WRectF indLoc;
 		indLoc.Top(ctRec.Top() + 5);
 		indLoc.Left(m_transitLocation.Left());
 		indLoc.Right(m_transitLocation.Right());
