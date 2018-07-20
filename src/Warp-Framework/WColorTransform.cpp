@@ -156,8 +156,6 @@ void WColorTransform::WorkerWork(void)
 		{
 			m_stop = false;
 			m_isRunning = false;
-			WColorTransformArgs* CTArgsDone = new WColorTransformArgs(m_to);
-			m_CTDoneRegistry->Run(this, CTArgsDone);
 			return;
 		}
 		if (m_isLocked)
