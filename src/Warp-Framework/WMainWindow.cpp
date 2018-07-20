@@ -1,10 +1,11 @@
 // © 2018 NIREX ALL RIGHTS RESERVED
 
+#include <algorithm>
+
 #include "WMainWindow.h"
 #include "WSafeRelease.h"
 #include "WUserSettings.h"
 #include "WChrono.h"
-#include "WAlgorithm.h"
 
 #include "WContainer.h"
 #include "WDXContainer.h"
