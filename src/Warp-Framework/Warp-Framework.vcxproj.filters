@@ -364,7 +364,7 @@
       <Filter>Header Files\WARP-TEST\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="WExtendedBorderComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\WARP-GFX\Engine\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -513,7 +513,7 @@
       <Filter>Source Files\WARP-TEST\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="WExtendedBorderComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\WARP-GFX\Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
