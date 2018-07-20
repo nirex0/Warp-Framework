@@ -246,9 +246,6 @@
     <ClInclude Include="WChrono.h">
       <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
-    <ClInclude Include="WAlgorithm.h">
-      <Filter>Header Files\WARP-CORE\System</Filter>
-    </ClInclude>
     <ClInclude Include="WGradientDirection.h">
       <Filter>Header Files\WARP-GFX\Engine\Helpers</Filter>
     </ClInclude>
