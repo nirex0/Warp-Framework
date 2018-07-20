@@ -151,6 +151,12 @@
     <Filter Include="Header Files\WARP-CORE\Containers">
       <UniqueIdentifier>{fbe055ce-7748-4d5f-80af-304582daadff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\WARP-GFX\Engine\Components">
+      <UniqueIdentifier>{7508fd9a-a775-4f65-a803-c72091807bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-GFX\Engine\Components">
+      <UniqueIdentifier>{1c372880-73df-4cba-85e2-abd760cc29ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -357,6 +363,9 @@
     <ClInclude Include="WLogger.h">
       <Filter>Header Files\WARP-TEST\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="WExtendedBorderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -502,6 +511,9 @@
     </ClCompile>
     <ClCompile Include="WLogger.cpp">
       <Filter>Source Files\WARP-TEST\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="WExtendedBorderComponent.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClInclude Include="WCheckBox.h" />
     <ClInclude Include="WEventBound.h" />
+    <ClInclude Include="WExtendedBorderComponent.h" />
     <ClInclude Include="WImageBox.h" />
     <ClInclude Include="WLabel.h" />
     <ClInclude Include="WLogger.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="WEntry.cpp" />
     <ClCompile Include="WEventArgs.cpp" />
     <ClCompile Include="WEventBound.cpp" />
+    <ClCompile Include="WExtendedBorderComponent.cpp" />
     <ClCompile Include="WFixedCanvas.cpp" />
     <ClCompile Include="WGDIPaintEventArgs.cpp" />
     <ClCompile Include="WGFXContainer.cpp" />
