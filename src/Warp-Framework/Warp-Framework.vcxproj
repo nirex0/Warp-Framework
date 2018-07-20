@@ -114,6 +114,7 @@
     <ClInclude Include="WCheckBox.h" />
     <ClInclude Include="WEventBound.h" />
     <ClInclude Include="WExtendedBorderComponent.h" />
+    <ClInclude Include="WGridComponent.h" />
     <ClInclude Include="WImageBox.h" />
     <ClInclude Include="WLabel.h" />
     <ClInclude Include="WLogger.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="WGDIPaintEventArgs.cpp" />
     <ClCompile Include="WGFXContainer.cpp" />
     <ClCompile Include="WGraphics.cpp" />
+    <ClCompile Include="WGridComponent.cpp" />
     <ClCompile Include="WImageBox.cpp" />
     <ClCompile Include="WKeyboard.cpp" />
     <ClCompile Include="WKeyboardArgs.cpp" />
