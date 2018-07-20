@@ -313,7 +313,7 @@ void WSeekBar::Render(void)
 		}
 	}
 
-	WRECTF checkrec = {};
+	WRectF checkrec = {};
 	if (!m_isVertical)
 	{
 		checkrec.Top(ctRec.Top());
