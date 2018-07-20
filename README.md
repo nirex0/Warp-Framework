@@ -55,9 +55,9 @@ PLANS
   
   15) ⚠️ Media Viewer (Video)
 
-- ⚙️ Graphical Extentions
+- ✔️ Graphical Extentions
   
-   1) ⚙️ Grid Component
+   1) ✔️ Grid Component
   
    2) ✔️ Extended Border Component
   
