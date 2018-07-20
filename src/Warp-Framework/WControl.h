@@ -4,7 +4,7 @@
 #define _W_CONTROL_H_
 
 #include "WGFXContainer.h"
-#include "WRECTF.h"
+#include "WRect.h"
 #include "IControl.h"
 #include "WPoint.h"
 #include "WRect.h"
@@ -107,7 +107,7 @@ protected:
 	W_FLOAT m_bottom;
 	W_FLOAT m_right;
 
-	WRECTF ctRec;
+	WRectF ctRec;
 
 	WRegistry* WCTKeyDownRegistery;
 	WRegistry* WCTKeyUpRegistery;
