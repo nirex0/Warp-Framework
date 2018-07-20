@@ -158,8 +158,6 @@ void WLerp::WorkerWork(void)
 		{
 			m_stop = false;
 			m_isRunning = false;
-			WLerpArgs* lerpArgsDone = new WLerpArgs(m_to);
-			m_LerpDoneRegistry->Run(this, lerpArgsDone);
 			return;
 		}
 
