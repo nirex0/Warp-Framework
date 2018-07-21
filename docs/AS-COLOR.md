@@ -188,7 +188,7 @@ auto main(int argc, char** argv) -> int
     *ExtentionTransform->DoneRegistry() += [&](WEntity* sender, WEventArgs* args)
     {
         WColorTransformArgs* ColorArgs = (WColorTransformArgs*)args;
-        value = (float)ColorArgs->Value();
+        value = ColorArgs->Value();
     }
 
     ExtentionTransform.Perform();
