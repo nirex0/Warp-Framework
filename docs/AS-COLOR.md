@@ -78,52 +78,7 @@ The "PerformSafe" methods raises the **DONE** event when it's finished its calcu
 |----------|------------|---------------|
 | (none)   | (none)     | TICK and DONE |
 
-##### 3) WCOLORTRANSFORM::LOCK
-
-###### Definition:
-```cpp
-void Lock(void);
-```
-
-The "Lock" method locks the color transform to its current value and won't let any events to be raised.
-
-The "Lock" method sets the m_isLocked to 1.
-
-|Parameters|Return Value|Events Raised  |
-|----------|------------|---------------|
-| (none)   | (none)     | (none)        |
-
-##### 4) WCOLORTRANSFORM::UNLOCK
-
-###### Definition:
-```cpp
-void Unlock(void);
-```
-
-The "Lock" method unlocks the color transform and allows the calculation to be continued.
-
-The "Lock" method sets the m_isLocked to 0.
-
-|Parameters|Return Value|Events Raised  |
-|----------|------------|---------------|
-| (none)   | (none)     | (none)        |
-	
-##### 5) WCOLORTRANSFORM::ISLOCKED
-
-###### Definition:
-```cpp
-bool IsLocked(void) const;
-```
-
-The "IsLocked" method returns the m_isLocked flag without changing it.
-
-
-|Parameters|Return Value|Events Raised  |
-|----------|------------|---------------|
-| (none)   | m_isLocked | (none)        |
-
-
-##### 6) WCOLORTRANSFORM::STOP
+##### 3) WCOLORTRANSFORM::STOP
 
 ###### Definition:
 ```cpp
