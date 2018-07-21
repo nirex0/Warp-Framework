@@ -101,52 +101,7 @@ The "PerformSafe" methods raises the **DONE** event when it's finished its calcu
 |----------|------------|---------------|
 | (none)   | (none)     | TICK and DONE |
 
-##### 3) WLERP::LOCK
-
-###### Definition:
-```cpp
-void Lock(void);
-```
-
-The "Lock" method locks the lerp to its current value and won't let any events to be raised.
-
-The "Lock" method sets the m_isLocked to 1.
-
-|Parameters|Return Value|Events Raised  |
-|----------|------------|---------------|
-| (none)   | (none)     | (none)        |
-
-##### 4) WLERP::UNLOCK
-
-###### Definition:
-```cpp
-void Unlock(void);
-```
-
-The "Lock" method unlocks the lerp and allows the calculation to be continued.
-
-The "Lock" method sets the m_isLocked to 0.
-
-|Parameters|Return Value|Events Raised  |
-|----------|------------|---------------|
-| (none)   | (none)     | (none)        |
-	
-##### 5) WLERP::ISLOCKED
-
-###### Definition:
-```cpp
-bool IsLocked(void) const;
-```
-
-The "IsLocked" method returns the m_isLocked flag without changing it.
-
-
-|Parameters|Return Value|Events Raised  |
-|----------|------------|---------------|
-| (none)   | m_isLocked | (none)        |
-
-
-##### 6) WLERP::STOP
+##### 3) WLERP::STOP
 
 ###### Definition:
 ```cpp
