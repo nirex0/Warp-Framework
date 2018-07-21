@@ -6,6 +6,7 @@
 #include "WEntity.h"
 #include "WRegistry.h"
 #include "WAsyncArgs.h"
+#include "WDefines.h"
 
 #include <chrono>
 #include <mutex>
@@ -20,9 +21,11 @@ public:
 
 // Getters
 	WRegistry* WorkRegistry(void) const;
+	W_LONG Delay(void) const;
 
 // Setters
 	WRegistry* WorkRegistry(WRegistry* intake);
+	W_LONG Delay(W_LONG intake);
 
 // Functions
 	void RunWorkerAsync(void);
@@ -30,11 +33,13 @@ public:
 	bool IsRunning(void);
 	void Stop(void);
 
+
 private:
 	void WorkerWork(void);
 	bool WorkThread(std::thread& out);
 
 private:
+	W_LONG m_delay;
 	std::thread thr;
 	std::mutex m_MutexLock;
 

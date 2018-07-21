@@ -17,10 +17,21 @@ WRegistry* WAsyncWorker::WorkRegistry(void) const
 	return m_WorkRegistry;
 }
 
+W_LONG WAsyncWorker::Delay(void) const
+{
+	return m_delay;
+}
+
 WRegistry* WAsyncWorker::WorkRegistry(WRegistry* intake)
 {
 	m_WorkRegistry = intake;
 	return m_WorkRegistry;
+}
+
+W_LONG WAsyncWorker::Delay(W_LONG intake)
+{
+	m_delay = intake;
+	return m_delay;
 }
 
 void WAsyncWorker::RunWorkerAsync(void)
@@ -56,6 +67,7 @@ void WAsyncWorker::WorkerWork(void)
 {
 	while (!m_stop)
 	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
 		m_isRunning = true;
 		std::lock_guard<std::mutex> lock(m_MutexLock);
 		WAsyncArgs* args = new WAsyncArgs();
