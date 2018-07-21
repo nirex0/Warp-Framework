@@ -45,16 +45,11 @@ public:
 // Functions
 	void Perform(void);
 	void PerformSafe(void);
-
-	bool IsLocked(void) const;
-	void Lock(void);
-	void Unlock(void);
 	void Stop(void);
 
 private:
 	void WorkerWork(void);
 	bool WorkThread(std::thread& out);
-	
 
 private:
 	W_LONG m_delay;
@@ -68,7 +63,6 @@ private:
 
 	bool m_stop;
 	bool m_isRunning;
-	bool m_isLocked;
 
 	WRegistry* m_CTTickRegistry;
 	WRegistry* m_CTDoneRegistry;

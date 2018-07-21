@@ -12,7 +12,6 @@ WColorTransform::WColorTransform(W_COLOR From, W_COLOR To, W_FLOAT alpha, W_LONG
 	m_CTTickRegistry = new WRegistry();
 	m_CTDoneRegistry = new WRegistry();
 
-	m_isLocked = false;
 }
 
 WColorTransform::~WColorTransform()
@@ -123,21 +122,6 @@ void WColorTransform::PerformSafe(void)
 	}
 }
 
-bool WColorTransform::IsLocked(void) const
-{
-	return m_isLocked;
-}
-
-void WColorTransform::Lock(void)
-{
-	m_isLocked = true;
-}
-
-void WColorTransform::Unlock(void)
-{
-	m_isLocked = false;
-}
-
 void WColorTransform::Stop(void)
 {
 	m_stop = true;
@@ -157,10 +141,6 @@ void WColorTransform::WorkerWork(void)
 			m_stop = false;
 			m_isRunning = false;
 			return;
-		}
-		if (m_isLocked)
-		{
-			break;
 		}
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
