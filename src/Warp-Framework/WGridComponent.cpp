@@ -139,15 +139,10 @@ void WGridComponent::Render(void)
 	WGraphicsContainer::Graphics()->GetRenderTarget()->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), MaskGeo), maskLayer);
 
 	// Render Statements Go Here
-
-	int flushCounter = 0;
-	int flushPoint = 15;
-
 	// VERTICAL
 	int curWidthLoc = ctRec.Left();
 	while (curWidthLoc < ctRec.Right())
 	{
-		flushCounter++;
 		POINTF begin;
 		begin.x = (W_FLOAT)curWidthLoc;
 		begin.y = (W_FLOAT)ctRec.Top();
@@ -157,11 +152,7 @@ void WGridComponent::Render(void)
 		end.y = (W_FLOAT)ctRec.Bottom();
 
 		WGraphicsContainer::Graphics()->DrawLine(begin, end, m_color, m_thickness);
-		if (flushCounter >= flushPoint)
-		{
-			WGraphicsContainer::Graphics()->SafeFlush();
-			flushCounter = 0;
-		}
+		WGraphicsContainer::Graphics()->SafeFlush();
 		curWidthLoc += m_sqSize;
 	}
 
@@ -169,8 +160,6 @@ void WGridComponent::Render(void)
 	int curHeightLoc = ctRec.Top();
 	while (curHeightLoc < ctRec.Bottom())
 	{
-		flushCounter++;
-
 		POINTF begin;
 		begin.x = (W_FLOAT)ctRec.Left();
 		begin.y = (W_FLOAT)curHeightLoc;
@@ -179,20 +168,13 @@ void WGridComponent::Render(void)
 		end.x = (W_FLOAT)ctRec.Right();
 		end.y = (W_FLOAT)curHeightLoc;
 
-
 		WGraphicsContainer::Graphics()->DrawLine(begin, end, m_color, m_thickness);
-
-		if (flushCounter >= flushPoint)
-		{
-			WGraphicsContainer::Graphics()->SafeFlush();
-			flushCounter = 0;
-		}
-
+		WGraphicsContainer::Graphics()->SafeFlush();
 		curHeightLoc += m_sqSize;
 	}
 
 	// SQUARE
-	WGraphicsContainer::Graphics()->DrawRect(ctRec, m_thickness + 2, m_color, ctRec);
+	//WGraphicsContainer::Graphics()->DrawRect(ctRec, m_thickness + 2, m_color, ctRec);
 	WGraphicsContainer::Graphics()->SafeFlush();
 
 
