@@ -47,16 +47,27 @@ bool WAsyncWorker::IsRunning(void)
 	return m_isRunning;
 }
 
-void WAsyncWorker::WorkerWork(void)
+void WAsyncWorker::Stop(void)
 {
-	m_isRunning = true;
-	std::lock_guard<std::mutex> lock(m_MutexLock);
-	WAsyncArgs* args = new WAsyncArgs();
-	m_WorkRegistry->Run(this, args);
-	m_isRunning = false;
+	m_stop = true;
 }
 
-bool WAsyncWorker::WorkThread(std::thread & out)
+void WAsyncWorker::WorkerWork(void)
+{
+	while (!m_stop)
+	{
+		m_isRunning = true;
+		std::lock_guard<std::mutex> lock(m_MutexLock);
+		WAsyncArgs* args = new WAsyncArgs();
+		m_WorkRegistry->Run(this, args);
+	}
+	m_stop = false;
+	m_isRunning = false;
+	return;
+
+}
+
+bool WAsyncWorker::WorkThread(std::thread& out)
 {
 	out = std::thread([=] { WorkerWork(); });
 	return true;

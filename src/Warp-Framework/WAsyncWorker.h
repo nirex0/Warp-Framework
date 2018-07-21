@@ -28,6 +28,7 @@ public:
 	void RunWorkerAsync(void);
 	void RunWorkerAsyncSafe(void);
 	bool IsRunning(void);
+	void Stop(void);
 
 private:
 	void WorkerWork(void);
@@ -37,6 +38,7 @@ private:
 	std::thread thr;
 	std::mutex m_MutexLock;
 
+	bool m_stop;
 	bool m_isRunning;
 	WRegistry* m_WorkRegistry;
 };
