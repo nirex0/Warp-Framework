@@ -5,6 +5,7 @@
 WAsyncWorker::WAsyncWorker()
 {
 	m_WorkRegistry = new WRegistry();
+	m_delay = 1;
 }
 
 WAsyncWorker::~WAsyncWorker()
