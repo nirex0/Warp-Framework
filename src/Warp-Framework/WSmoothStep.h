@@ -41,13 +41,7 @@ public:
 
 // Functions
 	void Perform(void);
-	
 	void PerformSafe(void);
-
-
-	bool IsLocked(void) const;
-	void Lock(void);
-	void Unlock(void);
 	void Stop(void);
 
 private:
@@ -65,7 +59,6 @@ private:
 
 	bool m_stop;
 	bool m_isRunning;
-	bool m_isLocked;
 
 	WRegistry* m_SmoothStepTickRegistry;
 	WRegistry* m_SmoothStepDoneRegistry;

@@ -12,8 +12,6 @@ WSmoothStep::WSmoothStep(W_FLOAT from, W_FLOAT to, W_LONG delay)
 
 	m_SmoothStepTickRegistry = new WRegistry();
 	m_SmoothStepDoneRegistry = new WRegistry();
-
-	m_isLocked = false;
 }
 
 WSmoothStep::~WSmoothStep()
@@ -114,21 +112,6 @@ void WSmoothStep::PerformSafe(void)
 	}
 }
 
-bool WSmoothStep::IsLocked(void) const
-{
-	return m_isLocked;
-}
-
-void WSmoothStep::Lock(void)
-{
-	m_isLocked = true;
-}
-
-void WSmoothStep::Unlock(void)
-{
-	m_isLocked = false;
-}
-
 void WSmoothStep::Stop(void)
 {
 	m_stop = true;
@@ -137,7 +120,7 @@ void WSmoothStep::Stop(void)
 void WSmoothStep::WorkerWork(void)
 {
 	m_isRunning = true;
-	while (!isNear(m_value, m_to, 1) && !m_isLocked)
+	while (!isNear(m_value, m_to, 1))
 	{
 		if (m_stop)
 		{
