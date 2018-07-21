@@ -57,9 +57,11 @@ PLANS
 
 - ✔️ Graphical Extentions
   
-   1) ✔️ Grid Component
+  1) ✔️ Grid Component
   
-   2) ✔️ Extended Border Component
+  2) ✔️ Center Based Grid Component
+  
+  3) ✔️ Extended Border Component
   
 - ✔️ Texture Support (All Formats)
 
@@ -81,7 +83,7 @@ PLANS
 
 - ⚠️ Video Support ((Almost) All Formats)
 
-- ⚠️ Custom 2D Space
+- ⚙️ Custom 2D Space
 
 - ❌ Python Wrapper
 
