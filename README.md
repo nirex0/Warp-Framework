@@ -5,15 +5,32 @@ Yes I know what I've written, and Yes I know that this is not what it's said to 
 
 Anyhow, here's a list of what I aim to do with this framework.
 
+STATUS
+======
+
+**🔧 CURRENTLY WORKING ON: DOCUMENTATION**
+
 DOCUMENTATION
 =============
 
 The documentation is finally being worked on, you can find in in the [docs](/docs) folder.
 
+
+- 🔧 Warp Async 
+
+- ⚙️ Warp Core
+
+- ⚠️ Warp Graphics
+
+- ⚠️ Warp Test
+
+- ❌ Warp Network
+
+- ❌ Warp Utility
+
+
 PLANS
 =====
-
-**🔧 CURRENTLY WORKING ON: DOCUMENTATION**
 
 ### WARP-GFX
 
