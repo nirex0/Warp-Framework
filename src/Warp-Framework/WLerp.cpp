@@ -13,8 +13,6 @@ WLerp::WLerp(W_FLOAT from, W_FLOAT to, W_FLOAT alpha, W_LONG delay)
 
 	m_LerpTickRegistry = new WRegistry();
 	m_LerpDoneRegistry = new WRegistry();
-
-	m_isLocked = false;
 }
 
 WLerp::~WLerp()
@@ -129,21 +127,6 @@ void WLerp::PerformSafe(void)
 	}
 }
 
-bool WLerp::IsLocked(void) const
-{
-	return m_isLocked;
-}
-
-void WLerp::Lock(void)
-{
-	m_isLocked = true;
-}
-
-void WLerp::Unlock(void)
-{
-	m_isLocked = false;
-}
-
 void WLerp::Stop(void)
 {
 	m_stop = true;
@@ -152,7 +135,7 @@ void WLerp::Stop(void)
 void WLerp::WorkerWork(void)
 {
 	m_isRunning = true;
-	while (!isNear(m_value, m_to, 1) && !m_isLocked)
+	while (!isNear(m_value, m_to, 1))
 	{
 		if (m_stop)
 		{
