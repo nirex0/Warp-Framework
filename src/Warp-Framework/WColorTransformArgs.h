@@ -14,7 +14,7 @@ public:
 	W_COLOR Value(void) const;
 
 private:
-	W_COLOR	m_val;
+	W_COLOR	m_Value;
 };
 
 #endif // !_W_COLOR_TRANSFORM_ARGS_H_

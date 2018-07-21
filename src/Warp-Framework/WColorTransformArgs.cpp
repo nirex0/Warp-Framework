@@ -3,11 +3,11 @@
 #include "WColorTransformArgs.h"
 
 WColorTransformArgs::WColorTransformArgs(W_COLOR col)
-	: m_val(col)
+	: m_Value(col)
 {
 }
 
 W_COLOR WColorTransformArgs::Value(void) const
 {
-	return m_val;
+	return m_Value;
 }
