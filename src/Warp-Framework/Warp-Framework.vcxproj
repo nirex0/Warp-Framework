@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WCGridComponent.h" />
     <ClInclude Include="WCheckBox.h" />
     <ClInclude Include="WEventBound.h" />
     <ClInclude Include="WExtendedBorderComponent.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="WAsyncWorker.cpp" />
     <ClCompile Include="WAudio.cpp" />
     <ClCompile Include="WButton.cpp" />
+    <ClCompile Include="WCGridComponent.cpp" />
     <ClCompile Include="WCheckBox.cpp" />
     <ClCompile Include="WColorTransform.cpp" />
     <ClCompile Include="WColorTransformArgs.cpp" />
