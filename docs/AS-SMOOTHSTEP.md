@@ -106,7 +106,7 @@ The "PerformSafe" methods raises the **DONE** event when it's finished its calcu
 void Stop(void);
 ```
 
-The "Stop" method tries to stop the class's continuation of calculation. 
+The "Stop" method stops the class's continuation of calculation. 
 
 The "Stop" method sets the m_stop flag to 1.
 
