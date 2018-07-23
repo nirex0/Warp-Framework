@@ -160,6 +160,12 @@
     <Filter Include="Header Files\WARP-CORE\EventArgs">
       <UniqueIdentifier>{4b7af6c2-0ceb-41f0-a54f-76f2b84ce995}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\WARP-NETWORK">
+      <UniqueIdentifier>{3268aac1-fd19-44dc-af62-7586310b92b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-NETWORK">
+      <UniqueIdentifier>{44123596-b54f-499b-80a1-7aae2a091cdb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
