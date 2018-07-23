@@ -132,7 +132,7 @@ PLANS
 
 - ✔️ Logger class
 
-- ⚙️ Unit Testing Assertions
+- ✔️ Unit Testing Assertions
 
 ### WARP-NETWORK
 
