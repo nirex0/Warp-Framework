@@ -16,6 +16,6 @@ void WTestAuxiliary::Run(void)
 {
 	for (const auto &p : stwp)
 	{
-		p->Test();
+		p->TestEqual();
 	}
 }
