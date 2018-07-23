@@ -115,6 +115,8 @@
     <ClInclude Include="WCheckBox.h" />
     <ClInclude Include="WEventBound.h" />
     <ClInclude Include="WExtendedBorderComponent.h" />
+    <ClInclude Include="WGenerator.h" />
+    <ClInclude Include="WGeneratorArgs.h" />
     <ClInclude Include="WGridComponent.h" />
     <ClInclude Include="WImageBox.h" />
     <ClInclude Include="WLabel.h" />
