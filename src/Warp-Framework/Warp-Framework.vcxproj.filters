@@ -157,6 +157,9 @@
     <Filter Include="Source Files\WARP-GFX\Engine\Components">
       <UniqueIdentifier>{1c372880-73df-4cba-85e2-abd760cc29ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\WARP-CORE\EventArgs">
+      <UniqueIdentifier>{4b7af6c2-0ceb-41f0-a54f-76f2b84ce995}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -368,6 +371,12 @@
     </ClInclude>
     <ClInclude Include="WCGridComponent.h">
       <Filter>Header Files\WARP-GFX\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WGenerator.h">
+      <Filter>Header Files\WARP-CORE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WGeneratorArgs.h">
+      <Filter>Header Files\WARP-CORE\EventArgs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
