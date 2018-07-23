@@ -114,6 +114,7 @@ PLANS
 
 - ✔️ Event Binding
 
+- ✔️ Generator
 
 ### WARP-ASYNC
 
