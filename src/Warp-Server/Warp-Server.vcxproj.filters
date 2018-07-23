@@ -44,5 +44,8 @@
     <ClInclude Include="WWin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WarpSock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
