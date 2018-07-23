@@ -1,7 +1,6 @@
 // © 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WTestRegistry.h"
-#include <cassert>
 
 WTestRegistry::WTestRegistry()
 	: m_count(0)
@@ -58,13 +57,13 @@ WTestRegistry* WTestRegistry::operator()()
 		if (m_registered[i] != nullptr)
 		{
 			current = *m_registered[i];
-			assert(current() == true);
+			WAssertion(current() == true);
 		}
 	}
 	return this;
 }
 
-WTestRegistry* WTestRegistry::Test()
+WTestRegistry* WTestRegistry::TestEqual()
 {
 	WTest current;
 	for (size_t i = 0; i < m_registered.size(); i++)
@@ -72,7 +71,21 @@ WTestRegistry* WTestRegistry::Test()
 		if (m_registered[i] != nullptr)
 		{
 			current = *m_registered[i];
-			assert(current() == true);
+			WAssertion(current() == true);
+		}
+	}
+	return this;
+}
+
+WTestRegistry* WTestRegistry::TestNotEqual()
+{
+	WTest current;
+	for (size_t i = 0; i < m_registered.size(); i++)
+	{
+		if (m_registered[i] != nullptr)
+		{
+			current = *m_registered[i];
+			WAssertion(current() != true);
 		}
 	}
 	return this;
