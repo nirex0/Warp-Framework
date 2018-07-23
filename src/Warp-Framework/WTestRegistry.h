@@ -5,6 +5,9 @@
 
 #include <vector>
 #include <functional>
+#include <cassert>
+
+#define WAssertion assert 
 
 typedef std::function<bool(void)> WTest;
 
@@ -19,7 +22,8 @@ public:
 	long GetCount(void) const;
 
 	WTestRegistry* operator()();
-	WTestRegistry* Test();
+	WTestRegistry* TestEqual();
+	WTestRegistry* TestNotEqual();
 	WTestRegistry* Register(WTest rhs);
 	WTestRegistry* UnRegister(WTest* rhs);
 	WTestRegistry* operator+=(WTest rhs);
