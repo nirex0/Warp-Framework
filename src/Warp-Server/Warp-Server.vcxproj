@@ -121,6 +121,7 @@
     <ClCompile Include="WSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="WarpSock.h" />
     <ClInclude Include="WContainer.h" />
     <ClInclude Include="WDefines.h" />
     <ClInclude Include="WEntry.h" />
