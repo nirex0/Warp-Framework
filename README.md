@@ -16,11 +16,11 @@ DOCUMENTATION
 The documentation is finally being worked on, you can find in in the [docs](/docs) folder.
 
 
-- 🔧 Warp Async 
+- ✔️ [Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
 
-- ⚙️ Warp Core
+- 🔧 Warp Core
 
-- ⚠️ Warp Graphics
+- ⚙️ Warp Graphics
 
 - ⚠️ Warp Test
 
