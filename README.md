@@ -29,14 +29,12 @@ The documentation is finally being worked on, you can find in in the [docs](/doc
 - ❌ Warp Utility
 
 
-PLANS
+PLANS: WARP-FRAMEWORK
 =====
 
 ### WARP-GFX
 
 - ✔️ Deltatime 
-
-- ✔️ Event Registry
 
 - ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
@@ -110,6 +108,8 @@ PLANS
 
 ### WARP-CORE
 
+- ✔️ Event Registry
+
 - ✔️ Function Binding
 
 - ✔️ Event Binding
@@ -136,19 +136,36 @@ PLANS
 
 ### WARP-NETWORK
 
-- ❌ Socket Programming
+- ⚙️ Socket Programming
 
-- ❌ Predefined socket types
+- ⚙️ Predefined socket types
 
-- ❌ Async Networking
+- ⚙️ Async Networking
 
 ### WARP-UTILITY
 
-- ❌ Custom data format for local storage (.WCX(Warp Container Extended))
+- ⚠️ Custom data format for local storage (.WCX(Warp Container Extended))
 
-- ❌ Custom ASSET Save / Load (.WAS(Warp Asset))
+- ⚠️ Custom ASSET Save / Load (.WAS(Warp Asset))
 
 - ❌ Vector Graphics (.WVF(Warp Vector File))
+
+
+PLANS: WARP-MODULE-CREATOR
+=====
+
+- ✔️ Done
+
+PLANS: WARP-SERVER
+=====
+
+- ⚙️ Event Registry
+
+- ⚙️ Socket Programming
+
+- ⚙️ Predefined socket types
+
+- ⚙️ Async Networking
 
 
 #### LEGEND
