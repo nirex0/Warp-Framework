@@ -1,7 +1,7 @@
 // © 2018 NIREX ALL RIGHTS RESERVED
 
-#include "WWin.h"
-#include "WDefines.h"
+#include "WSWin.h"
+#include "WSDefines.h"
 
 W_INT WARP_ENTRY wWinMain(
 	HINSTANCE hInstance,			// UNUSED
