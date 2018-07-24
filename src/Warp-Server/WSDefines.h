@@ -1,7 +1,7 @@
 // © 2018 NIREX ALL RIGHTS RESERVED
 
-#ifndef _W_DEFINES_H_
-#define _W_DEFINES_H_
+#ifndef _WS_DEFINES_H_
+#define _WS_DEFINES_H_
 
 #define WDBG
 #define W_CALL					__stdcall
@@ -109,4 +109,4 @@ typedef enum WMouseKey
 	MK_MIDDLE
 }WMouseKey;
 
-#endif // !_W_DEFINES_H_
+#endif // !_WS_DEFINES_H_
