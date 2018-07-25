@@ -132,7 +132,7 @@ PLANS: WARP-FRAMEWORK
 
 ### WARP-NETWORK
 
-- ⚙️ Socket Programming
+- ✔️ Socket Programming
 
 - ⚙️ Predefined socket types
 
