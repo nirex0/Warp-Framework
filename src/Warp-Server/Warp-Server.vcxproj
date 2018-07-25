@@ -129,6 +129,7 @@
     <ClInclude Include="WSDefines.h" />
     <ClInclude Include="WSEntry.h" />
     <ClInclude Include="WSRegistry.h" />
+    <ClInclude Include="WSSock.h" />
     <ClInclude Include="WSSocket.h" />
     <ClInclude Include="WSWin.h" />
   </ItemGroup>
