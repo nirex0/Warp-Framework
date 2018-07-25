@@ -2,10 +2,13 @@
 
 #include "WSContainer.h"
 
-WSContainer::WSContainer()
+WSEntry* WSContainer::App(void) const
 {
+	return EntryServer;
 }
 
-WSContainer::~WSContainer()
+WSEntry* WSContainer::App(WSEntry* intake)
 {
+	EntryServer = intake;
+	return EntryServer;
 }
