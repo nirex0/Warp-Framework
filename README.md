@@ -16,6 +16,8 @@ DOCUMENTATION
 The documentation is finally being worked on, you can find in in the [docs](/docs) folder.
 
 
+### WARP-FRAMEWORK
+
 - ✔️ [Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
 
 - 🔧 Warp Core
@@ -28,6 +30,13 @@ The documentation is finally being worked on, you can find in in the [docs](/doc
 
 - ❌ Warp Utility
 
+### WARP-MODULE-CREATOR
+
+- ❌ Usage documentation
+
+### WARP-SERVER
+
+- ❌ Warp-Server Core
 
 PLANS: WARP-FRAMEWORK
 =====
