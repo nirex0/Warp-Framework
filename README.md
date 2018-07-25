@@ -100,11 +100,7 @@ PLANS: WARP-FRAMEWORK
 
 - ⚙️ Custom 2D Space
 
-- ❌ Python Wrapper
-
 - ❌ OpenGL Implementation
-
-- ❌ Lua scripting Implementation
 
 ### WARP-CORE
 
