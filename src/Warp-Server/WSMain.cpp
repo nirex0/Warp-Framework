@@ -2,6 +2,10 @@
 
 #include "WSWin.h"
 #include "WSDefines.h"
+#include "WSContainer.h"
+
+// Initializing WSContainer members
+WSEntry* WSContainer::EntryServer = {};
 
 W_INT WARP_ENTRY wWinMain(
 	HINSTANCE hInstance,			// UNUSED
