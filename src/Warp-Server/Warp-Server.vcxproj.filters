@@ -59,5 +59,8 @@
     <ClInclude Include="WSAsyncArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WSSock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
