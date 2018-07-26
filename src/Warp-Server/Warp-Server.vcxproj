@@ -117,7 +117,9 @@
   <ItemGroup>
     <ClCompile Include="WSAsyncArgs.cpp" />
     <ClCompile Include="WSContainer.cpp" />
+    <ClCompile Include="WSEntity.cpp" />
     <ClCompile Include="WSEntry.cpp" />
+    <ClCompile Include="WSEventArgs.cpp" />
     <ClCompile Include="WSMain.cpp" />
     <ClCompile Include="WSRegistry.cpp" />
     <ClCompile Include="WSSocket.cpp" />
@@ -127,7 +129,9 @@
     <ClInclude Include="WSAsyncArgs.h" />
     <ClInclude Include="WSContainer.h" />
     <ClInclude Include="WSDefines.h" />
+    <ClInclude Include="WSEntity.h" />
     <ClInclude Include="WSEntry.h" />
+    <ClInclude Include="WSEventArgs.h" />
     <ClInclude Include="WSRegistry.h" />
     <ClInclude Include="WSSock.h" />
     <ClInclude Include="WSSocket.h" />
