@@ -33,6 +33,12 @@
     <ClCompile Include="WSAsyncArgs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WSEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WSEventArgs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarpSock.h">
@@ -60,6 +66,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WSSock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WSEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WSEventArgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
