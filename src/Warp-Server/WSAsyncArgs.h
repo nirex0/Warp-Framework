@@ -3,11 +3,19 @@
 #ifndef _WS_ASYNC_ARGS_H_
 #define _WS_ASYNC_ARGS_H_
 
-class WSAsyncArgs
+#include "WSEventArgs.h"
+#include "WSSocket.h"
+
+class WSAsyncArgs : public WSEventArgs
 {
 public:
-	WSAsyncArgs();
-	~WSAsyncArgs();
+	WSAsyncArgs(WSSocket* sock);
+	~WSAsyncArgs(void);
+
+	WSSocket* Socket(void) const;
+
+private:
+	WSSocket * m_sock;
 };
 
 #endif // !_WS_ASYNC_ARGS_H_

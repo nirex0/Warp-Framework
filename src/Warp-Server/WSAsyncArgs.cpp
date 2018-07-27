@@ -2,11 +2,17 @@
 
 #include "WSAsyncArgs.h"
 
-WSAsyncArgs::WSAsyncArgs()
+WSAsyncArgs::WSAsyncArgs(WSSocket* sock)
+	: m_sock(sock)
 {
 }
 
 
-WSAsyncArgs::~WSAsyncArgs()
+WSAsyncArgs::~WSAsyncArgs(void)
 {
+}
+
+WSSocket* WSAsyncArgs::Socket(void) const
+{
+	return m_sock;
 }
