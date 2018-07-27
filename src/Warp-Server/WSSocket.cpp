@@ -44,7 +44,7 @@ W_INT WSSocket::Accept(SOCKET clientSocket, int& outClientSize)
 
 	return (clientSocket == INVALID_SOCKET);
 }
-
+#ifndef PURE_SERVER
 W_INT WSSocket::Connect(void)
 {
 	sockaddr_in hint;
@@ -59,7 +59,7 @@ W_INT WSSocket::Connect(void)
 		return SOCKET_ERROR;
 	}
 }
-
+#endif
 W_INT WSSocket::Send(SOCKET fromSocket, char* inData, int dataLength)
 {
 	return send(fromSocket, inData, dataLength, 0);
