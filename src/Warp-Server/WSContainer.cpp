@@ -2,7 +2,7 @@
 
 #include "WSContainer.h"
 
-WSEntry* WSContainer::App(void) const
+WSEntry* WSContainer::App(void)
 {
 	return EntryServer;
 }

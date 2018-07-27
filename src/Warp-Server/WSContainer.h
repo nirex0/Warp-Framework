@@ -8,8 +8,8 @@
 class WSContainer
 {
 public:
-	WSEntry* App(void) const;
-	WSEntry* App(WSEntry* intake);
+	static WSEntry* App(void);
+	static WSEntry* App(WSEntry* intake);
 
 private:
 	static WSEntry* EntryServer;
