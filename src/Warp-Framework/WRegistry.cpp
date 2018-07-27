@@ -10,10 +10,6 @@ WRegistry::WRegistry()
 WRegistry::WRegistry(const WRegistry& nRegistery)
 	: m_count(0)
 {
-	for (size_t i = 0; i < m_registered.size(); i++)
-	{
-		delete m_registered[i];
-	}
 	for (size_t i = 0; i < nRegistery.m_registered.size(); i++)
 	{
 		this->Register(*nRegistery.m_registered[i]);
@@ -24,25 +20,14 @@ WRegistry::WRegistry(const WRegistry& nRegistery)
 WRegistry::WRegistry(WRegistry&& nRegistery)
 	: m_count(0)
 {
-	for (size_t i = 0; i < m_registered.size(); i++)
-	{
-		delete m_registered[i];
-	}
 	for (size_t i = 0; i < nRegistery.m_registered.size(); i++)
 	{
-
 		this->Register(*nRegistery.m_registered[i]);
 		_InterlockedIncrement(&m_count);
 	}
 }
 
-WRegistry::~WRegistry()
-{
-	for (size_t i = 0; i < m_registered.size(); i++)
-	{
-		delete m_registered[i];
-	}
-}
+WRegistry::~WRegistry(void) {}
 
 long WRegistry::GetCount(void) const
 {
