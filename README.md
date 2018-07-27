@@ -164,14 +164,13 @@ PLANS: WARP-MODULE-CREATOR
 PLANS: WARP-SERVER
 =====
 
-- ⚙️ Event Registry
+- ✔️ Event Registry
 
-- ⚙️ Socket Programming
-
-- ⚙️ Predefined socket types
+- ✔️ Socket Programming
 
 - ⚙️ Async Networking
 
+- ⚙️ Socket Handler Class (More on this later) 
 
 #### LEGEND
 
