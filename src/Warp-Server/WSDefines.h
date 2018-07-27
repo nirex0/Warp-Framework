@@ -9,6 +9,7 @@
 #define WARP_CALL				__stdcall
 #define WARP_ENTRY				__stdcall
 
+#define PURE_SERVER
 #define WARP_FRAMEWORK
 #define W_FRAMEWORK
 #define WARP
