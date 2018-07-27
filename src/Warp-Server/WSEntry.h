@@ -6,8 +6,8 @@
 class WSEntry
 {
 public:
-	WSEntry();
-	~WSEntry();
+	void Start(void);
+	void Update(void);
 };
 
 #endif // !_WS_ENTRY_H_

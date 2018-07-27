@@ -1,12 +1,13 @@
 // © 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WSEntry.h"
+#include "WSContainer.h"
+#include "WSSocket.h"
 
-WSEntry::WSEntry()
+void WSEntry::Start(void)
 {
 }
 
-
-WSEntry::~WSEntry()
+void WSEntry::Update(void)
 {
 }
