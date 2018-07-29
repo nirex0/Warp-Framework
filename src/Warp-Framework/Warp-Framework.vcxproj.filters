@@ -166,6 +166,9 @@
     <Filter Include="Source Files\WARP-NETWORK">
       <UniqueIdentifier>{44123596-b54f-499b-80a1-7aae2a091cdb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\WARP-CORE\EventArgs">
+      <UniqueIdentifier>{d73a9ae8-f3cb-47f5-a876-f46cc90abb60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -179,9 +182,6 @@
     </ClInclude>
     <ClInclude Include="WKeyboard.h">
       <Filter>Header Files\WARP-GFX\Engine\Devices</Filter>
-    </ClInclude>
-    <ClInclude Include="WEventArgs.h">
-      <Filter>Header Files\WARP-CORE\Core</Filter>
     </ClInclude>
     <ClInclude Include="WUserSettings.h">
       <Filter>Header Files\WARP-CORE\System</Filter>
@@ -384,6 +384,9 @@
     <ClInclude Include="WGeneratorArgs.h">
       <Filter>Header Files\WARP-CORE\EventArgs</Filter>
     </ClInclude>
+    <ClInclude Include="WEventArgs.h">
+      <Filter>Header Files\WARP-CORE\EventArgs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -464,9 +467,6 @@
     <ClCompile Include="WEntity.cpp">
       <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
-    <ClCompile Include="WEventArgs.cpp">
-      <Filter>Source Files\WARP-CORE\Core</Filter>
-    </ClCompile>
     <ClCompile Include="WRegistry.cpp">
       <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
@@ -538,6 +538,9 @@
     </ClCompile>
     <ClCompile Include="WCGridComponent.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="WEventArgs.cpp">
+      <Filter>Source Files\WARP-CORE\EventArgs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
