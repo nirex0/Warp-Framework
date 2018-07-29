@@ -15,18 +15,18 @@ public:
 	WGridComponent(WRectF location, W_INT zIndex = 0);
 	~WGridComponent(void) = default;
 
-	W_INT SquareSize(W_INT f);
+	W_FLOAT SquareSize(W_FLOAT f);
 	W_FLOAT LineThickness(W_FLOAT f);
 	W_COLOR Color(W_COLOR col);
 
-	W_INT SquareSize(void) const;
+	W_FLOAT SquareSize(void) const;
 	W_FLOAT LineThickness(void) const;
 	W_COLOR Color(void) const;
 
 	void Render(void) override;
 
 protected:
-	W_INT m_sqSize;
+	W_FLOAT m_sqSize;
 	W_FLOAT m_thickness;
 	W_COLOR m_color;
 };

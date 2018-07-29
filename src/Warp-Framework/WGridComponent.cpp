@@ -36,7 +36,7 @@ WGridComponent::WGridComponent(WRectF location, W_INT zIndex)
 	m_color = WContainer::Theme().ColorBorder();
 }
 
-W_INT WGridComponent::SquareSize(W_INT f)
+W_FLOAT WGridComponent::SquareSize(W_FLOAT f)
 {
 	if (f <= 10)
 	{
@@ -60,7 +60,7 @@ W_COLOR WGridComponent::Color(W_COLOR col)
 	return m_color;
 }
 
-W_INT WGridComponent::SquareSize(void) const
+W_FLOAT WGridComponent::SquareSize(void) const
 {
 	return m_sqSize;
 }
@@ -140,7 +140,7 @@ void WGridComponent::Render(void)
 
 	// Render Statements Go Here
 	// VERTICAL
-	int curWidthLoc = ctRec.Left();
+	int curWidthLoc = (W_INT)ctRec.Left();
 	while (curWidthLoc < ctRec.Right())
 	{
 		POINTF begin;
@@ -153,11 +153,11 @@ void WGridComponent::Render(void)
 
 		WGraphicsContainer::Graphics()->DrawLine(begin, end, m_color, m_thickness);
 		WGraphicsContainer::Graphics()->SafeFlush();
-		curWidthLoc += m_sqSize;
+		curWidthLoc += (W_INT)m_sqSize;
 	}
 
 	// HORIZONTAL
-	int curHeightLoc = ctRec.Top();
+	int curHeightLoc = (W_INT)ctRec.Top();
 	while (curHeightLoc < ctRec.Bottom())
 	{
 		POINTF begin;
@@ -170,7 +170,7 @@ void WGridComponent::Render(void)
 
 		WGraphicsContainer::Graphics()->DrawLine(begin, end, m_color, m_thickness);
 		WGraphicsContainer::Graphics()->SafeFlush();
-		curHeightLoc += m_sqSize;
+		curHeightLoc += (W_INT)m_sqSize;
 	}
 
 	// SQUARE
