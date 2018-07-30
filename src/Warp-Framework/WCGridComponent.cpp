@@ -140,7 +140,7 @@ void WCGridComponent::Render(void)
 
 	// Render Statements Go Here
 	// CENTER POSED
-	int RIGHT = (ctRec.Right() + ctRec.Left()) / 2;
+	int RIGHT = (W_INT)((ctRec.Right() + ctRec.Left()) / 2);
 	while (RIGHT < ctRec.Right())
 	{
 		POINTF begin;
@@ -153,10 +153,10 @@ void WCGridComponent::Render(void)
 
 		WGraphicsContainer::Graphics()->DrawLine(begin, end, m_color, m_thickness);
 		WGraphicsContainer::Graphics()->SafeFlush();
-		RIGHT += m_sqSize;
+		RIGHT += (W_INT)m_sqSize;
 	}
 
-	int LEFT = (ctRec.Right() + ctRec.Left()) / 2;
+	int LEFT = (W_INT)((ctRec.Right() + ctRec.Left()) / 2);
 	while (LEFT > ctRec.Left())
 	{
 		POINTF begin;
@@ -169,10 +169,10 @@ void WCGridComponent::Render(void)
 
 		WGraphicsContainer::Graphics()->DrawLine(begin, end, m_color, m_thickness);
 		WGraphicsContainer::Graphics()->SafeFlush();
-		LEFT -= m_sqSize;
+		LEFT -= (W_INT)m_sqSize;
 	}
 
-	int DOWN = (ctRec.Bottom() + ctRec.Top()) / 2;
+	int DOWN = (W_INT)((ctRec.Bottom() + ctRec.Top()) / 2);
 	while (DOWN <= ctRec.Bottom())
 	{
 		POINTF begin;
@@ -185,10 +185,10 @@ void WCGridComponent::Render(void)
 
 		WGraphicsContainer::Graphics()->DrawLine(begin, end, m_color, m_thickness);
 		WGraphicsContainer::Graphics()->SafeFlush();
-		DOWN += m_sqSize;
+		DOWN += (W_INT)m_sqSize;
 	}
 
-	int UP = (ctRec.Bottom() + ctRec.Top()) / 2;
+	int UP = (W_INT)((ctRec.Bottom() + ctRec.Top()) / 2);
 	while (UP >= ctRec.Top())
 	{
 		POINTF begin;
@@ -201,7 +201,7 @@ void WCGridComponent::Render(void)
 
 		WGraphicsContainer::Graphics()->DrawLine(begin, end, m_color, m_thickness);
 		WGraphicsContainer::Graphics()->SafeFlush();
-		UP -= m_sqSize;
+		UP -= (W_INT)m_sqSize;
 	}
 
 
