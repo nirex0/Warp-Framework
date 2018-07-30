@@ -28,6 +28,8 @@ public:
 	WRegistry* operator+=(Annex rhs);
 	WRegistry* operator-=(Annex rhs);
 
+	std::vector<Annex*> Container(void) const;
+
 private:
 	volatile long m_count;
 	std::vector<Annex*> m_registered;

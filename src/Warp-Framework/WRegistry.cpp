@@ -101,3 +101,8 @@ WRegistry* WRegistry::operator-=(Annex rhs)
 	}
 	return this;
 }
+
+std::vector<Annex*> WRegistry::Container(void) const
+{
+	return m_registered;
+}
