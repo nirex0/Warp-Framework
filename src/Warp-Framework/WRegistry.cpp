@@ -69,11 +69,11 @@ WRegistry* WRegistry::Register(Annex rhs)
 	return this;
 }
 
-WRegistry* WRegistry::UnRegister(Annex* rhs)
+WRegistry* WRegistry::UnRegister(Annex rhs)
 {
 	for (size_t i = 0; i < m_registered.size(); i++)
 	{
-		if (m_registered[i] == rhs)
+		if (m_registered[i] == &rhs)
 		{
 			m_registered[i] = nullptr;
 			_InterlockedDecrement(&m_count);

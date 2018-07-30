@@ -24,7 +24,7 @@ public:
 	WRegistry* operator()(WEntity* sender, WEventArgs* args);
 	WRegistry* Run(WEntity* sender, WEventArgs* args);
 	WRegistry* Register(Annex rhs);
-	WRegistry* UnRegister(Annex* rhs);
+	WRegistry* UnRegister(Annex rhs);
 	WRegistry* operator+=(Annex rhs);
 	WRegistry* operator-=(Annex rhs);
 
