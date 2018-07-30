@@ -17,11 +17,11 @@ public:
 	~WUniqueRegister();
 	WUniqueRegister* operator()(WEntity* sender, WEventArgs* args);
 	WUniqueRegister* Run(WEntity* sender, WEventArgs* args);
-	WUniqueRegister* Register(const Annex& intake);
+	WUniqueRegister* Register(Annex intake);
 	WUniqueRegister* Unregister(void);
 
 private:
-	std::unique_ptr<Annex> m_Register;
+	Annex* m_Register;
 };
 
 #endif // !_W_UNIQUE_REGISTER_H_

@@ -2,9 +2,8 @@
 
 #include "WUniqueRegister.h"
 
-WUniqueRegister::~WUniqueRegister()
+WUniqueRegister::~WUniqueRegister(void)
 {
-	m_Register.reset();
 }
 
 WUniqueRegister* WUniqueRegister::operator()(WEntity* sender, WEventArgs* args)
@@ -24,14 +23,14 @@ WUniqueRegister* WUniqueRegister::Run(WEntity* sender, WEventArgs* args)
 	return this;
 }
 
-WUniqueRegister* WUniqueRegister::Register(const Annex & intake)
+WUniqueRegister* WUniqueRegister::Register(Annex intake)
 {
-	m_Register = std::make_unique<Annex>(*(new Annex(intake)));
+	m_Register = &intake;
 	return this;
 }
 
 WUniqueRegister* WUniqueRegister::Unregister(void)
 {
-	m_Register.reset();
+	m_Register = nullptr;
 	return this;
 }
