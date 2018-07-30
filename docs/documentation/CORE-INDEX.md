@@ -12,17 +12,17 @@
 
 |TITLE  			 |DESCRIPTION										|
 |--------------------|--------------------------------------------------|
-|[**WContainer**](CORE-CONTAINER.md)| Main Container Class|
-|[**WDXContainer**](CORE-DXCONTAINER.md)| Container class holding Direct2D resources|
-|[**WGFXContainer**](CORE-GFXCONTAINER.md) | Container class holding the main instance of the WGraphics pointer|
-|[**WREGContainer**](CORE-REGCONTAINER.md) | Container class holding the global Registry data (Devices) |
+|[**WContainer**](CORE-WCONTAINER.md)| Main Container Class|
+|[**WDXContainer**](CORE-WDXCONTAINER.md)| Container class holding Direct2D resources|
+|[**WGFXContainer**](CORE-WGFXCONTAINER.md) | Container class holding the main instance of the WGraphics pointer|
+|[**WREGContainer**](CORE-WREGCONTAINER.md) | Container class holding the global Registry data (Devices) |
 
 #### WARP-CORE CORE REFERENCE
 
 | TITLE 				  | DESCRIPTION 																|
 |-------------------------|-----------------------------------------------------------------------------|
-| [**WEntity**](CORE-ENTITY.md)   | The main parent class of the entire framework								|
-| [**WEventBound**](CORE-EVENTBOUND.md) | A bond between a bool and a Warp-Event 	|
+| [**WEntity**](CORE-WENTITY.md)   | The main parent class of the entire framework								|
+| [**WEventBound**](CORE-WEVENTBOUND.md) | A bond between a bool and a Warp-Event 	|
 | [**WGenerator**](CORE-WGENERATOR.md) | Simple implementation of a generator 	|
 | [**WLogicalBound**](CORE-WLOGICALBOUND.md) | A bond between a void(&bool) method and a bool 	|
 | [**WRegistry**](CORE-WREGISTRY.md) | Warp's main event registry class 	|
@@ -48,8 +48,8 @@
 | TITLE 				  | DESCRIPTION 																|
 |-------------------------|-----------------------------------------------------------------------------|
 | [**WMath**](CORE-WMATH.md)   | The warp's main Math calculation header|
-| [**WMatrix2**](CORE-MAT2.md)   | Simple 2x2 Matrix class|
-| [**WMatrix3**](CORE-MAT3.md)   | Simple 3x3 Matrix class|
+| [**WMatrix2**](CORE-WMAT2.md)   | Simple 2x2 Matrix class|
+| [**WMatrix3**](CORE-WMAT3.md)   | Simple 3x3 Matrix class|
 | [**WVector2**](CORE-WVEC2.md)   | Simple Vector with 2 components|
 | [**WVector3**](CORE-WVEC3.md)   | Simple Vector with 3 components|
 | [**WVector4**](CORE-WVEC4.md)   | Simple Vector with 4 components|
