@@ -32,11 +32,19 @@
 *.app
 
 # Custom
-src/.vs
-src/x64
-
-src/WMC
-
-src/Warp-Framework/x64
-src/Warp-Module-Creator/x64
-src/Warp-Server/x64
+*.txt
+*.ipch
+*.tlog
+*.log
+*.enc
+*.idb
+*.pdb
+*.db
+*.opendb
+*.suo
+*.db-wal
+*.db-shm
+*.VC
+*.ilk
+*.iobj
+*.ipdb
