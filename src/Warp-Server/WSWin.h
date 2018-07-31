@@ -3,9 +3,6 @@
 #ifndef _WS_WIN_H_
 #define _WS_WIN_H_
 
-#ifndef _STD_WINDOWS_H_
-#define _STD_WINDOWS_H_
-
 #undef WINVER 
 #define WINVER 0x0501
 
@@ -13,42 +10,47 @@
 #define _WIN32_WINNT 0x0501
 
 #define WIN32_LEAN_AND_MEAN
+
 #define NOGDICAPMASKS
+#define NOVIRTUALKEYCODE
+#define NOWINMESSAGES
+#define NOWINSTYLES
+#define NOSYSMETRICS
 #define NOMENUS
 #define NOICONS
+#define NOKEYSTATES
 #define NOSYSCOMMANDS
-#define NOSYSMETRICS
 #define NORASTEROPS
+#define NOSHOWWINDOW
 #define OEMRESOURCE
 #define NOATOM
 #define NOCLIPBOARD
 #define NOCOLOR
 #define NOCTLMGR
 #define NODRAWTEXT
+#define NOGDI
 #define NOKERNEL
+#define NOUSER
 #define NONLS
+#define NOMB
 #define NOMEMMGR
 #define NOMETAFILE
 #define NOMINMAX
+#define NOMSG
 #define NOOPENFILE
 #define NOSCROLL
 #define NOSERVICE
 #define NOSOUND
 #define NOTEXTMETRIC
 #define NOWH
+#define NOWINOFFSETS
 #define NOCOMM
 #define NOKANJI
 #define NOHELP
 #define NOPROFILER
 #define NODEFERWINDOWPOS
 #define NOMCX
-#define NORPC
-#define NOPROXYSTUB
-#define NOIMAGE
-#define NOTAPE
 
 #include <Windows.h>
-#endif // !_STD_WINDOWS_H_
 
 #endif // !_WS_WIN_H_
-
