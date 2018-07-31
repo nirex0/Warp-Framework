@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WAsync.h" />
     <ClInclude Include="WCGridComponent.h" />
     <ClInclude Include="WCheckBox.h" />
     <ClInclude Include="WEventBound.h" />
@@ -118,6 +119,8 @@
     <ClInclude Include="WGenerator.h" />
     <ClInclude Include="WGeneratorArgs.h" />
     <ClInclude Include="WGridComponent.h" />
+    <ClInclude Include="WGUIComponents.h" />
+    <ClInclude Include="WGUIControls.h" />
     <ClInclude Include="WImageBox.h" />
     <ClInclude Include="WLabel.h" />
     <ClInclude Include="WLogger.h" />
