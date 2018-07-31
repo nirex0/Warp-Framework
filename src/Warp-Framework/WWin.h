@@ -45,6 +45,10 @@
 #define NOPROXYSTUB
 #define NOIMAGE
 #define NOTAPE
+#define NOVIRTUALKEYCODE
+#define NOKEYSTATES
+#define NOMB
+#define NOWINOFFSETS
 
 #include <Windows.h>
 #endif // !_STD_WINDOWS_H_
