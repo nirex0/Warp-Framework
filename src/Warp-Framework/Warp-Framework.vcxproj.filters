@@ -169,6 +169,9 @@
     <Filter Include="Source Files\WARP-CORE\EventArgs">
       <UniqueIdentifier>{d73a9ae8-f3cb-47f5-a876-f46cc90abb60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wrapper Files">
+      <UniqueIdentifier>{c23ee5c9-1331-46a5-84c4-4ae4eba4ac5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -386,6 +389,15 @@
     </ClInclude>
     <ClInclude Include="WEventArgs.h">
       <Filter>Header Files\WARP-CORE\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="WGUIControls.h">
+      <Filter>Wrapper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WGUIComponents.h">
+      <Filter>Wrapper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WAsync.h">
+      <Filter>Wrapper Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
