@@ -399,6 +399,9 @@
     <ClInclude Include="WAsync.h">
       <Filter>Wrapper Files</Filter>
     </ClInclude>
+    <ClInclude Include="WWarpSpace.h">
+      <Filter>Header Files\WARP-GFX\Engine\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -553,6 +556,9 @@
     </ClCompile>
     <ClCompile Include="WEventArgs.cpp">
       <Filter>Source Files\WARP-CORE\EventArgs</Filter>
+    </ClCompile>
+    <ClCompile Include="WWarpSpace.cpp">
+      <Filter>Source Files\WARP-GFX\Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
