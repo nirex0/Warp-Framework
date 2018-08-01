@@ -28,11 +28,11 @@ The documentation is finally being worked on, you can find in in the [docs](/doc
 
 - ❌ Warp Network
 
-- ❌ Warp Utility
+- ⚙️ Warp Utility
 
 ### WARP-MODULE-CREATOR
 
-- ❌ Usage documentation
+- ⚙️ Usage documentation
 
 ### WARP-SERVER
 
