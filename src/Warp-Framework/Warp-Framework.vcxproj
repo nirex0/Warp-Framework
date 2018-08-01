@@ -114,8 +114,10 @@
     <ClInclude Include="WAsync.h" />
     <ClInclude Include="WCGridComponent.h" />
     <ClInclude Include="WCheckBox.h" />
+    <ClInclude Include="WDevices.h" />
     <ClInclude Include="WEventBound.h" />
     <ClInclude Include="WExtendedBorderComponent.h" />
+    <ClInclude Include="WFile.h" />
     <ClInclude Include="WGenerator.h" />
     <ClInclude Include="WGeneratorArgs.h" />
     <ClInclude Include="WGridComponent.h" />
@@ -125,12 +127,14 @@
     <ClInclude Include="WLabel.h" />
     <ClInclude Include="WLogger.h" />
     <ClInclude Include="WLogicalBound.h" />
+    <ClInclude Include="WMathematics.h" />
     <ClInclude Include="WProgressBar.h" />
     <ClInclude Include="WRadioButton.h" />
     <ClInclude Include="WRadioButtonHandler.h" />
     <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WSeekBar.h" />
     <ClInclude Include="WSeekBarValueChangeArgs.h" />
+    <ClInclude Include="WString.h" />
     <ClInclude Include="WTestAuxiliary.h" />
     <ClInclude Include="WTestRegistry.h" />
     <ClInclude Include="WTextBox.h" />
@@ -182,6 +186,7 @@
     <ClInclude Include="WMouse.h" />
     <ClInclude Include="WMouseArgs.h" />
     <ClInclude Include="WRegistry.h" />
+    <ClInclude Include="WUtility.h" />
     <ClInclude Include="WVector2.h" />
     <ClInclude Include="WVector3.h" />
     <ClInclude Include="WVector4.h" />
@@ -206,6 +211,7 @@
     <ClCompile Include="WEventArgs.cpp" />
     <ClCompile Include="WEventBound.cpp" />
     <ClCompile Include="WExtendedBorderComponent.cpp" />
+    <ClCompile Include="WFile.cpp" />
     <ClCompile Include="WFixedCanvas.cpp" />
     <ClCompile Include="WGDIPaintEventArgs.cpp" />
     <ClCompile Include="WGFXContainer.cpp" />
@@ -234,6 +240,7 @@
     <ClCompile Include="WSeekBarValueChangeArgs.cpp" />
     <ClCompile Include="WSmoothStep.cpp" />
     <ClCompile Include="WSmoothStepArgs.cpp" />
+    <ClCompile Include="WString.cpp" />
     <ClCompile Include="WTestAuxiliary.cpp" />
     <ClCompile Include="WTestRegistry.cpp" />
     <ClCompile Include="WTextBox.cpp" />
