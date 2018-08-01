@@ -1,6 +1,6 @@
 #include "WFile.h"
 
-std::string WFileUtils::ReadAllText(std::string file)
+std::string WFile::ReadAllText(std::string file)
 {
 	std::ifstream f(file.c_str());
 
@@ -17,7 +17,7 @@ std::string WFileUtils::ReadAllText(std::string file)
 	return outstr;
 }
 
-int WFileUtils::WriteAllText(std::string file, std::string str)
+int WFile::WriteAllText(std::string file, std::string str)
 {
 	std::ofstream f;
 	f.open(file);
@@ -26,7 +26,7 @@ int WFileUtils::WriteAllText(std::string file, std::string str)
 	return 0;
 }
 
-std::int32_t WFileUtils::FindFirst(std::string file, std::string val)
+std::int32_t WFile::FindFirst(std::string file, std::string val)
 {
 	std::ifstream f(file.c_str());
 
@@ -44,7 +44,7 @@ std::int32_t WFileUtils::FindFirst(std::string file, std::string val)
 	return -1;
 }
 
-std::vector<std::string> WFileUtils::ReadAllLines(std::string file)
+std::vector<std::string> WFile::ReadAllLines(std::string file)
 {
 	std::ifstream f(file.c_str());
 	std::vector<std::string> retv;
@@ -59,7 +59,7 @@ std::vector<std::string> WFileUtils::ReadAllLines(std::string file)
 	return retv;
 }
 
-int WFileUtils::WriteAllLines(std::string file, std::vector<std::string> vecstr)
+int WFile::WriteAllLines(std::string file, std::vector<std::string> vecstr)
 {
 	std::ofstream f;
 	f.open(file);
@@ -74,7 +74,7 @@ int WFileUtils::WriteAllLines(std::string file, std::vector<std::string> vecstr)
 	return 0;
 }
 
-std::vector<int32_t> WFileUtils::FindAll(std::string file, std::string val)
+std::vector<int32_t> WFile::FindAll(std::string file, std::string val)
 {
 	std::ifstream f(file.c_str());
 	std::vector<int32_t> retv;
@@ -95,7 +95,7 @@ std::vector<int32_t> WFileUtils::FindAll(std::string file, std::string val)
 	return retv;
 }
 
-bool WFileUtils::SafeFread(void * buffer, int size, int number, FILE * fp)
+bool WFile::SafeFread(void * buffer, int size, int number, FILE * fp)
 {
 	using namespace std;
 	int ItemsRead;

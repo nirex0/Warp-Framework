@@ -8,7 +8,7 @@
 #include <vector>
 #include <iostream>
 
-class WFileUtils final
+class WFile final
 {
 public:
 	std::string ReadAllText(std::string file);
