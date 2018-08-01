@@ -28,11 +28,11 @@ The documentation is finally being worked on, you can find in in the [docs](/doc
 
 - ❌ Warp Network
 
-- ❌ Warp Utility
+- ⚙️ Warp Utility
 
 ### WARP-MODULE-CREATOR
 
-- ❌ Usage documentation
+- ⚙️ Usage documentation
 
 ### WARP-SERVER
 
@@ -148,6 +148,10 @@ PLANS: WARP-FRAMEWORK
 - ⚙️ Async Networking
 
 ### WARP-UTILITY
+
+- ✔️ File IO Helper class 
+
+- ✔️ String Helper class 
 
 - ⚠️ Custom data format for local storage (.WCX(Warp Container Extended))
 
