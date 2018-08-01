@@ -185,6 +185,7 @@
     <ClInclude Include="WVector2.h" />
     <ClInclude Include="WVector3.h" />
     <ClInclude Include="WVector4.h" />
+    <ClInclude Include="WWarpSpace.h" />
     <ClInclude Include="WWin.h" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +240,7 @@
     <ClCompile Include="WTheme.cpp" />
     <ClCompile Include="WToggleButton.cpp" />
     <ClCompile Include="WUniqueRegister.cpp" />
+    <ClCompile Include="WWarpSpace.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
