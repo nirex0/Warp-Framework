@@ -107,7 +107,7 @@ PLANS: WARP-FRAMEWORK
 
 - ⚠️ Video Support ((Almost) All Formats)
 
-- ⚙️ Custom 2D Space
+- ✔️ Custom 2D Space (Warp Space)
 
 - ❌ OpenGL Implementation
 
