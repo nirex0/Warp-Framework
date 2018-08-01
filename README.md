@@ -149,6 +149,10 @@ PLANS: WARP-FRAMEWORK
 
 ### WARP-UTILITY
 
+- ✔️ File IO Helper class 
+
+- ✔️ String Helper class 
+
 - ⚠️ Custom data format for local storage (.WCX(Warp Container Extended))
 
 - ⚠️ Custom ASSET Save / Load (.WAS(Warp Asset))
