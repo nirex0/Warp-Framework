@@ -172,6 +172,18 @@
     <Filter Include="Wrapper Files">
       <UniqueIdentifier>{c23ee5c9-1331-46a5-84c4-4ae4eba4ac5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\WARP-UTILITY">
+      <UniqueIdentifier>{d68e024e-6525-4b23-9939-216743881952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-UTILITY">
+      <UniqueIdentifier>{033c6ad3-502c-4a80-bb9d-bf05830e3bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WARP-UTILITY\Utility">
+      <UniqueIdentifier>{75a39a9a-0a13-499f-8e19-93c6aa12b811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WARP-UTILITY\Utility">
+      <UniqueIdentifier>{f1910f29-a8e1-4158-9617-2ff35eb053f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WMouseArgs.h">
@@ -402,6 +414,21 @@
     <ClInclude Include="WWarpSpace.h">
       <Filter>Header Files\WARP-GFX\Engine\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="WDevices.h">
+      <Filter>Wrapper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WUtility.h">
+      <Filter>Wrapper Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WFile.h">
+      <Filter>Header Files\WARP-UTILITY\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="WString.h">
+      <Filter>Header Files\WARP-UTILITY\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="WMathematics.h">
+      <Filter>Wrapper Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -559,6 +586,12 @@
     </ClCompile>
     <ClCompile Include="WWarpSpace.cpp">
       <Filter>Source Files\WARP-GFX\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="WFile.cpp">
+      <Filter>Source Files\WARP-UTILITY\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="WString.cpp">
+      <Filter>Source Files\WARP-UTILITY\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
