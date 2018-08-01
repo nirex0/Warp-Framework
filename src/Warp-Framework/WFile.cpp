@@ -1,3 +1,5 @@
+//© 2018 NIREX ALL RIGHTS RESERVED
+
 #include "WFile.h"
 
 std::string WFile::ReadAllText(std::string file)
