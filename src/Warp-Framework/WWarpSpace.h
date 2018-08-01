@@ -6,7 +6,8 @@
 #include "WEntity.h"
 #include "WPoint.h"
 #include "WRect.h"
-class WWarpSpace : public WEntity
+
+class WWarpSpace final : public WEntity
 {
 public:
 	static WPointF Coordinates(W_FLOAT x, W_FLOAT y);
