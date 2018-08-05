@@ -76,8 +76,6 @@ PLANS: WARP-FRAMEWORK
   13) ✔️ Seek Bar
   
   14) ✔️ Image Box
-  
-  15) ⚠️ Media Viewer (Video)
 
 - ✔️ Graphical Extentions
   
@@ -105,11 +103,7 @@ PLANS: WARP-FRAMEWORK
 
 - ✔️ Audio Support ((Almost) All Formats)
 
-- ⚠️ Video Support ((Almost) All Formats)
-
 - ✔️ Custom 2D Space (Warp Space)
-
-- ❌ OpenGL Implementation
 
 ### WARP-CORE
 
@@ -141,7 +135,7 @@ PLANS: WARP-FRAMEWORK
 
 ### WARP-NETWORK
 
-- ✔️ Socket Programming
+- 🛠 Socket Programming
 
 - ⚙️ Predefined socket types
 
@@ -170,7 +164,7 @@ PLANS: WARP-SERVER
 
 - ✔️ Event Registry
 
-- ✔️ Socket Programming
+- 🛠 Socket Programming
 
 - ⚙️ Async Networking
 
@@ -179,6 +173,8 @@ PLANS: WARP-SERVER
 #### LEGEND
 
 ✔️ : Fully implemented and tested
+
+🛠 : Implemented, not tested
 
 🔧 : Currently working on
 
