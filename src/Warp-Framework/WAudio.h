@@ -6,9 +6,10 @@
 #include "WWin.h"
 #include "WMci.h"
 #include "WContainer.h"
+#include "WEntity.h"
 #include <string>
 
-class WAudio
+class WAudio : public WEntity
 {
 public:
 	WAudio(const wchar_t* name, const wchar_t* path);
