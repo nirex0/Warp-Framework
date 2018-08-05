@@ -166,24 +166,24 @@ WKeyboard* WContainer::Keyboard(void)
 	return WContainer::keyboard;
 }
 
-INT WContainer::HCX(INT intake)
+W_INT WContainer::HCX(W_INT intake)
 {
 	WContainer::helperCoordX = intake; 
 	return WContainer::helperCoordX;
 }
 
-INT WContainer::HCX(void)
+W_INT WContainer::HCX(void)
 {
 	return WContainer::helperCoordX;
 }
 
-INT WContainer::HCY(INT intake)
+W_INT WContainer::HCY(W_INT intake)
 {
 	WContainer::helperCoordY = intake; 
 	return WContainer::helperCoordY;
 }
 
-INT WContainer::HCY(void)
+W_INT WContainer::HCY(void)
 {
 	return WContainer::helperCoordY;
 }
