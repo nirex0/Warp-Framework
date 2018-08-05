@@ -6,7 +6,7 @@
 #include "WDX.h"
 
 #ifdef _WDX_
-class WDXContainer
+class WDXContainer final
 {
 public:
 	static void Factory(ID2D1Factory* factory);
@@ -25,11 +25,11 @@ public:
 	static const IDWriteTextFormat* TextFormat(void);
 
 private:
-	static ID2D1Factory* WDXContainer::DX_Factory;
-	static ID2D1HwndRenderTarget* WDXContainer::DX_RT;
-	static RECT WDXContainer::DX_cRect;
-	static IDWriteFactory* WDXContainer::DX_WFactory;
-	static IDWriteTextFormat* WDXContainer::DX_TextFormat;
+	static ID2D1Factory* DX_Factory;
+	static ID2D1HwndRenderTarget* DX_RT;
+	static RECT DX_cRect;
+	static IDWriteFactory* DX_WFactory;
+	static IDWriteTextFormat* DX_TextFormat;
 };
 
 #endif // _WDX_
