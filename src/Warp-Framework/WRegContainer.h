@@ -6,7 +6,7 @@
 #include "WRegistry.h"
 #include "WUniqueRegister.h"
 
-class WRegContainer
+class WRegContainer final
 {
 public:
 // Keyboard
@@ -40,17 +40,17 @@ public:
 	static WUniqueRegister* OnGDIPaint(void);
 
 private:
-	static WUniqueRegister* WRegContainer::KBD_KeyDownReg;
-	static WUniqueRegister* WRegContainer::KBD_KeyUpReg;
-	static WUniqueRegister* WRegContainer::KBD_OnCharReg;
+	static WUniqueRegister* KBD_KeyDownReg;
+	static WUniqueRegister* KBD_KeyUpReg;
+	static WUniqueRegister* KBD_OnCharReg;
 
-	static WRegistry* WRegContainer::MOS_MouseDown;
-	static WRegistry* WRegContainer::MOS_MouseUp;
-	static WRegistry* WRegContainer::MOS_MouseMove;
-	static WRegistry* WRegContainer::MOS_MouseRollUp;
-	static WRegistry* WRegContainer::MOS_MouseRollDown;
+	static WRegistry* MOS_MouseDown;
+	static WRegistry* MOS_MouseUp;
+	static WRegistry* MOS_MouseMove;
+	static WRegistry* MOS_MouseRollUp;
+	static WRegistry* MOS_MouseRollDown;
 
-	static WUniqueRegister* WRegContainer::WND_OnGDIPaint;
+	static WUniqueRegister* WND_OnGDIPaint;
 };
 
 #endif // !_W_CONTAINER_H_
