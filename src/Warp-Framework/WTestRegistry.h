@@ -3,6 +3,7 @@
 #ifndef _W_TEST_REGISTRY_H_
 #define _W_TEST_REGISTRY_H_
 
+#include "WEntity.h"
 #include <vector>
 #include <functional>
 #include <cassert>
@@ -11,7 +12,7 @@
 
 typedef std::function<bool(void)> WTest;
 
-class WTestRegistry
+class WTestRegistry : public WEntity
 {
 public:
 	WTestRegistry();
