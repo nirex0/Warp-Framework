@@ -5,7 +5,7 @@
 
 #include "WGraphics.h"
 
-class WGraphicsContainer
+class WGraphicsContainer final
 {
 public:
 	static WGraphics* Graphics(void);
@@ -15,8 +15,8 @@ public:
 	static D2D1_RENDER_TARGET_TYPE RenderMethod(D2D1_RENDER_TARGET_TYPE intake);
 
 private:
-	static WGraphics* WGraphicsContainer::gfx;
-	static WGraphicsContainer::D2D1_RENDER_TARGET_TYPE main_rttype;
+	static WGraphics* gfx;
+	static D2D1_RENDER_TARGET_TYPE main_rttype;
 };
 
 
