@@ -10,7 +10,7 @@
 #include "WKeyboard.h"
 #include "WTheme.h"
 
-class WContainer
+class WContainer final
 {
 public:
 	static const HRESULT hResult(HRESULT intake);
@@ -58,11 +58,11 @@ public:
 	static WKeyboard* Keyboard(WKeyboard* intake);
 	static WKeyboard* Keyboard(void);
 
-	static INT HCX(INT intake);
-	static INT HCX(void);
-		   
-	static INT HCY(INT intake);
-	static INT HCY(void);
+	static W_INT HCX(W_INT intake);
+	static W_INT HCX(void);
+
+	static W_INT HCY(W_INT intake);
+	static W_INT HCY(void);
 
 	static BOOL DragMove(BOOL intake);
 	static BOOL DragMove(void);
@@ -71,25 +71,25 @@ public:
 	static WTheme Theme(void);
 
 private:
-	static HRESULT WContainer::HR;
-	static HWND WContainer::hWnd;
-	static UINT WContainer::msg;
-	static WPARAM WContainer::wParam;
-	static LPARAM WContainer::lParam;
-	static WEntry WContainer::WFramework;
-	static DELTATIME WContainer::DeltaTime;
-	static W_INT WContainer::BGA;
-	static W_INT WContainer::BGR;
-	static W_INT WContainer::BGG;
-	static W_INT WContainer::BGB;
-	static W_INT WContainer::W_WIDTH;
-	static W_INT WContainer::W_HEIGHT;
-	static WMouse* WContainer::mouse;
-	static WKeyboard* WContainer::keyboard;
-	static INT WContainer::helperCoordX;
-	static INT WContainer::helperCoordY;
-	static BOOL WContainer::bDragMove;
-	static WTheme WContainer::wTheme;
+	static HRESULT HR;
+	static HWND hWnd;
+	static UINT msg;
+	static WPARAM wParam;
+	static LPARAM lParam;
+	static WEntry WFramework;
+	static DELTATIME DeltaTime;
+	static W_INT BGA;
+	static W_INT BGR;
+	static W_INT BGG;
+	static W_INT BGB;
+	static W_INT W_WIDTH;
+	static W_INT W_HEIGHT;
+	static WMouse* mouse;
+	static WKeyboard* keyboard;
+	static W_INT helperCoordX;
+	static W_INT helperCoordY;
+	static BOOL bDragMove;
+	static WTheme wTheme;
 };
 
 
