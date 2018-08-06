@@ -208,7 +208,11 @@ But keep in mind that when this goes to production stage I probably will write a
 FRAMEWORK VIEW
 ==============
 
+#### Warp-Framework
 ![alt text](https://raw.githubusercontent.com/nirex0/warp-framework/master/repo-resources/warp-000.png)
+
+#### Warp-Logger
+![alt text](https://raw.githubusercontent.com/nirex0/warp-framework/master/repo-resources/warp-001.png)
 
 CONTACT
 =======
