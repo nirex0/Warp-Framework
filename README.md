@@ -38,6 +38,10 @@ The documentation is finally being worked on, you can find in in the [docs](/doc
 
 - ❌ Warp-Server Core
 
+### WARP-LOGGER
+
+- ❌ Warp-Logger Lookup
+
 PLANS: WARP-FRAMEWORK
 =====
 
@@ -169,6 +173,13 @@ PLANS: WARP-SERVER
 - ⚙️ Async Networking
 
 - ⚙️ Socket Handler Class (More on this later) 
+
+PLANS: WARP-LOGGER
+=====
+
+- ✔️ Color coding
+
+- ⚙️ Framework Implementation
 
 #### LEGEND
 
