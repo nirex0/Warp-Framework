@@ -47,7 +47,7 @@ PLANS: WARP-FRAMEWORK
 
 - ✔️ D2DX Implementation (Direct2D & DirectWrite)
 
-- ⚠️ Intractable Controls
+- ✔️ Intractable Controls
 
   1) ✔️ Base Control
   
@@ -105,7 +105,7 @@ PLANS: WARP-FRAMEWORK
 
 - ✔️ Custom 2D Space (Warp Space)
 
-### WARP-CORE
+### WARP-CORE 
 
 - ✔️ Event Registry
 
