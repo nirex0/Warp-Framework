@@ -19,7 +19,6 @@
 #define NOSYSCOMMANDS
 #define NORASTEROPS
 #define OEMRESOURCE
-#define NOATOM
 #define NOCLIPBOARD
 #define NOCOLOR
 #define NOCTLMGR
