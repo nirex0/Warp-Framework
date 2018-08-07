@@ -121,9 +121,7 @@ auto main(int argc, char** argv) -> int
 	std::vector<std::string>* currentCmd = new std::vector<std::string>();
 	
 	while (true)
-	{
-		*currentCmd = logF.ReadAllLines("tmpWlog.wlog");
-		
+	{		
 		// Format: (std::string)time::(int)LEVEL::(std::string)msg
 		if (currentCmd->size() > 0)
 		{
@@ -131,16 +129,15 @@ auto main(int argc, char** argv) -> int
 			{
 				Parse(currentCmd->at(i));
 			}
+
+			logF.WriteAllText("tmpWlog.wlog", "");
+			delete currentCmd;
+			currentCmd = new std::vector<std::string>();
 		}
 		else
 		{
 			continue;
 		}
-
-		logF.WriteAllText("tmpWlog.wlog", "");
-		delete currentCmd;
-		currentCmd = new std::vector<std::string>();
-
 	}
 
 	return false;
