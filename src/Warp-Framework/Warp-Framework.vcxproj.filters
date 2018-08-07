@@ -420,14 +420,14 @@
     <ClInclude Include="WUtility.h">
       <Filter>Wrapper Files</Filter>
     </ClInclude>
+    <ClInclude Include="WMathematics.h">
+      <Filter>Wrapper Files</Filter>
+    </ClInclude>
     <ClInclude Include="WFile.h">
       <Filter>Header Files\WARP-UTILITY\Utility</Filter>
     </ClInclude>
     <ClInclude Include="WString.h">
       <Filter>Header Files\WARP-UTILITY\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="WMathematics.h">
-      <Filter>Wrapper Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
