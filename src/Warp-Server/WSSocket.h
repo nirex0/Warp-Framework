@@ -15,8 +15,7 @@ public:
 	~WSSocket(void);
 
 	W_INT Bind(void);
-	W_INT Listen(W_INT backLog);
-
+	W_INT Listen(W_INT backLog = 0);
 	W_INT Accept(SOCKET clientSocket, int& outClientSize);
 	W_INT Connect(void);
 	W_INT Send(SOCKET fromSocket, char* inData, int* dataLength);
