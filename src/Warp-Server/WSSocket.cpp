@@ -60,10 +60,25 @@ W_INT WSSocket::Connect(void)
 	}
 }
 #endif
-W_INT WSSocket::Send(SOCKET fromSocket, char* inData, int dataLength)
+W_INT WSSocket::Send(SOCKET fromSocket, char* inData, int* dataLength)
 {
-	return send(fromSocket, inData, dataLength, 0);
+	int total = 0;
+	int bytesleft = *dataLength;
+	int tmp;
+
+	while (total < *dataLength)
+	{
+		tmp = send(fromSocket, inData + total, bytesleft, 0);
+		if (tmp == -1) { break; }
+		total += tmp;
+		bytesleft -= tmp;
+	}
+
+	*dataLength = total;
+
+	return tmp == -1 ? -1 : 0;
 }
+
 
 W_INT WSSocket::Receive(SOCKET fromSocket, char* outData, int& outLength)
 {

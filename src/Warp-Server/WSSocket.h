@@ -21,7 +21,7 @@ public:
 #ifndef PURE_SERVER
 	W_INT Connect(void);
 #endif
-	W_INT Send(SOCKET fromSocket, char* inData, int dataLength);
+	W_INT Send(SOCKET fromSocket, char* inData, int* dataLength);
 	W_INT Receive(SOCKET fromSocket, char* outData, int& outLength);
 
 	SOCKET Socket(void) const;
