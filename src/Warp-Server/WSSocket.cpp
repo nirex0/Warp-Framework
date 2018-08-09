@@ -18,21 +18,6 @@ WSSocket::~WSSocket(void)
 	CleanUp();
 }
 
-W_INT WSSocket::Bind(void)
-{
-	sockaddr_in hint;
-	hint.sin_family = AF_INET;
-	hint.sin_port = htons(m_port);
-	inet_pton(AF_INET, m_ip.c_str(), &hint.sin_addr);
-
-	return bind(m_sock, (sockaddr*)&hint, sizeof(hint));
-}
-
-W_INT WSSocket::Listen(W_INT backLog)
-{
-	return listen(m_sock, backLog);
-}
-
 W_INT WSSocket::Accept(SOCKET clientSocket, int& outClientSize)
 {
 	sockaddr_in client;
@@ -43,6 +28,16 @@ W_INT WSSocket::Accept(SOCKET clientSocket, int& outClientSize)
 	outClientSize = clientSize;
 
 	return (clientSocket == INVALID_SOCKET);
+}
+
+W_INT WSSocket::Bind(void)
+{
+	sockaddr_in hint;
+	hint.sin_family = AF_INET;
+	hint.sin_port = htons(m_port);
+	inet_pton(AF_INET, m_ip.c_str(), &hint.sin_addr);
+
+	return bind(m_sock, (sockaddr*)&hint, sizeof(hint));
 }
 
 W_INT WSSocket::Connect(void)
@@ -60,50 +55,52 @@ W_INT WSSocket::Connect(void)
 	}
 }
 
-W_INT WSSocket::Send(SOCKET fromSocket, char* inData, int* dataLength)
+W_INT WSSocket::Listen(W_INT backLog)
 {
-	int total = 0;
-	int bytesleft = *dataLength;
-	int tmp;
-
-	while (total < *dataLength)
-	{
-		tmp = send(fromSocket, inData + total, bytesleft, 0);
-		if (tmp == -1) { break; }
-		total += tmp;
-		bytesleft -= tmp;
-	}
-
-	*dataLength = total;
-
-	return tmp == -1 ? -1 : 0;
+	return listen(m_sock, backLog);
 }
 
-
-W_INT WSSocket::Receive(SOCKET fromSocket, char* outData, int& outLength)
+W_INT WSSocket::Receive(SOCKET socket, char* outData, int& lengthTransfer)
 {
-	int bytes = recv(fromSocket, m_buffer, m_bufferSize, 0);
+	int bytesReceived = 0;
+	while (lengthTransfer > 0) 
+	{
+		int bytesRequested = (lengthTransfer > m_bufferSize) ? m_bufferSize : lengthTransfer;
+		int recvValue = recv(socket, outData + bytesReceived, bytesRequested, 0);
+		if (recvValue == -1 || recvValue == 0 || recvValue == SOCKET_ERROR)
+		{
+			return recvValue;
+		}
+		bytesReceived += recvValue;
+		lengthTransfer -= recvValue;
+	}
+	lengthTransfer = bytesReceived;
 	
-	outData = m_buffer;
-	outLength = bytes;
-
-	if (bytes == SOCKET_ERROR)
-	{
-		CleanUp();
-		return SOCKET_ERROR;
-	}
-	if (bytes == 0)
-	{
-		CleanUp();
-		return NULL;
-	}
-
-	for (size_t i = 0; i < bytes; i++)
+	for (size_t i = 0; i < bytesReceived; i++)
 	{
 		m_cleanedData += m_buffer[i];
 	}
 
 	return 0;
+}
+
+W_INT WSSocket::Send(SOCKET socket, char* inData, int& lengthTransfer)
+{
+	int total = 0;
+	int bytesleft = lengthTransfer;
+	int tmp;
+
+	while (total < lengthTransfer)
+	{
+		tmp = send(socket, inData + total, bytesleft, 0);
+		if (tmp == -1) { break; }
+		total += tmp;
+		bytesleft -= tmp;
+	}
+
+	lengthTransfer = total;
+
+	return tmp == -1 ? -1 : 0;
 }
 
 SOCKET WSSocket::Socket(void) const

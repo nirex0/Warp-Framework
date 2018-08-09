@@ -14,12 +14,12 @@ public:
 	WSSocket(std::string ip, int port, int bufferSize);
 	~WSSocket(void);
 
-	W_INT Bind(void);
-	W_INT Listen(W_INT backLog = 0);
 	W_INT Accept(SOCKET clientSocket, int& outClientSize);
+	W_INT Bind(void);
 	W_INT Connect(void);
-	W_INT Send(SOCKET fromSocket, char* inData, int* dataLength);
-	W_INT Receive(SOCKET fromSocket, char* outData, int& outLength);
+	W_INT Listen(W_INT backLog = 0);
+	W_INT Receive(SOCKET socket, char* outData, int& lengthTransfer);
+	W_INT Send(SOCKET socket, char* inData, int& lengthTraBnsfer);
 
 	SOCKET Socket(void) const;
 	WSADATA SocketData(void)const;
