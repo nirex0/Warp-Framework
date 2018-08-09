@@ -48,3 +48,4 @@
 *.ilk
 *.iobj
 *.ipdb
+*.wlog
