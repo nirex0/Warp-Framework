@@ -5,7 +5,6 @@
 
 #include <Mmsystem.h>
 #include <mciapi.h>
-//these two headers are already included in the <Windows.h> header
 #pragma comment(lib, "Winmm.lib")
 
 #endif // !_W_MCI_H_
