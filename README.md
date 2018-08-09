@@ -168,11 +168,9 @@ PLANS: WARP-SERVER
 
 - ✔️ Event Registry
 
-- 🛠 Socket Programming
+- ✔️ Socket Programming
 
 - ⚙️ Async Networking
-
-- ⚙️ Socket Handler Class (More on this later) 
 
 PLANS: WARP-LOGGER
 =====
@@ -180,6 +178,8 @@ PLANS: WARP-LOGGER
 - ✔️ Color coding
 
 - ⚙️ Framework Implementation
+
+- ⚙️ Log system Implementation
 
 #### LEGEND
 
