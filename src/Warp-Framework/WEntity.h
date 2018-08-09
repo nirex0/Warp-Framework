@@ -3,8 +3,6 @@
 #ifndef _W_ENTITY_H_
 #define _W_ENTITY_H_
 
-class WEntity
-{
-};
+class WEntity {};
 
 #endif // !_W_ENTITY_H_
