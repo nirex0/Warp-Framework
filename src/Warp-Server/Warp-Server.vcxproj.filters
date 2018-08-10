@@ -49,6 +49,9 @@
     <Filter Include="Source Files\Server-Async">
       <UniqueIdentifier>{f1fc43b3-429c-4fbc-a539-23753ec92264}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Server-Network">
+      <UniqueIdentifier>{8fa9167c-7710-4d3d-8d43-81b3dc000228}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WSMain.cpp">
@@ -72,11 +75,14 @@
     <ClCompile Include="WSAsyncArgs.cpp">
       <Filter>Source Files\Server-Async</Filter>
     </ClCompile>
-    <ClCompile Include="WSSocket.cpp">
-      <Filter>Source Files\Server-Core\Core</Filter>
-    </ClCompile>
     <ClCompile Include="WSAsyncWorker.cpp">
       <Filter>Source Files\Server-Async</Filter>
+    </ClCompile>
+    <ClCompile Include="WSSocket.cpp">
+      <Filter>Source Files\Server-Network</Filter>
+    </ClCompile>
+    <ClCompile Include="WSSocketArgs.cpp">
+      <Filter>Source Files\Server-Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="WSAsyncArgs.h">
       <Filter>Header Files\Server-Async</Filter>
+    </ClInclude>
+    <ClInclude Include="WSSocketArgs.h">
+      <Filter>Header Files\Server-Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
