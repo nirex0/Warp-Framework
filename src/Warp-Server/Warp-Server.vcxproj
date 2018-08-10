@@ -124,6 +124,7 @@
     <ClCompile Include="WSMain.cpp" />
     <ClCompile Include="WSRegistry.cpp" />
     <ClCompile Include="WSSocket.cpp" />
+    <ClCompile Include="WSSocketArgs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarpSock.h" />
@@ -137,6 +138,7 @@
     <ClInclude Include="WSRegistry.h" />
     <ClInclude Include="WSSock.h" />
     <ClInclude Include="WSSocket.h" />
+    <ClInclude Include="WSSocketArgs.h" />
     <ClInclude Include="WSWin.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
