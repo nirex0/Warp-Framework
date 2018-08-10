@@ -1,6 +1,11 @@
 // © 2018 NIREX ALL RIGHTS RESERVED
 
 #include "WSSocket.h"
+#include "WSSocketArgs.h"
+#include <memory>
+
+int WSSocket::m_sockCount = 0;
+bool WSSocket::m_bIsStarted = false;
 
 WSSocket::WSSocket(std::string ip, int port, int bufferSize)
 	: m_ip(ip)
@@ -9,25 +14,50 @@ WSSocket::WSSocket(std::string ip, int port, int bufferSize)
 {
 	m_buffer = new char[m_bufferSize];
 	WORD version = MAKEWORD(2, 2);
-	WSAStartup(version,&m_data);
+
+	if (!m_sockCount)
+	{
+		m_bIsStarted = true;
+		WSAStartup(version, &m_data);
+	}
+
+	m_sockCount++;
 	m_sock = socket(AF_INET, SOCK_STREAM, 0);
+
+	m_AcceptReg = new WSRegistry();
+	m_BindReg = new WSRegistry();
+	m_ConnectReg = new WSRegistry();
+	m_ListenReg = new WSRegistry();
+	m_ReceiveReg = new WSRegistry();
+	m_SendReg = new WSRegistry();
 }
 
 WSSocket::~WSSocket(void)
 {
+	delete m_AcceptReg;
+	delete m_BindReg;
+	delete m_ConnectReg;
+	delete m_ListenReg;
+	delete m_ReceiveReg;
+	delete m_SendReg;
+
 	CleanUp();
 }
 
-W_INT WSSocket::Accept(SOCKET clientSocket, int& outClientSize)
+W_INT WSSocket::Accept(int& outClientSize)
 {
+	SOCKET clientSock;
+
 	sockaddr_in client;
 	int clientSize = sizeof(client);
 
-	clientSocket = accept(m_sock, (sockaddr*)&client, &clientSize);
-
+	clientSock = accept(m_sock, (sockaddr*)&client, &clientSize);
 	outClientSize = clientSize;
+	
+	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(clientSock, nullptr, 0));
+	m_AcceptReg->Run(this, args.get());
 
-	return (clientSocket == INVALID_SOCKET);
+	return (clientSock == INVALID_SOCKET);
 }
 
 W_INT WSSocket::Bind(void)
@@ -37,7 +67,12 @@ W_INT WSSocket::Bind(void)
 	hint.sin_port = htons(m_port);
 	inet_pton(AF_INET, m_ip.c_str(), &hint.sin_addr);
 
-	return bind(m_sock, (sockaddr*)&hint, sizeof(hint));
+	int retI = bind(m_sock, (sockaddr*)&hint, sizeof(hint));
+
+	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(m_sock, nullptr, 0));
+	m_BindReg->Run(this, args.get());
+
+	return retI;
 }
 
 W_INT WSSocket::Connect(void)
@@ -53,20 +88,30 @@ W_INT WSSocket::Connect(void)
 		CleanUp();
 		return SOCKET_ERROR;
 	}
+
+	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(m_sock, nullptr, 0));
+	m_ConnectReg->Run(this, args.get());
+
+	return connResult;
 }
 
 W_INT WSSocket::Listen(W_INT backLog)
 {
-	return listen(m_sock, backLog);
+	int retI = listen(m_sock, backLog);
+
+	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(m_sock, nullptr, 0));
+	m_ListenReg->Run(this, args.get());
+
+	return retI;
 }
 
-W_INT WSSocket::Receive(SOCKET socket, char* outData, int& lengthTransfer)
+W_INT WSSocket::Receive(char* outData, int& lengthTransfer)
 {
 	int bytesReceived = 0;
 	while (lengthTransfer > 0) 
 	{
 		int bytesRequested = (lengthTransfer > m_bufferSize) ? m_bufferSize : lengthTransfer;
-		int recvValue = recv(socket, outData + bytesReceived, bytesRequested, 0);
+		int recvValue = recv(m_sock, outData + bytesReceived, bytesRequested, 0);
 		if (recvValue == -1 || recvValue == 0 || recvValue == SOCKET_ERROR)
 		{
 			return recvValue;
@@ -81,10 +126,13 @@ W_INT WSSocket::Receive(SOCKET socket, char* outData, int& lengthTransfer)
 		m_cleanedData += m_buffer[i];
 	}
 
+	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(m_sock, m_buffer, bytesReceived));
+	m_ReceiveReg->Run(this, args.get());
+
 	return 0;
 }
 
-W_INT WSSocket::Send(SOCKET socket, char* inData, int& lengthTransfer)
+W_INT WSSocket::Send(char* inData, int& lengthTransfer)
 {
 	int total = 0;
 	int bytesleft = lengthTransfer;
@@ -92,13 +140,16 @@ W_INT WSSocket::Send(SOCKET socket, char* inData, int& lengthTransfer)
 
 	while (total < lengthTransfer)
 	{
-		tmp = send(socket, inData + total, bytesleft, 0);
+		tmp = send(m_sock, inData + total, bytesleft, 0);
 		if (tmp == -1) { break; }
 		total += tmp;
 		bytesleft -= tmp;
 	}
 
 	lengthTransfer = total;
+
+	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(m_sock, inData, lengthTransfer));
+	m_SendReg->Run(this, args.get());
 
 	return tmp == -1 ? -1 : 0;
 }
@@ -128,7 +179,18 @@ std::string WSSocket::Data(void) const
 	return m_cleanedData;
 }
 
+bool WSSocket::SockCount(void) const
+{
+	return m_sockCount;
+}
+
 W_INT WSSocket::CleanUp(void)
 {
-	return WSACleanup();
+	m_sockCount--;
+	if (!m_sockCount)
+	{
+		m_bIsStarted = false;
+		return WSACleanup();
+	}
+	return m_sockCount;
 }

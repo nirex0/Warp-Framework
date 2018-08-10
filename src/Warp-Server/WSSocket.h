@@ -20,8 +20,8 @@ public:
 	W_INT Bind(void);
 	W_INT Connect(void);
 	W_INT Listen(W_INT backLog = 0);
-	W_INT Receive(SOCKET socket, char* outData, int& lengthTransfer);
-	W_INT Send(SOCKET socket, char* inData, int& lengthTraBnsfer);
+	W_INT Receive(char* outData, int& lengthTransfer);
+	W_INT Send(char* inData, int& lengthTraBnsfer);
 
 	SOCKET Socket(void) const;
 	WSADATA SocketData(void)const;
@@ -29,9 +29,17 @@ public:
 	W_INT Port(void) const;
 	std::string IP(void) const;
 	std::string Data(void) const;
+	bool SockCount(void) const;
 
 private:
 	W_INT CleanUp(void);
+
+	WSRegistry* m_AcceptReg;
+	WSRegistry* m_BindReg;
+	WSRegistry* m_ConnectReg;
+	WSRegistry* m_ListenReg;
+	WSRegistry* m_ReceiveReg;
+	WSRegistry* m_SendReg;
 
 	W_INT m_port;
 	std::string m_ip;
@@ -40,6 +48,9 @@ private:
 	SOCKET m_sock;
 	char* m_buffer;
 	W_INT m_bufferSize;
+
+	static int m_sockCount;
+	static bool m_bIsStarted;
 };
 
 #endif // !_WS_SOCKET_H_
