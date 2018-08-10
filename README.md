@@ -168,14 +168,20 @@ PLANS: WARP-SERVER
 
 - ✔️ Event Registry
 
-- ✔️ Socket Programming
+- ✔️ Socket Wrapper
+
+- ✔️ Socker Functionality
 
 - ⚙️ Async Networking
+
+- ⚙️ Standalone server Implementation
+
+- ⚙️ Multi Client support
 
 PLANS: WARP-LOGGER
 =====
 
-- ✔️ Color coding
+- ✔️ Colored messages
 
 - ⚙️ Framework Implementation
 
