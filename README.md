@@ -15,17 +15,17 @@ DOCUMENTATION
 
 The documentation is finally being worked on, you can find in in the [docs](/docs) folder.
 
--[Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
+- [Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
 
--[Warp Core](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/CORE-INDEX.md)
+- [Warp Core](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/CORE-INDEX.md)
 
--Warp Graphics
+- Warp Graphics
 
--Warp Test
+- Warp Test
 
--Warp Network
+- Warp Network
 
--Warp Utility
+- Warp Utility
 
 PLANS
 =====
