@@ -5,16 +5,18 @@
 
 #include <string>
 
+#include "WSEntity.h"
+#include "WSRegistry.h"
 #include "WSSock.h"
 #include "WSDefines.h"
 
-class WSSocket
+class WSSocket : public WSEntity
 {
 public:
 	WSSocket(std::string ip, int port, int bufferSize);
 	~WSSocket(void);
 
-	W_INT Accept(SOCKET clientSocket, int& outClientSize);
+	W_INT Accept(int& outClientSize);
 	W_INT Bind(void);
 	W_INT Connect(void);
 	W_INT Listen(W_INT backLog = 0);
@@ -33,9 +35,7 @@ private:
 
 	W_INT m_port;
 	std::string m_ip;
-
 	std::string m_cleanedData;
-
 	WSADATA m_data;
 	SOCKET m_sock;
 	char* m_buffer;
