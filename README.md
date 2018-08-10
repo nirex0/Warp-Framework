@@ -15,201 +15,23 @@ DOCUMENTATION
 
 The documentation is finally being worked on, you can find in in the [docs](/docs) folder.
 
+-[Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
 
-### WARP-FRAMEWORK
+-[Warp Core](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/CORE-INDEX.md)
 
-- ✔️ [Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
+-Warp Graphics
 
-- 🔧 [Warp Core](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/CORE-INDEX.md)
+-Warp Test
 
-- ⚙️ Warp Graphics
+-Warp Network
 
-- ⚠️ Warp Test
+-Warp Utility
 
-- ❌ Warp Network
-
-- ⚙️ Warp Utility
-
-### WARP-MODULE-CREATOR
-
-- ⚙️ Usage documentation
-
-### WARP-SERVER
-
-- ❌ Warp-Server Core
-
-### WARP-LOGGER
-
-- ❌ Warp-Logger Lookup
-
-PLANS: WARP-FRAMEWORK
+PLANS
 =====
 
-### WARP-GFX
-
-- ✔️ Deltatime 
-
-- ✔️ D2DX Implementation (Direct2D & DirectWrite)
-
-- ✔️ Intractable Controls
-
-  1) ✔️ Base Control
-  
-  2) ✔️ Button
-  
-  3) ✔️ List Box
-  
-  4) ✔️ List Box Item
-  
-  5) ✔️ Fixed Canvas
-  
-  6) ✔️ Label
-  
-  7) ✔️ Scroll View
-  
-  8) ✔️ Text Box
-  
-  9) ✔️ Progress Bar
-  
-  10) ✔️ Toggle Button
-  
-  11) ✔️ Check Box
-  
-  12) ✔️ Radio Button
-  
-  13) ✔️ Seek Bar
-  
-  14) ✔️ Image Box
-
-- ✔️ Graphical Extentions
-  
-  1) ✔️ Grid Component
-  
-  2) ✔️ Center Based Grid Component
-  
-  3) ✔️ Extended Border Component
-  
-- ✔️ Texture Support (All Formats)
-
-- ✔️ Render Double Buffering
-
-- ✔️ Control zIndex
-
-- ✔️ Window Transparency
-
-- ✔️ Gradient (Linear / Radial)
-
-- ✔️ Render Masking
-
-- ✔️ Child-Parent Relation between Controls 
-
-- ✔️ Theme System
-
-- ✔️ Audio Support ((Almost) All Formats)
-
-- ✔️ Custom 2D Space (Warp Space)
-
-### WARP-CORE 
-
-- ✔️ Event Registry
-
-- ✔️ Function Binding
-
-- ✔️ Event Binding
-
-- ✔️ Generator
-
-### WARP-ASYNC
-
-- ✔️ Concurrent Programming with WAsyncWorker
-
-- ✔️ Predefined animation formulae (Lerp, Smoothstep, etc...)
-
-- ✔️ Smooth Color Changing (Lerp)
-
-- ✔️ Smooth Color Changing Control Integration 
-
-### WARP-TEST
-
-- ✔️ Unit Testing base class (WIP)
-
-- ✔️ Logger class
-
-- ✔️ Unit Testing Assertions
-
-### WARP-NETWORK
-
-- 🛠 Socket Programming
-
-- ⚙️ Predefined socket types
-
-- ⚙️ Async Networking
-
-### WARP-UTILITY
-
-- ✔️ File IO Helper class 
-
-- ✔️ String Helper class 
-
-- ⚠️ Custom data format for local storage (.WCX(Warp Container Extended))
-
-- ⚠️ Custom ASSET Save / Load (.WAS(Warp Asset))
-
-- ❌ Vector Graphics (.WVF(Warp Vector File))
-
-
-PLANS: WARP-MODULE-CREATOR
-=====
-
-- ✔️ Done
-
-PLANS: WARP-SERVER
-=====
-
-- ✔️ Event Registry
-
-- ✔️ Socket Wrapper
-
-- ✔️ Socker Functionality
-
-- ⚙️ Async Networking
-
-- ⚙️ Standalone server Implementation
-
-- ⚙️ Multi Client support
-
-PLANS: WARP-LOGGER
-=====
-
-- ✔️ Colored messages
-
-- ⚙️ Framework Implementation
-
-- ⚙️ Log system Implementation
-
-#### LEGEND
-
-✔️ : Fully implemented and tested
-
-🛠 : Implemented, not tested
-
-🔧 : Currently working on
-
-⚙️ : Will be working on next
-
-⚠️ : Will be working on soon
-
-❌ : Will be one of the later features to add
-
-
-License
-=======
-
-For now there's no license file available to tell you what you can or can't do with this project.
-
-So for now, feel free to use it for any reason you want, and remember that there is absolutely no warranty!
-
-But keep in mind that when this goes to production stage I probably will write a custom license for it.
+Since the plan list got a little bigger than I originally expected, I decided it would be best if I 
+moved it to another MarkDown (MD) page, You can find it [Here](https://github.com/nirex0/Warp-Framework/blob/master/TODO.md)! 
 
 FRAMEWORK VIEW
 ==============
