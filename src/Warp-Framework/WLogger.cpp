@@ -149,6 +149,15 @@ void WLogger::Debug(std::wstring msg, std::wstring path, int logLevel)
 	file.close();
 }
 
+void WLogger::WLoggerFlush(std::wstring path)
+{
+	std::wstring initPath = path;
+	initPath += L"init.wcm";
+
+	WFile file;
+	file.WriteAllText(WString::ToNarrow(initPath), "");
+}
+
 void WLogger::WLoggerRun(std::wstring path)
 {
 	LPWSTR lpPath = (LPWSTR)path.c_str();
@@ -176,7 +185,7 @@ void WLogger::WLoggerPass(std::wstring path, std::wstring text)
 		return;
 	f0.close();
 
-	std::wstring logPath = L"tmpWlog.wlog";
+	std::wstring logPath = path + L"tmpWlog.wlog";
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -202,7 +211,7 @@ void WLogger::WLoggerInfo(std::wstring path, std::wstring text)
 		return;
 	f0.close();
 
-	std::wstring logPath = L"tmpWlog.wlog";
+	std::wstring logPath = path + L"tmpWlog.wlog";
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -228,7 +237,7 @@ void WLogger::WLoggerDebug(std::wstring path, std::wstring text)
 		return;
 	f0.close();
 
-	std::wstring logPath = L"tmpWlog.wlog";
+	std::wstring logPath = path + L"tmpWlog.wlog";
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -254,7 +263,7 @@ void WLogger::WLoggerMessage(std::wstring path, std::wstring text)
 		return;
 	f0.close();
 
-	std::wstring logPath = L"tmpWlog.wlog";
+	std::wstring logPath = path + L"tmpWlog.wlog";
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -280,7 +289,7 @@ void WLogger::WLoggerWarning(std::wstring path, std::wstring text)
 		return;
 	f0.close();
 
-	std::wstring logPath = L"tmpWlog.wlog";
+	std::wstring logPath = path + L"tmpWlog.wlog";
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -306,7 +315,7 @@ void WLogger::WLoggerTrace(std::wstring path, std::wstring text)
 		return;
 	f0.close();
 
-	std::wstring logPath = L"tmpWlog.wlog";
+	std::wstring logPath = path + L"tmpWlog.wlog";
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -332,7 +341,7 @@ void WLogger::WLoggerError(std::wstring path, std::wstring text)
 		return;
 	f0.close();
 
-	std::wstring logPath = L"tmpWlog.wlog";
+	std::wstring logPath = path + L"tmpWlog.wlog";
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -358,7 +367,7 @@ void WLogger::WLoggerFatal(std::wstring path, std::wstring text)
 		return;
 	f0.close();
 
-	std::wstring logPath = L"tmpWlog.wlog";
+	std::wstring logPath = path + L"tmpWlog.wlog";
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now);

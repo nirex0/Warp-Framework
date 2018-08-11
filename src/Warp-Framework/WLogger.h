@@ -18,6 +18,7 @@ public:
 	static void Information(std::wstring msg, std::wstring path, int logLevel);
 	static void Debug(std::wstring msg, std::wstring path, int logLevel);
 
+	static void WLoggerFlush(std::wstring path);
 	static void WLoggerRun(std::wstring path);
 	static void WLoggerPass(std::wstring path, std::wstring text);
 	static void WLoggerInfo(std::wstring path, std::wstring text);
