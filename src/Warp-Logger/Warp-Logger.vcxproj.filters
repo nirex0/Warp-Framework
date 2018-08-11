@@ -27,8 +27,8 @@
     <ClInclude Include="..\Warp-Framework\WString.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\Warp-Framework\WWin.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="WWin.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
