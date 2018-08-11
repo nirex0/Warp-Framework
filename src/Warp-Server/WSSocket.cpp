@@ -2,6 +2,7 @@
 
 #include "WSSocket.h"
 #include "WSSocketArgs.h"
+#include "WarpSock.h"
 #include <memory>
 
 int WSSocket::m_sockCount = 0;
@@ -22,7 +23,10 @@ WSSocket::WSSocket(std::string ip, int port, int bufferSize)
 	}
 
 	m_sockCount++;
-	m_sock = socket(AF_INET, SOCK_STREAM, 0);
+	m_sock = socket(IPV4, SOCK_STREAM, 0);
+
+	W_ULONG mode = 1;  
+	ioctlsocket(m_sock, FIONBIO, &mode);
 
 	m_AcceptReg = new WSRegistry();
 	m_BindReg = new WSRegistry();
@@ -63,9 +67,9 @@ W_INT WSSocket::Accept(int& outClientSize)
 W_INT WSSocket::Bind(void)
 {
 	sockaddr_in hint;
-	hint.sin_family = AF_INET;
+	hint.sin_family = IPV4;
 	hint.sin_port = htons(m_port);
-	inet_pton(AF_INET, m_ip.c_str(), &hint.sin_addr);
+	inet_pton(IPV4, m_ip.c_str(), &hint.sin_addr);
 
 	int retI = bind(m_sock, (sockaddr*)&hint, sizeof(hint));
 
@@ -78,9 +82,9 @@ W_INT WSSocket::Bind(void)
 W_INT WSSocket::Connect(void)
 {
 	sockaddr_in hint;
-	hint.sin_family = AF_INET;
+	hint.sin_family = IPV4;
 	hint.sin_port = htons(m_port);
-	inet_pton(AF_INET, m_ip.c_str(), &hint.sin_addr);
+	inet_pton(IPV4, m_ip.c_str(), &hint.sin_addr);
 
 	int connResult = connect(m_sock, (sockaddr*)&hint, sizeof(hint));
 	if (connResult == SOCKET_ERROR)
