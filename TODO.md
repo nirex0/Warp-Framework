@@ -167,9 +167,9 @@ PLANS: WARP-LOGGER
 
 - ✔️ Colored messages
 
-- ⚙️ Framework Implementation
+- ✔️ Framework Implementation
 
-- ⚙️ Log system Implementation
+- ✔️ Log system Implementation
 
 #### LEGEND
 
