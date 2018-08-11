@@ -1,7 +1,8 @@
+// © 2018 NIREX ALL RIGHTS RESERVED
+
 #include "WFile.h"
 #include "WString.h"
-
-#include <Windows.h>
+#include "WWin.h"
 
 HANDLE hConsole;
 
@@ -110,6 +111,12 @@ bool Parse(std::string message)
 	}
 }
 
+bool FileExists(const std::string& path)
+{
+	std::ifstream f(path.c_str());
+	return f.good();
+}
+
 auto main(int argc, char** argv) -> int
 {
 	// Console
@@ -118,25 +125,23 @@ auto main(int argc, char** argv) -> int
 
 	WFile logF;
 	logF.WriteAllText("tmpWlog.wlog", "");
-	std::vector<std::string>* currentCmd = new std::vector<std::string>();
-	
+
 	while (true)
-	{		
+	{
 		// Format: (std::string)time::(int)LEVEL::(std::string)msg
-		if (currentCmd->size() > 0)
+		if (FileExists("init.wcm"))
 		{
+			std::vector<std::string>* currentCmd = new std::vector<std::string>();
+			*currentCmd = logF.ReadAllLines("tmpWlog.wlog");
+			logF.WriteAllText("tmpWlog.wlog", "");
+			
 			for (int i = 0; i < currentCmd->size(); i++)
 			{
 				Parse(currentCmd->at(i));
 			}
 
-			logF.WriteAllText("tmpWlog.wlog", "");
 			delete currentCmd;
-			currentCmd = new std::vector<std::string>();
-		}
-		else
-		{
-			continue;
+			remove("init.wcm");
 		}
 	}
 
