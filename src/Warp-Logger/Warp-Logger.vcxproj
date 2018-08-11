@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\Warp-Framework\WFile.h" />
     <ClInclude Include="..\Warp-Framework\WString.h" />
-    <ClInclude Include="..\Warp-Framework\WWin.h" />
+    <ClInclude Include="WWin.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Warp-Framework\WFile.cpp" />
