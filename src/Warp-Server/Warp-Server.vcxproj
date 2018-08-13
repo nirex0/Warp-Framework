@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="WSNetworkAuxiliary.cpp" />
     <ClCompile Include="WSAsyncArgs.cpp" />
     <ClCompile Include="WSAsyncWorker.cpp" />
     <ClCompile Include="WSContainer.cpp" />
@@ -128,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarpSock.h" />
+    <ClInclude Include="WSNetworkAuxiliary.h" />
     <ClInclude Include="WSAsyncArgs.h" />
     <ClInclude Include="WSAsyncWorker.h" />
     <ClInclude Include="WSContainer.h" />
