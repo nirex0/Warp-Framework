@@ -13,6 +13,7 @@
 class WSSocket : public WSEntity
 {
 public:
+	WSSocket(void);
 	WSSocket(std::string ip, int port, int bufferSize);
 	~WSSocket(void);
 
@@ -24,6 +25,7 @@ public:
 	W_INT Send(char* inData, int& lengthTraBnsfer);
 
 	SOCKET Socket(void) const;
+	void Socket(SOCKET s);
 	WSADATA SocketData(void)const;
 
 	W_INT Port(void) const;

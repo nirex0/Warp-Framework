@@ -8,6 +8,13 @@
 int WSSocket::m_sockCount = 0;
 bool WSSocket::m_bIsStarted = false;
 
+WSSocket::WSSocket(void)
+	: m_ip("")
+	, m_port(0)
+	, m_bufferSize(0)
+{
+}
+
 WSSocket::WSSocket(std::string ip, int port, int bufferSize)
 	: m_ip(ip)
 	, m_port(port)
@@ -126,7 +133,7 @@ W_INT WSSocket::Receive(char* outData, int& lengthTransfer)
 	}
 	lengthTransfer = bytesReceived;
 	
-	for (size_t i = 0; i < bytesReceived; i++)
+	for (int i = 0; i < bytesReceived; i++)
 	{
 		m_cleanedData += m_recvBuffer[i];
 	}
@@ -164,6 +171,11 @@ W_INT WSSocket::Send(char* inData, int& lengthTransfer)
 SOCKET WSSocket::Socket(void) const
 {
 	return m_sock;
+}
+
+void WSSocket::Socket(SOCKET s)
+{
+	m_sock = s;
 }
 
 WSADATA WSSocket::SocketData(void) const
