@@ -123,11 +123,11 @@ PLANS: WARP-FRAMEWORK
 
 ### WARP-NETWORK
 
-- 🛠 Socket Programming
-
-- ⚙️ Predefined socket types
+- ✔️ Socket Programming
 
 - ⚙️ Async Networking
+
+- ⚙️ Client Implementation
 
 ### WARP-UTILITY
 
