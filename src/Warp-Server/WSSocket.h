@@ -41,13 +41,17 @@ private:
 	WSRegistry* m_ReceiveReg;
 	WSRegistry* m_SendReg;
 
-	W_INT m_port;
 	std::string m_ip;
-	std::string m_cleanedData;
+	W_INT m_port;
+
 	WSADATA m_data;
 	SOCKET m_sock;
-	char* m_buffer;
+
 	W_INT m_bufferSize;
+	char* m_recvBuffer;
+	char* m_sendBuffer;
+
+	std::string m_cleanedData;
 
 	static int m_sockCount;
 	static bool m_bIsStarted;

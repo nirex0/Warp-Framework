@@ -13,7 +13,8 @@ WSSocket::WSSocket(std::string ip, int port, int bufferSize)
 	, m_port(port)
 	, m_bufferSize(bufferSize)
 {
-	m_buffer = new char[m_bufferSize];
+	m_sendBuffer = new char[m_bufferSize];
+	m_recvBuffer = new char[m_bufferSize];
 	WORD version = MAKEWORD(2, 2);
 
 	if (!m_sockCount)
@@ -50,18 +51,18 @@ WSSocket::~WSSocket(void)
 
 W_INT WSSocket::Accept(int& outClientSize)
 {
-	SOCKET clientSock;
+	SOCKET newConnection;
 
 	sockaddr_in client;
 	int clientSize = sizeof(client);
 
-	clientSock = accept(m_sock, (sockaddr*)&client, &clientSize);
+	newConnection = accept(m_sock, (sockaddr*)&client, &clientSize);
 	outClientSize = clientSize;
 	
-	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(clientSock, nullptr, 0));
+	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(newConnection, nullptr, 0));
 	m_AcceptReg->Run(this, args.get());
-
-	return (clientSock == INVALID_SOCKET);
+	
+	return (newConnection == INVALID_SOCKET);
 }
 
 W_INT WSSocket::Bind(void)
@@ -127,10 +128,10 @@ W_INT WSSocket::Receive(char* outData, int& lengthTransfer)
 	
 	for (size_t i = 0; i < bytesReceived; i++)
 	{
-		m_cleanedData += m_buffer[i];
+		m_cleanedData += m_recvBuffer[i];
 	}
 
-	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(m_sock, m_buffer, bytesReceived));
+	std::unique_ptr<WSSocketArgs> args = std::make_unique<WSSocketArgs>(WSSocketArgs(m_sock, m_recvBuffer, bytesReceived));
 	m_ReceiveReg->Run(this, args.get());
 
 	return 0;
@@ -141,10 +142,12 @@ W_INT WSSocket::Send(char* inData, int& lengthTransfer)
 	int total = 0;
 	int bytesleft = lengthTransfer;
 	int tmp;
+	
+	m_sendBuffer = inData;
 
 	while (total < lengthTransfer)
 	{
-		tmp = send(m_sock, inData + total, bytesleft, 0);
+		tmp = send(m_sock, m_sendBuffer + total, bytesleft, 0);
 		if (tmp == -1) { break; }
 		total += tmp;
 		bytesleft -= tmp;
