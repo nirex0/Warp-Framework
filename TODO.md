@@ -156,11 +156,11 @@ PLANS: WARP-SERVER
 
 - ✔️ Socker Functionality
 
-- ⚙️ Async Networking
+- ✔️ Async Networking (Non-Blocking)
 
-- ⚙️ Standalone server Implementation
+- ✔️ Standalone server Implementation
 
-- ⚙️ Multi Client support
+- ✔️ Multi Client support
 
 PLANS: WARP-LOGGER
 =====
