@@ -3,6 +3,9 @@
 #ifndef _WS_WIN_H_
 #define _WS_WIN_H_
 
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+
 #undef WINVER 
 #define WINVER 0x0501
 
