@@ -3,6 +3,7 @@
 #ifndef _WS_WARP_SOCK_H_
 #define _WS_WARP_SOCK_H_
 
+#include <winsock2.h>
 #include <WS2tcpip.h>
 #pragma comment (lib, "ws2_32.lib")
 
