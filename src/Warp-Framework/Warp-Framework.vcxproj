@@ -134,6 +134,9 @@
     <ClInclude Include="WScrollView.h" />
     <ClInclude Include="WSeekBar.h" />
     <ClInclude Include="WSeekBarValueChangeArgs.h" />
+    <ClInclude Include="WSocket.h" />
+    <ClInclude Include="WNetwork.h" />
+    <ClInclude Include="WSocketArgs.h" />
     <ClInclude Include="WString.h" />
     <ClInclude Include="WTestAuxiliary.h" />
     <ClInclude Include="WTestRegistry.h" />
@@ -240,6 +243,8 @@
     <ClCompile Include="WSeekBarValueChangeArgs.cpp" />
     <ClCompile Include="WSmoothStep.cpp" />
     <ClCompile Include="WSmoothStepArgs.cpp" />
+    <ClCompile Include="WSocket.cpp" />
+    <ClCompile Include="WSocketArgs.cpp" />
     <ClCompile Include="WString.cpp" />
     <ClCompile Include="WTestAuxiliary.cpp" />
     <ClCompile Include="WTestRegistry.cpp" />
