@@ -429,6 +429,15 @@
     <ClInclude Include="WString.h">
       <Filter>Header Files\WARP-UTILITY\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="WSocket.h">
+      <Filter>Header Files\WARP-NETWORK</Filter>
+    </ClInclude>
+    <ClInclude Include="WNetwork.h">
+      <Filter>Header Files\WARP-NETWORK</Filter>
+    </ClInclude>
+    <ClInclude Include="WSocketArgs.h">
+      <Filter>Header Files\WARP-NETWORK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -592,6 +601,12 @@
     </ClCompile>
     <ClCompile Include="WString.cpp">
       <Filter>Source Files\WARP-UTILITY\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="WSocket.cpp">
+      <Filter>Source Files\WARP-NETWORK</Filter>
+    </ClCompile>
+    <ClCompile Include="WSocketArgs.cpp">
+      <Filter>Source Files\WARP-NETWORK</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
