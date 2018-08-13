@@ -135,13 +135,6 @@ PLANS: WARP-FRAMEWORK
 
 - ✔️ String Helper class 
 
-- ⚠️ Custom data format for local storage (.WCX(Warp Container Extended))
-
-- ⚠️ Custom ASSET Save / Load (.WAS(Warp Asset))
-
-- ❌ Vector Graphics (.WVF(Warp Vector File))
-
-
 PLANS: WARP-MODULE-CREATOR
 =====
 
