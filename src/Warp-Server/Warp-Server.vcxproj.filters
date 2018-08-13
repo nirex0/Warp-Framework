@@ -84,6 +84,9 @@
     <ClCompile Include="WSSocketArgs.cpp">
       <Filter>Source Files\Server-Network</Filter>
     </ClCompile>
+    <ClCompile Include="WSNetworkAuxiliary.cpp">
+      <Filter>Source Files\Server-Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WarpSock.h">
@@ -123,6 +126,9 @@
       <Filter>Header Files\Server-Async</Filter>
     </ClInclude>
     <ClInclude Include="WSSocketArgs.h">
+      <Filter>Header Files\Server-Network</Filter>
+    </ClInclude>
+    <ClInclude Include="WSNetworkAuxiliary.h">
       <Filter>Header Files\Server-Network</Filter>
     </ClInclude>
   </ItemGroup>
