@@ -1,6 +1,9 @@
 # PLANS
 
-### WARP-FRAMEWORK
+DOCUMENTATION
+=============
+
+### WARP-FRAMEWORK 
 
 - ✔️ [Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
 
@@ -135,13 +138,6 @@ PLANS: WARP-FRAMEWORK
 
 - ✔️ String Helper class 
 
-- ⚠️ Custom data format for local storage (.WCX(Warp Container Extended))
-
-- ⚠️ Custom ASSET Save / Load (.WAS(Warp Asset))
-
-- ❌ Vector Graphics (.WVF(Warp Vector File))
-
-
 PLANS: WARP-MODULE-CREATOR
 =====
 
@@ -156,11 +152,11 @@ PLANS: WARP-SERVER
 
 - ✔️ Socker Functionality
 
-- ⚙️ Async Networking
+- ✔️ Async Networking (Non-Blocking)
 
-- ⚙️ Standalone server Implementation
+- ✔️ Standalone server Implementation
 
-- ⚙️ Multi Client support
+- ✔️ Multi Client support
 
 PLANS: WARP-LOGGER
 =====
