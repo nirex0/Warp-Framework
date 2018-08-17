@@ -160,7 +160,7 @@ void WLogger::WLoggerFlush(std::wstring path)
 
 void WLogger::WLoggerRun(std::wstring path)
 {
-	LPWSTR lpPath = (LPWSTR)path.c_str();
+	LPWSTR lpszPath = (LPWSTR)path.c_str();
 
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;
@@ -168,8 +168,8 @@ void WLogger::WLoggerRun(std::wstring path)
 	ZeroMemory(&si, sizeof(si));
 	si.cb = sizeof(si);
 	ZeroMemory(&pi, sizeof(pi));
-
-	CreateProcess(lpPath, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+	
+	CreateProcess(lpszPath, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
 
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread);
