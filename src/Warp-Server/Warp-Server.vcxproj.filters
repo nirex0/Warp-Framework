@@ -43,12 +43,6 @@
     <Filter Include="Source Files\Server-Core\Core">
       <UniqueIdentifier>{9f030732-2b2f-4775-af3b-417f22590d1e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Server-Async">
-      <UniqueIdentifier>{63f1f4b1-35ea-4177-b0ef-b9492ab777fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Server-Async">
-      <UniqueIdentifier>{f1fc43b3-429c-4fbc-a539-23753ec92264}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Server-Network">
       <UniqueIdentifier>{8fa9167c-7710-4d3d-8d43-81b3dc000228}</UniqueIdentifier>
     </Filter>
@@ -71,12 +65,6 @@
     </ClCompile>
     <ClCompile Include="WSEventArgs.cpp">
       <Filter>Source Files\Server-Core\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="WSAsyncArgs.cpp">
-      <Filter>Source Files\Server-Async</Filter>
-    </ClCompile>
-    <ClCompile Include="WSAsyncWorker.cpp">
-      <Filter>Source Files\Server-Async</Filter>
     </ClCompile>
     <ClCompile Include="WSSocket.cpp">
       <Filter>Source Files\Server-Network</Filter>
@@ -118,12 +106,6 @@
     </ClInclude>
     <ClInclude Include="WSRegistry.h">
       <Filter>Header Files\Server-Core\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="WSAsyncWorker.h">
-      <Filter>Header Files\Server-Async</Filter>
-    </ClInclude>
-    <ClInclude Include="WSAsyncArgs.h">
-      <Filter>Header Files\Server-Async</Filter>
     </ClInclude>
     <ClInclude Include="WSSocketArgs.h">
       <Filter>Header Files\Server-Network</Filter>
