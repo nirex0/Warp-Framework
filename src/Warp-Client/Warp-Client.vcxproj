@@ -115,6 +115,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="WarpSock.h" />
+    <ClInclude Include="WCContainer.h" />
+    <ClInclude Include="WCDefines.h" />
+    <ClInclude Include="WCEntity.h" />
+    <ClInclude Include="WCEntry.h" />
+    <ClInclude Include="WCEventArgs.h" />
+    <ClInclude Include="WCNetworkAuxiliary.h" />
+    <ClInclude Include="WCRegistry.h" />
+    <ClInclude Include="WCSock.h" />
+    <ClInclude Include="WCSocket.h" />
+    <ClInclude Include="WCSocketArgs.h" />
+    <ClInclude Include="WCWin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WCContainer.cpp" />
+    <ClCompile Include="WCEntity.cpp" />
+    <ClCompile Include="WCEntry.cpp" />
+    <ClCompile Include="WCEventArgs.cpp" />
+    <ClCompile Include="WCMain.cpp" />
+    <ClCompile Include="WCNetworkAuxiliary.cpp" />
+    <ClCompile Include="WCRegistry.cpp" />
+    <ClCompile Include="WCSocket.cpp" />
+    <ClCompile Include="WCSocketArgs.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
