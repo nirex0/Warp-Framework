@@ -102,12 +102,4 @@ typedef union					W_QWORD_EX
 	} Bytes;
 }W_QWORD_EX;
 
-typedef enum WMouseKey
-{
-	MK_INVALID,
-	MK_RIGHT,
-	MK_LEFT,
-	MK_MIDDLE
-}WMouseKey;
-
 #endif // !_WS_DEFINES_H_
