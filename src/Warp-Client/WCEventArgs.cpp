@@ -1,12 +1,3 @@
+// © 2018 NIREX ALL RIGHTS RESERVED
+
 #include "WCEventArgs.h"
-
-
-
-WCEventArgs::WCEventArgs()
-{
-}
-
-
-WCEventArgs::~WCEventArgs()
-{
-}
