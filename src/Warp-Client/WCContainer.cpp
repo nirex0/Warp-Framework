@@ -1,12 +1,14 @@
+// © 2018 NIREX ALL RIGHTS RESERVED
+
 #include "WCContainer.h"
 
-
-
-WCContainer::WCContainer()
+WCEntry* WCContainer::App(void)
 {
+	return EntryClient;
 }
 
-
-WCContainer::~WCContainer()
+WCEntry* WCContainer::App(WCEntry* intake)
 {
+	EntryClient = intake;
+	return EntryClient;
 }
