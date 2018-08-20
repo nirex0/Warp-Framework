@@ -11,23 +11,27 @@ DOCUMENTATION
 
 - ⚙️ Warp Graphics
 
-- ⚠️ Warp Test
+- ⚙️ Warp Test
 
-- ❌ Warp Network
+- ⚙️ Warp Network
 
 - ⚙️ Warp Utility
 
 ### WARP-MODULE-CREATOR
 
-- ⚙️ Usage documentation
+- ⚙️ WMC Lookup
 
 ### WARP-SERVER
 
-- ❌ Warp-Server Core
+- ⚙️ Warp-Server Lookup
+
+### WARP-CLIENT
+
+- ⚙️ Warp-Client Lookup
 
 ### WARP-LOGGER
 
-- ❌ Warp-Logger Lookup
+- ⚙️ Warp-Logger Lookup
 
 PLANS: WARP-FRAMEWORK
 =====
@@ -128,9 +132,7 @@ PLANS: WARP-FRAMEWORK
 
 - ✔️ Socket Programming
 
-- ⚙️ Async Networking
-
-- ⚙️ Client Implementation
+- ✔️ Async Networking
 
 ### WARP-UTILITY
 
@@ -157,6 +159,19 @@ PLANS: WARP-SERVER
 - ✔️ Standalone server Implementation
 
 - ✔️ Multi Client support
+
+PLANS: WARP-CLIENT
+=====
+
+- ✔️ Event Registry
+
+- ✔️ Socket Wrapper
+
+- ✔️ Socker Functionality
+
+- 🔧 Async Networking (Non-Blocking)
+
+- 🔧 Standalone client Implementation
 
 PLANS: WARP-LOGGER
 =====
