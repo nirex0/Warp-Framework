@@ -1,12 +1,13 @@
+// © 2018 NIREX ALL RIGHTS RESERVED
+
 #include "WCEntry.h"
+#include "WCContainer.h"
+#include "WCSocket.h"
 
-
-
-WCEntry::WCEntry()
+void WCEntry::Start(void)
 {
 }
 
-
-WCEntry::~WCEntry()
+void WCEntry::Update(void)
 {
 }

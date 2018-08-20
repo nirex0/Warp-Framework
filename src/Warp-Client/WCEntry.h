@@ -1,8 +1,14 @@
-#pragma once
+// © 2018 NIREX ALL RIGHTS RESERVED
+
+#ifndef _WC_ENTRY_H_
+#define _WC_ENTRY_H_
+
 class WCEntry
 {
 public:
-	WCEntry();
-	~WCEntry();
+	void Start(void);
+	void Update(void);
 };
+
+#endif // !_WC_ENTRY_H_
 
