@@ -1,9 +1,5 @@
 # Warp-Framework (WIP)
-"A framework to create powerful and rich GUI C++ Single-Window applications using Direct2D API"
-
-Yes I know what I've written, and Yes I know that this is not what it's said to be yet, but that's what the (WIP) tag is there for, is it not?
-
-Anyhow, here's a list of what I aim to do with this framework.
+Welcome to warp, a framework to create powerful and rich GUI C++ Single-Window applications using Direct2D API
 
 STATUS
 ======
