@@ -13,7 +13,7 @@ STATUS
 DOCUMENTATION
 =============
 
-The documentation is finally being worked on, you can find in in the [docs](/docs) folder.
+The documentation is finally being worked on, you can find it in the [docs](/docs) folder.
 
 - [Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
 
