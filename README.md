@@ -41,7 +41,7 @@ FRAMEWORK VIEW
 CONTACT
 =======
 
-Nirex.0@Gmail.Com
+Nirex.0@gmail.com
 
 COPYRIGHT INFO
 ==============
