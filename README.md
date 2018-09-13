@@ -27,7 +27,7 @@ PLANS
 =====
 
 Since the plan list got a little bigger than I originally expected, I decided it would be best if I 
-moved it to another MarkDown (MD) page, You can find it [Here](https://github.com/nirex0/Warp-Framework/blob/master/TODO.md)! 
+moved it to another MarkDown (MD) page; You can find it [Here](https://github.com/nirex0/Warp-Framework/blob/master/TODO.md)! 
 
 FRAMEWORK VIEW
 ==============
