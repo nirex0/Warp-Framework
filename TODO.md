@@ -169,9 +169,9 @@ PLANS: WARP-CLIENT
 
 - ✔️ Socker Functionality
 
-- 🔧 Async Networking (Non-Blocking)
+- ✔️ Async Networking (Non-Blocking)
 
-- 🔧 Standalone client Implementation
+- ✔️ Standalone client Implementation
 
 PLANS: WARP-LOGGER
 =====
