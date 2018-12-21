@@ -1,9 +1,5 @@
 # Warp-Framework (WIP)
-"A framework to create powerful and rich GUI C++ Single-Window applications using Direct2D API"
-
-Yes I know what I've written, and Yes I know that this is not what it's said to be yet, but that's what the (WIP) tag is there for, is it not?
-
-Anyhow, here's a list of what I aim to do with this framework.
+Welcome to warp, a framework to create powerful and rich GUI C++ Single-Window applications using Direct2D API
 
 STATUS
 ======
@@ -13,7 +9,7 @@ STATUS
 DOCUMENTATION
 =============
 
-The documentation is finally being worked on, you can find in in the [docs](/docs) folder.
+The documentation is finally being worked on, you can find it in the [docs](/docs) folder.
 
 - [Warp Async](https://github.com/nirex0/Warp-Framework/blob/master/docs/documentation/AS-INDEX.md) 
 
@@ -31,7 +27,7 @@ PLANS
 =====
 
 Since the plan list got a little bigger than I originally expected, I decided it would be best if I 
-moved it to another MarkDown (MD) page, You can find it [Here](https://github.com/nirex0/Warp-Framework/blob/master/TODO.md)! 
+moved it to another MarkDown (MD) page; You can find it [Here](https://github.com/nirex0/Warp-Framework/blob/master/TODO.md)! 
 
 FRAMEWORK VIEW
 ==============
@@ -45,7 +41,7 @@ FRAMEWORK VIEW
 CONTACT
 =======
 
-Nirex.0[AT]Gmail[DOT]Com
+Nirex.0@gmail.com
 
 COPYRIGHT INFO
 ==============

@@ -119,7 +119,7 @@ Warp-Framework currently has four async component classes which help warp do wha
 ###### Snippet:
 ```cpp
 int x = 10;
-while(x < 0)
+while(x > 0)
     x--;
 ```
 
