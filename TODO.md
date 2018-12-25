@@ -36,8 +36,6 @@ DOCUMENTATION
 PLANS: WARP-FRAMEWORK
 =====
 
-- ⚙️ Put Everything in the right folder 
-
 ### WARP-GFX
 
 - ✔️ Deltatime 
