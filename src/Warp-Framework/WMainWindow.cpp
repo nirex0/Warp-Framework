@@ -231,7 +231,7 @@ void WMainWindow::MessageLoop(void)
 	// Main Loop
 	while (msg.message != WM_QUIT)
 	{
-		if (PeekMessage(&msg, nullptr, {}, {}, PM_REMOVE))
+		if (PeekMessage(&msg, WContainer::Handle(), {}, {}, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
