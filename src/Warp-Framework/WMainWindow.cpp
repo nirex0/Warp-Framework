@@ -89,6 +89,7 @@ W_INT WARP_ENTRY wWinMain(
 	MainWnd = new WMainWindow(hInstance, WindowTitle, ApplicationName);
 	MainWnd->Initialize();
 	MainWnd->MessageLoop();
+	delete MainWnd;
 
 	return 0;
 }
