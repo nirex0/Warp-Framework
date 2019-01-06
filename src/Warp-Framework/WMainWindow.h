@@ -36,6 +36,6 @@ private:
 	WGraphics* m_graphics;
 };
 
-WMainWindow* MainWnd;
+static WMainWindow* MainWnd;
 
 #endif // !_W_MAIN_WINDOW_H_
