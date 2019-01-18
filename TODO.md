@@ -21,14 +21,6 @@ DOCUMENTATION
 
 - ⚙️ WMC Lookup
 
-### WARP-SERVER
-
-- ⚙️ Warp-Server Lookup
-
-### WARP-CLIENT
-
-- ⚙️ Warp-Client Lookup
-
 ### WARP-LOGGER
 
 - ⚙️ Warp-Logger Lookup
@@ -144,34 +136,6 @@ PLANS: WARP-MODULE-CREATOR
 =====
 
 - ✔️ Done
-
-PLANS: WARP-SERVER
-=====
-
-- ✔️ Event Registry
-
-- ✔️ Socket Wrapper
-
-- ✔️ Socker Functionality
-
-- ✔️ Async Networking (Non-Blocking)
-
-- ✔️ Standalone server Implementation
-
-- ✔️ Multi Client support
-
-PLANS: WARP-CLIENT
-=====
-
-- ✔️ Event Registry
-
-- ✔️ Socket Wrapper
-
-- ✔️ Socker Functionality
-
-- ✔️ Async Networking (Non-Blocking)
-
-- ✔️ Standalone client Implementation
 
 PLANS: WARP-LOGGER
 =====
