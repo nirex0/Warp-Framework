@@ -13,38 +13,54 @@
 #include <thread>
 #include <future>
 
+//-->DOC_CLASS
+// A class to perform Async tasks that require iteration
 class WAsyncWorker : public WEntity
 {
 public:
-	WAsyncWorker();
-	~WAsyncWorker();
+	WAsyncWorker(void);
+	~WAsyncWorker(void);
 
-// Getters
 	WRegistry* WorkRegistry(void) const;
 	W_LONG Delay(void) const;
 
-// Setters
 	WRegistry* WorkRegistry(WRegistry* intake);
 	W_LONG Delay(W_LONG intake);
 
-// Functions
+	//-->DOC_FUNC
+	// Begin Async Worker (no safeguards)
 	void RunWorkerAsync(void);
-	void RunWorkerAsyncSafe(void);
-	bool IsRunning(void);
-	void Stop(void);
 
+	//-->DOC_FUNC
+	// Begin Async Worker (with safeguards)
+	void RunWorkerAsyncSafe(void);
+
+	//-->DOC_FUNC
+	// Function to determine whether or not the Worker is working
+	// Returns: True if working, False otherwise. 
+	bool IsRunning(void);
+
+	//-->DOC_FUNC
+	// Stop Async Worker if it's working
+	void Stop(void);
 
 private:
 	void WorkerWork(void);
 	bool WorkThread(std::thread& out);
 
 private:
+	//-->DOC_MEMBER
+	// Delay Between each epoch
 	W_LONG m_delay;
+
 	std::thread thr;
 	std::mutex m_MutexLock;
 
 	bool m_stop;
 	bool m_isRunning;
+
+	//-->DOC_MEMBER
+	// Function registry that is called on each Tick
 	WRegistry* m_WorkRegistry;
 };
 
