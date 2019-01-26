@@ -1,17 +1,17 @@
 **CLASSES:**
 ============
-### **CLASS**: WColorTransform
+### **CLASS**: WLerp
 
-``` class WColorTransform : public WEntity ```
+``` class WLerp : public WEntity ```
 
-##### **Description:** A Class for performing a smooth Linear Interpolation (LERP) color transformation between two colors
+##### **Description:** A Class for performing a smooth Linear Interpolation (LERP) transformation between two numbers
 
 ----------
 **FUNCTIONS & METHODS:**
 ========================
-### **FUNCTION**: WColorTransform
+### **FUNCTION**: WLerp
 
-``` WColorTransform(W_COLOR From, W_COLOR To, W_FLOAT Alpha, W_LONG Delay) ```
+``` WLerp(W_FLOAT from, W_FLOAT to, W_FLOAT alpha, W_LONG delay = 1) ```
 
  From: color value to begin with
 
@@ -21,7 +21,7 @@
 
  Delay: Delay between each LERP epoch
 
-##### **Description:** Initialize all the required values to perform a color transformation
+##### **Description:** Initialize all the required values to perform a LERP transformation
 
 ### **FUNCTION**: IsRunning
 
@@ -58,39 +58,39 @@
 
 ##### **Description:** Delay Between each epoch
 
+### **MEMBER**: m_value
+
+``` W_FLOAT m_value ```
+
+##### **Description:** Current Value of the LERP
+
+### **MEMBER**: m_from
+
+``` W_FLOAT m_from ```
+
+##### **Description:** Value to begin with
+
+### **MEMBER**: m_to
+
+``` W_FLOAT m_to ```
+
+##### **Description:** Target value to get close to
+
 ### **MEMBER**: m_alpha
 
 ``` W_FLOAT m_alpha ```
 
 ##### **Description:** Alpha Value of LERP
 
-### **MEMBER**: m_value
+### **MEMBER**: m_LerpTickRegistry
 
-``` W_COLOR m_value ```
-
-##### **Description:** Current Value of the LERP
-
-### **MEMBER**: m_from
-
-``` W_COLOR m_from ```
-
-##### **Description:** Value to begin with
-
-### **MEMBER**: m_to
-
-``` W_COLOR m_to ```
-
-##### **Description:** Target value to get close to
-
-### **MEMBER**: m_CTTickRegistry
-
-``` WRegistry* m_CTTickRegistry ```
+``` WRegistry* m_LerpTickRegistry ```
 
 ##### **Description:** Function registry that is called on each Tick
 
-### **MEMBER**: m_CTDoneRegistry
+### **MEMBER**: m_LerpDoneRegistry
 
-``` WRegistry* m_CTDoneRegistry ```
+``` WRegistry* m_LerpDoneRegistry ```
 
 ##### **Description:** Function registry that is called when transformation is finished
 

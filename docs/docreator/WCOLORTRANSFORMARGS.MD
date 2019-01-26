@@ -1,6 +1,5 @@
 **CLASSES:**
 ============
-----------
 ### **CLASS**: WColorTransformArgs
 
 ``` class WColorTransformArgs : public WEventArgs ```
@@ -10,7 +9,6 @@
 ----------
 **FUNCTIONS & METHODS:**
 ========================
-----------
 ### **FUNCTION**: WColorTransformArgs
 
 ``` WColorTransformArgs(W_COLOR col) ```
@@ -28,7 +26,6 @@
 ----------
 **MEMBERS:**
 ============
-----------
 ### **MEMBER**: W_COLOR	m_Value
 
 ``` W_COLOR	m_Value ```
