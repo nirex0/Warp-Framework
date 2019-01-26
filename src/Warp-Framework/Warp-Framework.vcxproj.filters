@@ -210,9 +210,6 @@
     <ClInclude Include="WDefines.h">
       <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
-    <ClInclude Include="WWin.h">
-      <Filter>Header Files\WARP-CORE\System</Filter>
-    </ClInclude>
     <ClInclude Include="WMath.h">
       <Filter>Header Files\WARP-CORE\Math</Filter>
     </ClInclude>
@@ -437,6 +434,9 @@
     </ClInclude>
     <ClInclude Include="WSocketArgs.h">
       <Filter>Header Files\WARP-NETWORK</Filter>
+    </ClInclude>
+    <ClInclude Include="WWin.h">
+      <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
