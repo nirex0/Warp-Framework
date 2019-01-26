@@ -5,6 +5,8 @@
 
 #include "WEventArgs.h"
 
+//-->DOC_CLASS
+// Empty Argument Class for WAsyncArgs
 class WAsyncArgs : public WEventArgs
 {
 };
