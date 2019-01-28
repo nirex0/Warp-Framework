@@ -5,6 +5,8 @@
 
 #include "WGraphics.h"
 
+//-->DOC_CLASS
+// A Container class that allows access to a set of global static graphics related variables throughout the framework
 class WGraphicsContainer final
 {
 public:
@@ -15,7 +17,13 @@ public:
 	static D2D1_RENDER_TARGET_TYPE RenderMethod(D2D1_RENDER_TARGET_TYPE intake);
 
 private:
+	//-->DOC_MEMBER
+	//Pointer to the main WGraphics object
 	static WGraphics* gfx;
+
+	//-->DOC_MEMBER
+	//Pointer to the main Direct2D Render Target type
+	//This can be Hardware (GPU) or Software (CPU)
 	static D2D1_RENDER_TARGET_TYPE main_rttype;
 };
 
