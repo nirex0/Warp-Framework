@@ -8,6 +8,8 @@
 #include "WGeneratorArgs.h"
 
 template <typename T>
+//-->DOC_CLASS
+// Class that represents a python-like generator (Beta) (MIGHT BE REPLACED / DELETED)
 class WGenerator : public WEntity
 {
 public:
@@ -21,6 +23,8 @@ public:
 		delete m_yield;
 	}
 
+	//-->DOC_FUNC
+	// This method is the same as Yield in python generator
 	void Generate(T in = {})
 	{
 		WGeneratorArgs<T>* args = new WGeneratorArgs<T>(m_iterationCount, in);
