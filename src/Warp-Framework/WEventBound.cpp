@@ -3,11 +3,11 @@
 #include "WEventBound.h"
 #include "WContainer.h"
 
-WEventBound::WEventBound()
+WEventBound::WEventBound(void)
 {
 }
 
-WEventBound::~WEventBound()
+WEventBound::~WEventBound(void)
 {
 }
 
