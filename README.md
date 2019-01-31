@@ -1,4 +1,4 @@
-# Warp-Framework (WIP)
+# Warp-Framework (Beta)
 Welcome to warp, a framework to create powerful and rich GUI C++ Single-Window applications using Direct2D API
 
 STATUS
