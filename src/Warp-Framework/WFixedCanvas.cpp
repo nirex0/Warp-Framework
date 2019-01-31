@@ -1,4 +1,4 @@
-// © 2018 NIREX ALL RIGHTS RESERVED
+// © 2019 NIREX ALL RIGHTS RESERVED
 
 #include "WFixedCanvas.h"
 #include "WControlHandler.h"
