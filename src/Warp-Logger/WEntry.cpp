@@ -109,6 +109,7 @@ bool Parse(std::string message)
 	default:
 		break;
 	}
+	return 0;
 }
 
 bool FileExists(const std::string& path)
