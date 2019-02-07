@@ -5,6 +5,7 @@
 
 #include "WEntity.h"
 
+//-->DOC_CLASS
 // The base class for EventArgs
 class WEventArgs : public WEntity
 {
