@@ -42,7 +42,6 @@ private:
 	// The boolean of the function
 	bool m_binding;
 
-
 	//-->DOC_MEMBER
 	// The annex of the function
 	Annex* m_annex;

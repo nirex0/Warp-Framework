@@ -2,6 +2,10 @@
 
 #include "WUniqueRegister.h"
 
+WUniqueRegister::WUniqueRegister(void)
+{
+}
+
 WUniqueRegister::~WUniqueRegister(void)
 {
 }

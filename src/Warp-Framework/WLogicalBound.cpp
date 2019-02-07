@@ -2,11 +2,11 @@
 
 #include "WLogicalBound.h"
 
-WLogicalBound::WLogicalBound()
+WLogicalBound::WLogicalBound(void)
 {
 }
 
-WLogicalBound::~WLogicalBound()
+WLogicalBound::~WLogicalBound(void)
 {
 }
 

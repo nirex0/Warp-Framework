@@ -2,7 +2,7 @@
 
 #include "WRegistry.h"
 
-WRegistry::WRegistry()
+WRegistry::WRegistry(void)
 	: m_count(0)
 {
 }
