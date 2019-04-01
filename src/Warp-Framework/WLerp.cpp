@@ -147,11 +147,11 @@ void WLerp::WorkerWork(void)
 		std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
 		m_value = m_value + (m_to - m_value)* m_alpha;
 
-		std::unique_ptr<WLerpArgs> lerpArgsTick = std::make_unique<WLerpArgs>(m_value);
+		std::unique_ptr<WLerpArgs> lerpArgsTick = std::make_unique<WLerpArgs>(new WLerpArgs(m_value));
 		m_LerpTickRegistry->Run(this, lerpArgsTick.get());
 	}
 	m_isRunning = false;
-	std::unique_ptr<WLerpArgs> lerpArgsDone = std::make_unique<WLerpArgs>(m_to);
+	std::unique_ptr<WLerpArgs> lerpArgsDone = std::make_unique<WLerpArgs>(new WLerpArgs(m_to));
 	m_LerpDoneRegistry->Run(this, lerpArgsDone.get());
 }
 
