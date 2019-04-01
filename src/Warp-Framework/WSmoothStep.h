@@ -13,6 +13,7 @@
 #include <mutex>
 #include <thread>
 #include <future>
+#include <memory>
 
 //-->DOC_CLASS
 // A Class for performing a smooth step transformation between two numbers

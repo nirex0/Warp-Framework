@@ -133,12 +133,12 @@ void WSmoothStep::WorkerWork(void)
 
 		m_value = smoothstep(m_from, m_to, m_value);
 
-		WSmoothStepArgs* SSArgsTick = new WSmoothStepArgs(m_value);
-		m_SmoothStepTickRegistry->Run(this, SSArgsTick);
+		std::unique_ptr<WSmoothStepArgs> SSArgsTick = std::make_unique<WSmoothStepArgs>(m_value);
+		m_SmoothStepTickRegistry->Run(this, SSArgsTick.get());
 	}
 	m_isRunning = false;
-	WSmoothStepArgs* SSArgsDone = new WSmoothStepArgs(m_to);
-	m_SmoothStepDoneRegistry->Run(this, SSArgsDone);
+	std::unique_ptr<WSmoothStepArgs> SSArgsDone = std::make_unique<WSmoothStepArgs>(m_to);
+	m_SmoothStepDoneRegistry->Run(this, SSArgsDone.get());
 }
 
 bool WSmoothStep::WorkThread(std::thread & out)
