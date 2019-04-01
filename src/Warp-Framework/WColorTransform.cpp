@@ -153,11 +153,11 @@ void WColorTransform::WorkerWork(void)
 		m_value.b = m_value.b + (m_to.b - m_value.b)* m_alpha;
 		m_value.a = m_value.a + (m_to.a - m_value.a)* m_alpha;
 
-		std::unique_ptr<WColorTransformArgs> CTArgsTick = std::make_unique<WColorTransformArgs>(m_value);
+		std::unique_ptr<WColorTransformArgs> CTArgsTick = std::make_unique<WColorTransformArgs>(new WColorTransformArgs(m_value));
 		m_CTTickRegistry->Run(this, CTArgsTick.get());
 	}
 	m_isRunning = false;
-	std::unique_ptr<WColorTransformArgs> CTArgsDone = std::make_unique<WColorTransformArgs>(m_to);
+	std::unique_ptr<WColorTransformArgs> CTArgsDone = std::make_unique<WColorTransformArgs>(new WColorTransformArgs(m_to));
 	m_CTDoneRegistry->Run(this, CTArgsDone.get());
 }
 
