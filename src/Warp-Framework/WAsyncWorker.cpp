@@ -71,8 +71,8 @@ void WAsyncWorker::WorkerWork(void)
 		std::this_thread::sleep_for(std::chrono::milliseconds(m_delay));
 		m_isRunning = true;
 		std::lock_guard<std::mutex> lock(m_MutexLock);
-		WAsyncArgs* args = new WAsyncArgs();
-		m_WorkRegistry->Run(this, args);
+		std::unique_ptr<WAsyncArgs> args = std::make_unique<WAsyncArgs>();
+		m_WorkRegistry->Run(this, args.get());
 	}
 	m_stop = false;
 	m_isRunning = false;

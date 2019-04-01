@@ -12,6 +12,7 @@
 #include <mutex>
 #include <thread>
 #include <future>
+#include <memory>
 
 //-->DOC_CLASS
 // A class to perform Async tasks that require iteration
