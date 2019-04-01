@@ -133,11 +133,11 @@ void WSmoothStep::WorkerWork(void)
 
 		m_value = smoothstep(m_from, m_to, m_value);
 
-		std::unique_ptr<WSmoothStepArgs> SSArgsTick = std::make_unique<WSmoothStepArgs>(new WSmoothStepArgs(m_value));
+		std::unique_ptr<WSmoothStepArgs> SSArgsTick = std::make_unique<WSmoothStepArgs>(WSmoothStepArgs(m_value));
 		m_SmoothStepTickRegistry->Run(this, SSArgsTick.get());
 	}
 	m_isRunning = false;
-	std::unique_ptr<WSmoothStepArgs> SSArgsDone = std::make_unique<WSmoothStepArgs>(new WSmoothStepArgs(m_to));
+	std::unique_ptr<WSmoothStepArgs> SSArgsDone = std::make_unique<WSmoothStepArgs>(WSmoothStepArgs(m_to));
 	m_SmoothStepDoneRegistry->Run(this, SSArgsDone.get());
 }
 
