@@ -1,3 +1,5 @@
+// © 2019 NIREX ALL RIGHTS RESERVED
+
 #include "WColorTransform.h"
 
 WColorTransform::WColorTransform(W_COLOR From, W_COLOR To, W_FLOAT alpha, W_LONG Delay)
@@ -151,12 +153,12 @@ void WColorTransform::WorkerWork(void)
 		m_value.b = m_value.b + (m_to.b - m_value.b)* m_alpha;
 		m_value.a = m_value.a + (m_to.a - m_value.a)* m_alpha;
 
-		WColorTransformArgs* CTArgsTick = new WColorTransformArgs(m_value);
-		m_CTTickRegistry->Run(this, CTArgsTick);
+		std::unique_ptr<WColorTransformArgs> CTArgsTick = std::make_unique<WColorTransformArgs>(m_value);
+		m_CTTickRegistry->Run(this, CTArgsTick.get());
 	}
 	m_isRunning = false;
-	WColorTransformArgs* CTArgsDone = new WColorTransformArgs(m_to);
-	m_CTDoneRegistry->Run(this, CTArgsDone);
+	std::unique_ptr<WColorTransformArgs> CTArgsDone = std::make_unique<WColorTransformArgs>(m_to);
+	m_CTDoneRegistry->Run(this, CTArgsDone.get());
 }
 
 bool WColorTransform::WorkThread(std::thread & out)
