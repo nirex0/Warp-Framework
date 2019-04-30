@@ -336,6 +336,8 @@ void WMainWindow::MessageLoop(void)
 			}
 		}
 	}
+
+	m_entry->End();
 }
 
 LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
