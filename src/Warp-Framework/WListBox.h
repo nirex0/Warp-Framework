@@ -37,11 +37,10 @@ public:
 	bool UseExtendedBorder(bool intake);
 
 	WListBoxItem* CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListBox Item", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
-	WListBoxItem* CreateItem(wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListBox Item", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
+	WListBoxItem* CreateItem(wchar_t* content = L"ListBox Item", wchar_t* fontFamily = L"Arial", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
 	int ItemCount(void) const;
 
 	int RemoveLast(void);
-	int AddItem(WListBoxItem* item);
 	WListBoxItem* GetLast(void);
 	WListBoxItem* GetAt(int index);
 
