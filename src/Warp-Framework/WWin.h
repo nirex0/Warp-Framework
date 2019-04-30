@@ -12,6 +12,40 @@
 #undef _WIN32_WINNT 
 #define _WIN32_WINNT 0x0501
 
+#ifdef _W_DIRENT_H_
+#undef NOGDICAPMASKS
+#undef NOMENUS
+#undef NOICONS
+#undef NOSYSCOMMANDS
+#undef NORASTEROPS
+#undef OEMRESOURCE
+#undef NOATOM
+#undef NOCLIPBOARD
+#undef NOCOLOR
+#undef NOCTLMGR
+#undef NODRAWTEXT
+#undef NOKERNEL
+#undef NOMEMMGR
+#undef NOMETAFILE
+#undef NOMINMAX
+#undef NOOPENFILE
+#undef NOSCROLL
+#undef NOSERVICE
+#undef NOSOUND
+#undef NOTEXTMETRIC
+#undef NOWH
+#undef NOCOMM
+#undef NOKANJI
+#undef NOHELP
+#undef NOPROFILER
+#undef NODEFERWINDOWPOS
+#undef NOMCX
+#undef NORPC
+#undef NOPROXYSTUB
+#undef NOIMAGE
+#undef NOTAPE
+#endif // _W_DIRENT_H_
+
 #define WIN32_LEAN_AND_MEAN
 #define NOATOM
 #define NOGDICAPMASKS
