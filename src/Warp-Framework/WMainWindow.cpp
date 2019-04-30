@@ -1,6 +1,7 @@
 // © 2019 NIREX ALL RIGHTS RESERVED
 
 #include <algorithm>
+#include <string>
 
 #include "WMainWindow.h"
 #include "WSafeRelease.h"
@@ -13,8 +14,8 @@
 #include "WRegContainer.h"
 #include "WControlHandler.h"
 #include "WTestAuxiliary.h"
+#include "WFile.h"
 #include "WRadioButtonHandler.h"
-
 #include "WGDIPaintEventArgs.h"
 
 // We Need to Initialize the container's static memebers to nullptr ({} = ZeroMemory}
@@ -179,6 +180,43 @@ W_INT WMainWindow::Initialize(void)
 	UINT SCR_WIDTH = GetSystemMetrics(SM_CXSCREEN);
 	UINT SCR_HEIGHT = GetSystemMetrics(SM_CYSCREEN);
 
+	// Detect if position file exists
+	WIN32_FIND_DATAA fd = { 0 };
+	HANDLE hFound = FindFirstFileA("pos.dat", &fd);
+	bool fileExists = hFound != INVALID_HANDLE_VALUE;
+	FindClose(hFound);
+
+	// Load
+	if (fileExists)
+	{
+		WFile* f = new WFile();
+		std::vector<std::string> positionVector;
+
+		positionVector = f->ReadAllLines("pos.dat");
+
+		int x = std::stoi(positionVector[0]);
+		int y = std::stoi(positionVector[1]);
+
+		centX = x;
+		centY = y;
+
+		delete f;
+	}
+	// Save
+	else
+	{
+		WFile* f = new WFile();
+		std::vector<std::string> positionVector;
+
+		positionVector.push_back(std::to_string(centX));
+		positionVector.push_back(std::to_string(centY));
+
+		f->WriteAllLines("pos.dat", positionVector);
+
+		delete f;
+	}
+
+	
 	// WS_EX_LAYERED for Transparency Support
 	// WS_POPUP for no default top bar
 	hWnd = CreateWindowEx(WS_EX_LAYERED, m_windowName, m_windowTitle, WS_POPUP, centX, centY, WContainer::Width(), WContainer::Height(), {}, {}, m_hAppInstance, {});
@@ -430,6 +468,9 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 		std::unique_ptr<WMouseArgs> args = std::make_unique<WMouseArgs>(WMouseArgs(pt.x, pt.y, WMouseKey::MK_LEFT, KeyState::MouseUp));
 		WControlHandler::MouseUp(args.get());
 		args.reset();
+
+		// Save the current position of window
+		SavePosition();
 		break;
 	}
 	case WM_RBUTTONDOWN:
@@ -515,6 +556,22 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 	}
 	// Safeguard
 	return DefWindowProc(hWnd, msg, wParam, lParam);
+}
+
+void WMainWindow::SavePosition(void)
+{
+	WFile* f = new WFile();
+	std::vector<std::string> positionVector;
+
+	RECT wndRect = {};
+	GetWindowRect(WContainer::Handle(), &wndRect);
+
+	positionVector.push_back(std::to_string(wndRect.left)); // x
+	positionVector.push_back(std::to_string(wndRect.top));  // y
+
+	f->WriteAllLines("pos.dat", positionVector);
+
+	delete f;
 }
 
 void WMainWindow::SetGRegisters(void)

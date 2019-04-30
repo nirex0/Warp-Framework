@@ -24,6 +24,7 @@ public:
 	LRESULT WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 private:
+	void SavePosition(void);
 	void SetGRegisters(void);
 
 	HINSTANCE m_hAppInstance;
