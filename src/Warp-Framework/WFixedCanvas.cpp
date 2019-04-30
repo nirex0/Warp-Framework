@@ -7,6 +7,11 @@
 WFixedCanvas::WFixedCanvas(W_INT zIndex)
 	: WControl(zIndex)
 {
+	this->m_top = 0;
+	this->m_bottom = WContainer::Height();
+
+	this->m_left = 0;
+	this->m_right = WContainer::Width();
 }
 
 WFixedCanvas::~WFixedCanvas()
