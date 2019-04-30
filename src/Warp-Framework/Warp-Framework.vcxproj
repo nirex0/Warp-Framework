@@ -141,6 +141,7 @@
     <ClInclude Include="WCGridComponent.h" />
     <ClInclude Include="WCheckBox.h" />
     <ClInclude Include="WDevices.h" />
+    <ClInclude Include="WDirent.h" />
     <ClInclude Include="WEventBound.h" />
     <ClInclude Include="WExtendedBorderComponent.h" />
     <ClInclude Include="WFile.h" />
