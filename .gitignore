@@ -50,3 +50,5 @@
 *.ipdb
 *.wlog
 *.ini
+src/Warp-Framework/pos.dat
+src/x64/Debug/pos.dat
