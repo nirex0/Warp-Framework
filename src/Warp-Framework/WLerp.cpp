@@ -32,8 +32,6 @@ WRegistry* WLerp::DoneRegistry(void) const
 	return m_LerpDoneRegistry;
 }
 
-
-
 W_LONG WLerp::Delay(void) const
 {
 	return m_delay;
