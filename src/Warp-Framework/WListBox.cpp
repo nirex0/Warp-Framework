@@ -8,6 +8,7 @@ WListBox::WListBox(W_INT zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
+	, m_itemCount(0)
 {
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
@@ -52,6 +53,7 @@ WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
+	, m_itemCount(0)
 {
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
@@ -96,6 +98,7 @@ WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
+	, m_itemCount(0)
 {
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
@@ -140,6 +143,7 @@ WListBox::WListBox(WRectF location, W_INT zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
+	, m_itemCount(0)
 {
 	foreColor = WContainer::Theme().ColorText();
 	backColor = WContainer::Theme().ColorBack();
@@ -182,6 +186,11 @@ WListBox::WListBox(WRectF location, W_INT zIndex)
 
 WListBox::~WListBox()
 {
+	for (size_t i = 0; i < m_items.size(); i++)
+	{
+		delete m_items[i];
+	}
+
 	delete ExBordLerpExtend;
 	delete ExBordLerpShrink;
 
@@ -623,7 +632,7 @@ WListBoxItem* WListBox::CreateItem(W_COLOR background, W_COLOR foreground, W_COL
 	m_itemCount++;
 
 // Create a New Item
-	WListBoxItem* NewListBoxItem = new WListBoxItem();
+	WListBoxItem* NewListBoxItem = new WListBoxItem(this->ZIndex() + 1);;
 
 	NewListBoxItem->Background(background);
 	NewListBoxItem->Foreground(foreground);
@@ -650,12 +659,12 @@ WListBoxItem* WListBox::CreateItem(W_COLOR background, W_COLOR foreground, W_COL
 	return NewListBoxItem;
 }
 
-WListBoxItem* WListBox::CreateItem(wchar_t* fontFamily, wchar_t* content, W_FLOAT fontSize, WTextAlignment alignment)
+WListBoxItem* WListBox::CreateItem(wchar_t* content, wchar_t* fontFamily, W_FLOAT fontSize, WTextAlignment alignment)
 {
 	m_itemCount++;
 
 	// Create a New Item
-	WListBoxItem* NewListBoxItem = new WListBoxItem();
+	WListBoxItem* NewListBoxItem = new WListBoxItem(this->ZIndex() + 1);
 
 	NewListBoxItem->Background(backColor);
 	NewListBoxItem->Foreground(foreColor);
@@ -664,11 +673,11 @@ WListBoxItem* WListBox::CreateItem(wchar_t* fontFamily, wchar_t* content, W_FLOA
 	NewListBoxItem->Content(content);
 	NewListBoxItem->FontSize(fontSize);
 	NewListBoxItem->Alignment(alignment);
-
+	
 	// Set the parent of the new Item
 	NewListBoxItem->Parent(this);
 
-	// Set the location of the new Item
+	//Set the location of the new Item
 	NewListBoxItem->Location
 	(
 		this->Location().Top() + ((m_itemCount - 1) * m_ListItemHeight) + (m_itemCount * 5) + m_yDisplace,// Top
@@ -684,31 +693,14 @@ WListBoxItem* WListBox::CreateItem(wchar_t* fontFamily, wchar_t* content, W_FLOA
 
 int WListBox::RemoveLast(void)
 {
-	WListBoxItem* LastItem = m_items[m_itemCount];
+	if (m_itemCount == 0)
+	{
+		return -1;
+	}
+	WListBoxItem* LastItem = m_items[m_itemCount - 1];
 	m_items.pop_back();
 	m_itemCount--;
 	delete LastItem;
-	return m_itemCount;
-}
-
-int WListBox::AddItem(WListBoxItem* item)
-{
-	m_itemCount++;
-
-// Set the parent of the new Item
-	item->Parent(this);
-
-// Set the location of the new Item
-	item->Location
-	(
-		this->Location().Top() + ((m_itemCount - 1) * m_ListItemHeight) + (m_itemCount * 5) + m_yDisplace,// Top
-		this->Location().Left() + 5,																// Left
-		this->Location().Top() + ((m_ListItemHeight + 5)  * m_itemCount) + m_yDisplace,				// Bottom
-		this->Location().Right() - 5																// Right
-	);
-
-// Push the new item
-	m_items.push_back(item);
 	return m_itemCount;
 }
 
