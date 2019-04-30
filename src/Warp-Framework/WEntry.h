@@ -25,6 +25,7 @@ public:
 	void Start(void);
 	void Update(DELTATIME deltaTime);
 	void Render(DELTATIME deltaTime);
+	void End(void);
 
 	inline WMouse* Mouse(void) { return m_mouse; }
 	inline WEntry* Mouse(WMouse* const intake) { m_mouse = intake; return this; };
