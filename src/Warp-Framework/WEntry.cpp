@@ -106,8 +106,8 @@ void WEntry::End(void)
 {
 	// Free your resources here!
 
-	delete myFirstButton;
-	delete mySecondButton;
-	delete myFirstTextBox;
-	delete myDynamicListBox;
+	myFirstButton->Free();
+	mySecondButton->Free();
+	myFirstTextBox->Free();
+	myDynamicListBox->Free();
 }
