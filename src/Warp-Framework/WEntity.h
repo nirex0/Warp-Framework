@@ -7,6 +7,7 @@
 // Parent of almost all warp-related classes, if you need anything extra just add it to this one
 class WEntity 
 {
+public:
 	virtual void Free(void)
 	{
 		delete this;
