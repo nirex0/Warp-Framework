@@ -9,16 +9,16 @@
 class WSeekBar : public WControl
 {
 public:
-	WSeekBar(W_INT zIndex = 0);
-	WSeekBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WSeekBar(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WSeekBar(WRectF location, W_INT zIndex = 0);
+	WSeekBar(const W_INT& zIndex = 0);
+	WSeekBar(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WSeekBar(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WSeekBar(const WRectF& location, const W_INT& zIndex = 0);
 	~WSeekBar(void);
 
-	W_FLOAT BorderThickness(W_FLOAT f);
-	W_COLOR Foreground(W_COLOR col);
-	W_COLOR Background(W_COLOR col);
-	W_COLOR BorderBrush(W_COLOR col);
+	W_FLOAT BorderThickness(const W_FLOAT& f);
+	W_COLOR Foreground(const W_COLOR& col);
+	W_COLOR Background(const W_COLOR& col);
+	W_COLOR BorderBrush(const W_COLOR& col);
 
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Foreground(void) const;
@@ -40,8 +40,8 @@ public:
 	W_FLOAT	Value(void) const;
 	bool IsVertical(void) const;
 
-	W_FLOAT	Value(W_FLOAT intake);
-	bool IsVertical(bool intake);
+	W_FLOAT	Value(const W_FLOAT& intake);
+	bool IsVertical(const bool& intake);
 
 protected:
 	// Dynamic Color
