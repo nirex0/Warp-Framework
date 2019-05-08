@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WToggleButton::WToggleButton(W_INT zIndex)
+WToggleButton::WToggleButton(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, m_bIsOn(0)
@@ -46,7 +46,7 @@ WToggleButton::WToggleButton(W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WToggleButton::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WToggleButton::WToggleButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WToggleButton::WToggleButton(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, m_bIsOn(0)
@@ -88,7 +88,7 @@ WToggleButton::WToggleButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT 
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WToggleButton::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WToggleButton::WToggleButton(WPointF topleft, WPointF botright, W_INT zIndex)
+WToggleButton::WToggleButton(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, m_bIsOn(0)
@@ -130,7 +130,7 @@ WToggleButton::WToggleButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WToggleButton::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WToggleButton::WToggleButton(WRectF location, W_INT zIndex)
+WToggleButton::WToggleButton(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, m_bIsOn(0)
@@ -187,25 +187,25 @@ WToggleButton::~WToggleButton(void)
 	delete UnHoverColorBack;
 }
 
-W_FLOAT WToggleButton::BorderThickness(W_FLOAT f)
+W_FLOAT WToggleButton::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WToggleButton::Foreground(W_COLOR col)
+W_COLOR WToggleButton::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
 	return col;
 }
 
-W_COLOR WToggleButton::Background(W_COLOR col)
+W_COLOR WToggleButton::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WToggleButton::BorderBrush(W_COLOR col)
+W_COLOR WToggleButton::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
@@ -580,7 +580,7 @@ bool WToggleButton::Value(void) const
 	return m_bIsOn;
 }
 
-bool WToggleButton::Value(bool intake)
+bool WToggleButton::Value(const bool& intake)
 {
 	m_bIsOn = intake;
 	return m_bIsOn;
