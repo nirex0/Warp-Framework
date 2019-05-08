@@ -15,26 +15,26 @@
 class WControl : public IControl
 {
 public:
-	WControl(W_INT zIndex = 0);
-	WControl(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WControl(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WControl(WRectF location, W_INT zIndex = 0);
+	WControl(const W_INT zIndex = 0);
+	WControl(const W_FLOAT top, const W_FLOAT left, const W_FLOAT bottom, const W_FLOAT right, const W_INT zIndex = 0);
+	WControl(const WPointF topleft, const WPointF botright, const W_INT zIndex = 0);
+	WControl(const WRectF location, const W_INT zIndex = 0);
 	virtual ~WControl(void);
 
-	virtual WRectF Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right);
-	virtual WRectF Location(WPointF topleft, WPointF botright);
-	virtual WRectF Location(WRectF location);
+	virtual WRectF Location(const W_FLOAT top, const W_FLOAT left, const W_FLOAT bottom, const W_FLOAT right);
+	virtual WRectF Location(const WPointF topleft, WPointF botright);
+	virtual WRectF Location(const WRectF location);
 
-	virtual WRectF RelLocation(W_FLOAT top, W_FLOAT left, W_FLOAT height, W_FLOAT width);
-	virtual WRectF RelLocation(WPointF topleft, WPointF heightwidth);
-	virtual WRectF RelLocation(WRectF location);
+	virtual WRectF RelLocation(const W_FLOAT top, const W_FLOAT left, const W_FLOAT height, const W_FLOAT width);
+	virtual WRectF RelLocation(const WPointF topleft, const WPointF heightwidth);
+	virtual WRectF RelLocation(const WRectF location);
 
 	virtual WRectF Location(void) const;
 
 	virtual void Render(void) override = 0;
 
-	virtual WPointF Displace(W_FLOAT X, W_FLOAT Y);
-	virtual WPointF Displace(WPointF XY);
+	virtual WPointF Displace(const W_FLOAT X, const W_FLOAT Y);
+	virtual WPointF Displace(const WPointF XY);
 
 	virtual WRegistry* KeyDownRegistery(void);
 	virtual WRegistry* KeyUpRegistery(void);
@@ -80,14 +80,14 @@ public:
 	virtual WControl* Parent(void) const;
 
 	virtual W_FLOAT XOffset(void) const;
-	virtual W_FLOAT XOffset(W_FLOAT intake);
+	virtual W_FLOAT XOffset(const W_FLOAT intake);
 
 	virtual W_FLOAT YOffset(void) const;
-	virtual W_FLOAT YOffset(W_FLOAT intake);
+	virtual W_FLOAT YOffset(const W_FLOAT intake);
 
 	virtual void UpdateRect(void);
 	virtual bool IsWithin(WMouseArgs* Args) const;
-	virtual void SetZIndexNoChange(W_INT zIndex) override;
+	virtual void SetZIndexNoChange(const W_INT zIndex) override;
 	virtual W_INT GetWidth(void) const;
 	virtual W_INT GetHeight(void) const;
 
