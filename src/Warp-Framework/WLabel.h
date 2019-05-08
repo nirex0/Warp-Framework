@@ -8,13 +8,13 @@
 class WLabel : public WControl
 {
 public:
-	WLabel(W_INT zIndex = 0);
-	WLabel(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WLabel(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WLabel(WRectF location, W_INT zIndex = 0);
+	WLabel(const W_INT& zIndex = 0);
+	WLabel(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WLabel(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WLabel(const WRectF& location, const W_INT& zIndex = 0);
 	~WLabel(void);
 
-	W_COLOR Foreground(W_COLOR col);
+	W_COLOR Foreground(const W_COLOR& col);
 	W_COLOR Foreground(void) const;
 
 	void Render(void) override;
@@ -26,9 +26,9 @@ public:
 	std::wstring Content(void) const;
 	W_FLOAT	FontSize(void) const;
 
-	std::wstring FontFamily(std::wstring intake);
-	std::wstring Content(std::wstring content);
-	W_FLOAT	FontSize(W_FLOAT intake);
+	std::wstring FontFamily(const std::wstring& intake);
+	std::wstring Content(const std::wstring& content);
+	W_FLOAT	FontSize(const W_FLOAT& intake);
 
 private:
 	// Dynamic Color
