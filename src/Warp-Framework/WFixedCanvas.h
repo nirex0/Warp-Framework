@@ -8,7 +8,7 @@
 class WFixedCanvas : public WControl
 {
 public:
-	WFixedCanvas(W_INT zIndex = 0);
+	WFixedCanvas(const W_INT& zIndex = 0);
 	~WFixedCanvas(void);
 
 	void Render(void) override;
