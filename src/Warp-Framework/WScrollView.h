@@ -11,15 +11,15 @@
 class WScrollView : public WControl
 {
 public:
-	WScrollView(W_INT zIndex = 0);
-	WScrollView(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WScrollView(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WScrollView(WRectF location, W_INT zIndex = 0);
+	WScrollView(const W_INT& zIndex = 0);
+	WScrollView(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WScrollView(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WScrollView(const WRectF& location, const W_INT& zIndex = 0);
 	~WScrollView(void);
 
-	W_FLOAT BorderThickness(W_FLOAT f);
-	W_COLOR Background(W_COLOR col);
-	W_COLOR BorderBrush(W_COLOR col);
+	W_FLOAT BorderThickness(const W_FLOAT& f);
+	W_COLOR Background(const W_COLOR& col);
+	W_COLOR BorderBrush(const W_COLOR& col);
 
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Background(void) const;
@@ -33,7 +33,7 @@ public:
 	void MouseRollDown(WMouseArgs* Args) override;
 
 	bool UseExtendedBorder(void) const;
-	bool UseExtendedBorder(bool intake);
+	bool UseExtendedBorder(const bool& intake);
 
 protected:
 	// Dynamic Color
