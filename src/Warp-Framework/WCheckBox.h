@@ -8,18 +8,20 @@
 class WCheckBox : public WControl
 {
 public:
-	WCheckBox(W_INT zIndex = 0);
-	WCheckBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WCheckBox(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WCheckBox(WRectF location, W_INT zIndex = 0);
+	WCheckBox(const W_INT& zIndex = 0);
+	WCheckBox(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WCheckBox(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WCheckBox(const WRectF& location, const W_INT& zIndex = 0);
 	~WCheckBox(void);
 
 	// Setters
-	W_COLOR Foreground(W_COLOR col);
-	W_COLOR Background(W_COLOR col);
-	W_COLOR BorderBrush(W_COLOR col);
+	W_FLOAT BorderThickness(const W_FLOAT& f);
+	W_COLOR Foreground(const W_COLOR& col);
+	W_COLOR Background(const W_COLOR& col);
+	W_COLOR BorderBrush(const W_COLOR& col);
 
 	// Getters
+	W_FLOAT BorderThickness(void) const;
 	W_COLOR Foreground(void) const;
 	W_COLOR Background(void) const;
 	W_COLOR BorderBrush(void) const;
@@ -36,11 +38,11 @@ public:
 	std::wstring Content(void) const;
 	W_FLOAT	FontSize(void) const;
 
-	bool Checked(bool intake);
-	bool ShowBorder(bool intake);
-	std::wstring FontFamily(std::wstring intake);
-	std::wstring Content(std::wstring content);
-	W_FLOAT	FontSize(W_FLOAT intake);
+	bool Checked(const bool& intake);
+	bool ShowBorder(const bool& intake);
+	std::wstring FontFamily(const std::wstring& intake);
+	std::wstring Content(const std::wstring& content);
+	W_FLOAT	FontSize(const W_FLOAT& intake);
 
 	void ToggleBorder(void);
 	void ToggleValue(void);
