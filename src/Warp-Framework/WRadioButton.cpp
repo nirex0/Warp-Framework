@@ -5,7 +5,7 @@
 #include "WSafeRelease.h"
 #include "WRadioButtonHandler.h"
 
-WRadioButton::WRadioButton(W_INT zIndex)
+WRadioButton::WRadioButton(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, m_isChecked(0)
@@ -43,7 +43,7 @@ WRadioButton::WRadioButton(W_INT zIndex)
 	WRadioButtonHandler::Add(this);
 }
 
-WRadioButton::WRadioButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WRadioButton::WRadioButton(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, m_isChecked(0)
@@ -81,7 +81,7 @@ WRadioButton::WRadioButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT ri
 	WRadioButtonHandler::Add(this);
 }
 
-WRadioButton::WRadioButton(WPointF topleft, WPointF botright, W_INT zIndex)
+WRadioButton::WRadioButton(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, m_isChecked(0)
@@ -119,7 +119,7 @@ WRadioButton::WRadioButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	WRadioButtonHandler::Add(this);
 }
 
-WRadioButton::WRadioButton(WRectF location, W_INT zIndex)
+WRadioButton::WRadioButton(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, m_isChecked(0)
@@ -171,25 +171,25 @@ WRadioButton::~WRadioButton(void)
 	WRadioButtonHandler::Remove(this);
 }
 
-W_FLOAT WRadioButton::BorderThickness(W_FLOAT f)
+W_FLOAT WRadioButton::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WRadioButton::Foreground(W_COLOR col)
+W_COLOR WRadioButton::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
 	return col;
 }
 
-W_COLOR WRadioButton::Background(W_COLOR col)
+W_COLOR WRadioButton::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WRadioButton::BorderBrush(W_COLOR col)
+W_COLOR WRadioButton::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
@@ -525,19 +525,19 @@ W_FLOAT WRadioButton::FontSize(void) const
 	return m_fsize;
 }
 
-std::wstring WRadioButton::FontFamily(std::wstring intake)
+std::wstring WRadioButton::FontFamily(const std::wstring& intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-std::wstring WRadioButton::Content(std::wstring content)
+std::wstring WRadioButton::Content(const std::wstring& content)
 {
 	m_Content = content;
 	return m_Content;
 }
 
-W_FLOAT WRadioButton::FontSize(W_FLOAT intake)
+W_FLOAT WRadioButton::FontSize(const W_FLOAT& intake)
 {
 	m_fsize = intake;
 	return m_fsize;
