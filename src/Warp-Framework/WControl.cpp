@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WControl::WControl(W_INT zIndex)
+WControl::WControl(const W_INT& zIndex)
 	: m_zIndex(zIndex)
 	, m_xoffset(0)
 	, m_yoffset(0)
@@ -32,7 +32,7 @@ WControl::WControl(W_INT zIndex)
 	UpdateRect();
 }
 
-WControl::WControl(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex) 
+WControl::WControl(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: m_zIndex(zIndex)
 	, m_xoffset(0)
 	, m_yoffset(0)
@@ -60,7 +60,7 @@ WControl::WControl(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	UpdateRect();
 }
 
-WControl::WControl(WPointF topleft, WPointF botright, W_INT zIndex) 
+WControl::WControl(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: m_zIndex(zIndex)
 	, m_xoffset(0)
 	, m_yoffset(0)
@@ -88,7 +88,7 @@ WControl::WControl(WPointF topleft, WPointF botright, W_INT zIndex)
 	UpdateRect();
 }
 
-WControl::WControl(WRectF location, W_INT zIndex) 
+WControl::WControl(const WRectF& location, const W_INT& zIndex)
 	: m_zIndex(zIndex)
 	, m_xoffset(0)
 	, m_yoffset(0)
@@ -131,7 +131,7 @@ WControl::~WControl()
 	WControlHandler::Remove(this);
 }
 
-WRectF WControl::Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right)
+WRectF WControl::Location(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right)
 {
 	m_top = top;
 	m_left = left;
@@ -143,7 +143,7 @@ WRectF WControl::Location(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT rig
 	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WRectF WControl::Location(WPointF topleft, WPointF botright)
+WRectF WControl::Location(const WPointF& topleft, const WPointF& botright)
 {
 	m_top = topleft.X();
 	m_left = topleft.Y();
@@ -155,7 +155,7 @@ WRectF WControl::Location(WPointF topleft, WPointF botright)
 	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WRectF WControl::Location(WRectF location)
+WRectF WControl::Location(const WRectF& location)
 {
 	m_top = location.Top();
 	m_left = location.Left();
@@ -167,7 +167,7 @@ WRectF WControl::Location(WRectF location)
 	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WRectF WControl::RelLocation(W_FLOAT top, W_FLOAT left, W_FLOAT height, W_FLOAT width)
+WRectF WControl::RelLocation(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& height, const W_FLOAT& width)
 {
 	m_top = top;
 	m_left = left;
@@ -179,7 +179,7 @@ WRectF WControl::RelLocation(W_FLOAT top, W_FLOAT left, W_FLOAT height, W_FLOAT 
 	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WRectF WControl::RelLocation(WPointF topleft, WPointF heightwidth)
+WRectF WControl::RelLocation(const WPointF& topleft, const WPointF& heightwidth)
 {
 	m_top = topleft.X();
 	m_left = topleft.Y();
@@ -191,7 +191,7 @@ WRectF WControl::RelLocation(WPointF topleft, WPointF heightwidth)
 	return WRectF(m_top, m_left, m_bottom, m_right);
 }
 
-WRectF WControl::RelLocation(WRectF location)
+WRectF WControl::RelLocation(const WRectF& location)
 {
 	m_top = location.Top();
 	m_left = location.Left();
@@ -219,7 +219,7 @@ WRectF WControl::Location(void) const
 		m_right + gxOffset);
 }
 
-WPointF WControl::Displace(W_FLOAT X, W_FLOAT Y)
+WPointF WControl::Displace(const W_FLOAT& X, const W_FLOAT& Y)
 {
 	m_top += Y;
 	m_bottom += Y;
@@ -231,7 +231,7 @@ WPointF WControl::Displace(W_FLOAT X, W_FLOAT Y)
 	return WPointF(X, Y);
 }
 
-WPointF WControl::Displace(WPointF XY)
+WPointF WControl::Displace(const WPointF& XY)
 {
 	m_top += XY.Y();
 	m_bottom += XY.Y();
@@ -725,7 +725,7 @@ W_FLOAT WControl::XOffset(void) const
 	return m_xoffset;
 }
 
-W_FLOAT WControl::XOffset(W_FLOAT intake)
+W_FLOAT WControl::XOffset(const W_FLOAT& intake)
 {
 	m_xoffset = intake;
 	return m_xoffset;
@@ -736,7 +736,7 @@ W_FLOAT WControl::YOffset(void) const
 	return m_yoffset;
 }
 
-W_FLOAT WControl::YOffset(W_FLOAT intake)
+W_FLOAT WControl::YOffset(const W_FLOAT& intake)
 {
 	m_yoffset = intake;
 	return m_yoffset;
@@ -763,7 +763,7 @@ bool WControl::IsWithin(WMouseArgs* Args) const
 	return Location().IsColliding(Args->Point());
 }
 
-void WControl::SetZIndexNoChange(W_INT zIndex)
+void WControl::SetZIndexNoChange(const W_INT& zIndex)
 {
 	m_zIndex = zIndex;
 }
