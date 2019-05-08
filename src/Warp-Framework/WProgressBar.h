@@ -9,16 +9,16 @@
 class WProgressBar : public WControl
 {
 public:
-	WProgressBar(W_INT zIndex = 0);
-	WProgressBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WProgressBar(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WProgressBar(WRectF location, W_INT zIndex = 0);
+	WProgressBar(const W_INT& zIndex = 0);
+	WProgressBar(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WProgressBar(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WProgressBar(const WRectF& location, const W_INT& zIndex = 0);
 	~WProgressBar(void);
 
-	W_FLOAT BorderThickness(W_FLOAT f);
-	W_COLOR Foreground(W_COLOR col);
-	W_COLOR Background(W_COLOR col);
-	W_COLOR BorderBrush(W_COLOR col);
+	W_FLOAT BorderThickness(const W_FLOAT& f);
+	W_COLOR Foreground(const W_COLOR& col);
+	W_COLOR Background(const W_COLOR& col);
+	W_COLOR BorderBrush(const W_COLOR& col);
 
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Foreground(void) const;
@@ -26,7 +26,7 @@ public:
 	W_COLOR BorderBrush(void) const;
 
 	void Render(void) override;
-	void ChangeValue(W_FLOAT intake);
+	void ChangeValue(const W_FLOAT& intake);
 
 	void MouseEnter(WMouseArgs* Args) override;
 	void MouseLeave(WMouseArgs* Args) override;
@@ -34,8 +34,8 @@ public:
 	W_FLOAT	Value(void) const;
 	W_FLOAT	MaxValue(void) const;
 
-	W_FLOAT Value(W_FLOAT intake);
-	W_FLOAT MaxValue(W_FLOAT intake);
+	W_FLOAT Value(const W_FLOAT& intake);
+	W_FLOAT MaxValue(const W_FLOAT& intake);
 
 protected:
 	void ChangeTick(WEntity* sender, WEventArgs* args);
