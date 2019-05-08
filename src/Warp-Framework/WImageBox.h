@@ -9,10 +9,10 @@
 class WImageBox : public WControl
 {
 public:
-	WImageBox(wchar_t* URL, const W_INT zIndex = 0);
-	WImageBox(wchar_t* URL, const W_FLOAT top, const W_FLOAT left, const W_FLOAT bottom, const W_FLOAT right, const W_INT zIndex = 0);
-	WImageBox(wchar_t* URL, const WPointF topleft, const WPointF botright, W_INT zIndex = 0);
-	WImageBox(wchar_t* URL, const WRectF location, const W_INT zIndex = 0);
+	WImageBox(wchar_t* URL, const W_INT& zIndex = 0);
+	WImageBox(wchar_t* URL, const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WImageBox(wchar_t* URL, const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WImageBox(wchar_t* URL, const WRectF& location, const W_INT& zIndex = 0);
 	~WImageBox(void);
 
 	void Render(void) override;
@@ -21,7 +21,7 @@ public:
 	wchar_t* URL(wchar_t* intake);
 
 	W_FLOAT Opacity(void) const;
-	W_FLOAT Opacity(W_FLOAT intake);
+	W_FLOAT Opacity(const W_FLOAT& intake);
 
 private:
 	W_FLOAT opacity;
