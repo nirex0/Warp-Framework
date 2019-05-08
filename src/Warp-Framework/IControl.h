@@ -29,18 +29,18 @@ public:
 
 	// ZIndex
 	virtual W_INT ZIndex(void) const = 0;
-	virtual W_INT ZIndex(W_INT input) = 0;
+	virtual W_INT ZIndex(const W_INT& input) = 0;
 	virtual void SetZIndexNoChange(const W_INT& zIndex) = 0;
 
 	// Getters
 	virtual bool IsActive(void) const = 0;
 	virtual bool IsVisible(void) const = 0;
-	virtual bool IsVisible(bool input) = 0;
+	virtual bool IsVisible(const bool& input) = 0;
 
 	// Setters
-	virtual bool IsActive(bool input) = 0;
+	virtual bool IsActive(const bool& input) = 0;
 	virtual bool IsEnabled(void) const = 0;
-	virtual bool IsEnabled(bool input) = 0;
+	virtual bool IsEnabled(const bool& input) = 0;
 
 	// Visual
 	virtual void UpdateRect(void) = 0;
