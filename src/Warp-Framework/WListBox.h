@@ -12,15 +12,15 @@
 class WListBox : public WControl
 {
 public:
-	WListBox(W_INT zIndex = 0);
-	WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WListBox(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WListBox(WRectF location, W_INT zIndex = 0);
+	WListBox(const W_INT& zIndex = 0);
+	WListBox(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WListBox(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WListBox(const WRectF& location, const W_INT& zIndex = 0);
 	~WListBox(void);
 
-	W_FLOAT BorderThickness(W_FLOAT f);
-	W_COLOR Background(W_COLOR col);
-	W_COLOR BorderBrush(W_COLOR col);
+	W_FLOAT BorderThickness(const W_FLOAT& f);
+	W_COLOR Background(const W_COLOR& col);
+	W_COLOR BorderBrush(const W_COLOR& col);
 
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Background(void) const;
@@ -34,15 +34,15 @@ public:
 	void MouseRollDown(WMouseArgs* Args) override;
 
 	bool UseExtendedBorder(void) const;
-	bool UseExtendedBorder(bool intake);
+	bool UseExtendedBorder(const bool& intake);
 
-	WListBoxItem* CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListBox Item", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
+	WListBoxItem* CreateItem(const W_COLOR& background, const W_COLOR& foreground, const W_COLOR& borderbrush, wchar_t* fontFamily = L"Arial", wchar_t* content = L"ListBox Item", const W_FLOAT& fontSize = 14, const WTextAlignment& alignment = WTA_Center);
 	WListBoxItem* CreateItem(wchar_t* content = L"ListBox Item", wchar_t* fontFamily = L"Arial", W_FLOAT fontSize = 14, WTextAlignment alignment = WTA_Center);
 	int ItemCount(void) const;
 
 	int RemoveLast(void);
 	WListBoxItem* GetLast(void);
-	WListBoxItem* GetAt(int index);
+	WListBoxItem* GetAt(const int& index);
 
 protected:
 	// Dynamic Color
