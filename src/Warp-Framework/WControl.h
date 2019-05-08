@@ -61,10 +61,10 @@ public:
 	virtual bool IsEnabled(void) const override;
 	virtual bool IsVisible(void) const override;
 
-	virtual W_INT ZIndex(W_INT input) override;
-	virtual bool IsActive(bool input) override;
-	virtual bool IsEnabled(bool input) override;
-	virtual bool IsVisible(bool input) override;
+	virtual W_INT ZIndex(const W_INT& input) override;
+	virtual bool IsActive(const bool& input) override;
+	virtual bool IsEnabled(const bool& input) override;
+	virtual bool IsVisible(const bool& input) override;
 
 	virtual void KeyDown(WKeyboardArgs* Args) override;
 	virtual void KeyUp(WKeyboardArgs* Args) override;
