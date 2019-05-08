@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WScrollView::WScrollView(W_INT zIndex)
+WScrollView::WScrollView(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -48,7 +48,7 @@ WScrollView::WScrollView(W_INT zIndex)
 		m_UseExtendedBorder = true;
 }
 
-WScrollView::WScrollView(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WScrollView::WScrollView(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -92,7 +92,7 @@ WScrollView::WScrollView(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT righ
 	m_UseExtendedBorder = true;
 }
 
-WScrollView::WScrollView(WPointF topleft, WPointF botright, W_INT zIndex)
+WScrollView::WScrollView(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -136,7 +136,7 @@ WScrollView::WScrollView(WPointF topleft, WPointF botright, W_INT zIndex)
 	m_UseExtendedBorder = true;
 }
 
-WScrollView::WScrollView(WRectF location, W_INT zIndex)
+WScrollView::WScrollView(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -195,19 +195,19 @@ WScrollView::~WScrollView()
 	delete UnHoverColorBack;
 }
 
-W_FLOAT WScrollView::BorderThickness(W_FLOAT f)
+W_FLOAT WScrollView::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WScrollView::Background(W_COLOR col)
+W_COLOR WScrollView::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WScrollView::BorderBrush(W_COLOR col)
+W_COLOR WScrollView::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
@@ -604,7 +604,7 @@ bool WScrollView::UseExtendedBorder(void) const
 	return m_UseExtendedBorder;
 }
 
-bool WScrollView::UseExtendedBorder(bool intake)
+bool WScrollView::UseExtendedBorder(const bool& intake)
 {
 	m_UseExtendedBorder = intake;
 	return m_UseExtendedBorder;
