@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WListBoxItem::WListBoxItem(W_INT zIndex)
+WListBoxItem::WListBoxItem(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 {
@@ -40,7 +40,7 @@ WListBoxItem::WListBoxItem(W_INT zIndex)
 	m_alighment = WTA_Center;
 }
 
-WListBoxItem::WListBoxItem(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WListBoxItem::WListBoxItem(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 {
@@ -76,7 +76,7 @@ WListBoxItem::WListBoxItem(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT ri
 	m_alighment = WTA_Center;
 }
 
-WListBoxItem::WListBoxItem(WPointF topleft, WPointF botright, W_INT zIndex)
+WListBoxItem::WListBoxItem(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 {
@@ -112,7 +112,7 @@ WListBoxItem::WListBoxItem(WPointF topleft, WPointF botright, W_INT zIndex)
 	m_alighment = WTA_Center;
 }
 
-WListBoxItem::WListBoxItem(WRectF location, W_INT zIndex)
+WListBoxItem::WListBoxItem(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 {
@@ -160,25 +160,25 @@ WListBoxItem::~WListBoxItem()
 	delete UnHoverColorBack;
 }
 
-W_FLOAT WListBoxItem::BorderThickness(W_FLOAT f)
+W_FLOAT WListBoxItem::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WListBoxItem::Foreground(W_COLOR col)
+W_COLOR WListBoxItem::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
-	return foreColor;
+	return col;
 }
 
-W_COLOR WListBoxItem::Background(W_COLOR col)
+W_COLOR WListBoxItem::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WListBoxItem::BorderBrush(W_COLOR col)
+W_COLOR WListBoxItem::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
@@ -522,19 +522,19 @@ W_FLOAT WListBoxItem::FontSize(void) const
 	return m_fsize;
 }
 
-std::wstring WListBoxItem::FontFamily(std::wstring intake)
+std::wstring WListBoxItem::FontFamily(const std::wstring& intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-std::wstring WListBoxItem::Content(std::wstring content)
+std::wstring WListBoxItem::Content(const std::wstring& content)
 {
 	m_Content = content;
 	return m_Content;
 }
 
-W_FLOAT WListBoxItem::FontSize(W_FLOAT intake)
+W_FLOAT WListBoxItem::FontSize(const W_FLOAT& intake)
 {
 	m_fsize = intake;
 	return m_fsize;
@@ -545,7 +545,7 @@ WTextAlignment WListBoxItem::Alignment(void) const
 	return m_alighment;
 }
 
-WTextAlignment WListBoxItem::Alignment(WTextAlignment intake)
+WTextAlignment WListBoxItem::Alignment(const WTextAlignment& intake)
 {
 	m_alighment = intake;
 	return m_alighment;
