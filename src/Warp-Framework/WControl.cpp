@@ -362,7 +362,7 @@ bool WControl::IsVisible(void) const
 	return m_isVisible;
 }
 
-W_INT WControl::ZIndex(W_INT input)
+W_INT WControl::ZIndex(const W_INT& input)
 {
 	WControlHandler::Remove(this);
 	m_zIndex = input;
@@ -370,19 +370,19 @@ W_INT WControl::ZIndex(W_INT input)
 	return m_zIndex;
 }
 
-bool WControl::IsActive(bool input)
+bool WControl::IsActive(const bool& input)
 {
 	m_isActive = input;
 	return m_isActive;
 }
 
-bool WControl::IsEnabled(bool input)
+bool WControl::IsEnabled(const bool& input)
 {
 	m_isEnabled = input;
 	return m_isEnabled;
 }
 
-bool WControl::IsVisible(bool input)
+bool WControl::IsVisible(const bool& input)
 {
 	m_isVisible = input;
 	return m_isVisible;
