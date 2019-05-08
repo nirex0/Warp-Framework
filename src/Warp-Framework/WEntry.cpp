@@ -16,7 +16,7 @@ WTheme WContainer::wTheme = {};
 WButton* myFirstButton;
 WButton* mySecondButton;
 
-/* EXAMPLE TEXTBOX*/
+/* EXAMPLE TEXTBOX */
 
 #include "WTextBox.h"
 WTextBox* myFirstTextBox;
