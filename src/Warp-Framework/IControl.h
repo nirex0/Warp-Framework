@@ -30,7 +30,7 @@ public:
 	// ZIndex
 	virtual W_INT ZIndex(void) const = 0;
 	virtual W_INT ZIndex(W_INT input) = 0;
-	virtual void SetZIndexNoChange(W_INT zIndex) = 0;
+	virtual void SetZIndexNoChange(const W_INT& zIndex) = 0;
 
 	// Getters
 	virtual bool IsActive(void) const = 0;
