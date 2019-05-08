@@ -1,4 +1,4 @@
-# Warp-Framework (Beta) (ON HOLD)
+# Warp-Framework (Beta)
 Welcome to warp, a framework to create powerful and rich GUI C++ Single-Window applications using Direct2D API
 
 STATUS
@@ -41,7 +41,7 @@ FRAMEWORK VIEW
 EXAMPLES
 ========
 
-This is a simple WEntry example (also available in the repo)
+This is a simple WEntry.cpp example which would be your main starting point of the framework!
 
 It shows you how to create buttons, a textbox, a listbox, and add whatever is in the textbox to the content of the listbox upon clicking the Push button!
 
@@ -105,7 +105,7 @@ W_COLOR firstColor;
 W_COLOR secondColor;
 WRectF clientRegion;
 
-//Runs at the start of the application
+// Runs at the start of the application
 void WEntry::Start(void)
 {
 	// Button #1
@@ -136,12 +136,12 @@ void WEntry::Start(void)
 	clientRegion.Right((W_FLOAT)Graphics()->GetClientArea().right);
 }
 
-//Runs every frame pre-render
+// Runs every frame pre-render
 void WEntry::Update(DELTATIME deltaTime)
 {
 }
 
-//Runs every frame post-update
+// Runs every frame post-update
 void WEntry::Render(DELTATIME deltaTime)
 {
 	// NOTE: Gradient Background renders before all the controls!
@@ -154,12 +154,12 @@ void WEntry::Render(DELTATIME deltaTime)
 // Runs before the application quits 
 void WEntry::End(void)
 {
-	// DO ALL YOUR RAII HERE!
+	// Free your resources here!
 
-	delete myFirstButton;
-	delete mySecondButton;
-	delete myFirstTextBox;
-	delete myDynamicListBox;
+	myFirstButton->Free();
+	mySecondButton->Free();
+	myFirstTextBox->Free();
+	myDynamicListBox->Free();
 }
 ```
 
