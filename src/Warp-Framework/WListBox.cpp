@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WListBox::WListBox(W_INT zIndex)
+WListBox::WListBox(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -49,7 +49,7 @@ WListBox::WListBox(W_INT zIndex)
 	m_UseExtendedBorder = true;
 }
 
-WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WListBox::WListBox(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -94,7 +94,7 @@ WListBox::WListBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	m_UseExtendedBorder = true;
 }
 
-WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
+WListBox::WListBox(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -139,7 +139,7 @@ WListBox::WListBox(WPointF topleft, WPointF botright, W_INT zIndex)
 	m_UseExtendedBorder = true;
 }
 
-WListBox::WListBox(WRectF location, W_INT zIndex)
+WListBox::WListBox(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -204,23 +204,24 @@ WListBox::~WListBox()
 	delete UnHoverColorBack;
 }
 
-W_FLOAT WListBox::BorderThickness(W_FLOAT f)
+W_FLOAT WListBox::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WListBox::Background(W_COLOR col)
+W_COLOR WListBox::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WListBox::BorderBrush(W_COLOR col)
+W_COLOR WListBox::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
 }
+
 
 W_FLOAT WListBox::BorderThickness(void) const
 {
@@ -621,13 +622,13 @@ bool WListBox::UseExtendedBorder(void) const
 	return m_UseExtendedBorder;
 }
 
-bool WListBox::UseExtendedBorder(bool intake)
+bool WListBox::UseExtendedBorder(const bool& intake)
 {
 	m_UseExtendedBorder = intake;
 	return m_UseExtendedBorder;
 }
 
-WListBoxItem* WListBox::CreateItem(W_COLOR background, W_COLOR foreground, W_COLOR borderbrush, wchar_t* fontFamily, wchar_t* content, W_FLOAT fontSize, WTextAlignment alignment)
+WListBoxItem* WListBox::CreateItem(const W_COLOR& background, const W_COLOR& foreground, const W_COLOR& borderbrush, wchar_t* fontFamily, wchar_t* content, const W_FLOAT& fontSize, const WTextAlignment& alignment)
 {
 	m_itemCount++;
 
@@ -717,7 +718,7 @@ int WListBox::ItemCount(void) const
 	return m_itemCount;
 }
 
-WListBoxItem* WListBox::GetAt(int index)
+WListBoxItem* WListBox::GetAt(const int& index)
 {
 	if (index >= m_itemCount || index < 0)
 	{
