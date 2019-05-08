@@ -5,7 +5,7 @@
 #include "WSafeRelease.h"
 #include "WSeekBarValueChangeArgs.h"
 
-WSeekBar::WSeekBar(W_INT zIndex)
+WSeekBar::WSeekBar(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, m_value(0)
@@ -40,7 +40,7 @@ WSeekBar::WSeekBar(W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WSeekBar::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WSeekBar::WSeekBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WSeekBar::WSeekBar(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, m_value(0)
@@ -75,7 +75,7 @@ WSeekBar::WSeekBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WSeekBar::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WSeekBar::WSeekBar(WPointF topleft, WPointF botright, W_INT zIndex)
+WSeekBar::WSeekBar(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, m_value(0)
@@ -110,7 +110,7 @@ WSeekBar::WSeekBar(WPointF topleft, WPointF botright, W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WSeekBar::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WSeekBar::WSeekBar(WRectF location, W_INT zIndex)
+WSeekBar::WSeekBar(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, m_value(0)
@@ -157,25 +157,25 @@ WSeekBar::~WSeekBar(void)
 	delete UnHoverColorBack;
 }
 
-W_FLOAT WSeekBar::BorderThickness(W_FLOAT f)
+W_FLOAT WSeekBar::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WSeekBar::Foreground(W_COLOR col)
+W_COLOR WSeekBar::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
 	return col;
 }
 
-W_COLOR WSeekBar::Background(W_COLOR col)
+W_COLOR WSeekBar::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WSeekBar::BorderBrush(W_COLOR col)
+W_COLOR WSeekBar::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
@@ -596,34 +596,35 @@ bool WSeekBar::IsVertical(void) const
 	return m_isVertical;
 }
 
-W_FLOAT WSeekBar::Value(W_FLOAT intake)
+W_FLOAT WSeekBar::Value(const W_FLOAT& intake)
 {
+	W_FLOAT tmp_value = intake;
 	if (intake > 100)
-		intake = 100;
+		tmp_value = 100;
 	if (intake < 0)
-		intake = 0;
+		tmp_value = 0;
 
 	if (!m_isVertical)
 	{
 		W_FLOAT fullValueGeo = Location().Right() - Location().Left();
 		W_FLOAT onePercentGeo = fullValueGeo / 100;
-		W_FLOAT filled = onePercentGeo * intake;
+		W_FLOAT filled = onePercentGeo * tmp_value;
 		m_offset = filled;
 	}
 	else
 	{
 		W_FLOAT fullValueGeo = Location().Top() - Location().Bottom();
 		W_FLOAT onePercentGeo = fullValueGeo / 100;
-		W_FLOAT filled = onePercentGeo * intake;
+		W_FLOAT filled = onePercentGeo * tmp_value;
 		m_offset = ((Location().Top() - Location().Bottom()) - filled);
 	}
 
-	m_value = intake;
-	ValueChange(intake);
-	return intake;
+	m_value = tmp_value;
+	ValueChange(tmp_value);
+	return tmp_value;
 }
 
-bool WSeekBar::IsVertical(bool intake)
+bool WSeekBar::IsVertical(const bool& intake)
 {
 	m_isVertical = intake;
 	return m_isVertical;
