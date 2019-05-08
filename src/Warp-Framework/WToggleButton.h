@@ -9,16 +9,16 @@
 class WToggleButton : public WControl
 {
 public:
-	WToggleButton(W_INT zIndex = 0);
-	WToggleButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WToggleButton(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WToggleButton(WRectF location, W_INT zIndex = 0);
+	WToggleButton(const W_INT& zIndex = 0);
+	WToggleButton(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WToggleButton(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WToggleButton(const WRectF& location, const W_INT& zIndex = 0);
 	~WToggleButton(void);
 
-	W_FLOAT BorderThickness(W_FLOAT f);
-	W_COLOR Foreground(W_COLOR col);
-	W_COLOR Background(W_COLOR col);
-	W_COLOR BorderBrush(W_COLOR col);
+	W_FLOAT BorderThickness(const W_FLOAT& f);
+	W_COLOR Foreground(const W_COLOR& col);
+	W_COLOR Background(const W_COLOR& col);
+	W_COLOR BorderBrush(const W_COLOR& col);
 	
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Foreground(void) const;
@@ -32,7 +32,7 @@ public:
 	void MouseLeave(WMouseArgs* Args) override;
 
 	bool Value(void) const;
-	bool Value(bool intake);
+	bool Value(const bool& intake);
 
 protected:
 	// Dynamic Movement
