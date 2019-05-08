@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WProgressBar::WProgressBar(W_INT zIndex)
+WProgressBar::WProgressBar(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, m_maxValue(100.0F)
@@ -42,7 +42,7 @@ WProgressBar::WProgressBar(W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WProgressBar::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WProgressBar::WProgressBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WProgressBar::WProgressBar(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, m_maxValue(100.0F)
@@ -80,7 +80,7 @@ WProgressBar::WProgressBar(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT ri
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WProgressBar::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WProgressBar::WProgressBar(WPointF topleft, WPointF botright, W_INT zIndex)
+WProgressBar::WProgressBar(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, m_maxValue(100.0F)
@@ -118,7 +118,7 @@ WProgressBar::WProgressBar(WPointF topleft, WPointF botright, W_INT zIndex)
 	UnHoverColorBack->DoneRegistry()->Register(std::bind(&WProgressBar::UnHoverBackgroundDone, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-WProgressBar::WProgressBar(WRectF location, W_INT zIndex)
+WProgressBar::WProgressBar(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, m_maxValue(100.0F)
@@ -170,25 +170,25 @@ WProgressBar::~WProgressBar(void)
 	delete UnHoverColorBack;
 }
 
-W_FLOAT WProgressBar::BorderThickness(W_FLOAT f)
+W_FLOAT WProgressBar::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WProgressBar::Foreground(W_COLOR col)
+W_COLOR WProgressBar::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
 	return col;
 }
 
-W_COLOR WProgressBar::Background(W_COLOR col)
+W_COLOR WProgressBar::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WProgressBar::BorderBrush(W_COLOR col)
+W_COLOR WProgressBar::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
@@ -303,12 +303,13 @@ void WProgressBar::Render(void)
 	SafeRelease(&pSink);
 }
 
-void WProgressBar::ChangeValue(W_FLOAT intake)
+void WProgressBar::ChangeValue(const W_FLOAT& intake)
 {
+	W_FLOAT tmp_value = intake;
 	if (intake >= m_maxValue)
-		intake = m_maxValue;
+		tmp_value = m_maxValue;
 	else if (intake <= 0)
-		intake = 0;
+		tmp_value = 0;
 	
 	if (ChangeLerp)
 	{
@@ -317,7 +318,7 @@ void WProgressBar::ChangeValue(W_FLOAT intake)
 	if (!ChangeLerp->IsRunning())
 	{
 		delete ChangeLerp;
-		ChangeLerp = new WLerp(m_value * 10, intake * 10, 0.01F, 1);
+		ChangeLerp = new WLerp(m_value * 10, tmp_value * 10, 0.01F, 1);
 		ChangeLerp->TickRegistry()->Register(std::bind(&WProgressBar::ChangeTick, this, std::placeholders::_1, std::placeholders::_2));
 		ChangeLerp->DoneRegistry()->Register(std::bind(&WProgressBar::ChangeDone, this, std::placeholders::_1, std::placeholders::_2));
 		ChangeLerp->Perform(); 
@@ -486,7 +487,7 @@ W_FLOAT WProgressBar::MaxValue(void) const
 	return m_maxValue;
 }
 
-W_FLOAT WProgressBar::Value(W_FLOAT intake)
+W_FLOAT WProgressBar::Value(const W_FLOAT& intake)
 {
 	if (intake >= m_maxValue)
 	{
@@ -502,7 +503,7 @@ W_FLOAT WProgressBar::Value(W_FLOAT intake)
 	return m_value;
 }
 
-W_FLOAT WProgressBar::MaxValue(W_FLOAT intake)
+W_FLOAT WProgressBar::MaxValue(const W_FLOAT& intake)
 {
 	m_maxValue = intake;
 	return m_maxValue;
