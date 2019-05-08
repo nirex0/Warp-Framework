@@ -9,16 +9,16 @@
 class WImageBox : public WControl
 {
 public:
-	WImageBox(wchar_t* URL, const W_INT& zIndex = 0);
-	WImageBox(wchar_t* URL, const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
-	WImageBox(wchar_t* URL, const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
-	WImageBox(wchar_t* URL, const WRectF& location, const W_INT& zIndex = 0);
+	WImageBox(const std::wstring& URL, const W_INT& zIndex = 0);
+	WImageBox(const std::wstring& URL, const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WImageBox(const std::wstring& URL, const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WImageBox(const std::wstring& URL, const WRectF& location, const W_INT& zIndex = 0);
 	~WImageBox(void);
 
 	void Render(void) override;
 
-	wchar_t* URL(void) const;
-	wchar_t* URL(wchar_t* intake);
+	std::wstring URL(void) const;
+	std::wstring URL(const std::wstring& intake);
 
 	W_FLOAT Opacity(void) const;
 	W_FLOAT Opacity(const W_FLOAT& intake);
@@ -26,7 +26,7 @@ public:
 private:
 	W_FLOAT opacity;
 	W_IMAGE* img;
-	wchar_t* m_URL;
+	std::wstring m_URL;
 };
 
 #endif // !_W_IMAGE_BOX_H_

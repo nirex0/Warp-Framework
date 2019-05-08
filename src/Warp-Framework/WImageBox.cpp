@@ -4,36 +4,36 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WImageBox::WImageBox(wchar_t* URL, const W_INT& zIndex)
+WImageBox::WImageBox(const std::wstring& URL, const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_URL(URL)
 	, opacity(1.0F)
 {
-	WGraphicsContainer::Graphics()->LoadIMG(URL, &img);
+	WGraphicsContainer::Graphics()->LoadIMG(URL.c_str(), &img);
 }
 
-WImageBox::WImageBox(wchar_t* URL, const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
+WImageBox::WImageBox(const std::wstring& URL, const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_URL(URL)
 	, opacity(1.0F)
 {
-	WGraphicsContainer::Graphics()->LoadIMG(URL, &img);
+	WGraphicsContainer::Graphics()->LoadIMG(URL.c_str(), &img);
 }
 
-WImageBox::WImageBox(wchar_t* URL, const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
+WImageBox::WImageBox(const std::wstring& URL, const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_URL(URL)
 	, opacity(1.0F)
 {
-	WGraphicsContainer::Graphics()->LoadIMG(URL, &img);
+	WGraphicsContainer::Graphics()->LoadIMG(URL.c_str(), &img);
 }
 
-WImageBox::WImageBox(wchar_t* URL, const WRectF& location, const W_INT& zIndex)
+WImageBox::WImageBox(const std::wstring& URL, const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_URL(URL)
 	, opacity(1.0F)
 {
-	WGraphicsContainer::Graphics()->LoadIMG(URL, &img);
+	WGraphicsContainer::Graphics()->LoadIMG(URL.c_str(), &img);
 }
 
 WImageBox::~WImageBox(void)
@@ -116,15 +116,15 @@ void WImageBox::Render(void)
 	SafeRelease(&pSink);
 }
 
-wchar_t* WImageBox::URL(void) const
+std::wstring WImageBox::URL(void) const
 {
 	return m_URL;
 }
 
-wchar_t* WImageBox::URL(wchar_t* intake)
+std::wstring WImageBox::URL(const std::wstring& intake)
 {
 	m_URL = intake;
-	WGraphicsContainer::Graphics()->LoadIMG(intake, &img);
+	WGraphicsContainer::Graphics()->LoadIMG(intake.c_str(), &img);
 	return m_URL;
 }
 
