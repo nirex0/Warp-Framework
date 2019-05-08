@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WImageBox::WImageBox(wchar_t* URL, W_INT zIndex)
+WImageBox::WImageBox(wchar_t* URL, const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_URL(URL)
 	, opacity(1.0F)
@@ -12,7 +12,7 @@ WImageBox::WImageBox(wchar_t* URL, W_INT zIndex)
 	WGraphicsContainer::Graphics()->LoadIMG(URL, &img);
 }
 
-WImageBox::WImageBox(wchar_t* URL, W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WImageBox::WImageBox(wchar_t* URL, const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_URL(URL)
 	, opacity(1.0F)
@@ -20,7 +20,7 @@ WImageBox::WImageBox(wchar_t* URL, W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_
 	WGraphicsContainer::Graphics()->LoadIMG(URL, &img);
 }
 
-WImageBox::WImageBox(wchar_t* URL, WPointF topleft, WPointF botright, W_INT zIndex)
+WImageBox::WImageBox(wchar_t* URL, const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_URL(URL)
 	, opacity(1.0F)
@@ -28,7 +28,7 @@ WImageBox::WImageBox(wchar_t* URL, WPointF topleft, WPointF botright, W_INT zInd
 	WGraphicsContainer::Graphics()->LoadIMG(URL, &img);
 }
 
-WImageBox::WImageBox(wchar_t* URL, WRectF location, W_INT zIndex)
+WImageBox::WImageBox(wchar_t* URL, const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_URL(URL)
 	, opacity(1.0F)
@@ -133,7 +133,7 @@ W_FLOAT WImageBox::Opacity(void) const
 	return opacity;
 }
 
-W_FLOAT WImageBox::Opacity(W_FLOAT intake)
+W_FLOAT WImageBox::Opacity(const W_FLOAT& intake)
 {
 	opacity = intake;
 	return opacity;
