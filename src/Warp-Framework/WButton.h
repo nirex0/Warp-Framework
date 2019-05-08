@@ -9,16 +9,16 @@
 class WButton : public WControl
 {
 public:
-	WButton(W_INT zIndex = 0);
-	WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WButton(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WButton(WRectF location, W_INT zIndex = 0);
+	WButton(const W_INT& zIndex = 0);
+	WButton(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WButton(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WButton(const WRectF& location, const W_INT& zIndex = 0);
 	~WButton(void);
 
-	W_FLOAT BorderThickness(W_FLOAT f);
-	W_COLOR Foreground(W_COLOR col);
-	W_COLOR Background(W_COLOR col);
-	W_COLOR BorderBrush(W_COLOR col);
+	W_FLOAT BorderThickness(const W_FLOAT& f);
+	W_COLOR Foreground(const W_COLOR& col);
+	W_COLOR Background(const W_COLOR& col);
+	W_COLOR BorderBrush(const W_COLOR& col);
 
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Foreground(void) const;
@@ -35,12 +35,12 @@ public:
 	std::wstring Content(void) const;
 	W_FLOAT	FontSize(void) const;
 
-	std::wstring FontFamily(std::wstring intake);
-	std::wstring Content(std::wstring content);
-	W_FLOAT	FontSize(W_FLOAT intake);
+	std::wstring FontFamily(const std::wstring& intake);
+	std::wstring Content(const std::wstring& content);
+	W_FLOAT	FontSize(const W_FLOAT& intake);
 
 	bool UseExtendedBorder(void) const;
-	bool UseExtendedBorder(bool intake);
+	bool UseExtendedBorder(const bool intake);
 
 protected:
 	// Dynamic Color
