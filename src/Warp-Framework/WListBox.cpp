@@ -692,12 +692,14 @@ WListBoxItem* WListBox::CreateItem(wchar_t* content, wchar_t* fontFamily, W_FLOA
 	return NewListBoxItem;
 }
 
+// If the mutex is locked (Animation/Color Transform is in motion), this method will throw an exception! 
 int WListBox::RemoveLast(void)
 {
 	if (m_itemCount == 0)
 	{
 		return -1;
 	}
+
 	WListBoxItem* LastItem = m_items[m_itemCount - 1];
 	m_items.pop_back();
 	m_itemCount--;
