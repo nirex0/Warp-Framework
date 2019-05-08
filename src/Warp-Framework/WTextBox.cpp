@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WTextBox::WTextBox(W_INT zIndex)
+WTextBox::WTextBox(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -50,7 +50,7 @@ WTextBox::WTextBox(W_INT zIndex)
 	m_UseExtendedBorder = true;
 }
 
-WTextBox::WTextBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WTextBox::WTextBox(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -96,7 +96,7 @@ WTextBox::WTextBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_I
 	m_UseExtendedBorder = true;
 }
 
-WTextBox::WTextBox(WPointF topleft, WPointF botright, W_INT zIndex)
+WTextBox::WTextBox(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -142,7 +142,7 @@ WTextBox::WTextBox(WPointF topleft, WPointF botright, W_INT zIndex)
 	m_UseExtendedBorder = true;
 }
 
-WTextBox::WTextBox(WRectF location, W_INT zIndex)
+WTextBox::WTextBox(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -203,29 +203,30 @@ WTextBox::~WTextBox(void)
 	delete UnHoverColorBack;
 }
 
-W_FLOAT WTextBox::BorderThickness(W_FLOAT f)
+W_FLOAT WTextBox::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WTextBox::Foreground(W_COLOR col)
+W_COLOR WTextBox::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
 	return col;
 }
 
-W_COLOR WTextBox::Background(W_COLOR col)
+W_COLOR WTextBox::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WTextBox::BorderBrush(W_COLOR col)
+W_COLOR WTextBox::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
 }
+
 
 W_FLOAT WTextBox::BorderThickness(void) const
 {
@@ -645,19 +646,19 @@ W_FLOAT WTextBox::FontSize(void) const
 	return m_fsize;
 }
 
-std::wstring WTextBox::FontFamily(std::wstring intake)
+std::wstring WTextBox::FontFamily(const std::wstring& intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-std::wstring WTextBox::Content(std::wstring content)
+std::wstring WTextBox::Content(const std::wstring& content)
 {
 	m_Content = content;
 	return m_Content;
 }
 
-W_FLOAT WTextBox::FontSize(W_FLOAT intake)
+W_FLOAT WTextBox::FontSize(const W_FLOAT& intake)
 {
 	m_fsize = intake;
 	return m_fsize;
