@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WFixedCanvas::WFixedCanvas(W_INT zIndex)
+WFixedCanvas::WFixedCanvas(const W_INT& zIndex)
 	: WControl(zIndex)
 {
 	this->m_top = 0;
