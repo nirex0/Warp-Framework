@@ -8,10 +8,10 @@ WFixedCanvas::WFixedCanvas(const W_INT& zIndex)
 	: WControl(zIndex)
 {
 	this->m_top = 0;
-	this->m_bottom = WContainer::Height();
+	this->m_bottom = (W_FLOAT)WContainer::Height();
 
 	this->m_left = 0;
-	this->m_right = WContainer::Width();
+	this->m_right = (W_FLOAT)WContainer::Width();
 }
 
 WFixedCanvas::~WFixedCanvas()
