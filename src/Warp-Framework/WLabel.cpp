@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WLabel::WLabel(W_INT zIndex)
+WLabel::WLabel(const W_INT& zIndex)
 	: WControl(zIndex)
 {
 	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.005F, 1);
@@ -20,7 +20,7 @@ WLabel::WLabel(W_INT zIndex)
 	m_family = L"Arial";
 }
 
-WLabel::WLabel(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WLabel::WLabel(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(zIndex)
 {
 	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.07F, 1);
@@ -36,7 +36,7 @@ WLabel::WLabel(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT z
 	m_family = L"Arial";
 }
 
-WLabel::WLabel(WPointF topleft, WPointF botright, W_INT zIndex)
+WLabel::WLabel(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(zIndex)
 {
 	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.07F, 1);
@@ -52,7 +52,7 @@ WLabel::WLabel(WPointF topleft, WPointF botright, W_INT zIndex)
 	m_family = L"Arial";
 }
 
-WLabel::WLabel(WRectF location, W_INT zIndex)
+WLabel::WLabel(const WRectF& location, const W_INT& zIndex)
 	: WControl(zIndex)
 {
 	HoverColorFore = new WColorTransform(WContainer::Theme().ColorText(), WContainer::Theme().ColorTextGlow(), 0.07F, 1);
@@ -74,7 +74,7 @@ WLabel::~WLabel()
 	delete UnHoverColorFore;
 }
 
-W_COLOR WLabel::Foreground(W_COLOR col)
+W_COLOR WLabel::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
 	return col;
@@ -277,19 +277,19 @@ W_FLOAT WLabel::FontSize(void) const
 	return m_fsize;
 }
 
-std::wstring WLabel::FontFamily(std::wstring intake)
+std::wstring WLabel::FontFamily(const std::wstring& intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-std::wstring WLabel::Content(std::wstring content)
+std::wstring WLabel::Content(const std::wstring& content)
 {
 	m_Content = content;
 	return m_Content;
 }
 
-W_FLOAT WLabel::FontSize(W_FLOAT intake)
+W_FLOAT WLabel::FontSize(const W_FLOAT& intake)
 {
 	m_fsize = intake;
 	return m_fsize;
