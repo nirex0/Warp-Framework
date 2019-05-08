@@ -9,10 +9,10 @@
 class WImageBox : public WControl
 {
 public:
-	WImageBox(wchar_t* URL, W_INT zIndex = 0);
-	WImageBox(wchar_t* URL, W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WImageBox(wchar_t* URL, WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WImageBox(wchar_t* URL, WRectF location, W_INT zIndex = 0);
+	WImageBox(wchar_t* URL, const W_INT zIndex = 0);
+	WImageBox(wchar_t* URL, const W_FLOAT top, const W_FLOAT left, const W_FLOAT bottom, const W_FLOAT right, const W_INT zIndex = 0);
+	WImageBox(wchar_t* URL, const WPointF topleft, const WPointF botright, W_INT zIndex = 0);
+	WImageBox(wchar_t* URL, const WRectF location, const W_INT zIndex = 0);
 	~WImageBox(void);
 
 	void Render(void) override;
