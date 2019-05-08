@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WButton::WButton(W_INT zIndex)
+WButton::WButton(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -50,7 +50,7 @@ WButton::WButton(W_INT zIndex)
 	m_UseExtendedBorder = true;
 }
 
-WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WButton::WButton(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -96,7 +96,7 @@ WButton::WButton(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT
 	m_UseExtendedBorder = true;
 }
 
-WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
+WButton::WButton(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -142,7 +142,7 @@ WButton::WButton(WPointF topleft, WPointF botright, W_INT zIndex)
 	m_UseExtendedBorder = true;
 }
 
-WButton::WButton(WRectF location, W_INT zIndex)
+WButton::WButton(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 	, ExBordRatio(5)
@@ -203,25 +203,25 @@ WButton::~WButton(void)
 	delete UnHoverColorBack;
 }
 
-W_FLOAT WButton::BorderThickness(W_FLOAT f)
+W_FLOAT WButton::BorderThickness(const W_FLOAT& f)
 {
 	m_thickness = f;
 	return f;
 }
 
-W_COLOR WButton::Foreground(W_COLOR col)
+W_COLOR WButton::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
 	return col;
 }
 
-W_COLOR WButton::Background(W_COLOR col)
+W_COLOR WButton::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WButton::BorderBrush(W_COLOR col)
+W_COLOR WButton::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
@@ -634,19 +634,19 @@ W_FLOAT WButton::FontSize(void) const
 	return m_fsize;
 }
 
-std::wstring WButton::FontFamily(std::wstring intake)
+std::wstring WButton::FontFamily(const std::wstring& intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-std::wstring WButton::Content(std::wstring content)
+std::wstring WButton::Content(const std::wstring& content)
 {
 	m_Content = content;
 	return m_Content;
 }
 
-W_FLOAT WButton::FontSize(W_FLOAT intake)
+W_FLOAT WButton::FontSize(const W_FLOAT& intake)
 {
 	m_fsize = intake;
 	return m_fsize;
