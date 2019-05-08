@@ -8,16 +8,16 @@
 class WListBoxItem : public WControl
 {
 public:
-	WListBoxItem(W_INT zIndex = 0);
-	WListBoxItem(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex = 0);
-	WListBoxItem(WPointF topleft, WPointF botright, W_INT zIndex = 0);
-	WListBoxItem(WRectF location, W_INT zIndex = 0);
+	WListBoxItem(const W_INT& zIndex = 0);
+	WListBoxItem(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex = 0);
+	WListBoxItem(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex = 0);
+	WListBoxItem(const WRectF& location, const W_INT& zIndex = 0);
 	~WListBoxItem(void);
 
-	W_FLOAT BorderThickness(W_FLOAT f);
-	W_COLOR Foreground(W_COLOR col);
-	W_COLOR Background(W_COLOR col);
-	W_COLOR BorderBrush(W_COLOR col);
+	W_FLOAT BorderThickness(const W_FLOAT& f);
+	W_COLOR Foreground(const W_COLOR& col);
+	W_COLOR Background(const W_COLOR& col);
+	W_COLOR BorderBrush(const W_COLOR& col);
 
 	W_FLOAT BorderThickness(void) const;
 	W_COLOR Foreground(void) const;
@@ -34,13 +34,12 @@ public:
 	std::wstring Content(void) const;
 	W_FLOAT	FontSize(void) const;
 
-	std::wstring FontFamily(std::wstring intake);
-	std::wstring Content(std::wstring content);
-	W_FLOAT	FontSize(W_FLOAT intake);
+	std::wstring FontFamily(const std::wstring& intake);
+	std::wstring Content(const std::wstring& content);
+	W_FLOAT	FontSize(const W_FLOAT& intake);
 
 	WTextAlignment Alignment(void) const;
-
-	WTextAlignment Alignment(WTextAlignment intake);
+	WTextAlignment Alignment(const WTextAlignment& intake);
 
 protected:
 	// Dynamic Color
