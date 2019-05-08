@@ -4,7 +4,7 @@
 #include "WControlHandler.h"
 #include "WSafeRelease.h"
 
-WCheckBox::WCheckBox(W_INT zIndex)
+WCheckBox::WCheckBox(const W_INT& zIndex)
 	: WControl(zIndex)
 	, m_thickness(1.0F)
 {
@@ -38,8 +38,7 @@ WCheckBox::WCheckBox(W_INT zIndex)
 	m_isChecked = false;
 }
 
-
-WCheckBox::WCheckBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W_INT zIndex)
+WCheckBox::WCheckBox(const W_FLOAT& top, const W_FLOAT& left, const W_FLOAT& bottom, const W_FLOAT& right, const W_INT& zIndex)
 	: WControl(top, left, bottom, right, zIndex)
 	, m_thickness(1.0F)
 {
@@ -73,7 +72,7 @@ WCheckBox::WCheckBox(W_FLOAT top, W_FLOAT left, W_FLOAT bottom, W_FLOAT right, W
 	m_isChecked = false;
 }
 
-WCheckBox::WCheckBox(WPointF topleft, WPointF botright, W_INT zIndex)
+WCheckBox::WCheckBox(const WPointF& topleft, const WPointF& botright, const W_INT& zIndex)
 	: WControl(topleft, botright, zIndex)
 	, m_thickness(1.0F)
 {
@@ -107,7 +106,7 @@ WCheckBox::WCheckBox(WPointF topleft, WPointF botright, W_INT zIndex)
 	m_isChecked = false;
 }
 
-WCheckBox::WCheckBox(WRectF location, W_INT zIndex)
+WCheckBox::WCheckBox(const WRectF& location, const W_INT& zIndex)
 	: WControl(location, zIndex)
 	, m_thickness(1.0F)
 {
@@ -153,22 +152,33 @@ WCheckBox::~WCheckBox(void)
 	delete UnHoverColorBack;
 }
 
-W_COLOR WCheckBox::Foreground(W_COLOR col)
+W_FLOAT WCheckBox::BorderThickness(const W_FLOAT& f)
+{
+	m_thickness = f;
+	return f;
+}
+
+W_COLOR WCheckBox::Foreground(const W_COLOR& col)
 {
 	foreColor = col;
 	return col;
 }
 
-W_COLOR WCheckBox::Background(W_COLOR col)
+W_COLOR WCheckBox::Background(const W_COLOR& col)
 {
 	backColor = col;
 	return col;
 }
 
-W_COLOR WCheckBox::BorderBrush(W_COLOR col)
+W_COLOR WCheckBox::BorderBrush(const W_COLOR& col)
 {
 	bordColor = col;
 	return col;
+}
+
+W_FLOAT WCheckBox::BorderThickness(void) const
+{
+	return m_thickness;
 }
 
 W_COLOR WCheckBox::Foreground(void) const
@@ -502,31 +512,31 @@ W_FLOAT WCheckBox::FontSize(void) const
 	return m_fsize;
 }
 
-bool WCheckBox::Checked(bool intake)
+bool WCheckBox::Checked(const bool& intake)
 {
 	m_isChecked = intake;
 	return m_isChecked;
 }
 
-bool WCheckBox::ShowBorder(bool intake)
+bool WCheckBox::ShowBorder(const bool& intake)
 {
 	m_DrawBorders = intake;
 	return m_DrawBorders;
 }
 
-std::wstring WCheckBox::FontFamily(std::wstring intake)
+std::wstring WCheckBox::FontFamily(const std::wstring& intake)
 {
 	m_family = intake;
 	return m_family;
 }
 
-std::wstring WCheckBox::Content(std::wstring content)
+std::wstring WCheckBox::Content(const std::wstring& content)
 {
 	m_Content = content;
 	return m_Content;
 }
 
-W_FLOAT WCheckBox::FontSize(W_FLOAT intake)
+W_FLOAT WCheckBox::FontSize(const W_FLOAT& intake)
 {
 	m_fsize = intake;
 	return m_fsize;
