@@ -1,5 +1,18 @@
 # Warp-Framework (Beta)
-Welcome to warp, a framework to create powerful and rich GUI C++ Single-Window applications using Direct2D API
+Welcome to Warp, a framework to create powerful and rich GUI C++ Single-Window applications using Direct2D API
+
+INDEX
+=====
+
+- [WELCOME](https://github.com/nirex0/Warp-Framework#warp-framework-beta)
+- [MAIN INDEX](https://github.com/nirex0/Warp-Framework#index)
+- [PROJECT STATUS](https://github.com/nirex0/Warp-Framework#status)
+- [DOCUMENTATION INDEX](https://github.com/nirex0/Warp-Framework#documentation)
+- [CURRENT PLANS](https://github.com/nirex0/Warp-Framework#plans)
+- [FRAMEWORK VIEW](https://github.com/nirex0/Warp-Framework#framework-view)
+- [EXAMPLES](https://github.com/nirex0/Warp-Framework#examples)
+- [CONTACT](https://github.com/nirex0/Warp-Framework#contact)
+- [COPYRIGHT INFO](https://github.com/nirex0/Warp-Framework#copyright-info)
 
 STATUS
 ======
