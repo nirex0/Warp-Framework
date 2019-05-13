@@ -94,7 +94,7 @@ PLANS: WARP-FRAMEWORK
 
 ### WARP-CORE 
 
-- 🔧 Main Window config.cfg
+- ✔️ config.cfg 
 
 - ✔️ Event Registry
 
