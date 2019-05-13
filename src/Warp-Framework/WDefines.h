@@ -9,6 +9,9 @@
 #define WARP_CALL				__stdcall
 #define WARP_ENTRY				__stdcall
 
+// Used to determine whether warp should load its configuration from config.cfg or not.
+#define W_USE_CONFIG
+
 #define WARP_FRAMEWORK
 #define W_FRAMEWORK
 #define WARP
