@@ -218,31 +218,22 @@ W_INT WMainWindow::Initialize(void)
 	// Load
 	if (fileExists)
 	{
-		WFile* f = new WFile();
-		std::vector<std::string> positionVector;
-
-		positionVector = f->ReadAllLines("pos.dat");
+		 std::vector<std::string> positionVector = WFile::ReadAllLines("pos.dat");
 
 		int x = std::stoi(positionVector[0]);
 		int y = std::stoi(positionVector[1]);
 
 		centX = x;
 		centY = y;
-
-		delete f;
 	}
 	// Save
 	else
 	{
-		WFile* f = new WFile();
 		std::vector<std::string> positionVector;
-
 		positionVector.push_back(std::to_string(centX));
 		positionVector.push_back(std::to_string(centY));
 
-		f->WriteAllLines("pos.dat", positionVector);
-
-		delete f;
+		WFile::WriteAllLines("pos.dat", positionVector);
 	}
 
 	
@@ -591,7 +582,6 @@ LRESULT WMainWindow::WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 
 void WMainWindow::SavePosition(void)
 {
-	WFile* f = new WFile();
 	std::vector<std::string> positionVector;
 
 	RECT wndRect = {};
@@ -600,9 +590,7 @@ void WMainWindow::SavePosition(void)
 	positionVector.push_back(std::to_string(wndRect.left)); // x
 	positionVector.push_back(std::to_string(wndRect.top));  // y
 
-	f->WriteAllLines("pos.dat", positionVector);
-
-	delete f;
+	WFile::WriteAllLines("pos.dat", positionVector);
 }
 
 void WMainWindow::SetGRegisters(void)
