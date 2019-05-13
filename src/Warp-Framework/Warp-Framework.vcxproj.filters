@@ -438,9 +438,6 @@
     <ClInclude Include="WWin.h">
       <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
-    <ClInclude Include="WDirent.h">
-      <Filter>Header Files\WARP-CORE\System</Filter>
-    </ClInclude>
     <ClInclude Include="WConfig.h">
       <Filter>Header Files\WARP-CORE\Core</Filter>
     </ClInclude>
