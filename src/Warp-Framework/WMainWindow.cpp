@@ -2,6 +2,8 @@
 
 #include <algorithm>
 #include <string>
+#include <map>
+#include <vector>
 
 #include "WMainWindow.h"
 #include "WSafeRelease.h"
@@ -17,6 +19,8 @@
 #include "WFile.h"
 #include "WRadioButtonHandler.h"
 #include "WGDIPaintEventArgs.h"
+#include "WConfig.h"
+#include "WString.h"
 
 // We Need to Initialize the container's static memebers to nullptr ({} = ZeroMemory}
 HRESULT WContainer::HR = {};
@@ -87,7 +91,19 @@ W_INT WARP_ENTRY wWinMain(
 	UNREFERENCED_PARAMETER(lpCmd);
 	UNREFERENCED_PARAMETER(cmdShow);
 
+#ifdef W_USE_CONFIG
+	// Grab Config
+	WConfig* wc = new WConfig();
+	std::map<std::string, std::string> config = wc->GetConfig();
+	delete wc;
+#endif // W_USE_CONFIG
+
 	MainWnd = new WMainWindow(hInstance, WindowTitle, ApplicationName);
+
+#ifdef W_USE_CONFIG
+	MainWnd->LoadConfig(config);
+#endif // W_USE_CONFIG
+
 	MainWnd->Initialize();
 	MainWnd->MessageLoop();
 	delete MainWnd;
@@ -144,11 +160,24 @@ WMainWindow::~WMainWindow(void)
 	delete m_graphics;
 }
 
+void WMainWindow::LoadConfig(std::map<std::string, std::string> configMap)
+{
+	m_configMap = configMap;
+}
+
 W_INT WMainWindow::Initialize(void)
 {
 	HWND hWnd;
 	WNDCLASSEX wcex = {};
 	ZeroMemory(&wcex, sizeof(WNDCLASSEXW));
+
+#ifdef W_USE_CONFIG
+	
+		// Config: Height & Width 
+		WContainer::Height(std::stoi(m_configMap["height"]));
+		WContainer::Width(std::stoi(m_configMap["width"]));
+
+#endif // W_USE_CONFIG
 
 	// Setup the WCEX 
 	wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
