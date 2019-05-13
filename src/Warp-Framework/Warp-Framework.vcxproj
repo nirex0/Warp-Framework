@@ -140,6 +140,7 @@
     <ClInclude Include="WAsync.h" />
     <ClInclude Include="WCGridComponent.h" />
     <ClInclude Include="WCheckBox.h" />
+    <ClInclude Include="WConfig.h" />
     <ClInclude Include="WDevices.h" />
     <ClInclude Include="WDirent.h" />
     <ClInclude Include="WEventBound.h" />
@@ -232,6 +233,7 @@
     <ClCompile Include="WCheckBox.cpp" />
     <ClCompile Include="WColorTransform.cpp" />
     <ClCompile Include="WColorTransformArgs.cpp" />
+    <ClCompile Include="WConfig.cpp" />
     <ClCompile Include="WContainer.cpp" />
     <ClCompile Include="WControl.cpp" />
     <ClCompile Include="WControlHandler.cpp" />
