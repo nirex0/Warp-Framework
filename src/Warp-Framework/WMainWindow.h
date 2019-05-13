@@ -19,6 +19,7 @@ class WMainWindow final : public WEntity
 public:
 	WMainWindow(HINSTANCE hInstance, LPWSTR WindowTitle, LPWSTR WindowName = L"MAIN_WINDOW");
 	~WMainWindow(void);
+	void LoadConfig(std::map<std::string, std::string> configMap);
 	W_INT Initialize(void);
 	void MessageLoop(void);
 	LRESULT WProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -35,6 +36,7 @@ private:
 	LPWSTR m_windowTitle;
 	WUniqueRegister* m_OnGDIPaint;
 	WGraphics* m_graphics;
+	std::map<std::string, std::string> m_configMap;
 };
 
 static WMainWindow* MainWnd;
