@@ -94,6 +94,8 @@ PLANS: WARP-FRAMEWORK
 
 ### WARP-CORE 
 
+- 🔧 Main Window config.cfg
+
 - ✔️ Event Registry
 
 - ✔️ Function Binding
