@@ -441,6 +441,9 @@
     <ClInclude Include="WDirent.h">
       <Filter>Header Files\WARP-CORE\System</Filter>
     </ClInclude>
+    <ClInclude Include="WConfig.h">
+      <Filter>Header Files\WARP-CORE\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMainWindow.cpp">
@@ -610,6 +613,9 @@
     </ClCompile>
     <ClCompile Include="WSocketArgs.cpp">
       <Filter>Source Files\WARP-NETWORK</Filter>
+    </ClCompile>
+    <ClCompile Include="WConfig.cpp">
+      <Filter>Source Files\WARP-CORE\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
