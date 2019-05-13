@@ -154,8 +154,7 @@ void WLogger::WLoggerFlush(std::wstring path)
 	std::wstring initPath = path;
 	initPath += L"init.wcm";
 
-	WFile file;
-	file.WriteAllText(WString::ToNarrow(initPath), "");
+	WFile::WriteAllText(WString::ToNarrow(initPath), "");
 }
 
 void WLogger::WLoggerRun(std::wstring path)
