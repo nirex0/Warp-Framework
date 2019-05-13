@@ -124,8 +124,7 @@ auto main(int argc, char** argv) -> int
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTitle("Warp Logging Utility");
 
-	WFile logF;
-	logF.WriteAllText("tmpWlog.wlog", "");
+	 WFile::WriteAllText("tmpWlog.wlog", "");
 
 	while (true)
 	{
@@ -133,8 +132,8 @@ auto main(int argc, char** argv) -> int
 		if (FileExists("init.wcm"))
 		{
 			std::vector<std::string>* currentCmd = new std::vector<std::string>();
-			*currentCmd = logF.ReadAllLines("tmpWlog.wlog");
-			logF.WriteAllText("tmpWlog.wlog", "");
+			*currentCmd = WFile::ReadAllLines("tmpWlog.wlog");
+			WFile::WriteAllText("tmpWlog.wlog", "");
 			
 			for (int i = 0; i < currentCmd->size(); i++)
 			{
