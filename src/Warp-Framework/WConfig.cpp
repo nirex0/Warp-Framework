@@ -6,9 +6,7 @@
 
 WConfig::WConfig(void)
 {
-	WFile* wf = new WFile();
-	std::vector<std::string> configVector = wf->ReadAllLines("config.cfg");
-	delete wf;
+	std::vector<std::string> configVector = WFile::ReadAllLines("config.cfg");
 
 	configMap = new std::map<std::string, std::string>();
 
