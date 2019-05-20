@@ -1,6 +1,6 @@
 # PLANS
 
-DOCUMENTATION
+DOCUMENTATION (ON HOLD)
 =============
 
 ### WARP-FRAMEWORK 
@@ -150,7 +150,7 @@ PLANS: WARP-LOGGER
 
 #### LEGEND
 
-✔️ : Fully implemented and tested
+✔️ : Fully implemented and tested 
 
 🛠 : Implemented, not tested
 
