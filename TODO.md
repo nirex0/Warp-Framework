@@ -158,6 +158,6 @@ PLANS: WARP-LOGGER
 
 ⚙️ : Will be working on next
 
-⚠️ : Will be working on soon
+⚠️ : Needs Update
 
 ❌ : Will be one of the later features to add
