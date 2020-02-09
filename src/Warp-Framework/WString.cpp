@@ -416,7 +416,7 @@ long WString::Contains(const std::string& str, const::std::string& substr)
 	size_t index = str.find(substr);
 	if (index != std::string::npos)
 	{
-		return index;
+		return (long)index;
 	}
 	return -1;
 }
@@ -426,7 +426,7 @@ long WString::Contains(const std::wstring& str, const::std::wstring& substr)
 	size_t index = str.find(substr);
 	if (index != std::string::npos)
 	{
-		return index;
+		return (long)index;
 	}
 	return -1;
 }
